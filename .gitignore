@@ -123,4 +123,5 @@ sketch
 # End of https://www.gitignore.io/api/node,react
 
 # ADDED
-utils/
+# TODO: Fix this so that utils does not end up in GitHub
+client/utils/
