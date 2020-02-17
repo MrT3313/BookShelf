@@ -11,7 +11,14 @@ Want to know what another user is reading? Turn your profile 'public' and allow 
 S - SQL  
 E - EXPRESS  
 R - React  
-N - Node  
+N - Node 
+
+## HTTP Client
+Axios ([LINK](https://github.com/axios/axios))  
+
+## Query Builder
+Knex ([LINK](http://knexjs.org))  
+
 
 ## UI
 Material UI ([LINK](https://material-ui.com))  
