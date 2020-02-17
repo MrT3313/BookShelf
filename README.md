@@ -6,4 +6,14 @@ Just finish a book? Review it!
 Is it a new favorite of yours? Rate it against your yearly and all time rankings & promote it to your friends!
 Want to know what another user is reading? Turn your profile 'public' and allow other to interact with you and your BookShelf!
 
+# Stack
+S - SQL  
+E - EXPRESS  
+R - React  
+N - Node  
+
+UI Styling: Material UI  
+Package Manager: NPM  
+
+---
 Author: Reed Turgeon
