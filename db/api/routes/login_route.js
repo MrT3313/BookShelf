@@ -13,7 +13,18 @@ const jwt = require('jsonwebtoken')
 
 // __MAIN__ 
     // - GET - //
+        // - 1 - //
+        router.get('/', async(req,res) => {
+            console.log('** LOGIN ROUTE: TEST GET/ **')
+            res.status(200).json({
+                message: 'TEST GET request for LOGIN ROUTE working'
+            })
+        })
     // - POST - //
+        /* ACCEPTED SHAPE
+        
+        */
+
     // - PUT - //
     // - DEL - //
 
