@@ -5,14 +5,14 @@ module.exports = {
         // TODO: Switch to use SQL DEVELOPMENT
         client: 'sqlite3',
         connection: {
-        filename: './data/homeManager.sqlite3'
+        filename: './data/BookShelf.sqlite3'
         },
         useNullAsDefault: true,
         migrations: {
-            directory: './data.migrations'
+            directory: './data/migrations'
         },
         seeds: {
-            directory: './data.seeds'
+            directory: './data/seeds'
         }
     },
     production: {
