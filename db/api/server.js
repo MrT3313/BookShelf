@@ -27,3 +27,6 @@ require('dotenv').config()
     server.get('/', (req, res) => {
         res.status(200).json({API: 'BookShelf ROOT ROUTE working'})
     })
+
+// EXPORTS
+module.exports = server

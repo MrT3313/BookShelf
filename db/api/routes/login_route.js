@@ -1,6 +1,6 @@
 // IMPORTS
 const bcrypt = require('bcrypt')
-const jwt = require(jsonwebtoken)
+const jwt = require('jsonwebtoken')
 
 // EXPRESS
     const express = require('express')
