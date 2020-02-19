@@ -11,7 +11,7 @@ exports.up = function(knex) {
             .unique()
         tbl.string('email')
             .unique()
-        tbl.string('hashed_pw')
+        tbl.string('HASHED_pw')
             .notNullable()
 
         // All profile start off as private profiles
