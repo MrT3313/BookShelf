@@ -14,28 +14,15 @@ import Homepage from './views/homepage.jsx'
 
 
 // __MAIN__
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Route exact path='/' component={Homepage} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={Register} />
-      </div>
-
-    )
-  }
+function App() {
+  return (
+    <div className="App">
+      <Route exact path='/' component={Homepage} />
+      <Route exact path='/login' component={Login} />
+      <Route exact path='/register' component={Register} />
+    </div>
+  );
 }
-// function App() {
-//   return (
-//     <div className="App">
-//       <div>Hello from App</div>
-//       <Route exact path='/' component={Homepage} />
-//       <Route exact path='/login' component={Login} />
-//       <Route exact path='/register' component={Register} />
-//     </div>
-//   );
-// }
 
 // EXPORTS
 export default App;

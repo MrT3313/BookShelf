@@ -27,5 +27,12 @@ Styled Components  ([LINK](https://styled-components.com))
 ## Utils
 Package Manager: NPM  
 
+## APIs
+- BOOKS 
+1. NY Times: Books API ([LINK](https://developer.nytimes.com/docs/books-product/1/overview))  
+2. Good Reads ([LINK](https://www.goodreads.com/api))  
+3. Google Books APIs ([LINK](https://developers.google.com/books))  
+
+
 ---
 Author: Reed Turgeon

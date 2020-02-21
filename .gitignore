@@ -125,3 +125,5 @@ sketch
 # ADDED
 # TODO: Fix this so that utils does not end up in GitHub
 client/utils/
+client/node_modules/
+db/node_modules/
