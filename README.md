@@ -29,7 +29,24 @@ Package Manager: NPM
 
 ## APIs
 - BOOKS 
-1. NY Times: Books API ([LINK](https://developer.nytimes.com/docs/books-product/1/overview))  
+1. NY Times: Books API ([LINK](https://developer.nytimes.com/docs/books-product/1/overview)) 
+
+    - Get all available book lists:
+        - Root URL: https://api.nytimes.com/svc/books/v3/lists/
+        - Endpoint: `names.json`
+        - Path Parameters: None
+
+    - Get individual list by date
+        - Root URL: https://api.nytimes.com/svc/books/v3/lists/
+        - Endpoint: `{date}/{list}.json` 
+        - Path Parameters:
+            - Date: YYYY-MM-DD or "current"
+            - List: Name of the Best Sellers List (e.g. hardcover-fiction)  
+            
+    ** Credit Requirements: https://developer.nytimes.com/branding
+
+
+
 2. Good Reads ([LINK](https://www.goodreads.com/api))  
 3. Google Books APIs ([LINK](https://developers.google.com/books))  
 
