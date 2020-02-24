@@ -1,5 +1,6 @@
-# Created by https://www.gitignore.io/api/node,react
-# Edit at https://www.gitignore.io/?templates=node,react
+
+# Created by https://www.gitignore.io/api/node
+# Edit at https://www.gitignore.io/?templates=node
 
 ### Node ###
 # Logs
@@ -107,23 +108,4 @@ dist/
 tmp/
 temp/
 
-### react ###
-.DS_*
-**/*.backup.*
-**/*.back.*
-
-node_modules
-
-*.sublime*
-
-psd
-thumb
-sketch
-
-# End of https://www.gitignore.io/api/node,react
-
-# ADDED
-# TODO: Fix this so that utils does not end up in GitHub
-client/utils/
-client/node_modules/
-db/node_modules/
+# End of https://www.gitignore.io/api/node
