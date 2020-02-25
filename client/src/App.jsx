@@ -12,7 +12,6 @@ import Homepage from './views/homepage.jsx'
 // -- PROTECTED Routes -- //
   // 1. PROFILE
 
-
 // __MAIN__
 function App() {
   return (
