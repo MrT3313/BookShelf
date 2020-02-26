@@ -40,10 +40,11 @@ import { NYT_booksAPI_baseURL } from '../../utils'
                     console.log(lists)
                     dispatch({
                         type: GET_BOOKLISTS_SUCCESS,
-                        payload: {
-                            copyright: lists.data.copyright,
-                            data: lists.data.results,
-                        }
+                        payload: lists.data.results
+                        // payload: {
+                        //     // copyright: lists.data.copyright,
+                        //     data: lists.data.results,
+                        // }
                     })
                 })
                 .catch( err => {
@@ -80,10 +81,11 @@ import { NYT_booksAPI_baseURL } from '../../utils'
                     console.log(data)
                     dispatch({
                         type: GET_SPECIFICLIST_SUCCESS,
-                        payload: {
-                            copyright: data.data.copyright,
-                            data: data.data.results,
-                        }
+                        payload: data.data.results,
+                        // payload: {
+                        //     copyright: data.data.copyright,
+                        //     data: data.data.results,
+                        // }
                     })
                 })
                 .catch( err => {

@@ -9,14 +9,14 @@ import Menu_AppBar from '../components/AppBar.js'
 import Top10 from '../components/Top10.js'
 
 // ACTION CREATORS
-import { a_GETbook_lists,
-         a_GETspecific_list } from '../redux/actions/a_lists.js'
+import { a_GETbook_lists } from '../redux/actions/a_lists.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
 
 // __MAIN__
 function HomePage(props) {
+console.log('HOMEPAGE PROPS: ', props)
     // State
     const [listSearch_date, setListSearch_date] = useState('current')
     const [listSearch_name, setListSearch_name] = useState('Combined Print and E-Book Nonfiction')
@@ -63,6 +63,5 @@ export default connect(
     mstp,
     {
         a_GETbook_lists,
-        a_GETspecific_list,
     }
 )(HomePage)

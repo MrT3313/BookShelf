@@ -9,8 +9,8 @@ import {
 // INITIAL STATE
 const initialState = {
     is_fetching: false,
-    lists: undefined,
-    current_list: undefined,
+    list_names: [],
+    current_list: [],
     error: '',
 }
 
@@ -32,7 +32,8 @@ console.log('action.payload: ', action.payload)
                     is_fetching: false,
                     error: '',
     
-                    lists: action.payload
+                    // lists: action.payload
+                    list_names: action.payload
                 }
             case GET_BOOKLISTS_FAILURE :
                 return {
