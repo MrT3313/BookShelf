@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 
 // COMPONENTS
 import Menu_AppBar from '../components/AppBar.js'
+import Top10 from '../components/Top10.js'
 
 // ACTION CREATORS
 import { a_GETbook_lists,
@@ -42,6 +43,7 @@ function HomePage(props) {
     return (
         <div>
             <Menu_AppBar />
+            <Top10 />
             <button type='button' onClick={get_individual_list}>
                 Test - Get Individual List
             </button>
