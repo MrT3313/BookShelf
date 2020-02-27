@@ -14,6 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
+import BookCard from './BookCard.js'
 
 // ACTION CREATORS
 import { a_GETspecific_list } from '../redux/actions/a_lists.js'
@@ -48,20 +49,24 @@ const useStyles = makeStyles({
 // -B- COMPONENT
 function Top10(props) {
 console.log('Top10 PROPS:', props)
+const { default_searchList,  default_searchDate,
+        lists, current_list,                        } = props
 
     // Styles
     const classes = useStyles()
 
     // State
-    const [activeList, setActiveList] = useState("Combined Print and E-Book Nonfiction")
+    const [activeList_name, setActiveList_name] = useState(default_searchList)
+    const [activeSearch_date, setActiveSearch_date] = useState(default_searchDate)
     
-    useEffect(() => {
-        props.a_GETspecific_list('current', activeList)
-    },[activeList])
+    useEffect(async () => {
+        console.log('TOP 10 USE EFFECT')
+        await props.a_GETspecific_list(activeSearch_date, activeList_name)
+    },[activeList_name, activeSearch_date])
 
     // Methods
     const handleChange = e => {
-        setActiveList(e.target.value)
+        setActiveList_name(e.target.value)
     }
 
     // Returned Component
@@ -73,10 +78,10 @@ console.log('Top10 PROPS:', props)
                 </InputLabel>
                 <Select
                     onChange={handleChange}
-                    renderValue={() => activeList}
+                    renderValue={() => activeList_name}
                     displayEmpty
                 >
-                    {props.lists.map( list => {
+                    {lists.map( list => {
                         // console.log(list);
                         return (
                             <MenuItem value={list.list_name}>{list.list_name}</MenuItem>
@@ -85,9 +90,27 @@ console.log('Top10 PROPS:', props)
                 </Select>
             </FormControl>
             <Paper className={classes.paper}>
-                <Card className={classes.card}>
-                    This is a card
-                </Card>
+                {/* // TOP ROW */}
+                {current_list.books && 
+                    current_list.books.filter(book => [1].includes(book.rank)).map(item => {
+                        console.log('TOP ROW')
+                        console.log(item)
+
+                        return (
+                            <BookCard bookInfo={item}/>
+                        )
+                    })
+                }
+                {current_list.books && 
+                    current_list.books.filter(book => [2,3].includes(book.rank)).map(item => {
+                        console.log('SECOND ROW')
+                        console.log(item)
+
+                        return (
+                            <BookCard bookInfo={item}/>
+                        )
+                    })
+                }
             </Paper>
         </div>
     )
@@ -96,7 +119,8 @@ console.log('Top10 PROPS:', props)
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        lists: state.r_lists.list_names
+        lists: state.r_lists.list_names,
+        current_list: state.r_lists.current_list,
     }
 }
 

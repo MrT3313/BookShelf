@@ -9,7 +9,8 @@ import Menu_AppBar from '../components/AppBar.js'
 import Top10 from '../components/Top10.js'
 
 // ACTION CREATORS
-import { a_GETbook_lists } from '../redux/actions/a_lists.js'
+import {    a_GETbook_lists, 
+            a_GETspecific_list  } from '../redux/actions/a_lists.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -18,11 +19,12 @@ import { a_GETbook_lists } from '../redux/actions/a_lists.js'
 function HomePage(props) {
 console.log('HOMEPAGE PROPS: ', props)
     // State
-    const [listSearch_date, setListSearch_date] = useState('current')
-    const [listSearch_name, setListSearch_name] = useState('Combined Print and E-Book Nonfiction')
+    const [default_searchDate, setDefault_searchDate] = useState('current')
+    const [default_searchList, setDefault_searchList] = useState('Combined Print and E-Book Nonfiction')
 
     useEffect(() => {
         get_book_lists()
+        // get_individual_list()
     })
 
     // Methods
@@ -32,21 +34,20 @@ console.log('HOMEPAGE PROPS: ', props)
         // Call the action creator that was passed through connect to props-> has the dispatch method added to it
         props.a_GETbook_lists()
     }
-    const get_individual_list = e => {
-        e.preventDefault();
+    const get_individual_list = () => {
         console.log('You Clicked: Trying to get individual list')
 
-        props.a_GETspecific_list(listSearch_date, listSearch_name)
+        props.a_GETspecific_list(default_searchDate, default_searchList)
     }
 
     // Returned Component
     return (
         <div>
             <Menu_AppBar />
-            <Top10 />
-            <button type='button' onClick={get_individual_list}>
-                Test - Get Individual List
-            </button>
+            <Top10 
+                default_searchDate={default_searchDate} 
+                default_searchList={default_searchList} 
+            />
         </div>
     )
 }
@@ -63,5 +64,6 @@ export default connect(
     mstp,
     {
         a_GETbook_lists,
+        a_GETspecific_list,
     }
 )(HomePage)
