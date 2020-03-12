@@ -24,7 +24,6 @@ console.log('HOMEPAGE PROPS: ', props)
 
     useEffect(() => {
         get_book_lists()
-        // get_individual_list()
     })
 
     // Methods

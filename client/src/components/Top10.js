@@ -49,8 +49,8 @@ const useStyles = makeStyles({
 // -B- COMPONENT
 function Top10(props) {
 console.log('Top10 PROPS:', props)
-const { default_searchList,  default_searchDate,
-        lists, current_list,                        } = props
+const { default_searchList,  default_searchDate,                // Passed w/ passed props
+        lists, current_list,                        } = props   // Passed w/ Connect
 
     // Styles
     const classes = useStyles()
@@ -59,13 +59,18 @@ const { default_searchList,  default_searchDate,
     const [activeList_name, setActiveList_name] = useState(default_searchList)
     const [activeSearch_date, setActiveSearch_date] = useState(default_searchDate)
     
-    useEffect(async () => {
-        console.log('TOP 10 USE EFFECT')
-        await props.a_GETspecific_list(activeSearch_date, activeList_name)
+    useEffect(() => {
+    console.log('TOP 10 USE EFFECT')
+        async function fetchData(){
+            await props.a_GETspecific_list(activeSearch_date, activeList_name)
+        }
+        fetchData()
     },[activeList_name, activeSearch_date])
 
     // Methods
     const handleChange = e => {
+        console.log(e)
+        console.log(e.target)
         setActiveList_name(e.target.value)
     }
 
@@ -77,8 +82,10 @@ const { default_searchList,  default_searchDate,
                     Active NYT Bestseller List
                 </InputLabel>
                 <Select
+                    value={activeList_name}
                     onChange={handleChange}
-                    renderValue={() => activeList_name}
+                    // renderValue={() => activeList_name}
+                    // renderValue={activeList_name}
                     displayEmpty
                 >
                     {lists.map( list => {
