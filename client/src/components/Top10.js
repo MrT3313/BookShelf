@@ -103,7 +103,8 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                     })}
                 </Select>
             </FormControl>
-            <Paper className={classes.paper}>
+            {/* TODO: Should this be wrapped in a <Paper /> */}
+            {/* <Paper className={classes.paper}> */}
                 {/* // TOP ROW */}
                 <div className={classes.row}>
                     {current_list.books && 
@@ -165,7 +166,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                         })
                     }
                 </div>
-            </Paper>
+            {/* </Paper> */}
         </div>
     )
 }

@@ -27,11 +27,22 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'space-between',
+
+        minHeight: '100%',
+        width: '200px'
     },
     img: {
-        maxHeight: '40%',
-        maxWidth: '40%',
+        maxHeight: '200px',
+        // maxHeight: '40%',
+
+        maxWidth: '130px',
+        // maxWidth: '40%',
+
         height: 'auto',
+
+        marginTop: '10px',
+        marginBottom: '10px',
     }
 })
 
