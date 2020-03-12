@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 // MATERIAL UI
 // -1- Components
-import { Card, Paper } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
@@ -32,12 +32,16 @@ const useStyles = makeStyles({
         alignItems: 'center',
     },
     paper: {
-        width: '100px',
         marginTop: '15px',
         marginBottom: '15px',
-        
-        backgroundColor: 'blue',
     }, 
+    row: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '10px',
+
+        
+    },
     card: {
         color: 'teal',
     },
@@ -101,56 +105,66 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
             </FormControl>
             <Paper className={classes.paper}>
                 {/* // TOP ROW */}
-                {current_list.books && 
-                    current_list.books.filter(book => [1].includes(book.rank)).map(item => {
-                        console.log('TOP ROW')
-                        console.log(item)
+                <div className={classes.row}>
+                    {current_list.books && 
+                        current_list.books.filter(book => [1].includes(book.rank)).map(item => {
+                            console.log('TOP ROW')
+                            console.log(item)
 
-                        return (
-                            <BookCard bookInfo={item}/>
-                        )
-                    })
-                }
-                {current_list.books && 
-                    current_list.books.filter(book => [2,3].includes(book.rank)).map(item => {
-                        console.log('SECOND ROW')
-                        console.log(item)
+                            return (
+                                <BookCard bookInfo={item}/>
+                            )
+                        })
+                    }
+                </div>
+                <div className={classes.row}>
+                    {current_list.books && 
+                        current_list.books.filter(book => [2,3].includes(book.rank)).map(item => {
+                            console.log('SECOND ROW')
+                            console.log(item)
 
-                        return (
-                            <BookCard bookInfo={item}/>
-                        )
-                    })
-                }
-                {current_list.books && 
-                    current_list.books.filter(book => [4,5,6].includes(book.rank)).map(item => {
-                        console.log('THIRD ROW')
-                        console.log(item)
+                            return (
+                                <BookCard bookInfo={item}/>
+                            )
+                        })
+                    }
+                </div>
+                <div className={classes.row}>
+                    {current_list.books && 
+                        current_list.books.filter(book => [4,5,6].includes(book.rank)).map(item => {
+                            console.log('THIRD ROW')
+                            console.log(item)
 
-                        return (
-                            <BookCard bookInfo={item}/>
-                        )
-                    })
-                }
-                {current_list.books && 
-                    current_list.books.filter(book => [7,8,9,10].includes(book.rank)).map(item => {
-                        console.log('FOURTH ROW')
-                        console.log(item)
+                            return (
+                                <BookCard bookInfo={item}/>
+                            )
+                        })
+                    }
+                </div>
+                <div className={classes.row}>
+                    {current_list.books && 
+                        current_list.books.filter(book => [7,8,9,10].includes(book.rank)).map(item => {
+                            console.log('FOURTH ROW')
+                            console.log(item)
 
-                        return (
-                            <BookCard bookInfo={item}/>
-                        )
-                    })
-                }
-                {current_list.books && 
-                    current_list.books.filter(book => [11,12,13,14,15].includes(book.rank)).map(item => {
-                        console.log('FIFTH ROW')
-                        console.log(item)
+                            return (
+                                <BookCard bookInfo={item}/>
+                            )
+                        })
+                    }
+                </div>
+                <div className={classes.row}>
+                    {current_list.books && 
+                        current_list.books.filter(book => [11,12,13,14,15].includes(book.rank)).map(item => {
+                            console.log('FIFTH ROW')
+                            console.log(item)
 
-                        return (
-                            <BookCard bookInfo={item}/>
-                        )
-                    })
-                }
+                            return (
+                                <BookCard bookInfo={item}/>
+                            )
+                        })
+                    }
+                </div>
             </Paper>
         </div>
     )
