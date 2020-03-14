@@ -76,7 +76,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
             await props.a_GETspecific_list(activeSearch_date, activeList_name)
         }
         fetchData()
-    },[activeList_name, activeSearch_date])
+    },[activeList_name, activeSearch_date]) // eslint-disable-next-line no-use-before-define
 
     // Methods
     const handleChange = e => {
