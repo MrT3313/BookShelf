@@ -2,6 +2,9 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 
+// IMAGES
+import NYT_credit from '../assets/NYT_dataAttribution.png'
+
 // MATERIAL UI
 // -1- Components
 import { Paper } from '@material-ui/core';
@@ -51,6 +54,9 @@ const useStyles = makeStyles(theme => ({
         marginTop: '15px',
         marginBottom: '15px',
     },
+    dataAttribution: {
+        marginBottom: '15px'
+    }
 }))
 
 // -B- COMPONENT
@@ -166,6 +172,13 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                     }
                 </div>
             {/* </Paper> */}
+            {/* Data Attribution */}
+            <div className={classes.dataAttribution}>
+                <img 
+                    src={NYT_credit}
+                    alt='NYT_dataAttribution'
+                />
+            </div>
         </div>
     )
 }
