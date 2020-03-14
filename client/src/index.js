@@ -14,7 +14,7 @@ import logger from "redux-logger";
 
 // MATERIAL UI - Theme
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { cyan, amber } from '@material-ui/core/colors'
+import { cyan, amber, blueGrey } from '@material-ui/core/colors'
 
 // COMPONENTS
 import App from './App.jsx';
@@ -34,19 +34,35 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
         palette: {
             primary: cyan,
             secondary: {
-                // light: amber[200],
-                main: amber[500],
-                // dark: amber[900],
-            }
+                main: blueGrey[900]
+            },
         },
+        overrides: {
+            MuiInputLabel: {
+                root: {
+                    color: '#01BCD4',  // Hack to use Cyan...
+                }
+            },
+            MuiSelect: {
+                root: {
+                    color: 'white',
+                }
+            }
+            // MuiSelect: {
+            //     root: {
+            //         color: 'white '
+            //     }
+            // }
+        }
     })
+    console.log(theme)
 
     // -C- Render
     ReactDOM.render(
         <Provider store={store}>
             <Router>
                 <ThemeProvider theme={theme}>
-                    <App />
+                    <App theme={theme}/>
                 </ThemeProvider>
             </Router>
         </Provider>,

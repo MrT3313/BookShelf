@@ -11,7 +11,10 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 // -2- Styles
+// import { useTheme } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
+import { blueGrey } from '@material-ui/core/colors'
 
 // COMPONENTS
 import BookCard from './BookCard.js'
@@ -24,9 +27,9 @@ import { a_GETspecific_list } from '../redux/actions/a_lists.js'
 
 // __MAIN__
 // -A- STYLES
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     root: {
-        backgroundColor: 'orange',
+        backgroundColor: theme.palette.secondary.main,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -39,19 +42,16 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         marginBottom: '10px',
-
-        
     },
     card: {
         color: 'teal',
     },
     listSelection: {
         minWidth: '60%',
-
-        marginTop: '10px',
-    }
-
-})
+        marginTop: '15px',
+        marginBottom: '15px',
+    },
+}))
 
 // -B- COMPONENT
 function Top10(props) {
@@ -60,7 +60,8 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
         lists, current_list,                        } = props   // Passed w/ Connect
 
     // Styles
-    const classes = useStyles()
+    // const theme = useTheme()
+    const classes = useStyles({})
 
     // State
     const [activeList_name, setActiveList_name] = useState(default_searchList)
@@ -91,8 +92,6 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 <Select
                     value={activeList_name}
                     onChange={handleChange}
-                    // renderValue={() => activeList_name}
-                    // renderValue={activeList_name}
                     displayEmpty
                 >
                     {lists.map( list => {

@@ -13,12 +13,13 @@ import Homepage from './views/homepage.jsx'
   // 1. PROFILE
 
 // __MAIN__
-function App() {
-  return (
+function App(props) {
+  const {theme} = props
+  return ( 
     <div className="App">
-      <Route exact path='/' component={Homepage} />
-      <Route exact path='/login' component={Login} />
-      <Route exact path='/register' component={Register} />
+      <Route exact path='/' theme={props.theme} component={Homepage} />
+      {/* <Route exact path='/login' theme={props.theme} component={Login} />
+      <Route exact path='/register' theme={props.theme} component={Register} /> */}
     </div>
   );
 }

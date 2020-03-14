@@ -45,7 +45,7 @@ console.log('HOMEPAGE PROPS: ', props)
             <Menu_AppBar />
             <Top10 
                 default_searchDate={default_searchDate} 
-                default_searchList={default_searchList} 
+                default_searchList={default_searchList}
             />
         </div>
     )

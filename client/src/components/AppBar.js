@@ -28,14 +28,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // __MAIN__
 // -A- STYLES
-const useStyles = makeStyles({
+const useStyles = makeStyles( theme => ({
     root: {
-        // backgroundColor: 'pink',
+        backgroundColor: theme.palette.primary.main,
     },
     title: {
         flexGrow: 1
     }
-})
+}))
 
 // -B- COMPONENT
 function Menu_AppBar() {
@@ -61,7 +61,7 @@ function Menu_AppBar() {
         <div>
             <AppBar position='static' className={classes.root}>
                 <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
+                    <IconButton aria-label="menu">
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
