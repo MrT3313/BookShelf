@@ -50,6 +50,9 @@ Package Manager: NPM
 2. Good Reads ([LINK](https://www.goodreads.com/api))  
 3. Google Books APIs ([LINK](https://developers.google.com/books))  
 
-
+## Versions
+- 0.0.1:
+    - FE: Hosted Homepage
+    - BE: Login & Register functionality working in postman but not hooked up to FE
 ---
 Author: Reed Turgeon
