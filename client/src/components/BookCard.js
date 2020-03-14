@@ -40,7 +40,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
 
         fontFamily: "'Baloo', cursive",
-        height: '65px',
+        minHeight: '65px',
     },
     img: {
         maxHeight: '200px',

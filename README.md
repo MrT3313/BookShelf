@@ -1,6 +1,9 @@
 # Welcome to your BookShelf
 Your one stop shop for all your reading needs. 
 
+- Hosted FE ([LINK](https://my-book-shelf.netlify.com))  
+
+
 Get a recomendation from a coworker? Log it! 
 Just finish a book? Review it! 
 Is it a new favorite of yours? Rate it against your yearly and all time rankings & promote it to your friends!
