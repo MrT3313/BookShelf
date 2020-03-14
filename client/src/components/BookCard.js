@@ -22,15 +22,25 @@ const useStyles = makeStyles({
     root: {
         marginTop: '10px',
         marginBottom: '10px',
+        marginRight: '15px',
     },
     card: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
+        textAlign: 'center',
+        fontSize: '20px',
 
         minHeight: '100%',
         width: '200px'
+    },
+    title: {
+        display: 'flex',
+        alignItems: 'center',
+
+        fontFamily: "'Baloo', cursive",
+        height: '65px',
     },
     img: {
         maxHeight: '200px',
@@ -43,6 +53,15 @@ const useStyles = makeStyles({
 
         marginTop: '10px',
         marginBottom: '10px',
+    },
+    author: {
+        display: 'flex',
+        flexGrow: '1',
+
+        alignItems: 'center',
+        marginTop: '10px',
+        marginBottom: '10px',
+        fontFamily: "'Special Elite', cursive",
     }
 })
 
@@ -62,12 +81,17 @@ const {title, rank, author, book_image } = props.bookInfo
     return(
         <div className={classes.root}>
             <Card className={classes.card}>
-                {title}
+                <div className={classes.title}>
+                    {title}
+                </div>
                 <img className={classes.img}
                     src = {book_image}
                     alt='Book Cover Image'
                 />
-                {author}
+                <div className={classes.author}>
+                    {author}
+                </div>
+                
             </Card>
         </div>
     )
