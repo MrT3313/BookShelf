@@ -4,7 +4,7 @@ import JWT from 'jsonwebtoken'
 // ACTION TYPES
 import {
     LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE
-} from '../actions/a_login'
+} from '../actions/a_login.js'
 
 // INITIAL STATE
 const initialState = {
@@ -14,6 +14,7 @@ const initialState = {
     error: '',
 }
 
+// __MAIN__
 export const r_login = (state=initialState, action) => {
 console.log('action.payload: ', action.payload)
 

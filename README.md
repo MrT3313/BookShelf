@@ -1,6 +1,9 @@
 # Welcome to your BookShelf
 Your one stop shop for all your reading needs. 
 
+- Hosted FE ([LINK](https://my-book-shelf.netlify.com))  
+
+
 Get a recomendation from a coworker? Log it! 
 Just finish a book? Review it! 
 Is it a new favorite of yours? Rate it against your yearly and all time rankings & promote it to your friends!
@@ -50,6 +53,9 @@ Package Manager: NPM
 2. Good Reads ([LINK](https://www.goodreads.com/api))  
 3. Google Books APIs ([LINK](https://developers.google.com/books))  
 
-
+## Versions
+- 0.0.1:
+    - FE: Hosted Homepage
+    - BE: Login & Register functionality working in postman but not hooked up to FE
 ---
 Author: Reed Turgeon

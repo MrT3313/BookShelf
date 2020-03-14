@@ -3,7 +3,8 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
 // URLS
-import base_URL from '../../utils'
+// TODO: Create conditional for process.env.NODE_ENV w/ baseURL
+import { base_URL } from '../../utils'
 // import live_URL from '../../utils'
 
 // __MAIN__

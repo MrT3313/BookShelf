@@ -12,6 +12,10 @@ import logger from "redux-logger";
     // Reducers
     import { rootReducer } from './redux/reducers'
 
+// MATERIAL UI - Theme
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { cyan, amber, blueGrey } from '@material-ui/core/colors'
+
 // COMPONENTS
 import App from './App.jsx';
 
@@ -19,16 +23,47 @@ import App from './App.jsx';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // __MAIN__
-    // Create Store
+    // -A- Create Store
     const store = createStore(
         rootReducer,
         composeEnhancers(applyMiddleware(thunk, logger))
     )
 
+    // -B- Styles
+    const theme = createMuiTheme({
+        palette: {
+            primary: cyan,
+            secondary: {
+                main: blueGrey[900]
+            },
+        },
+        overrides: {
+            MuiInputLabel: {
+                root: {
+                    color: '#01BCD4',  // Hack to use Cyan...
+                }
+            },
+            MuiSelect: {
+                root: {
+                    color: 'white',
+                }
+            }
+            // MuiSelect: {
+            //     root: {
+            //         color: 'white '
+            //     }
+            // }
+        }
+    })
+    console.log(theme)
+
+    // -C- Render
     ReactDOM.render(
         <Provider store={store}>
             <Router>
-                <App />
+                <ThemeProvider theme={theme}>
+                    <App theme={theme}/>
+                </ThemeProvider>
             </Router>
         </Provider>,
         document.getElementById('root')
