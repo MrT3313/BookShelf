@@ -98,7 +98,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                     onChange={handleChange}
                     displayEmpty
                 >
-                    {lists.map( list => {
+                    {lists.map((list, key) => {
                         // console.log(list);
                         return (
                             <MenuItem value={list.list_name}>{list.list_name}</MenuItem>
@@ -111,7 +111,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 {/* // TOP ROW */}
                 <div className={classes.row}>
                     {current_list.books && 
-                        current_list.books.filter(book => [1].includes(book.rank)).map(item => {
+                        current_list.books.filter(book => [1].includes(book.rank)).map((item, key) => {
                             console.log('TOP ROW')
                             console.log(item)
 
@@ -123,7 +123,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 </div>
                 <div className={classes.row}>
                     {current_list.books && 
-                        current_list.books.filter(book => [2,3].includes(book.rank)).map(item => {
+                        current_list.books.filter(book => [2,3].includes(book.rank)).map((item, key) => {
                             console.log('SECOND ROW')
                             console.log(item)
 
@@ -135,7 +135,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 </div>
                 <div className={classes.row}>
                     {current_list.books && 
-                        current_list.books.filter(book => [4,5,6].includes(book.rank)).map(item => {
+                        current_list.books.filter(book => [4,5,6].includes(book.rank)).map((item, key)=> {
                             console.log('THIRD ROW')
                             console.log(item)
 
@@ -147,7 +147,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 </div>
                 <div className={classes.row}>
                     {current_list.books && 
-                        current_list.books.filter(book => [7,8,9,10].includes(book.rank)).map(item => {
+                        current_list.books.filter(book => [7,8,9,10].includes(book.rank)).map((item, key)=> {
                             console.log('FOURTH ROW')
                             console.log(item)
 
@@ -159,7 +159,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 </div>
                 <div className={classes.row}>
                     {current_list.books && 
-                        current_list.books.filter(book => [11,12,13,14,15].includes(book.rank)).map(item => {
+                        current_list.books.filter(book => [11,12,13,14,15].includes(book.rank)).map((item, key)=> {
                             console.log('FIFTH ROW')
                             console.log(item)
 
