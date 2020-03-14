@@ -68,7 +68,8 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
 
     // State
     const [activeList_name, setActiveList_name] = useState(default_searchList)
-    const [activeSearch_date, setActiveSearch_date] = useState(default_searchDate)
+    // const [activeSearch_date, setActiveSearch_date] = useState(default_searchDate)
+    const [activeSearch_date] = useState(default_searchDate)
     
     useEffect(() => {
     console.log('TOP 10 USE EFFECT')
@@ -173,7 +174,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
             <div className={classes.dataAttribution}>
                 <img 
                     src={NYT_credit}
-                    // alt='NYT_dataAttribution'
+                    alt='NYT_dataAttribution'
                 />
             </div>
         </div>

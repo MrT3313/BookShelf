@@ -86,7 +86,7 @@ const {title, rank, author, book_image } = props.bookInfo
                 </div>
                 <img className={classes.img}
                     src = {book_image}
-                    // alt='Book Cover Image'
+                    alt='Book Cover Image'
                 />
                 <div className={classes.author}>
                     {author}
