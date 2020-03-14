@@ -7,7 +7,6 @@ import NYT_credit from '../assets/NYT_dataAttribution.png'
 
 // MATERIAL UI
 // -1- Components
-import { Paper } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
@@ -15,9 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 // -2- Styles
 // import { useTheme } from '@material-ui/core/styles';
-import { withTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
-import { blueGrey } from '@material-ui/core/colors'
 
 // COMPONENTS
 import BookCard from './BookCard.js'
@@ -176,7 +173,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
             <div className={classes.dataAttribution}>
                 <img 
                     src={NYT_credit}
-                    alt='NYT_dataAttribution'
+                    // alt='NYT_dataAttribution'
                 />
             </div>
         </div>
