@@ -8,6 +8,8 @@ import { Card } from '@material-ui/core';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // COMPONENTS
 
@@ -21,6 +23,8 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
     card: {
         width: '190px',
+        marginRight: '3px',
+        marginLeft: '3px',
     },
     title: {
         display: 'flex',
@@ -51,7 +55,8 @@ const useStyles = makeStyles({
         alignItems: 'center',
         textAlign: 'center',
 
-        flex: '1',
+        // flex: '1',
+        height: '100%',
 
         marginTop: '10px',
         marginBottom: '10px',
@@ -71,7 +76,7 @@ const {title, rank, author, book_image } = props.bookInfo
     return(
         <Card className={classes.card}>
             <div className={classes.title}>
-                <div>{title}</div>
+                    {title}
             </div>
 
             <img className={classes.img}
@@ -80,7 +85,7 @@ const {title, rank, author, book_image } = props.bookInfo
             />
 
             <div className={classes.author}>
-                <div>{author}</div>
+                    {author}
             </div>
         </Card>
     )

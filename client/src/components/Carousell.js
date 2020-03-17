@@ -8,6 +8,9 @@ import { connect } from 'react-redux'
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
 
+// CSS
+import '../styles/index.css'
+
 // COMPONENTS
 import BookCard from './BookCard.js'
 
@@ -24,8 +27,10 @@ const useStyles = makeStyles(theme => ({
     root: {
         border: '1px solid pink',
         // display: 'flex',
-        maxWidth: '100%',
+        maxWidth: '90%',
         height: '100%',
+
+        marginBottom: '40px',
     }
 }))
 
@@ -41,21 +46,24 @@ console.log(data)
     // React-Slick settings
     let settings = {}
     let settings_root = {
-        infinite: false,
+        slidesToScroll: 1,
+        initialSlide: 0,
 
         arrows: true,
         dots: false,
-
-        slidesToScroll: 1,
-        initialSlide: 0,
         
+        autoplay: false,
+        infinite: false,
+
+
+        // centerMode: true,
         // speed: 500,
         
         responsive: [
           {
             breakpoint: 1500,
             settings: {
-              infinite: true,
+              infinite: false,
               dots: true
             }
           },
@@ -90,7 +98,7 @@ console.log(data)
                 breakpoint: 625,
                 settings: {
                     slidesToShow: 2,
-                    infinite: true,
+                    infinite: false,
                 }
             }
 
@@ -103,14 +111,14 @@ console.log(data)
                 breakpoint: 800,
                 settings: {
                     slidesToShow: 3,
-                    infinite: true,
+                    infinite: false,
                 }
             },
             {
                 breakpoint: 625,
                 settings: {
                     slidesToShow: 2,
-                    infinite: true,
+                    infinite: false,
                 }
             }
         ]
@@ -119,24 +127,24 @@ console.log(data)
         slidesToShow: 5,
         responsive: [
             {
-                breakpoint: 990,
+                breakpoint: 1050,
                 settings: {
                     slidesToShow: 4,
-                    infinite: true,
+                    infinite: false,
                 }
             },
             {
                 breakpoint: 800,
                 settings: {
                     slidesToShow: 3,
-                    infinite: true,
+                    infinite: false,
                 }
             },
             {
                 breakpoint: 625,
                 settings: {
                     slidesToShow: 2,
-                    infinite: true,
+                    infinite: false,
                 }
             }
 
