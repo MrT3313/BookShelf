@@ -140,11 +140,12 @@ console.log(current_listData)
                     </Select>
                 </FormControl>
                 
-                <Carousell data={row_data[0]}/>
-                <Carousell data={row_data[1]}/>
-                <Carousell data={row_data[2]}/>
-                <Carousell data={row_data[3]}/>
-                <Carousell data={row_data[4]}/>
+                
+                <Carousell data={row_data[0]} row={1}/>
+                <Carousell data={row_data[1]} row={2}/>
+                <Carousell data={row_data[2]} row={3}/>
+                <Carousell data={row_data[3]} row={4}/>
+                <Carousell data={row_data[4]} row={5}/>
             </div>
         )
     } else {

@@ -19,30 +19,21 @@ import { makeStyles } from '@material-ui/core/styles'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles({
-    root: {
-        marginTop: '10px',
-        marginBottom: '10px',
-        marginRight: '15px',
-    },
     card: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        // justifyContent: 'space-between',
-        textAlign: 'center',
-        fontSize: '20px',
-
-        minHeight: '100%',
-        width: '200px'
+        width: '190px',
     },
     title: {
         display: 'flex',
+        justifyContent: 'center',
         alignItems: 'center',
+        textAlign: 'center',
 
         fontFamily: "'Baloo', cursive",
         minHeight: '65px',
     },
     img: {
+        margin: '0 auto',
+
         maxHeight: '200px',
         // maxHeight: '40%',
 
@@ -56,11 +47,15 @@ const useStyles = makeStyles({
     },
     author: {
         display: 'flex',
-        flexGrow: '1',
-
+        justifyContent: 'center',
         alignItems: 'center',
+        textAlign: 'center',
+
+        flex: '1',
+
         marginTop: '10px',
         marginBottom: '10px',
+
         fontFamily: "'Special Elite', cursive",
     }
 })
@@ -69,31 +64,25 @@ const useStyles = makeStyles({
 function BookCard(props) {
 console.log('BookCard PROPS: ', props)
 const {title, rank, author, book_image } = props.bookInfo
-
+// -- //
     // Styles
     const classes = useStyles()
 
-    // Statte
-
-    // Methods
-
-    // Returned Component
     return(
-        <div className={classes.root}>
-            <Card className={classes.card}>
-                <div className={classes.title}>
-                    {title}
-                </div>
-                <img className={classes.img}
-                    src = {book_image}
-                    alt='Book Cover Image'
-                />
-                <div className={classes.author}>
-                    {author}
-                </div>
-                
-            </Card>
-        </div>
+        <Card className={classes.card}>
+            <div className={classes.title}>
+                <div>{title}</div>
+            </div>
+
+            <img className={classes.img}
+                src = {book_image}
+                alt='Book Cover Image'
+            />
+
+            <div className={classes.author}>
+                <div>{author}</div>
+            </div>
+        </Card>
     )
 }
 
