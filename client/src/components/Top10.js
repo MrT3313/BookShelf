@@ -134,7 +134,7 @@ console.log(current_listData)
                         {props.allLists.map((list, key) => {
                             // console.log(list);
                             return (
-                                <MenuItem value={list.list_name}>{list.list_name}</MenuItem>
+                                <MenuItem key={key} value={list.list_name}>{list.list_name}</MenuItem>
                             )
                         })}
                     </Select>
@@ -145,7 +145,6 @@ console.log(current_listData)
                 <Carousell data={row_data[2]}/>
                 <Carousell data={row_data[3]}/>
                 <Carousell data={row_data[4]}/>
-                <Carousell data={row_data[5]}/>
             </div>
         )
     } else {

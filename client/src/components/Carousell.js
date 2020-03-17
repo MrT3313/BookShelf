@@ -1,24 +1,49 @@
 // https://www.youtube.com/watch?v=F2DsmQChKA0
 
+// IMPORTS
 import React, { useState } from 'react';
+import { connect } from 'react-redux'
 
-function Carousell(array_of_info) {
-    console.log(`CAROUSELL PROPS: ${array_of_info}`)
-    // STATE
-    const [items, setItems] = useState(array_of_info)
+// COMPONENTS
+import BookCard from './BookCard.js'
+import { ListItemSecondaryAction } from '@material-ui/core';
 
-    // METHODS
-    // handleCardClick = (rank, card) => {
-        
-    // }
+function Carousell(props) {
+console.log('---INSIDE CAROUSELL---')
+const {data} = props
+console.log(`CAROUSELL ROW DATA: ${data}`)
+// -- //
+
+    // Methods
+    const makeItems = (array_of_data) => {
+        return array_of_data.map((item, key) => {
+            console.log(item)
+            console.log(item.title)
+            console.log(item.rank)
+
+            return <BookCard bookInfo={item}/>
+        })
+    }
 
     return (
         <div>
-            CAROUSELL
+            {makeItems(data)}
         </div>
     )
 
 }
 
-// EXPORT 
-export default Carousell
+// MAP STATE TO PROPS
+const mstp = state => {
+    return {
+
+    }
+}
+
+// CONNECT & EXPORT
+export default connect(
+    mstp, 
+    {
+        
+    }
+)(Carousell)
