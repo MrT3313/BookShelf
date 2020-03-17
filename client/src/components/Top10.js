@@ -17,6 +17,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
+import Carousell from './Carousell.js'
 import BookCard from './BookCard.js'
 
 // ACTION CREATORS
@@ -86,6 +87,34 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
         setActiveList_name(e.target.value)
     }
 
+    const filterBooks_forRow = (books, rowNum) => {
+        let includeRanks = []
+        switch(rowNum) {
+            case 1:
+                includeRanks = [1]
+                break
+            case 2:
+                includeRanks = [2,3]
+                break
+            case 3:
+                includeRanks = [4,5,6]
+                break
+            case 4:
+                includeRanks = [7,8,9,10]
+                break
+            case 5:
+                includeRanks = [11,12,13,14,15]
+                break
+            default:
+                console.log('ERROR - unknown row')
+                break
+        }
+
+        let filtered_book_data =  books.filter(book => includeRanks.includes(book.rank))
+        console.log(`'FILTERED BOOK DATA: ${filtered_book_data}`)
+        return filtered_book_data
+    }
+
     // Returned Component
     return (
         <div className={classes.root}>
@@ -121,18 +150,32 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                         })
                     }
                 </div>
+                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+
+                {current_list.books && 
+                    <div className={classes.row}>
+                            <Carousell book_data={filterBooks_forRow(current_list.books, 2)}/>
+                    </div>
+                }
+
                 <div className={classes.row}>
                     {current_list.books && 
                         current_list.books.filter(book => [2,3].includes(book.rank)).map((item, key) => {
                             console.log('SECOND ROW')
                             console.log(item)
-
+                            
                             return (
                                 <BookCard bookInfo={item}/>
-                            )
-                        })
-                    }
+                                )
+                            })
+                        }
                 </div>
+
+                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
                 <div className={classes.row}>
                     {current_list.books && 
                         current_list.books.filter(book => [4,5,6].includes(book.rank)).map((item, key)=> {

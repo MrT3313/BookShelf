@@ -1,8 +1,10 @@
 Notes: 
 
 TODO:
-1. Mobile homepage
-2. Loading icon when fetching data
+1. Refactor to utilize 'is_fetching' state instead of `hacking currentlist.books &&`
+2. add 'is_fetching' loader
+3. Mobile homepage
+    - Carousell: https://brainhubeu.github.io/react-carousel/docs/gettingStarted
 3. Testing
 
 3. Example Projects / Inspiration
