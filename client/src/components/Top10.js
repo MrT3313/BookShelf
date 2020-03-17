@@ -21,7 +21,7 @@ import Carousell from './Carousell.js'
 import BookCard from './BookCard.js'
 
 // ACTION CREATORS
-import { a_GETspecific_list } from '../redux/actions/a_lists.js'
+import { a_UPDATE_listName } from '../redux/actions/a_specificList.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -60,33 +60,30 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function Top10(props) {
 console.log('Top10 PROPS:', props)
-const { default_searchList,  default_searchDate,                // Passed w/ passed props
-        lists, current_list,                        } = props   // Passed w/ Connect
-
+const {current_listData} = props
+console.log(current_listData)
+// -- //
     // Styles
-    // const theme = useTheme()
     const classes = useStyles({})
 
     // State
-    const [activeList_name, setActiveList_name] = useState(default_searchList)
-    const [activeSearch_date, setActiveSearch_date] = useState(default_searchDate)
-    
+    const [list_data, setListData] = useState(props.current_listData)
+    const [row_data, setRow_data] = useState([])
+    console.log(list_data)
+    console.log(row_data)
+
+    // useEffect
     useEffect(() => {
-    console.log('TOP 10 USE EFFECT')
-        async function fetchData(){
-            await props.a_GETspecific_list(activeSearch_date, activeList_name)
+        let all_rows = []
+        for (const rowNum of [1,2,3,4,5]){
+            console.log(rowNum)
+            all_rows.push(filterBooks_forRow(current_listData, rowNum))
         }
-        fetchData()
-    // eslint-disable-next-line no-use-before-define
-    },[activeList_name, activeSearch_date]) 
+        console.log(all_rows)
+        setRow_data(all_rows)
+    }, [list_data])
 
     // Methods
-    const handleChange = e => {
-        console.log(e)
-        console.log(e.target)
-        setActiveList_name(e.target.value)
-    }
-
     const filterBooks_forRow = (books, rowNum) => {
         let includeRanks = []
         switch(rowNum) {
@@ -114,121 +111,151 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
         console.log(`'FILTERED BOOK DATA: ${filtered_book_data}`)
         return filtered_book_data
     }
+    
+    const handleChange = e => {
+        console.log(e)
+        console.log(e.target)
+        a_UPDATE_listName(e.target.value)
+    }
 
-    // Returned Component
-    return (
-        <div className={classes.root}>
-            <FormControl className={classes.listSelection}>
-                <InputLabel shrink id="demo-simple-select-placeholder-label-label">
-                    Active NYT Bestseller List
-                </InputLabel>
-                <Select
-                    value={activeList_name}
-                    onChange={handleChange}
-                    displayEmpty
-                >
-                    {lists.map((list, key) => {
-                        // console.log(list);
-                        return (
-                            <MenuItem value={list.list_name}>{list.list_name}</MenuItem>
-                        )
-                    })}
-                </Select>
-            </FormControl>
-            {/* TODO: Should this be wrapped in a <Paper /> */}
-            {/* <Paper className={classes.paper}> */}
-                {/* // TOP ROW */}
-                <div className={classes.row}>
-                    {current_list.books && 
-                        current_list.books.filter(book => [1].includes(book.rank)).map((item, key) => {
-                            console.log('TOP ROW')
-                            console.log(item)
-
+    // Return
+    if (row_data.length != 0) {
+        return (
+            <div className={classes.root}>
+                <FormControl className={classes.listSelection}>
+                    <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+                        Active NYT Bestseller List
+                    </InputLabel>
+                    <Select
+                        value={props.current_listName}
+                        onChange={handleChange}
+                        displayEmpty
+                    >
+                        {props.allLists.map((list, key) => {
+                            // console.log(list);
                             return (
-                                <BookCard bookInfo={item}/>
+                                <MenuItem value={list.list_name}>{list.list_name}</MenuItem>
                             )
-                        })
-                    }
-                </div>
-                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
-                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
-                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
-
-                {current_list.books && 
-                    <div className={classes.row}>
-                            <Carousell book_data={filterBooks_forRow(current_list.books, 2)}/>
-                    </div>
-                }
-
-                <div className={classes.row}>
-                    {current_list.books && 
-                        current_list.books.filter(book => [2,3].includes(book.rank)).map((item, key) => {
-                            console.log('SECOND ROW')
-                            console.log(item)
-                            
-                            return (
-                                <BookCard bookInfo={item}/>
-                                )
-                            })
-                        }
-                </div>
-
-                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
-                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
-                {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
-                <div className={classes.row}>
-                    {current_list.books && 
-                        current_list.books.filter(book => [4,5,6].includes(book.rank)).map((item, key)=> {
-                            console.log('THIRD ROW')
-                            console.log(item)
-
-                            return (
-                                <BookCard bookInfo={item}/>
-                            )
-                        })
-                    }
-                </div>
-                <div className={classes.row}>
-                    {current_list.books && 
-                        current_list.books.filter(book => [7,8,9,10].includes(book.rank)).map((item, key)=> {
-                            console.log('FOURTH ROW')
-                            console.log(item)
-
-                            return (
-                                <BookCard bookInfo={item}/>
-                            )
-                        })
-                    }
-                </div>
-                <div className={classes.row}>
-                    {current_list.books && 
-                        current_list.books.filter(book => [11,12,13,14,15].includes(book.rank)).map((item, key)=> {
-                            console.log('FIFTH ROW')
-                            console.log(item)
-
-                            return (
-                                <BookCard bookInfo={item}/>
-                            )
-                        })
-                    }
-                </div>
-            {/* </Paper> */}
-            {/* Data Attribution */}
-            <div className={classes.dataAttribution}>
-                <img 
-                    src={NYT_credit}
-                    alt='NYT_dataAttribution'
-                />
+                        })}
+                    </Select>
+                </FormControl>
+                
+                <Carousell data={row_data[0]}/>
+                <Carousell data={row_data[1]}/>
+                <Carousell data={row_data[2]}/>
+                <Carousell data={row_data[3]}/>
+                <Carousell data={row_data[4]}/>
+                <Carousell data={row_data[5]}/>
             </div>
-        </div>
-    )
-}
+        )
+    } else {
+        return (<div>WTF is going on</div>)
+    }
+}    
+
+
+
+    
+
+//     // Returned Component
+//     return (
+//         <div className={classes.root}>
+
+//             {/* TODO: Should this be wrapped in a <Paper /> */}
+//             {/* <Paper className={classes.paper}> */}
+//                 {/* // TOP ROW */}
+//                 <div className={classes.row}>
+//                     {current_list.books && 
+//                         current_list.books.filter(book => [1].includes(book.rank)).map((item, key) => {
+//                             console.log('TOP ROW')
+//                             console.log(item)
+
+//                             return (
+//                                 <BookCard bookInfo={item}/>
+//                             )
+//                         })
+//                     }
+//                 </div>
+//                 {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+//                 {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+//                 {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+
+//                 {current_list.books && 
+//                     <div className={classes.row}>
+//                             <Carousell book_data={filterBooks_forRow(current_list.books, 2)}/>
+//                     </div>
+//                 }
+
+//                 <div className={classes.row}>
+//                     {current_list.books && 
+//                         current_list.books.filter(book => [2,3].includes(book.rank)).map((item, key) => {
+//                             console.log('SECOND ROW')
+//                             console.log(item)
+                            
+//                             return (
+//                                 <BookCard bookInfo={item}/>
+//                                 )
+//                             })
+//                         }
+//                 </div>
+
+//                 {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+//                 {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+//                 {/* WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP -- WIP */}
+//                 <div className={classes.row}>
+//                     {current_list.books && 
+//                         current_list.books.filter(book => [4,5,6].includes(book.rank)).map((item, key)=> {
+//                             console.log('THIRD ROW')
+//                             console.log(item)
+
+//                             return (
+//                                 <BookCard bookInfo={item}/>
+//                             )
+//                         })
+//                     }
+//                 </div>
+//                 <div className={classes.row}>
+//                     {current_list.books && 
+//                         current_list.books.filter(book => [7,8,9,10].includes(book.rank)).map((item, key)=> {
+//                             console.log('FOURTH ROW')
+//                             console.log(item)
+
+//                             return (
+//                                 <BookCard bookInfo={item}/>
+//                             )
+//                         })
+//                     }
+//                 </div>
+//                 <div className={classes.row}>
+//                     {current_list.books && 
+//                         current_list.books.filter(book => [11,12,13,14,15].includes(book.rank)).map((item, key)=> {
+//                             console.log('FIFTH ROW')
+//                             console.log(item)
+
+//                             return (
+//                                 <BookCard bookInfo={item}/>
+//                             )
+//                         })
+//                     }
+//                 </div>
+//             {/* </Paper> */}
+//             {/* Data Attribution */}
+//             <div className={classes.dataAttribution}>
+//                 <img 
+//                     src={NYT_credit}
+//                     alt='NYT_dataAttribution'
+//                 />
+//             </div>
+//         </div>
+//     )
+// }
 
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        lists: state.r_lists.list_names,
-        current_list: state.r_lists.current_list,
+        current_listName: state.r_specificList.listName,
+        current_listData: state.r_specificList.listData,
+        allLists: state.r_lists.list_names,
     }
 }
 
@@ -236,6 +263,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_GETspecific_list,
+        a_UPDATE_listName
     }
 )(Top10)

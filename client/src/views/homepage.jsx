@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react'
 import {connect} from 'react-redux'
 
+// LOADER
+import Loader from 'react-loader-spinner'
+
 // MATERIAL UI
 
 // COMPONENTS
@@ -9,8 +12,8 @@ import Menu_AppBar from '../components/AppBar.js'
 import Top10 from '../components/Top10.js'
 
 // ACTION CREATORS
-import {    a_GETbook_lists, 
-            a_GETspecific_list  } from '../redux/actions/a_lists.js'
+import { a_GETspecific_list } from '../redux/actions/a_specificList.js'
+              
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -18,43 +21,40 @@ import {    a_GETbook_lists,
 // __MAIN__
 function HomePage(props) {
 console.log('HOMEPAGE PROPS: ', props)
-    // State
-    const [default_searchDate, setDefault_searchDate] = useState('current')
-    const [default_searchList, setDefault_searchList] = useState('Combined Print and E-Book Nonfiction')
-
+const { current_listName, searchDate } = props
+console.log(current_listName)
+console.log(searchDate)
+// -- //
+    // useEffect
     useEffect(() => {
-        get_book_lists()
-    })
+        async function get_listData() {
+            await props.a_GETspecific_list(searchDate, current_listName)
+        }
+        get_listData()
+    }, [])
 
-    // Methods
-    const get_book_lists = () => {
-        console.log('You Clicked: Trying to get available book lists')
-
-        // Call the action creator that was passed through connect to props-> has the dispatch method added to it
-        props.a_GETbook_lists()
+    // Return
+    if (props.current_listData.length == 0) {
+        return (
+            <Loader type='Puff'/>
+        )
+    } else {
+        return (
+            <>
+                <Menu_AppBar />
+                <Top10 />
+            </>
+        )
     }
-    const get_individual_list = () => {
-        console.log('You Clicked: Trying to get individual list')
-
-        props.a_GETspecific_list(default_searchDate, default_searchList)
-    }
-
-    // Returned Component
-    return (
-        <div>
-            <Menu_AppBar />
-            <Top10 
-                default_searchDate={default_searchDate} 
-                default_searchList={default_searchList}
-            />
-        </div>
-    )
 }
 
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-
+        allLists: state.r_lists.list_names,
+        current_listName: state.r_specificList.listName,
+        searchDate: state.r_specificList.searchDate,
+        current_listData: state.r_specificList.listData,
     }
 }
 
@@ -62,7 +62,6 @@ const mstp = state => {
 export default connect(
     mstp,
     {
-        a_GETbook_lists,
         a_GETspecific_list,
     }
 )(HomePage)

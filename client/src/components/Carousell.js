@@ -14,7 +14,7 @@ function Carousell(array_of_info) {
 
     return (
         <div>
-            hello
+            CAROUSELL
         </div>
     )
 
