@@ -12,8 +12,8 @@ const initialState = {
 
 // __MAIN__
 export const r_lists = (state=initialState, action) => {
-console.log('action.payload: ', action.payload)
-    
+// console.log('action.payload: ', action.payload)
+// -- //
         switch(action.type) {
             // 1 - GET LISTS
             case GET_BOOKLISTS_START:

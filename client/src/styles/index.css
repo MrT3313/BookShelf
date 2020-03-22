@@ -1,6 +1,8 @@
-body: {
-    box-sizing: border-box;
+*, *::before, *::after {box-sizing: inherit; }
+
+body {
+    min-width: 500px
 }
-.MuiTypography-body1 {
-    width: 75%
+html {
+    box-sizing: border-box;
 }

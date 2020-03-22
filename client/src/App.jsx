@@ -1,22 +1,19 @@
 // IMPORTS
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {connect} from 'react-redux'
 import { Route } from 'react-router-dom'
 
 // ACTION CREATORS
 import { a_GETbook_lists } from './redux/actions/a_lists.js'
 
-// COMPONENTS
-// -- OPEN Routes -- //
-import Login from './views/login.jsx'
-import Register from './views/register.jsx'
-import Homepage from './views/homepage.jsx'
-
-// -- PROTECTED Routes -- //
-  // 1. PROFILE
-
+// STYLES
 import './styles/index.css'
 
+// COMPONENTS
+// -- OPEN Routes -- //
+// import Login from './views/login.jsx'
+// import Register from './views/register.jsx'
+import Homepage from './views/homepage.jsx'
 
 // __MAIN__
 function App(props) {
@@ -28,7 +25,7 @@ console.log('APP PROPS: ', props)
       await props.a_GETbook_lists()
     }
     get_lists()
-  }, [])
+  }, [props])
 
   // Return
   return ( 

@@ -1,5 +1,5 @@
 // IMPORTS
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 
 // LOADER
@@ -10,42 +10,31 @@ import Loader from 'react-loader-spinner'
 // COMPONENTS
 import Menu_AppBar from '../components/AppBar.js'
 import ListSelector from '../components/ListSelector.js'
-import ListExplorer from '../components/ListExplorer.js'
-
+import VertTabPannel from '../components/VertTabPannel.js'
 
 // ACTION CREATORS
 import { a_GETspecific_list } from '../redux/actions/a_specificList.js'
               
-
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
 
 // __MAIN__
 function HomePage(props) {
-console.log('HOMEPAGE PROPS: ', props)
-const { current_listName, searchDate } = props
-console.log(current_listName)
-console.log(searchDate)
-// -- //
-    // useEffect
-    useEffect(() => {
-        async function get_listData() {
-            await props.a_GETspecific_list(searchDate, current_listName)
-        }
-        get_listData()
-    }, [])
-
     // Return
-    if (props.current_listData.length == 0) {
+    if (props.current_listData.length === 0) {
         return (
-            <Loader type='Puff'/>
+            <>
+                <Menu_AppBar />
+                <ListSelector />
+                <Loader type='Puff'/>
+            </>
         )
     } else {
         return (
             <>
                 <Menu_AppBar />
                 <ListSelector />
-                <ListExplorer />
+                <VertTabPannel />
             </>
         )
     }

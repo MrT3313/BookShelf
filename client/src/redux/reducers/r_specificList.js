@@ -15,8 +15,8 @@ const initialState = {
 
 // __MAIN__
 export const r_specificList = (state=initialState, action) => {
-console.log('action.payload: ', action.payload)
-
+// console.log('action.payload: ', action.payload)
+// -- //
     switch(action.type) {
         // -1- //
         case GET_SPECIFICLIST_START:

@@ -1,5 +1,5 @@
 // IMPORTS 
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 // MATERIAL UI
@@ -17,24 +17,33 @@ import BookCard from './BookCard.js'
 
 // __MAIN__
 // -A- STYLES
-// const useStyles = makeStyles(theme => ({
-//     root: {
-//         flexGrow: 1,
-//         backgroundColor: theme.palette.background.paper,
-//         display: 'flex',
-//         height: 224,
-//       },
-//       tabs: {
-//         borderRight: `1px solid ${theme.palette.divider}`,
-//       },
-// }))
+const TabPanel_style = makeStyles(theme => ({
+  TabPanel_Typography: {
+    backgroundColor: 'pink',
+
+    width: '100%',
+    // height: '90%',
+
+    margin: '10px',
+  },
+  TabPannel_BOX: {
+    padding: 0,
+    display: 'flex',
+    margin: '10px',
+    // marginTop: '20px',
+    // marginBottom: '20px',
+    // height: '95%'
+  }
+    
+}))
 
 // -B- COMPONENT
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
+    const classes = TabPanel_style();
     return (
       <Typography
+        className={classes.TabPanel_Typography}
         component="div"
         role="tabpanel"
         hidden={value !== index}
@@ -42,7 +51,8 @@ function TabPanel(props) {
         aria-labelledby={`vertical-tab-${index}`}
         {...other}
       >
-        {value === index && <Box p={3}>{children}</Box>}
+        {value === index && <Box p={3} className={classes.TabPannel_BOX}>{children}</Box>}
+        {/* {value === index && <div p={3} className="thisFucker">{children}</div>} */}
       </Typography>
     );
   }
@@ -54,23 +64,39 @@ function TabPanel(props) {
     };
   }
   
-  const useStyles = makeStyles(theme => ({
-    root: {
-      flexGrow: 1,
+  const VerticalTabs_style = makeStyles(theme => ({
+    verticalTabs__root: {
+      // flexGrow: 1,
       // backgroundColor: theme.palette.background.paper,
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.primary.main,
       display: 'flex',
-      height: 325,
+
+      // justifyContent: 'center',
+      // alignItems: 'center',
+
+      height: 350,
+      // width: '100%',
+      // border: `1px solid pink`
     },
     tabs: {
+      display: 'flex',
+      jusitfyContent: 'center',
       borderRight: `1px solid ${theme.palette.divider}`,
+      maxWidth: '100px',
+      
+
+      '& .MuiTab-root': {
+        minWidth: '10px',
+        marginLeft: '10px',
+      }
     },
+
   }));
   
 //   export default function VerticalTabs() {
   function VerticalTabs(props) {
-    const classes = useStyles();
+    const classes = VerticalTabs_style();
     const [value, setValue] = React.useState(0);
   
     const handleChange = (event, newValue) => {
@@ -78,7 +104,7 @@ function TabPanel(props) {
     };
   
     return (
-      <div className={classes.root}>
+      <div className={classes.verticalTabs__root}>
         <Tabs
           orientation="vertical"
           variant="scrollable"
@@ -88,8 +114,8 @@ function TabPanel(props) {
           className={classes.tabs}
         >
             {props.current_listData.map((item,key) => {
-                let prepLabel = `Rank #${item.rank}`
-                return <Tab label={prepLabel} {...a11yProps(0)}/>
+                let prepLabel = `#${item.rank}`
+                return <Tab key={key} label={prepLabel} {...a11yProps(key)}/>
             })}
         </Tabs>
         <TabPanel value={value} index={0}>

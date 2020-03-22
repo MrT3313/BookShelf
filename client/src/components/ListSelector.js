@@ -44,7 +44,7 @@ const useStyles = makeStyles( theme => ({
 
 // -B- COMPONENT
 function ListSelector(props){
-console.log('listSelector PROPS: ', props)
+// console.log('listSelector PROPS: ', props)
 // -- //
     // Styles
     const classes = useStyles()
@@ -60,7 +60,7 @@ console.log('listSelector PROPS: ', props)
     const [listName, setListName] = useState(props.listName)
 
     useEffect(() => {
-        console.log('TOP 10 USE EFFECT')
+        // console.log('TOP 10 USE EFFECT')
             async function fetchData(){
                 await props.a_GETspecific_list('current', listName)
                 setListName(listName)
@@ -84,7 +84,7 @@ console.log('listSelector PROPS: ', props)
                     {props.allLists.map((list, key) => {
                         // console.log(list);
                         return (
-                            <MenuItem value={list.list_name}>{list.list_name}</MenuItem>
+                            <MenuItem key={key} value={list.list_name}>{list.list_name}</MenuItem>
                         )
                     })}
                 </Select>

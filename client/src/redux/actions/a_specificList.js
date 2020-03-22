@@ -12,7 +12,7 @@ import { NYT_booksAPI_baseURL } from '../../utils'
 
     // Action Creator:
     export const a_GETspecific_list = (date, list) => {
-    console.log('INSIDE: a_GETbook_lists action creator')
+    // console.log('INSIDE: a_GETbook_lists action creator')
     // -- //
         // Send First Action --> START
         return dispatch => {
@@ -29,7 +29,7 @@ import { NYT_booksAPI_baseURL } from '../../utils'
                     }}
                 )
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     dispatch({
                         type: GET_SPECIFICLIST_SUCCESS,
                         payload: data.data.results.books,

@@ -30,8 +30,9 @@ const useStyles = makeStyles({
         justifyContent: 'space-around',
         textAlign: 'center',
         fontSize: '20px',
-        
-        padding: '15px',
+
+        paddingRight: '20px',
+        paddingLeft: '20px',
 
         minHeight: '100%',
         width: '100%'
@@ -64,6 +65,7 @@ const useStyles = makeStyles({
 
         marginTop: '10px',
         marginBottom: '10px',
+        marginLeft: '20px',
     },
 
 
@@ -97,9 +99,11 @@ const useStyles = makeStyles({
 
 // -B- COMPONENT
 function BookCard(props) {
-console.log('BookCard PROPS: ', props)
-const {title, rank, author, book_image, description } = props.bookInfo
-
+// console.log('BookCard PROPS: ', props)
+const {title, author, book_image, description,
+    // rank,
+} = props.bookInfo
+// -- // 
     // Styles
     const classes = useStyles()
 
