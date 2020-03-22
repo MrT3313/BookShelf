@@ -1,10 +1,7 @@
 // IMPORTS
-import React, { useState, useEffect } from 'react';
-import {connect} from 'react-redux'
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
-
-// ACTION CREATORS
-import { a_GETbook_lists } from './redux/actions/a_lists.js'
+// import { BrowserRouter as Router } from 'react-router-dom'
 
 // COMPONENTS
 // -- OPEN Routes -- //
@@ -17,17 +14,7 @@ import Homepage from './views/homepage.jsx'
 
 // __MAIN__
 function App(props) {
-console.log('APP PROPS: ', props)
-// -- //
-  // useEffect
-  useEffect(() => {
-    async function get_lists() {
-      await props.a_GETbook_lists()
-    }
-    get_lists()
-  }, [])
-
-  // Return
+  const {theme} = props
   return ( 
     <div className="App">
       <Route exact path='/' theme={props.theme} component={Homepage} />
@@ -37,10 +24,5 @@ console.log('APP PROPS: ', props)
   );
 }
 
-// CONNECT & EXPORT
-export default connect(
-    null,
-    {
-        a_GETbook_lists,
-    }
-)(App)
+// EXPORTS
+export default App;

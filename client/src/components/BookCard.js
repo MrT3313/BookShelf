@@ -8,8 +8,6 @@ import { Card } from '@material-ui/core';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 // COMPONENTS
 
@@ -21,23 +19,30 @@ import "slick-carousel/slick/slick-theme.css";
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles({
+    root: {
+        marginTop: '10px',
+        marginBottom: '10px',
+        marginRight: '15px',
+    },
     card: {
-        width: '190px',
-        marginRight: '3px',
-        marginLeft: '3px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        // justifyContent: 'space-between',
+        textAlign: 'center',
+        fontSize: '20px',
+
+        minHeight: '100%',
+        width: '200px'
     },
     title: {
         display: 'flex',
-        justifyContent: 'center',
         alignItems: 'center',
-        textAlign: 'center',
 
         fontFamily: "'Baloo', cursive",
         minHeight: '65px',
     },
     img: {
-        margin: '0 auto',
-
         maxHeight: '200px',
         // maxHeight: '40%',
 
@@ -51,16 +56,11 @@ const useStyles = makeStyles({
     },
     author: {
         display: 'flex',
-        justifyContent: 'center',
+        flexGrow: '1',
+
         alignItems: 'center',
-        textAlign: 'center',
-
-        // flex: '1',
-        height: '100%',
-
         marginTop: '10px',
         marginBottom: '10px',
-
         fontFamily: "'Special Elite', cursive",
     }
 })
@@ -69,25 +69,31 @@ const useStyles = makeStyles({
 function BookCard(props) {
 console.log('BookCard PROPS: ', props)
 const {title, rank, author, book_image } = props.bookInfo
-// -- //
+
     // Styles
     const classes = useStyles()
 
+    // Statte
+
+    // Methods
+
+    // Returned Component
     return(
-        <Card className={classes.card}>
-            <div className={classes.title}>
+        <div className={classes.root}>
+            <Card className={classes.card}>
+                <div className={classes.title}>
                     {title}
-            </div>
-
-            <img className={classes.img}
-                src = {book_image}
-                alt='Book Cover Image'
-            />
-
-            <div className={classes.author}>
+                </div>
+                <img className={classes.img}
+                    src = {book_image}
+                    alt='Book Cover Image'
+                />
+                <div className={classes.author}>
                     {author}
-            </div>
-        </Card>
+                </div>
+                
+            </Card>
+        </div>
     )
 }
 
