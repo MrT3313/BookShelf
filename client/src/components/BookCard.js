@@ -19,28 +19,39 @@ import { makeStyles } from '@material-ui/core/styles'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles({
-    root: {
-        marginTop: '10px',
-        marginBottom: '10px',
-        marginRight: '15px',
-    },
+    // root: {
+    //     marginTop: '10px',
+    //     marginBottom: '10px',
+    //     marginRight: '15px',
+    // },
     card: {
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
-        // justifyContent: 'space-between',
+        justifyContent: 'space-around',
         textAlign: 'center',
         fontSize: '20px',
+        
+        padding: '15px',
 
         minHeight: '100%',
-        width: '200px'
+        width: '100%'
+    },
+    card__left: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    author: {
+        fontFamily: "'Special Elite', cursive",
+        fontSize: 20,
     },
     title: {
-        display: 'flex',
-        alignItems: 'center',
-
         fontFamily: "'Baloo', cursive",
-        minHeight: '65px',
+        fontSize: 30,
+    },
+    description: {
+        fontFamily: "'Special Elite', cursive",
+        fontSize: 18,
+        marginTop: 5,
     },
     img: {
         maxHeight: '200px',
@@ -54,21 +65,40 @@ const useStyles = makeStyles({
         marginTop: '10px',
         marginBottom: '10px',
     },
-    author: {
-        display: 'flex',
-        flexGrow: '1',
 
-        alignItems: 'center',
-        marginTop: '10px',
-        marginBottom: '10px',
-        fontFamily: "'Special Elite', cursive",
-    }
+
+
+    // title: {
+    //     display: 'flex',
+    //     alignItems: 'center',
+
+    //     fontFamily: "'Baloo', cursive",
+    //     minHeight: '65px',
+    // },
+    // author: {
+    //     display: 'flex',
+    //     flexGrow: '1',
+
+    //     alignItems: 'center',
+    //     marginTop: '10px',
+    //     marginBottom: '10px',
+    //     fontFamily: "'Special Elite', cursive",
+    // },
+    // description: {
+    //     display: 'flex',
+    //     flexGrow: '1',
+
+    //     alignItems: 'center',
+    //     marginTop: '10px',
+    //     marginBottom: '10px',
+    //     fontFamily: "'Special Elite', cursive",
+    // }
 })
 
 // -B- COMPONENT
 function BookCard(props) {
 console.log('BookCard PROPS: ', props)
-const {title, rank, author, book_image } = props.bookInfo
+const {title, rank, author, book_image, description } = props.bookInfo
 
     // Styles
     const classes = useStyles()
@@ -79,21 +109,33 @@ const {title, rank, author, book_image } = props.bookInfo
 
     // Returned Component
     return(
-        <div className={classes.root}>
+        
             <Card className={classes.card}>
-                <div className={classes.title}>
-                    {title}
+                <div className={classes.card__left}>
+                    <div>
+                        <div className={classes.title}>
+                            Title: {title}
+                        </div>
+                        <div className={classes.author}>
+                            Author: {author}
+                        </div>
+                    </div>
+                    ~ ~ ~ 
+                    <div>
+                        <div className={classes.description}>
+                            {description}
+                        </div>
+                    </div>
                 </div>
-                <img className={classes.img}
-                    src = {book_image}
-                    alt='Book Cover Image'
-                />
-                <div className={classes.author}>
-                    {author}
+                <div className={classes.card__right}>
+                    <img className={classes.img}
+                        src = {book_image}
+                        alt='Book Cover Image'
+                    />
                 </div>
                 
             </Card>
-        </div>
+        
     )
 }
 

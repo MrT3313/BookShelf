@@ -4,24 +4,23 @@ import axios from 'axios'
 // URLS
 import { NYT_booksAPI_baseURL } from '../../utils'
 
-// __MAIN__    
+// __MAIN__
     // Action Types:
-    export const GET_BOOKLISTS_START = "GET_BOOKLISTS_START"
-    export const GET_BOOKLISTS_SUCCESS = "GET_BOOKLISTS_SUCCESS"
-    export const GET_BOOKLISTS_FAILURE = "GET_BOOKLISTS_FAILURE"
-    
-    // Action Creator:
-    export const a_GETbook_lists = () => {
-    console.log('INSIDE: a_GETbook_lists action creator')
+    export const GET_SPECIFICLIST_START = "GET_SPECIFICLIST_START"
+    export const GET_SPECIFICLIST_SUCCESS = "GET_SPECIFICLIST_SUCCESS"
+    export const GET_SPECIFICLIST_FAILURE = "GET_SPECIFICLIST_FAILURE"
 
-        // Send First Action --> START 
+    // Action Creator:
+    export const a_GETspecific_list = (date, list) => {
+    console.log('INSIDE: a_GETbook_lists action creator')
+    // -- //
+        // Send First Action --> START
         return dispatch => {
-            dispatch({ type: GET_BOOKLISTS_START});
-            // TODO: create axios w/ query params utility
+            dispatch({ type: GET_SPECIFICLIST_START, payload: list});
             axios
                 .get(
                     // PT_1 == endpoint
-                    `${NYT_booksAPI_baseURL}names.json`, 
+                    `${NYT_booksAPI_baseURL}${date}/${list}`,  
                     // PT_2 == request data
                     // null, 
                     // Query Parameters
@@ -29,19 +28,24 @@ import { NYT_booksAPI_baseURL } from '../../utils'
                         'api-key': process.env.REACT_APP__NYT_booksAPI_key
                     }}
                 )
-                .then(lists => {
-                    console.log(lists)
+                .then(data => {
+                    console.log(data)
                     dispatch({
-                        type: GET_BOOKLISTS_SUCCESS,
-                        payload: lists.data.results
+                        type: GET_SPECIFICLIST_SUCCESS,
+                        payload: data.data.results.books,
                     })
                 })
                 .catch( err => {
                     console.log(err)
                     dispatch({
-                        type: GET_BOOKLISTS_FAILURE,
-                        payload: err
+                        type: GET_SPECIFICLIST_FAILURE,
+                        payload: err,
                     })
                 })
         }
+
     }
+
+
+
+    
