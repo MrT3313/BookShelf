@@ -19,20 +19,21 @@ import BookCard from './BookCard.js'
 // -A- STYLES
 const TabPanel_style = makeStyles(theme => ({
   TabPanel_Typography: {
-    backgroundColor: 'pink',
+    backgroundColor: theme.palette.primary.main,
 
     width: '100%',
-    // height: '90%',
+    // height: '100%',
 
     margin: '10px',
   },
   TabPannel_BOX: {
-    padding: 0,
+    padding: 10,
     display: 'flex',
-    margin: '10px',
+    justifyContent: 'center',
+    alignItems: 'center',
     // marginTop: '20px',
     // marginBottom: '20px',
-    // height: '95%'
+    height: '100%'
   }
     
 }))

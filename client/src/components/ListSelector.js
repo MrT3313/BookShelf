@@ -13,6 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
+import API_dataAttribution from './API_DataAttribution.js'
 
 // ACTION CREATORS
 import {a_GETspecific_list} from '../redux/actions/a_specificList.js'
@@ -28,7 +29,8 @@ const useStyles = makeStyles( theme => ({
         backgroundColor: theme.palette.secondary.main,
         
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
+        alignItems: 'center',
 
         width: '100%',
 
@@ -89,6 +91,8 @@ function ListSelector(props){
                     })}
                 </Select>
             </FormControl>
+
+            <API_dataAttribution />
         </div>
     )
 }
