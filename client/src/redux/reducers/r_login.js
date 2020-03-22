@@ -1,5 +1,5 @@
 // IMPORTS
-import JWT from 'jsonwebtoken'
+// import JWT from 'jsonwebtoken'
 
 // ACTION TYPES
 import {
@@ -16,8 +16,8 @@ const initialState = {
 
 // __MAIN__
 export const r_login = (state=initialState, action) => {
-console.log('action.payload: ', action.payload)
-
+// console.log('action.payload: ', action.payload)
+// -- //
     // Switch conditional for different action types
     switch (action.type) {
         // - 1 - // 

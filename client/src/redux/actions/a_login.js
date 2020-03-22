@@ -1,6 +1,6 @@
 // IMPORTS
 import axios from 'axios'; 
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 
 // URLS
 // TODO: Create conditional for process.env.NODE_ENV w/ baseURL
@@ -15,8 +15,9 @@ import { base_URL } from '../../utils'
 
     // Action
     export const a_login = (loginInfo) => {
-    console.log('INSIDE: a_login action creator')
-    console.log('Login Info: ', loginInfo)
+    // console.log('INSIDE: a_login action creator')
+    // console.log('Login Info: ', loginInfo)
+    // -- //
         // Send First Action --> START LOGIN process
         return dispatch => {
             dispatch({ type: LOGIN_START });

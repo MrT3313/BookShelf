@@ -14,7 +14,7 @@ import logger from "redux-logger";
 
 // MATERIAL UI - Theme
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { cyan, amber, blueGrey } from '@material-ui/core/colors'
+import { cyan, blueGrey } from '@material-ui/core/colors'
 
 // COMPONENTS
 import App from './App.jsx';

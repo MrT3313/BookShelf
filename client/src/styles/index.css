@@ -1,0 +1,8 @@
+*, *::before, *::after {box-sizing: inherit; }
+
+body {
+    min-width: 550px
+}
+html {
+    box-sizing: border-box;
+}
