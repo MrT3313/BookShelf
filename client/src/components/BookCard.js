@@ -113,7 +113,6 @@ const {title, author, book_image, description,
 
     // Returned Component
     return(
-        
             <Card className={classes.card}>
                 <div className={classes.card__left}>
                     <div>
@@ -139,7 +138,6 @@ const {title, author, book_image, description,
                 </div>
                 
             </Card>
-        
     )
 }
 

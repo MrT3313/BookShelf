@@ -1,5 +1,5 @@
 // IMPORTS
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {connect} from 'react-redux'
 
 // LOADER
@@ -49,7 +49,7 @@ const mstp = state => {
         current_listData: state.r_specificList.listData,
     }
 }
-
+        
 // CONNECT & EXPORT
 export default connect(
     mstp,
