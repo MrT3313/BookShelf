@@ -54,8 +54,18 @@ Package Manager: NPM
 3. Google Books APIs ([LINK](https://developers.google.com/books))  
 
 ## Versions
-- 0.0.1:
-    - FE: Hosted Homepage
+- 0.0.2:
+    - FE: Hosted Homepage - Material UI Vertical Tabs - NYT Bestseller List Explorer 
     - BE: Login & Register functionality working in postman but not hooked up to FE
+
+    Screenshot:  
+    <img src="client/src/assets/readMeImgs/homepage_0.0.2.png" height='250'>
+    
+- 0.0.1:
+    - FE: Hosted Homepage - Desktop Only - NYT Bestseller List Pyramid
+    - BE: Login & Register functionality working in postman but not hooked up to FE
+
+    Screenshot:  
+    <img src="client/src/assets/readMeImgs/homepage_0.0.1.png" height='500'>
 ---
 Author: Reed Turgeon
