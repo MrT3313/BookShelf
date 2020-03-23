@@ -20,8 +20,6 @@ const pwHash = require('../../middleware/pwHash.js')
     // - POST - //
         /* ACCEPTED SHAPE 
             {
-                "f_name": "STRING"
-                "l_name": "STRING"
                 "username": "STRING"
                 "email": "STRING"
                 "PLAINTEXT_pw": "STRING"

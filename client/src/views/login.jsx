@@ -54,7 +54,6 @@ function SignIn(props) {
     const submit = e => {
         e.preventDefault()
         console.log('TRYING TO LOGIN!')
-        console.log(email)
 
         // Prep Login Info
         let prep_loginInfo = {
@@ -80,7 +79,7 @@ function SignIn(props) {
             <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-            Sign in
+            Login
             </Typography>
             <form 
                 className={classes.form} 
@@ -118,7 +117,7 @@ function SignIn(props) {
                 color="primary"
                 className={classes.submit}
             >
-                Sign In
+                Login
             </Button>
             <Grid container>
                 {/* <Grid item xs>
@@ -128,7 +127,7 @@ function SignIn(props) {
                 </Grid> */}
                 <Grid item>
                 <Link href="/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"Don't have an account? Register here"}
                 </Link>
                 </Grid>
             </Grid>
