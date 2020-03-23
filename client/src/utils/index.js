@@ -1,5 +1,6 @@
 // 1 - ENV
-export const base_URL = "http://localhost:3000/"
+export const FE_base_URL = "http://localhost:3000/"
+export const BE_base_URL = "http://localhost:1313/"
 // const live_URL = ''
 
 // 2 - NYT API

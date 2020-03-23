@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // URLS
 // TODO: Create conditional for process.env.NODE_ENV w/ baseURL
-import { base_URL } from '../../utils'
+import { BE_base_URL } from '../../utils'
 // import live_URL from '../../utils'
 
 // __MAIN__
@@ -24,22 +24,19 @@ import { base_URL } from '../../utils'
 
             // Make HTTP request
             // RETURN this axios call if you need to chain a .then() --> ex: take you to another page after
-            axios
+            return axios
                 .post(
-                    `${base_URL}/api/login`,
-                    loginInfo
+                    `${BE_base_URL}login`,
+                    loginInfo,
                 )
                 .then(res => {
                 console.log(res)
                     // TODO: Deal with Token
-
+                        
                     // DISPATCH LOGIN_SUCCESS
                     dispatch({
                         type: LOGIN_SUCCESS,
-                        payload: {
-                            data: res.data,
-                            // user: decodedToken
-                        }
+                        payload: res.data,
                     })
                 })
                 .catch(err => {

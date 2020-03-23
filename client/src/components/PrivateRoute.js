@@ -5,13 +5,16 @@ import {Route, Redirect, withRouter } from 'react-router'
 import { connect } from 'react-redux'
 // -- *** -- START CODE -- *** -- //
 // -- *** -- START CODE -- *** -- //
-const PrivateRoute = ({ component: Component, token, ...rest }) => {
+// const PrivateRoute = ({ component: Component, token, ...rest }) => {
+const PrivateRoute = ({ component: Component, redux_token, ...rest }) => {
 console.log('PRIVATE ROUTE')
+console.log(redux_token)
 return (
     <Route
         {...rest}
         render={props => 
-            token ? <Component {...props} /> : <Redirect to='/login' />
+            // token ? <Component {...props} /> : <Redirect to='/login' />
+            redux_token ? <Component {...props} /> : <Redirect to='/login' />
         }
     />
 )
@@ -19,7 +22,7 @@ return (
 // MAP STATE TO PROPS
 const mstp = state => {
 return {
-    token: localStorage.getItem('Authorization')
+    redux_token: state.r_login.token
 }
 }
 // CONNECT

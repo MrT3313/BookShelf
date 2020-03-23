@@ -41,9 +41,15 @@ console.log('APP PROPS: ', props)
   );
 }
 
+// MAP STATE TO PROPS
+const mstp = state => {
+  return {
+  }
+}
+
 // CONNECT & EXPORT
 export default connect(
-    null,
+  mstp,
     {
         a_GETbook_lists,
     }

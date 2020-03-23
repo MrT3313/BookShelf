@@ -9,8 +9,7 @@ import {
 // INITIAL STATE
 const initialState = {
     is_loggingIn: false,
-    // token: localStorage.getItem(token),
-
+    token: '',
     error: '',
 }
 
@@ -32,6 +31,8 @@ export const r_login = (state=initialState, action) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
+
+                token: action.payload.token,
 
                 is_loggingIn: false,
                 error: ''
