@@ -5,7 +5,7 @@ module.exports = {
         // TODO: Switch to use SQL DEVELOPMENT
         client: 'sqlite3',
         connection: {
-        filename: './backend/data/BookShelf.sqlite3'
+            filename: './backend/data/BookShelf.sqlite3'
         },
         useNullAsDefault: true,
         migrations: {

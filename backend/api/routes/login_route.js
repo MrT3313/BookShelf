@@ -45,6 +45,7 @@ const sign_JWT = require('../../utils/sign_JWT.js')
         */
         router.post('/', async(req,res) => {
             console.log('** LOGIN ROUTE: POST/ **')
+            console.log(process.env)
             // Declare Exiting Switch Variable
             let UniqueIdentifier = null 
             
@@ -89,7 +90,7 @@ const sign_JWT = require('../../utils/sign_JWT.js')
                 })
                 .catch(err => {
                     // RESPONSE
-                    res.status(401).json( {error: 'Unabel to find unique use'})
+                    res.status(401).json( {error: 'Unabel to find unique user'})
                 })
             
         })
