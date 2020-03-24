@@ -10,6 +10,10 @@ import {
     REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE
 } from '../actions/a_register.js'
 
+import {
+    LOGOUT
+} from '../actions/a_logout.js'
+
 // INITIAL STATE
 const initialState = {
     is_loggingIn: false,
@@ -71,6 +75,14 @@ export const r_login = (state=initialState, action) => {
 
                 is_registering: false,
                 error:'Register Failure'
+            }
+        // - 2 - // 
+        // LOGOUT
+        case LOGOUT:
+            return {
+                ...state,
+
+                token: ''
             }
         // - DEFAULT - //
         default:

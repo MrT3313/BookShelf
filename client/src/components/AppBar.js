@@ -22,6 +22,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 
 // ACTION CREATORS
+import { a_logout } from '../redux/actions/a_logout.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -38,7 +39,7 @@ const useStyles = makeStyles( theme => ({
 }))
 
 // -B- COMPONENT
-function Menu_AppBar() {
+function Menu_AppBar(props) {
     // Styles
     const classes = useStyles();
 
@@ -55,6 +56,10 @@ function Menu_AppBar() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const handle_logout = () => {
+
+    }
 
     // Returned Component
     return (
@@ -90,7 +95,7 @@ function Menu_AppBar() {
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                <MenuItem onClick={() => props.a_logout()}>Logout</MenuItem>
                             </Menu>
                             {/* <Menu
                                 open={open}
@@ -122,7 +127,7 @@ const mstp = state => {
 export default connect(
     mstp,
     {
-
+        a_logout
     }
 )(Menu_AppBar)
 
