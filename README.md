@@ -54,6 +54,19 @@ Package Manager: NPM
 3. Google Books APIs ([LINK](https://developers.google.com/books))  
 
 ## Versions
+- 0.0.3:
+    - FE: Hosted
+        - Login & Register
+        - Homepage - Vert Tabs - NYT Bestseller List
+    
+    - BE: Hosted
+        - Login & Register both setting token on Redux store -> login & register 1 step to homepage
+
+    Screenshot:  
+    <img src="client/src/assets/readMeImgs/Register_0.0.3.png" width='250'>
+    <img src="client/src/assets/readMeImgs/Login_0.0.3.png" width='250'>
+
+
 - 0.0.2:
     - FE: Hosted Homepage - Material UI Vertical Tabs - NYT Bestseller List Explorer 
     - BE: Login & Register functionality working in postman but not hooked up to FE
