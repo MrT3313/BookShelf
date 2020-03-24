@@ -139,7 +139,8 @@ function Register(props) {
                 </Link>
                 </Grid> */}
                 <Grid item>
-                <Link href="/login" variant="body2">
+                {/* <Link href="/login" variant="body2"> */}
+                <Link to="/login" variant="body2">
                     {"Already have an account? Login here"}
                 </Link>
                 </Grid>

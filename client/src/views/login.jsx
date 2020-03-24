@@ -126,7 +126,7 @@ function SignIn(props) {
                 </Link>
                 </Grid> */}
                 <Grid item>
-                <Link href="/register" variant="body2">
+                <Link to="/register" variant="body2">
                     {"Don't have an account? Register here"}
                 </Link>
                 </Grid>
