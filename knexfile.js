@@ -1,4 +1,4 @@
-const dbConnection = process.env.DATABASE_URL
+require("dotenv").config();
 
 module.exports = {
     development: {
@@ -18,7 +18,7 @@ module.exports = {
     production: {
         // TODO: Switch to use SQL in PRODUCTION
         client: 'pg',
-        connection: dbConnection,
+        connection: process.env.DATABASE_URL,
         migrations: {
             directory: './backend/data/migrations'
         }
