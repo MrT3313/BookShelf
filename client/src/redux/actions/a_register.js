@@ -2,7 +2,8 @@
 import axios from 'axios'
 
 // URLS
-import { BE_base_URL } from '../../utils'
+import { LOCAL_BE_base_URL } from '../../utils'
+import { LIVE_BE_base_URL } from '../../utils'
 
 // __MAIN__
     // Create Action Types 
@@ -16,11 +17,23 @@ import { BE_base_URL } from '../../utils'
         // Send First Action --> START REGISTER process
         return dispatch => {
             dispatch({ type: REGISTER_START });
-
+            let register_URL = ''
             // Make HTTP request
+
+
+            // What environment are we in?
+            if (process.env.NODE_ENV === 'development'){
+                register_URL = `${LOCAL_BE_base_URL}register`
+            } else if (process.env.NODE_ENV = 'production') {
+                register_URL = `${LIVE_BE_base_URL}register`
+            }
+            console.log('URL USED')
+            console.log(register_URL)
+            console.log(registerInfo)
+
             return axios
                 .post(
-                    `${BE_base_URL}register`,
+                    register_URL,
                     registerInfo
                 )
                 .then(res => {

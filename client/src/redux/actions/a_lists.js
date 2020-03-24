@@ -13,6 +13,7 @@ import { NYT_booksAPI_baseURL } from '../../utils'
     // Action Creator:
     export const a_GETbook_lists = () => {
     // console.log('INSIDE: a_GETbook_lists action creator')
+    console.log(process.env)
     // -- //
         // Send First Action --> START 
         return dispatch => {

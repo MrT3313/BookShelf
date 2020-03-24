@@ -4,8 +4,8 @@ import axios from 'axios';
 
 // URLS
 // TODO: Create conditional for process.env.NODE_ENV w/ baseURL
-import { BE_base_URL } from '../../utils'
-// import live_URL from '../../utils'
+import { LOCAL_BE_base_URL } from '../../utils'
+import { LIVE_BE_base_URL } from '../../utils'
 
 // __MAIN__
     // Create Action Types
@@ -21,12 +21,24 @@ import { BE_base_URL } from '../../utils'
         // Send First Action --> START LOGIN process
         return dispatch => {
             dispatch({ type: LOGIN_START });
+            let login_URL = ''
 
             // Make HTTP request
             // RETURN this axios call if you need to chain a .then() --> ex: take you to another page after
+
+            // What environment are we in?
+            if (process.env.NODE_ENV === 'development') {
+                login_URL = `${LOCAL_BE_base_URL}login`
+            } else if (process.env.NODE_ENV === 'production') {
+                login_URL = `${LIVE_BE_base_URL}login`
+            }
+            console.log('URL USED')
+            console.log(login_URL)
+            console.log(loginInfo)
+
             return axios
                 .post(
-                    `${BE_base_URL}login`,
+                    login_URL,
                     loginInfo,
                 )
                 .then(res => {
