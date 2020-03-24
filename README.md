@@ -54,7 +54,7 @@ Package Manager: NPM
 3. Google Books APIs ([LINK](https://developers.google.com/books))  
 
 ## Versions
-- 0.0.3:
+- 1.0.0:
     - FE: Hosted
         - Login & Register
         - Homepage - Vert Tabs - NYT Bestseller List
