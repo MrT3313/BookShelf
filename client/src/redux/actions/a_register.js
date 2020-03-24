@@ -18,8 +18,6 @@ import { LIVE_BE_base_URL } from '../../utils'
         return dispatch => {
             dispatch({ type: REGISTER_START });
             let register_URL = ''
-            // Make HTTP request
-
 
             // What environment are we in?
             if (process.env.NODE_ENV === 'development'){
@@ -29,23 +27,24 @@ import { LIVE_BE_base_URL } from '../../utils'
             }
             console.log('URL USED')
             console.log(register_URL)
-            console.log(registerInfo)
 
+            // Make Axios Request
             return axios
                 .post(
                     register_URL,
                     registerInfo
                 )
                 .then(res => {
-                    console.log(res)
-
+                // console.log(res)
+                // -- //
                     dispatch({
                         type: REGISTER_SUCCESS,
                         payload: res.data
                     })
                 })
                 .catch( err => {
-                    console.log(err)
+                // console.log(err)
+                // -- //
                     dispatch({
                         type: REGISTER_FAILURE,
                         payload: err

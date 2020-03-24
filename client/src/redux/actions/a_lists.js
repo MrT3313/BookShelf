@@ -13,32 +13,30 @@ import { NYT_booksAPI_baseURL } from '../../utils'
     // Action Creator:
     export const a_GETbook_lists = () => {
     // console.log('INSIDE: a_GETbook_lists action creator')
-    console.log(process.env)
     // -- //
         // Send First Action --> START 
         return dispatch => {
             dispatch({ type: GET_BOOKLISTS_START});
-            // TODO: create axios w/ query params utility
+
+            // Make Axios Request
             axios
                 .get(
-                    // PT_1 == endpoint
                     `${NYT_booksAPI_baseURL}names.json`, 
-                    // PT_2 == request data
-                    // null, 
-                    // Query Parameters
                     { params: {
                         'api-key': process.env.REACT_APP__NYT_booksAPI_key
                     }}
                 )
                 .then(lists => {
-                    // console.log(lists)
+                // console.log(lists)
+                // -- //
                     dispatch({
                         type: GET_BOOKLISTS_SUCCESS,
                         payload: lists.data.results
                     })
                 })
                 .catch( err => {
-                    console.log(err)
+                console.log(err)
+                // -- //
                     dispatch({
                         type: GET_BOOKLISTS_FAILURE,
                         payload: err

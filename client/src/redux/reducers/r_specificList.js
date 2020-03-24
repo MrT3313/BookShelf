@@ -22,21 +22,23 @@ export const r_specificList = (state=initialState, action) => {
         case GET_SPECIFICLIST_START:
             return {
                 ...state,
-                is_fetching: true,
                 listName: action.payload,
+                is_fetching: true,
                 error: '',
             }
         case GET_SPECIFICLIST_SUCCESS:
             return {
                 ...state,
+
+                listData: action.payload,                    
                 is_fetching: false,
+
                 error: '',
-    
-                listData: action.payload                    
             }
         case GET_SPECIFICLIST_FAILURE:
             return {
                 ...state,
+                
                 is_fetching: false,
                 error: action.payload,
             }

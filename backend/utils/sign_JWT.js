@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken')
 
 // __MAIN__
 const sign_JWT = (user) => {
-console.log('** UTIL: SIGN JWT **')
-console.log('token secret: ', process.env.token_secret)
-
+// console.log('** UTIL: SIGN JWT **')
+// console.log('token secret: ', process.env.token_secret)
+// -- //
     const token = jwt.sign(
         // Define body properties
         {

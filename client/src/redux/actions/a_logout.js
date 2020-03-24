@@ -1,5 +1,3 @@
-// IMPORTS
-
 // __MAIN__
     // CREATE ACTION TYOES
     export const LOGOUT = 'LOGOUT'

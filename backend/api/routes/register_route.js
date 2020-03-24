@@ -20,6 +20,7 @@ const sign_JWT = require('../../utils/sign_JWT.js')
                 message: 'TEST GET requrest for REGISTER ROUTE working'
             })
         })
+
     // - POST - //
         /* ACCEPTED SHAPE 
             {
@@ -33,34 +34,42 @@ const sign_JWT = require('../../utils/sign_JWT.js')
         */ 
         // TODO: Move pwHash to the FE so that the plaintext PW never goes over the web
         router.post('/', pwHash, async(req,res) => {
-           console.log('** REGISTER ROUTE: POST/')
-           console.log(req.body.email)
-           
+        // console.log('** REGISTER ROUTE: POST/')
+        console.log(req.body.email)
+        // -- //
            KNEX_BD('users')
             .insert(req.body)
             .then(results => {
-                console.log('Register Results:', results)
-
+            // console.log(results)
+            // -- //
                 // Get newly created user
                 KNEX_BD('users').where("email", req.body.email ).first()
-                .then( newUser => {
-                    console.log(newUser)
+                    .then( newUser => {
+                    // console.log(newUser)
+                    // -- //
+                        // SIGN JWT
+                        const token = sign_JWT(newUser)
 
-                    // SIGN JWT
-                    const token = sign_JWT(newUser)
+                        // Response
+                        res.status(201).json({ message: 'Successful registration', user: {token, id: newUser.id, username: newUser.username}})
+                    })
+                    // ERROR - unable to find newly created user
+                    .catch(err => {
+                    // console.log(err)
+                    // -- //
 
-                    res.status(201).json({ message: 'Successful registration', user: {token, id: newUser.id, username: newUser.username}})
-                })
-                // ERROR - unable to find newly created user
-                .catch(err => {
-                    res.status(500).json({error: 'Cant find newly created user'})
-                })
+                        // Response
+                        res.status(500).json({error: 'Cant find newly created user'})
+                    })
             })
             // ERROR - unable to register
             .catch(err => {
+            // console.log(err)
+            // -- //
+                // Response
                 res.status(500).json({ error: 'Unable to register new user'})
             })
-       })
+        })
     // - PUT - //
     // - DEL - //
 

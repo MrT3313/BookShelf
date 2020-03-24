@@ -13,7 +13,7 @@ import { LIVE_BE_base_URL } from '../../utils'
     export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
     export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
-    // Action
+    // Action Creator:
     export const a_login = (loginInfo) => {
     // console.log('INSIDE: a_login action creator')
     // console.log('Login Info: ', loginInfo)
@@ -23,9 +23,6 @@ import { LIVE_BE_base_URL } from '../../utils'
             dispatch({ type: LOGIN_START });
             let login_URL = ''
 
-            // Make HTTP request
-            // RETURN this axios call if you need to chain a .then() --> ex: take you to another page after
-
             // What environment are we in?
             if (process.env.NODE_ENV === 'development') {
                 login_URL = `${LOCAL_BE_base_URL}login`
@@ -34,17 +31,16 @@ import { LIVE_BE_base_URL } from '../../utils'
             }
             console.log('URL USED')
             console.log(login_URL)
-            console.log(loginInfo)
 
+            // Make Axios Request 
             return axios
                 .post(
                     login_URL,
                     loginInfo,
                 )
                 .then(res => {
-                console.log(res)
-                    // TODO: Deal with Token
-                        
+                // console.log(res)
+                // -- //    
                     // DISPATCH LOGIN_SUCCESS
                     dispatch({
                         type: LOGIN_SUCCESS,
@@ -52,7 +48,8 @@ import { LIVE_BE_base_URL } from '../../utils'
                     })
                 })
                 .catch(err => {
-                console.log(err)
+                // console.log(err)
+                // -- //
                     // DISPATCH LOGIN_FAILURE
                     dispatch({
                         type: LOGIN_FAILURE,

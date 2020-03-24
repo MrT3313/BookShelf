@@ -19,21 +19,23 @@ export const r_lists = (state=initialState, action) => {
             case GET_BOOKLISTS_START:
                 return {
                     ...state,
+
                     is_fetching: true,
                     error: ''
                 }
             case GET_BOOKLISTS_SUCCESS:
                 return {
                     ...state,
+
+                    list_names: action.payload,
+
                     is_fetching: false,
                     error: '',
-    
-                    // lists: action.payload
-                    list_names: action.payload
                 }
             case GET_BOOKLISTS_FAILURE :
                 return {
                     ...state,
+                    
                     is_fetching: false,
                     error: action.payload
                 }
