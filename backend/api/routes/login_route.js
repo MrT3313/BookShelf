@@ -45,9 +45,6 @@ const sign_JWT = require('../../utils/sign_JWT.js')
         */
         router.post('/', async(req,res) => {
             console.log('** LOGIN ROUTE: POST/ **')
-            console.log(process.env)
-            // Declare Exiting Switch Variable
-            let UniqueIdentifier = null 
             
             // Deconstruct Req.Body
             const { type, username, email, PLAINTEXT_pw } = req.body
@@ -60,11 +57,9 @@ const sign_JWT = require('../../utils/sign_JWT.js')
             // Check what type of Login Submission is being attempted
             switch(type) {
                 case "email":
-                    // UniqueIdentifier = "email"
                     UniqueData = email
                     break;
                 case "username":
-                    // UniqueIdentifier = "username"
                     UniqueData = username
                     break;
                 default:
@@ -76,7 +71,7 @@ const sign_JWT = require('../../utils/sign_JWT.js')
             // Search DB for an entry where the TYPE matches the UNIQUE DATA passed in the request
             KNEX_DB('users').where(type, UniqueData ).first()
                 .then(foundUser => {
-                    console.log(foundUser)
+                    console.log('FOUND USER', foundUser)
 
                     // SIGN JWT
                     const token = sign_JWT(foundUser)
@@ -84,7 +79,7 @@ const sign_JWT = require('../../utils/sign_JWT.js')
 
                     // RESPONSE
                     res.status(200).json({
-                        message: 'welcome to the homeManager',
+                        message: 'welcome to the BookShelf',
                         token
                     })
                 })

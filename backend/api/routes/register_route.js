@@ -8,6 +8,9 @@ const router = express.Router()
 // MIDDLEWARE
 const pwHash = require('../../middleware/pwHash.js')
 
+// UTILS
+const sign_JWT = require('../../utils/sign_JWT.js') 
+
 // __MAIN__
     // - GET - //
         // - 1 - //
@@ -31,17 +34,31 @@ const pwHash = require('../../middleware/pwHash.js')
         // TODO: Move pwHash to the FE so that the plaintext PW never goes over the web
         router.post('/', pwHash, async(req,res) => {
            console.log('** REGISTER ROUTE: POST/')
+           console.log(req.body.email)
            
            KNEX_BD('users')
             .insert(req.body)
             .then(results => {
                 console.log('Register Results:', results)
 
-                // TODO: Decide what I should return. User object? Success Mesage? Only User ID
-                res.status(201).json({ message: 'Successful registration'})
+                // Get newly created user
+                KNEX_BD('users').where("email", req.body.email ).first()
+                .then( newUser => {
+                    console.log(newUser)
+
+                    // SIGN JWT
+                    const token = sign_JWT(newUser)
+
+                    res.status(201).json({ message: 'Successful registration', user: {token, id: newUser.id, username: newUser.username}})
+                })
+                // ERROR - unable to find newly created user
+                .catch(err => {
+                    res.status(500).json({error: 'Cant find newly created user'})
+                })
             })
+            // ERROR - unable to register
             .catch(err => {
-                res.status(500).json({ error: 'Unabel to register new user'})
+                res.status(500).json({ error: 'Unable to register new user'})
             })
        })
     // - PUT - //

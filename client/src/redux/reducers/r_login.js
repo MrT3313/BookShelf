@@ -66,6 +66,8 @@ export const r_login = (state=initialState, action) => {
             return {
                 ...state,
 
+                token: action.payload.user.token,
+
                 is_registering: false,
                 error:''
             }

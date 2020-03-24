@@ -11,7 +11,6 @@ console.log('token secret: ', process.env.token_secret)
         {
             user_ID: user.id,
             username: user.username,
-            f_name: user.f_name
         },
         
         // Pass Secret
