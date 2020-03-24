@@ -126,9 +126,15 @@ function SignIn(props) {
                 </Link>
                 </Grid> */}
                 <Grid item>
-                <Link to="/register" variant="body2">
+                <Button
+                    onClick={() => props.history.push("/register")}
+                >
+
+                    {"Don't have an account?"}
+                </Button>
+                {/* <Link href="/register" variant="body2">
                     {"Don't have an account? Register here"}
-                </Link>
+                </Link> */}
                 </Grid>
             </Grid>
             </form>

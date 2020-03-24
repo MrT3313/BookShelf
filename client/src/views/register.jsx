@@ -139,10 +139,14 @@ function Register(props) {
                 </Link>
                 </Grid> */}
                 <Grid item>
-                {/* <Link href="/login" variant="body2"> */}
-                <Link to="/login" variant="body2">
+                <Button
+                    onClick={() => props.history.push("/login")}
+                >
+                    {"Already have an account?"}
+                </Button>
+                {/* <Link href="/login" variant="body2">
                     {"Already have an account? Login here"}
-                </Link>
+                </Link> */}
                 </Grid>
             </Grid>
             </form>
