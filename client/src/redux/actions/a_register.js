@@ -24,7 +24,7 @@ import { LIVE_BE_base_URL } from '../../utils'
             // What environment are we in?
             if (process.env.NODE_ENV === 'development'){
                 register_URL = `${LOCAL_BE_base_URL}register`
-            } else if (process.env.NODE_ENV = 'production') {
+            } else if (process.env.NODE_ENV === 'production') {
                 register_URL = `${LIVE_BE_base_URL}register`
             }
             console.log('URL USED')
