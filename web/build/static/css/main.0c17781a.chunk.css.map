@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,iBAAwB,kBAAqB,CAE7C,KACI,eACJ,CACA,KACI,qBACJ","file":"main.0c17781a.chunk.css","sourcesContent":["*, *::before, *::after {box-sizing: inherit; }\n\nbody {\n    min-width: 550px\n}\nhtml {\n    box-sizing: border-box;\n}"]}

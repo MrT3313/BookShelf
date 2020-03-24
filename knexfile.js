@@ -5,14 +5,14 @@ module.exports = {
         // TODO: Switch to use SQL DEVELOPMENT
         client: 'sqlite3',
         connection: {
-        filename: './data/BookShelf.sqlite3'
+        filename: './backend/data/BookShelf.sqlite3'
         },
         useNullAsDefault: true,
         migrations: {
-            directory: './data/migrations'
+            directory: './backend/data/migrations'
         },
         seeds: {
-            directory: './data/seeds'
+            directory: './backend/data/seeds'
         }
     },
     production: {
@@ -20,7 +20,7 @@ module.exports = {
         client: 'pg',
         connection: dbConnection,
         migrations: {
-            directory: './data/migrations'
+            directory: './backend/data/migrations'
         }
     }
 }
