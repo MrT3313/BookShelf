@@ -9,6 +9,5 @@ const router = require('express').Router()
     router.use('/register', register_route)
     router.use('/login', login_route)
     
-
 // EXPORTS
     module.exports = router

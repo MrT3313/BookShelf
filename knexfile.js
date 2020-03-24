@@ -1,26 +1,27 @@
-const dbConnection = process.env.DATABASE_URL
+require("dotenv").config();
 
 module.exports = {
     development: {
         // TODO: Switch to use SQL DEVELOPMENT
         client: 'sqlite3',
         connection: {
-        filename: './data/BookShelf.sqlite3'
+            filename: './backend/data/BookShelf.sqlite3'
         },
         useNullAsDefault: true,
         migrations: {
-            directory: './data/migrations'
+            directory: './backend/data/migrations'
         },
         seeds: {
-            directory: './data/seeds'
+            directory: './backend/data/seeds'
         }
     },
     production: {
         // TODO: Switch to use SQL in PRODUCTION
         client: 'pg',
-        connection: dbConnection,
+        connection: process.env.DATABASE_URL,
         migrations: {
-            directory: './data/migrations'
+            directory: './backend/data/migrations',
+            tableName: "knex_migrations"
         }
     }
 }

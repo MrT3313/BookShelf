@@ -11,5 +11,4 @@ export const rootReducer = combineReducers({
     r_login,
     r_lists,
     r_specificList
-
 })

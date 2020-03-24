@@ -1,10 +1,6 @@
-
 exports.up = function(knex) {
-    return knex.schema.createTable('USERS', tbl => {
+    return knex.schema.createTable('users', tbl => {
         tbl.increments('id')
-
-        tbl.string('f_name')
-        tbl.string('l_name')
 
         // Should be able to login with unique username or email as identifier
         tbl.string('username')
@@ -21,5 +17,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('USERS')
+    return knex.schema.dropTableIfExists('users')
 };

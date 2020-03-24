@@ -17,26 +17,26 @@ import { NYT_booksAPI_baseURL } from '../../utils'
         // Send First Action --> START
         return dispatch => {
             dispatch({ type: GET_SPECIFICLIST_START, payload: list});
+            
+            // Make Axios Request
             axios
                 .get(
-                    // PT_1 == endpoint
                     `${NYT_booksAPI_baseURL}${date}/${list}`,  
-                    // PT_2 == request data
-                    // null, 
-                    // Query Parameters
                     { params: {
                         'api-key': process.env.REACT_APP__NYT_booksAPI_key
                     }}
                 )
                 .then(data => {
-                    // console.log(data)
+                // console.log(data)
+                // -- //
                     dispatch({
                         type: GET_SPECIFICLIST_SUCCESS,
                         payload: data.data.results.books,
                     })
                 })
                 .catch( err => {
-                    console.log(err)
+                // console.log(err)
+                // -- //
                     dispatch({
                         type: GET_SPECIFICLIST_FAILURE,
                         payload: err,
