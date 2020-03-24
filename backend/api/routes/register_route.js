@@ -32,7 +32,7 @@ const pwHash = require('../../middleware/pwHash.js')
         router.post('/', pwHash, async(req,res) => {
            console.log('** REGISTER ROUTE: POST/')
            
-           KNEX_BD('USERS')
+           KNEX_BD('users')
             .insert(req.body)
             .then(results => {
                 console.log('Register Results:', results)
