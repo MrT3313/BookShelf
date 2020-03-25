@@ -13,7 +13,6 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 // -2- Styles
-// import { useTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
@@ -63,7 +62,6 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
         lists, current_list,                        } = props   // Passed w/ Connect
 
     // Styles
-    // const theme = useTheme()
     const classes = useStyles({})
 
     // State

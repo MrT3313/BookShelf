@@ -6,6 +6,9 @@ import {connect} from 'react-redux'
 import Loader from 'react-loader-spinner'
 
 // MATERIAL UI
+// -1- Styles
+import { makeStyles } from '@material-ui/core/styles';
+// -2- Components
 
 // COMPONENTS
 import Menu_AppBar from '../components/AppBar.js'
@@ -19,14 +22,31 @@ import { a_GETspecific_list } from '../redux/actions/a_specificList.js'
 // === === === === === === === === === === === === //
 
 // __MAIN__
+// -A- STYLES
+const useStyles = makeStyles(theme => ({
+    loader: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        
+        marginTop: '50px',
+    }
+}))
+
+// -B- COMPONENT
 function HomePage(props) {
+    // Styles
+    const classes = useStyles({})
+
     // Return
     if (props.current_listData.length === 0) {
         return (
             <>
                 <Menu_AppBar />
                 <ListSelector />
-                <Loader type='Puff'/>
+                <div className={classes.loader}>
+                    <Loader type='Puff' color='#00BCD4'/>
+                </div>
             </>
         )
     } else {
