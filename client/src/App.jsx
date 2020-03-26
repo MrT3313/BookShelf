@@ -13,6 +13,7 @@ import './styles/index.css'
 // -- PRIVATE Routes -- //
 import PrivateRoute from './components/PrivateRoute.js'
 import Homepage from './views/homepage.jsx'
+import Account from './views/account.jsx'
 
 // -- OPEN Routes -- //
 import Login from './views/login.jsx'
@@ -35,6 +36,7 @@ console.log('APP PROPS: ', props)
     <div className="App">
       {/* <Route exact path='/' theme={props.theme} component={Homepage} /> */}
       <PrivateRoute exact path='/' theme={props.theme} component={Homepage} />
+      <PrivateRoute exact path='/account' theme={props.theme} component={Account} />
       <Route exact path='/login' theme={props.theme} component={Login} />
       <Route exact path='/register' theme={props.theme} component={Register} />
     </div>
