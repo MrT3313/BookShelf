@@ -30,7 +30,9 @@ function Account(props) {
 
     // Return
     return (
-        <div>Hello from Account Page</div>
+        <>
+            <div>Hello from Account Page</div>
+        </>
     )
 
 }
