@@ -1,5 +1,6 @@
 // IMPORTS
 import React, { useState } from 'react'
+import { withRouter } from 'react-router'
 
 // MATERIAL UI
 // -1- Components
@@ -40,6 +41,8 @@ const useStyles = makeStyles( theme => ({
 
 // -B- COMPONENT
 function Menu_AppBar(props) {
+console.log('Menu_AppBar Props: ', props)
+// -- //
     // Styles
     const classes = useStyles();
 
@@ -56,11 +59,6 @@ function Menu_AppBar(props) {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    const handle_logout = () => {
-
-    }
-
     // Returned Component
     return (
         <div>
@@ -94,7 +92,7 @@ function Menu_AppBar(props) {
                                 onClose={handleClose}
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={() => props.history.push('/account')}>My account</MenuItem>
                                 <MenuItem onClick={() => props.a_logout()}>Logout</MenuItem>
                             </Menu>
                             {/* <Menu
@@ -114,7 +112,8 @@ function Menu_AppBar(props) {
             </AppBar>
         </div>
     )
-} 
+}
+
 
 // MAP STATE TO PROPS
 const mstp = state => {
@@ -123,12 +122,14 @@ const mstp = state => {
     }
 }
 
-// CONNECT & EXPORT
-export default connect(
-    mstp,
-    {
-        a_logout
-    }
-)(Menu_AppBar)
+// CONNECT & Export & withRouter (so we can access props.history)
+export default withRouter(
+    connect(
+        mstp,
+        {
+            a_logout
+        }
+    )(Menu_AppBar)
+)
 
 

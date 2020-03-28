@@ -46,9 +46,9 @@ function SignIn(props) {
     const classes = useStyles();
 
     // State
-    const [username, setUsername] = useState()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const [username, setUsername] = useState('guest')
+    const [email, setEmail] = useState('guest@example.com')
+    const [password, setPassword] = useState('guest')
 
     // Methods
     const submit = e => {
@@ -74,71 +74,68 @@ function SignIn(props) {
     return (
         <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-            Login
-            </Typography>
-            <form 
-                className={classes.form} 
-                noValidate
-                onSubmit={submit}
-            >
-            <TextField
-                required
-                variant="outlined"
-
-                id="email" label="Email Address" name="email"
-                onChange={e => setEmail(e.target.value)}
-
-                margin="normal"
-                fullWidth
-                autoComplete="email"
-                autoFocus
-            />
-            <TextField
-                variant="outlined"
-                required    
-                
-                id="password" label="Password" name="password" type="password"
-                onChange={e => setPassword(e.target.value)}
-
-                margin="normal"
-                fullWidth
-                autoComplete="current-password"
-            />
-            <Button
-                variant="contained"
-                type="submit"
-                
-                fullWidth
-                color="primary"
-                className={classes.submit}
-            >
-                Login
-            </Button>
-            <Grid container>
-                {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                    Forgot password?
-                </Link>
-                </Grid> */}
-                <Grid item>
-                <Button
-                    onClick={() => props.history.push("/register")}
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Login
+                </Typography>
+                <form 
+                    className={classes.form} 
+                    noValidate
+                    onSubmit={submit}
                 >
+                <TextField
+                    required
+                    variant="outlined"
 
-                    {"Don't have an account?"}
+                    id="email" label="Email Address" name="email"
+                    onChange={e => setEmail(e.target.value)}
+
+                    margin="normal"
+                    fullWidth
+                    autoComplete="email"
+                    autoFocus
+                />
+                <TextField
+                    variant="outlined"
+                    required    
+                    
+                    id="password" label="Password" name="password" type="password"
+                    onChange={e => setPassword(e.target.value)}
+
+                    margin="normal"
+                    fullWidth
+                    autoComplete="current-password"
+                />
+                <Button
+                    variant="contained"
+                    type="submit"
+                    
+                    fullWidth
+                    color="primary"
+                    className={classes.submit}
+                >
+                    Login
                 </Button>
-                {/* <Link href="/register" variant="body2">
-                    {"Don't have an account? Register here"}
-                </Link> */}
+                <Grid 
+                    container
+                    justify="space-between"
+                    alignItems="center"
+                >
+                    <Button onClick={() => props.history.push("/register")} >
+                        {"Don't have an account?"}
+                    </Button>
+                    <Button 
+                        type='submit'
+                        className={classes.submit}
+                    >
+                        {"Sign in as a guest!"}
+                    </Button>
                 </Grid>
-            </Grid>
-            </form>
-        </div>
+                </form>
+            </div>
         </Container>
     );
 }

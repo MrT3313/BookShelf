@@ -13,6 +13,8 @@ exports.up = function(knex) {
         // All profile start off as private profiles
         tbl.bool('publicProfile')
             .defaultTo(false)
+        tbl.integer('privileges')
+            .defaultTo(3)
     })
 };
 
