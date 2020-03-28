@@ -88,67 +88,55 @@ function Register(props) {
                 noValidate
                 onSubmit={submit}
             >
-            <TextField
-                required
-                variant="outlined"
+                <TextField
+                    required
+                    variant="outlined"
 
-                id="email" label="Email Address" name="email"
-                onChange={e => setEmail(e.target.value)}
+                    id="email" label="Email Address" name="email"
+                    onChange={e => setEmail(e.target.value)}
 
-                margin="normal"
-                fullWidth
-                autoComplete="email"
-                autoFocus
-            />
-            <TextField
-                variant="outlined"
-                required    
-                
-                id="username" label="Username" name="username" type="username"
-                onChange={e => setUsername(e.target.value)}
+                    margin="normal"
+                    fullWidth
+                    autoComplete="email"
+                    autoFocus
+                />
+                <TextField
+                    variant="outlined"
+                    required    
+                    
+                    id="username" label="Username" name="username" type="username"
+                    onChange={e => setUsername(e.target.value)}
 
-                margin="normal"
-                fullWidth
-                autoComplete="current-password"
-            />
-            <TextField
-                variant="outlined"
-                required    
-                
-                id="password" label="Password" name="password" type="password"
-                onChange={e => setPassword(e.target.value)}
+                    margin="normal"
+                    fullWidth
+                    autoComplete="current-password"
+                />
+                <TextField
+                    variant="outlined"
+                    required    
+                    
+                    id="password" label="Password" name="password" type="password"
+                    onChange={e => setPassword(e.target.value)}
 
-                margin="normal"
-                fullWidth
-                autoComplete="current-password"
-            />
-            <Button
-                variant="contained"
-                type="submit"
-                
-                fullWidth
-                color="primary"
-                className={classes.submit}
-            >
-                Register
-            </Button>
-            <Grid container>
-                {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                    Forgot password?
-                </Link>
-                </Grid> */}
-                <Grid item>
+                    margin="normal"
+                    fullWidth
+                    autoComplete="current-password"
+                />
                 <Button
-                    onClick={() => props.history.push("/login")}
+                    variant="contained"
+                    type="submit"
+                    
+                    fullWidth
+                    color="primary"
+                    className={classes.submit}
                 >
-                    {"Already have an account?"}
+                    Register
                 </Button>
-                {/* <Link href="/login" variant="body2">
-                    {"Already have an account? Login here"}
-                </Link> */}
+                <Grid container>
+                    <Button onClick={() => props.history.push("/login")}>
+                        {"Already have an account?"}
+                    </Button>
                 </Grid>
-            </Grid>
             </form>
         </div>
         </Container>
