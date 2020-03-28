@@ -59,10 +59,16 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 
-- 1.1.0: Account Page
+- 1.2.0: Account Page
     - Updates: 
         1. Update Password
         2. Update Username
+
+- 1.1.0: Sign in as guest
+    - FE
+        - Button added to <login /> so user can login as a guest
+    - BE 
+        - User privilages added to users table
 
 - 1.0.0:
     - FE: Hosted

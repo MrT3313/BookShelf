@@ -76,69 +76,69 @@ function Register(props) {
     return (
         <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-                Register
-            </Typography>
-            <form 
-                className={classes.form} 
-                noValidate
-                onSubmit={submit}
-            >
-                <TextField
-                    required
-                    variant="outlined"
-
-                    id="email" label="Email Address" name="email"
-                    onChange={e => setEmail(e.target.value)}
-
-                    margin="normal"
-                    fullWidth
-                    autoComplete="email"
-                    autoFocus
-                />
-                <TextField
-                    variant="outlined"
-                    required    
-                    
-                    id="username" label="Username" name="username" type="username"
-                    onChange={e => setUsername(e.target.value)}
-
-                    margin="normal"
-                    fullWidth
-                    autoComplete="current-password"
-                />
-                <TextField
-                    variant="outlined"
-                    required    
-                    
-                    id="password" label="Password" name="password" type="password"
-                    onChange={e => setPassword(e.target.value)}
-
-                    margin="normal"
-                    fullWidth
-                    autoComplete="current-password"
-                />
-                <Button
-                    variant="contained"
-                    type="submit"
-                    
-                    fullWidth
-                    color="primary"
-                    className={classes.submit}
-                >
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
                     Register
-                </Button>
-                <Grid container>
-                    <Button onClick={() => props.history.push("/login")}>
-                        {"Already have an account?"}
+                </Typography>
+                <form 
+                    className={classes.form} 
+                    noValidate
+                    onSubmit={submit}
+                >
+                    <TextField
+                        required
+                        variant="outlined"
+
+                        id="email" label="Email Address" name="email"
+                        onChange={e => setEmail(e.target.value)}
+
+                        margin="normal"
+                        fullWidth
+                        autoComplete="email"
+                        autoFocus
+                    />
+                    <TextField
+                        variant="outlined"
+                        required    
+                        
+                        id="username" label="Username" name="username" type="username"
+                        onChange={e => setUsername(e.target.value)}
+
+                        margin="normal"
+                        fullWidth
+                        autoComplete="current-password"
+                    />
+                    <TextField
+                        variant="outlined"
+                        required    
+                        
+                        id="password" label="Password" name="password" type="password"
+                        onChange={e => setPassword(e.target.value)}
+
+                        margin="normal"
+                        fullWidth
+                        autoComplete="current-password"
+                    />
+                    <Button
+                        variant="contained"
+                        type="submit"
+                        
+                        fullWidth
+                        color="primary"
+                        className={classes.submit}
+                    >
+                        Register
                     </Button>
-                </Grid>
-            </form>
-        </div>
+                    <Grid container>
+                        <Button onClick={() => props.history.push("/login")}>
+                            {"Already have an account?"}
+                        </Button>
+                    </Grid>
+                </form>
+            </div>
         </Container>
     );
 }
