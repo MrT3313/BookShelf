@@ -67,6 +67,8 @@ Package Manager: NPM
 - 1.1.0: Sign in as guest
     - FE
         - Button added to <login /> so user can login as a guest
+        - <Loader /> color & position updated
+        - <Homepage /> linking to 'helloWorld' <AccountPage />
     - BE 
         - User privilages added to users table
 
