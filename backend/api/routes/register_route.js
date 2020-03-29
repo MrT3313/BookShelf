@@ -14,10 +14,10 @@ const sign_JWT = require('../../utils/sign_JWT.js')
 // __MAIN__
     // - GET - //
         // - 1 - //
-        router.get('/', async(req,res) => {
+        router.get('/test', async(req,res) => {
             console.log('** REGISTER ROUTE: TEST GET/')
             res.status(200).json({
-                message: 'TEST GET requrest for REGISTER ROUTE working'
+                message: 'TEST GET request for REGISTER ROUTE working'
             })
         })
 

@@ -25,6 +25,12 @@ import decode from '../utils/decode_JWT.js'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles({
+    accountCard_root: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     username: {
         display: 'flex',
         justifyContent: 'center',
@@ -43,6 +49,9 @@ function AccountCard(props) {
 console.log('ACCOUNT CARD PROPS: ', props)
 const {token} = props
 // -- //
+    // Styles
+    const classes = useStyles({})
+
     // State
     const [user_ID, setUser_ID] = useState()
     const [userName, setUserName] = useState()
@@ -66,17 +75,20 @@ const {token} = props
         
     }, [])
 
-    // Styles
-    const classes = useStyles({})
+    // METHODS
+    // const edit = e => {
+    //     console.log(e.target.name)
+    // }
 
     // Return
     return (
         <Grid
-        container
-        direction='column'
-        alignItems='center'
+            container
+            direction='column'
+            alignItems='center'
+            justify='center'
         >
-            <Card>
+            <Card className={classes.accountCard_root}>
                 <AssignmentIndIcon />
                 <div className={classes.username}>
                     <div className={classes.usernameLabel}>
@@ -84,7 +96,11 @@ const {token} = props
                     </div>
                     <div>{userName}</div>
                     {privileges != 2 &&
-                        <EditIcon className={classes.editIcon}/>
+                        <EditIcon 
+                            // name='userName'
+                            className={classes.editIcon}
+                            // onClick={edit}
+                        />
                     }
                 </div>
             </Card>
