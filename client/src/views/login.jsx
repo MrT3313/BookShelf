@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    marginTop: '10px'
   },
 }));
 
@@ -124,7 +124,10 @@ function SignIn(props) {
                     justify="space-between"
                     alignItems="center"
                 >
-                    <Button onClick={() => props.history.push("/register")} >
+                    <Button 
+                        className={classes.submit}
+                        onClick={() => props.history.push("/register")} 
+                    >
                         {"Don't have an account?"}
                     </Button>
                     <Button 

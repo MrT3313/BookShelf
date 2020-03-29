@@ -18,6 +18,8 @@ import { makeStyles } from '@material-ui/core/styles'
 
 // UTILS
 import decode from '../utils/decode_JWT.js'
+import { LOCAL_BE_base_URL } from '../utils'
+import { LIVE_BE_base_URL } from '../utils'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -53,9 +55,14 @@ const {token} = props
     const classes = useStyles({})
 
     // State
+    // FROM TOKEN
     const [user_ID, setUser_ID] = useState()
-    const [userName, setUserName] = useState()
     const [privileges, setPrivileges] = useState()
+
+    // FROM DATABASE
+    const [userName, setUserName] = useState()
+    const [email, setEmail] = useState()
+    const [publicProfile, setPublicProfile] = useState()
 
     // USE EFFECT
     useEffect(() => {
@@ -64,14 +71,27 @@ const {token} = props
     // -- //
         // Decode
         let decoded = decode(token)
-        console.log(decoded)
+        console.log('DECODED: ', decoded)
 
         // Update Component State
+        // TODO: make separate useEffect based on the changing of user_ID
         setUser_ID(decoded.user_ID)
-        setUserName(decoded.username)
         setPrivileges(decoded.privileges)
+        setUserName(decoded.username)
+
 
         // TODO: Get all user unformation
+        console.log(process.env.NODE_ENV)
+        let fetchURL = undefined
+        if (process.env.NODE_ENV === 'development') {
+            fetchURL = `${LOCAL_BE_base_URL}users/${decoded.user_ID}`
+        } else if (process.env.NODE_ENV === 'production') {
+            fetchURL = `${LIVE_BE_base_URL}users/${user_ID}`
+        } else {
+            console.log('ERROR: Unknown Environment')
+        }
+        console.log('Fetch URL Used: ', fetchURL)
+        
         
     }, [])
 

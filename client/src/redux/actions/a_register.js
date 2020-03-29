@@ -35,7 +35,7 @@ import { LIVE_BE_base_URL } from '../../utils'
                     registerInfo
                 )
                 .then(res => {
-                // console.log(res)
+                console.log(res)
                 // -- //
                     dispatch({
                         type: REGISTER_SUCCESS,

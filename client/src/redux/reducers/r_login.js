@@ -18,7 +18,12 @@ import {
 const initialState = {
     is_loggingIn: false,
     is_registering: false,
+    
     token: '',
+    username: '',
+    email: '',
+    publicProfile: undefined,
+
     error: '',
 }
 
@@ -42,6 +47,9 @@ export const r_login = (state=initialState, action) => {
                 ...state,
 
                 token: action.payload.token,
+                username: action.payload.username,
+                email: action.payload.email,
+                publicProfile: action.payload.publicProfile,
 
                 is_loggingIn: false,
                 error: ''
@@ -67,6 +75,9 @@ export const r_login = (state=initialState, action) => {
                 ...state,
 
                 token: action.payload.user.token,
+                username: action.payload.user.username,
+                email: action.payload.user.email,
+                publicProfile: action.payload.user.publicProfile,
 
                 is_registering: false,
                 error:''

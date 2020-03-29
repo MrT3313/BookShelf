@@ -67,7 +67,10 @@ const sign_JWT = require('../../utils/sign_JWT.js')
                     // RESPONSE
                     res.status(200).json({
                         message: 'welcome to the BookShelf',
-                        token
+                        token,
+                        username: foundUser.username,
+                        email: foundUser.email,
+                        publicProfile: foundUser.publicProfile
                     })
                 })
                 .catch(err => {

@@ -10,7 +10,6 @@ const sign_JWT = (user) => {
         // Define body properties
         {
             user_ID: user.id,
-            username: user.username,
             privileges: user.privileges
         },
         

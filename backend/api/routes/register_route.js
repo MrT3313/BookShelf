@@ -51,7 +51,15 @@ const sign_JWT = require('../../utils/sign_JWT.js')
                         const token = sign_JWT(newUser)
 
                         // Response
-                        res.status(201).json({ message: 'Successful registration', user: {token, id: newUser.id, username: newUser.username}})
+                        res.status(201).json({ 
+                            message: 'Successful registration', 
+                            user: {
+                                // token, id: newUser.id, username: newUser.username
+                                token,
+                                username: newUser.username,
+                                email: newUser.email,
+                                publicProfile: newUser.publicProfile,
+                            }})
                     })
                     // ERROR - unable to find newly created user
                     .catch(err => {
