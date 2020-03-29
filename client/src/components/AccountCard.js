@@ -32,73 +32,62 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+
+        width: '75%',
     },
+    // TODO: Combine into generic 
     username: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
     },
+    email: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    publicProfile: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    // TODO: Combine into generic 
+    usernameLabel: {
+        marginRight: '7px'
+    },
+    emailLabel: {
+        marginRight: '7px'
+    },
+    publicProfileLabel: {
+        marginRight: '7px'
+    },
+
+    // edit icon
     editIcon: {
         marginLeft: '10px',
     },
-    usernameLabel: {
-        marginRight: '7px'
-    }
 })
 
 // -B- COMPONENT
 function AccountCard(props) {
 console.log('ACCOUNT CARD PROPS: ', props)
-const {token} = props
+const { token, username, email, publicProfile } = props
 // -- //
     // Styles
     const classes = useStyles({})
 
     // State
-    // FROM TOKEN
-    const [user_ID, setUser_ID] = useState()
     const [privileges, setPrivileges] = useState()
 
-    // FROM DATABASE
-    const [userName, setUserName] = useState()
-    const [email, setEmail] = useState()
-    const [publicProfile, setPublicProfile] = useState()
-
-    // USE EFFECT
+    // UseEffect
     useEffect(() => {
-    console.log('ACCOUNT PAGE USE EFFECT')
-    console.log(token)
-    // -- //
         // Decode
         let decoded = decode(token)
-        console.log('DECODED: ', decoded)
-
-        // Update Component State
-        // TODO: make separate useEffect based on the changing of user_ID
-        setUser_ID(decoded.user_ID)
         setPrivileges(decoded.privileges)
-        setUserName(decoded.username)
+    })
 
-
-        // TODO: Get all user unformation
-        console.log(process.env.NODE_ENV)
-        let fetchURL = undefined
-        if (process.env.NODE_ENV === 'development') {
-            fetchURL = `${LOCAL_BE_base_URL}users/${decoded.user_ID}`
-        } else if (process.env.NODE_ENV === 'production') {
-            fetchURL = `${LIVE_BE_base_URL}users/${user_ID}`
-        } else {
-            console.log('ERROR: Unknown Environment')
-        }
-        console.log('Fetch URL Used: ', fetchURL)
-        
-        
-    }, [])
-
-    // METHODS
-    // const edit = e => {
-    //     console.log(e.target.name)
-    // }
+    // Methods
 
     // Return
     return (
@@ -114,7 +103,33 @@ const {token} = props
                     <div className={classes.usernameLabel}>
                         Username:
                     </div>
-                    <div>{userName}</div>
+                    <div>{username}</div>
+                    {privileges != 2 &&
+                        <EditIcon 
+                            // name='userName'
+                            className={classes.editIcon}
+                            // onClick={edit}
+                        />
+                    }
+                </div>
+                <div className={classes.email}>
+                    <div className={classes.emailLabel}>
+                        Email:
+                    </div>
+                    <div>{email}</div>
+                    {privileges != 2 &&
+                        <EditIcon 
+                            // name='userName'
+                            className={classes.editIcon}
+                            // onClick={edit}
+                        />
+                    }
+                </div>
+                <div className={classes.publicProfile}>
+                    <div className={classes.publicProfileLabel}>
+                        Public Profile:
+                    </div>
+                    <div>{publicProfile}</div>
                     {privileges != 2 &&
                         <EditIcon 
                             // name='userName'
@@ -132,7 +147,11 @@ const {token} = props
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        token: state.r_login.token
+        token: state.r_login.token,
+        username: state.r_login.username,
+        email: state.r_login.email,
+        publicProfile: state.r_login.publicProfile,
+        
     }
 }
 
