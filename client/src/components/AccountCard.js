@@ -8,6 +8,11 @@ import { Card } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import EditIcon from '@material-ui/icons/Edit';
+import Divider from '@material-ui/core/Divider';
+import Switch from '@material-ui/core/Switch';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles'
@@ -27,46 +32,18 @@ import { LIVE_BE_base_URL } from '../utils'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles({
-    accountCard_root: {
+    profile_root: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-
-        width: '75%',
     },
-    // TODO: Combine into generic 
-    username: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+    divider: {
+        marginRight: "10px",
+        marginLeft: "10px",
     },
-    email: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    publicProfile: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    // TODO: Combine into generic 
-    usernameLabel: {
-        marginRight: '7px'
-    },
-    emailLabel: {
-        marginRight: '7px'
-    },
-    publicProfileLabel: {
-        marginRight: '7px'
-    },
-
-    // edit icon
-    editIcon: {
-        marginLeft: '10px',
-    },
+    label: {
+        width: '100px',
+        // textAlign: 'center',
+    }
 })
 
 // -B- COMPONENT
@@ -78,6 +55,7 @@ const { token, username, email, publicProfile } = props
     const classes = useStyles({})
 
     // State
+    const [editUser_view, setEditUser_view] = useState(false)
     const [privileges, setPrivileges] = useState()
 
     // UseEffect
@@ -97,48 +75,60 @@ const { token, username, email, publicProfile } = props
             alignItems='center'
             justify='center'
         >
-            <Card className={classes.accountCard_root}>
-                <AssignmentIndIcon />
-                <div className={classes.username}>
-                    <div className={classes.usernameLabel}>
-                        Username:
-                    </div>
-                    <div>{username}</div>
-                    {privileges != 2 &&
-                        <EditIcon 
-                            // name='userName'
-                            className={classes.editIcon}
-                            // onClick={edit}
-                        />
-                    }
-                </div>
-                <div className={classes.email}>
-                    <div className={classes.emailLabel}>
-                        Email:
-                    </div>
-                    <div>{email}</div>
-                    {privileges != 2 &&
-                        <EditIcon 
-                            // name='userName'
-                            className={classes.editIcon}
-                            // onClick={edit}
-                        />
-                    }
-                </div>
-                <div className={classes.publicProfile}>
-                    <div className={classes.publicProfileLabel}>
-                        Public Profile:
-                    </div>
-                    <div>{publicProfile}</div>
-                    {privileges != 2 &&
-                        <EditIcon 
-                            // name='userName'
-                            className={classes.editIcon}
-                            // onClick={edit}
-                        />
-                    }
-                </div>
-            </Card>
+            <div className={classes.profile_root}>
+                {editUser_view &&
+                    <div>TIME TO EDIT</div>
+                }
+                {!editUser_view &&
+                    
+                        <List>
+                            <ListItem>
+                                <ListItemText
+                                    className={classes.label}
+                                    disableTypography={true}
+                                >
+                                    USERNAME
+                                </ListItemText>
+                                <Divider orientation="vertical" flexItem className={classes.divider}/>
+                                <ListItemText
+                                        className={classes.data}
+                                >
+                                    {username}
+                                </ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    className={classes.label}
+                                >
+                                    EMAIL
+                                </ListItemText>
+                                <Divider orientation="vertical" flexItem className={classes.divider}/>
+                                <ListItemText
+                                    className={classes.data}
+                                >
+                                    {email}
+                                </ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    className={classes.label}
+                                >
+                                    PUBLIC PROFILE
+                                </ListItemText>
+                                <Divider orientation="vertical" flexItem className={classes.divider}/>
+                                <ListItemText
+                                    className={classes.data}
+                                >
+                                    {`${publicProfile}`}
+                                </ListItemText>
+                            </ListItem>
+                        </List>
+                }
+                <button
+                    onClick={() => setEditUser_view(!editUser_view)}
+                >Edit Profile</button>
+            </div>
+
         </Grid>
     )
 
