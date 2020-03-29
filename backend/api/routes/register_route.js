@@ -52,14 +52,14 @@ const sign_JWT = require('../../utils/sign_JWT.js')
 
                         // Response
                         res.status(201).json({ 
-                            message: 'Successful registration', 
+                            message: 'Successful Registration', 
                             user: {
-                                // token, id: newUser.id, username: newUser.username
                                 token,
                                 username: newUser.username,
                                 email: newUser.email,
                                 publicProfile: newUser.publicProfile,
-                            }})
+                            }
+                        })
                     })
                     // ERROR - unable to find newly created user
                     .catch(err => {
@@ -67,7 +67,7 @@ const sign_JWT = require('../../utils/sign_JWT.js')
                     // -- //
 
                         // Response
-                        res.status(500).json({error: 'Cant find newly created user'})
+                        res.status(500).json({error: 'Cant find newly created user  from DB'})
                     })
             })
             // ERROR - unable to register

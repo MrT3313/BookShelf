@@ -14,10 +14,15 @@ import {
     LOGOUT
 } from '../actions/a_logout.js'
 
+import {
+    UPDATE_USER_START, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE
+} from '../actions/a_updateUser.js'
+
 // INITIAL STATE
 const initialState = {
     is_loggingIn: false,
     is_registering: false,
+    is_updating: false,
     
     token: '',
     username: '',
@@ -97,6 +102,35 @@ export const r_login = (state=initialState, action) => {
 
                 token: ''
             }
+        // - 3 - // 
+        // UPDATE USER
+        case UPDATE_USER_START:
+            return {
+                ...state, 
+                is_updating: true,
+                error: ''
+            }
+
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state, 
+                is_updating: false,
+                
+                username: action.payload.user.username,
+                email: action.payload.user.email,
+                publicProfile: action.payload.user.publicProfile,
+                
+                error: '',
+            }
+
+        case UPDATE_USER_FAILURE:
+            return {
+                ...state, 
+                is_updating: false,
+                error: action.payload
+            }
+
+
         // - DEFAULT - //
         default:
             return state;

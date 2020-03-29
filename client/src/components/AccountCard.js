@@ -13,6 +13,7 @@ import Switch from '@material-ui/core/Switch';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import TextField from '@material-ui/core/TextField';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles'
@@ -20,6 +21,7 @@ import { makeStyles } from '@material-ui/core/styles'
 // COMPONENTS
 
 // ACTION CREATORS
+import { a_UPDATE_user } from '../redux/actions/a_updateUser.js'
 
 // UTILS
 import decode from '../utils/decode_JWT.js'
@@ -39,10 +41,13 @@ const useStyles = makeStyles({
     divider: {
         marginRight: "10px",
         marginLeft: "10px",
+        color: 'red'
     },
     label: {
-        width: '100px',
-        // textAlign: 'center',
+        minWidth: '150px', maxWidth: '150px'
+    },
+    data: {
+
     }
 })
 
@@ -55,17 +60,37 @@ const { token, username, email, publicProfile } = props
     const classes = useStyles({})
 
     // State
+    const [isEditing, setIsEditing] = useState(false)
     const [editUser_view, setEditUser_view] = useState(false)
+    const [id, setID] = useState()
     const [privileges, setPrivileges] = useState()
+
+    const [editEmail, setEditEmail] = useState(email)
+    const [editUsername, setEditUsername] = useState(username)
+    const [editDefaultProfile, setEditDefaultProfile] = useState(publicProfile)
 
     // UseEffect
     useEffect(() => {
         // Decode
         let decoded = decode(token)
         setPrivileges(decoded.privileges)
+        setID(decoded.user_ID)
     })
 
     // Methods
+    const saveEdits = () => {
+        setIsEditing(true)
+        setEditUser_view(!editUser_view)
+
+        const prepObj = {
+            email: editEmail,
+            username: editUsername,
+            publicProfile: editDefaultProfile,
+        }
+        console.log(prepObj)
+
+        props.a_UPDATE_user(id, prepObj)
+    }
 
     // Return
     return (
@@ -77,56 +102,117 @@ const { token, username, email, publicProfile } = props
         >
             <div className={classes.profile_root}>
                 {editUser_view &&
-                    <div>TIME TO EDIT</div>
+                    <>
+                        <List>
+                        <ListItem>
+                            <ListItemText
+                                className={classes.label}
+                                // style={{minWidth: '120px', maxWidth: '120px'}}
+                            >
+                                USERNAME
+                            </ListItemText>
+                            <Divider orientation="vertical" flexItem className={classes.divider}/>
+                            <TextField
+                                // required
+                                variant="outlined"
+                                defaultValue={username}
+
+                                id="username" label="Username" name="username"
+                                onChange={e => setEditUsername(e.target.value)}
+
+                                margin="normal"
+                                fullWidth
+                            />
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText
+                                className={classes.label}
+                            >
+                                EMAIL
+                            </ListItemText>
+                            <Divider orientation="vertical" flexItem className={classes.divider}/>
+                            <TextField
+                                // required
+                                variant="outlined"
+                                defaultValue={email}
+
+                                id="email" label="Email" name="email"
+                                onChange={e => setEditEmail(e.target.value)}
+
+                                margin="normal"
+                                fullWidth
+                            />
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText
+                                className={classes.label}
+                            >
+                                PUBLIC PROFILE
+                            </ListItemText>
+                            <Divider orientation="vertical" flexItem className={classes.divider}/>
+                            <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                                <Switch 
+                                    checked={editDefaultProfile}
+                                    onClick={() => setEditDefaultProfile(!editDefaultProfile)}
+                                    color='primary'
+                                />
+                            </div>
+                        </ListItem>
+                    </List>
+                    <button
+                        onClick={saveEdits}
+                    >Save Profile</button>
+                    </>
                 }
                 {!editUser_view &&
-                    
-                        <List>
-                            <ListItem>
-                                <ListItemText
-                                    className={classes.label}
-                                    disableTypography={true}
-                                >
-                                    USERNAME
-                                </ListItemText>
-                                <Divider orientation="vertical" flexItem className={classes.divider}/>
-                                <ListItemText
-                                        className={classes.data}
-                                >
-                                    {username}
-                                </ListItemText>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    className={classes.label}
-                                >
-                                    EMAIL
-                                </ListItemText>
-                                <Divider orientation="vertical" flexItem className={classes.divider}/>
-                                <ListItemText
+                    <>
+                    <List>
+                        <ListItem>
+                            <ListItemText
+                                className={classes.label}
+                                // style={{minWidth: '120px', maxWidth: '120px'}}
+                            >
+                                USERNAME
+                            </ListItemText>
+                            <Divider orientation="vertical" flexItem className={classes.divider}/>
+                            <ListItemText
                                     className={classes.data}
-                                >
-                                    {email}
-                                </ListItemText>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    className={classes.label}
-                                >
-                                    PUBLIC PROFILE
-                                </ListItemText>
-                                <Divider orientation="vertical" flexItem className={classes.divider}/>
-                                <ListItemText
-                                    className={classes.data}
-                                >
-                                    {`${publicProfile}`}
-                                </ListItemText>
-                            </ListItem>
-                        </List>
+                            >
+                                {username}
+                            </ListItemText>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText
+                                className={classes.label}
+                            >
+                                EMAIL
+                            </ListItemText>
+                            <Divider orientation="vertical" flexItem className={classes.divider}/>
+                            <ListItemText
+                                className={classes.data}
+                            >
+                                {email}
+                            </ListItemText>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText
+                                className={classes.label}
+                            >
+                                PUBLIC PROFILE
+                            </ListItemText>
+                            <Divider orientation="vertical" flexItem className={classes.divider}/>
+                            <ListItemText
+                                className={classes.data}
+                            >
+                                {`${publicProfile}`}
+                            </ListItemText>
+                        </ListItem>
+                    </List>
+                    <button
+                        onClick={() => setEditUser_view(!editUser_view)}
+                    >Edit Profile</button>
+                    </>
                 }
-                <button
-                    onClick={() => setEditUser_view(!editUser_view)}
-                >Edit Profile</button>
             </div>
 
         </Grid>
@@ -149,6 +235,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        
+        a_UPDATE_user
     }
 )(AccountCard)

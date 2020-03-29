@@ -67,8 +67,43 @@ const router = express.Router()
         })
 
         // - 3 - // Get INDIVIDUAL users
-    // - POST - //
     // - PUT - //
+    router.put('/:id', async(req,res) => {
+    console.log('** USERS ROUTE: users/:id PUT/')
+    const { id } = req.params
+    console.log('UPDATE THIS USER: ', id)
+    console.log('UPDATE DATA: ', req.body)
+    // -- //
+        KNEX_BD('users').where({id}).update(req.body)
+            .then( updateResults => {
+            // console.log(updateResults)
+            // -- //
+                // Get updated player
+                KNEX_BD('users').where('id', id).first()
+                    .then( updatedUser => {
+                    console.log('UPDATED USER: ', updatedUser)
+                    // -- //
+                        res.status(200).json({
+                            message: 'Successful Update', 
+                            user: {
+                                username: updatedUser.username,
+                                email: updatedUser.email,
+                                publicProfile: updatedUser.publicProfile,
+                            }
+                        })
+                    })
+                    .catch( err => {
+                    // console.log(err)
+                    // -- //
+                        res.status(500).json({ error: 'Cant get updated user from DB'})
+                    })
+            })
+            .catch( err => {
+            console.log(err)
+            // -- // 
+                res.status(500).json( {error: 'Unabel to update user'})
+            })
+    })
     // - DEL - //
 
 // EXPORTS
