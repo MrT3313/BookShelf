@@ -91,7 +91,7 @@ console.log('Menu_AppBar Props: ', props)
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={() => props.history.push('/profile')}>Profile</MenuItem>
                                 <MenuItem onClick={() => props.history.push('/account')}>My account</MenuItem>
                                 <MenuItem onClick={() => props.a_logout()}>Logout</MenuItem>
                             </Menu>

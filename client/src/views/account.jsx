@@ -41,10 +41,6 @@ function Account(props) {
         <>
             <Menu_AppBar />
             <AccountCard />
-            
-            
-            
-            
         </>
     )
 
