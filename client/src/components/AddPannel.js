@@ -127,7 +127,7 @@ function AddPannel(props) {
             </div>
             <div className={classes.bottom}>
             { is_adding && is_adding === 'book' &&
-                <AddBook />
+                <AddBook isAdding={setIs_adding}/>
             }
             {/* ADD REVIEW PANNEL */}
             { is_adding && is_adding === 'review' &&

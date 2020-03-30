@@ -7,48 +7,51 @@ import { LIVE_BE_base_URL } from '../../utils'
 
 // __MAIN__
     // Action Types
-    export const GET_BOOKS_START = "GET_BOOKS_START"
-    export const GET_BOOKS_SUCCESS = "GET_BOOKS_SUCCESS"
-    export const GET_BOOKS_FAILURE= "GET_BOOKS_FAILURE"
+    export const ADD_BOOK_START = 'ADD_BOOK_START'
+    export const ADD_BOOK_SUCCESS = 'ADD_BOOK_SUCCESS'
+    export const ADD_BOOK_FAILURE = 'ADD_BOOK_FAILURE'
 
     // Action Creator:
-    export const a_getBooks = () => {
-    // console.log('INSIDE: a_GetBooks action creator')
+    export const a_addBook = (newBook) => {
+    // console.log('INSIDE: a_addBook action creator')
     // -- //
         // Send First Action
         return dispatch => {
-            dispatch({ type: GET_BOOKS_START })
+            dispatch({ type: ADD_BOOK_START})
             let used_URL = ''
 
+            // What environment are we in
             // What environment are we in?
             if (process.env.NODE_ENV === 'development') {
-                used_URL = `${LOCAL_BE_base_URL}books/all`
+                used_URL = `${LOCAL_BE_base_URL}books`
             } else if (process.env.NODE_ENV === 'production') {
-                used_URL = `${LIVE_BE_base_URL}books/all`
+                used_URL = `${LIVE_BE_base_URL}books`
             }
             console.log('URL USED')
             console.log(used_URL)
 
-            // Make Axios Request
+            // Make Axios Requests
             axios
-                .get(
-                    used_URL
+                .post(
+                    used_URL,
+                    newBook
                 )
-                .then(res => {
-                console.log(res)
+                .then( addBookResult => {
+                console.log(addBookResult)
                 // -- //
                     dispatch({
-                        type: GET_BOOKS_SUCCESS,
-                        payload: res.data,
+                        type: ADD_BOOK_SUCCESS,
+                        payload: addBookResult.data
                     })
                 })
                 .catch( err => {
                 // console.log(err)
                 // -- //
                     dispatch({
-                        type: GET_BOOKS_FAILURE,
+                        type: ADD_BOOK_FAILURE,
                         payload: err
                     })
                 })
         }
     }
+
