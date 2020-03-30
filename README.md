@@ -60,9 +60,11 @@ Package Manager: NPM
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 
 - 1.3.0: Profile Page: 
-    --in progress--
+    - Can add book to DB
+    - Login Hotfix -- forced premature merge
 
-    - User can add a book they have read
+    Screenshots:  
+    <img src="client/src/assets/readMeImgs/ProfilePage__hotfix_1.3.0.png" width='250'>
 
 - 1.2.0: Account Page can update:
     1. Username
