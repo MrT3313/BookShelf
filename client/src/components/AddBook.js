@@ -9,6 +9,9 @@ import { Card } from '@material-ui/core';
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
 
+// COMPONENTS
+import BookSelector from './BookSelector.js'
+
 // ACTION CREATORS
 
 
@@ -32,13 +35,13 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function AddBook(props) {
 // console.log('Add Book PROPS: ', props)
-const {DB_books} = props
+
 // -- //
     // Styles
     const classes = useStyles({})
 
     // State
-    const [boosk, setBooks] = useState(DB_books)
+    const [selectedBook, setSelectedBook] = useState()
 
     // Methods
 
@@ -47,7 +50,7 @@ const {DB_books} = props
         <Card
             className={classes.addBook_root}
         >
-            Add Book Coming Soon
+            <BookSelector selectBook={setSelectedBook}/>
         </Card>
     )
 }
@@ -56,7 +59,7 @@ const {DB_books} = props
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        DB_books: state.r_books.DB_books
+        
     }
 }
 

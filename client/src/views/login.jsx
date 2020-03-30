@@ -46,22 +46,33 @@ function SignIn(props) {
     const classes = useStyles();
 
     // State
-    const [username, setUsername] = useState('guest')
-    const [email, setEmail] = useState('guest@example.com')
-    const [password, setPassword] = useState('guest')
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     // Methods
-    const submit = e => {
-        e.preventDefault()
-        console.log('TRYING TO LOGIN!')
-
-        // Prep Login Info
-        let prep_loginInfo = {
-            "type": "email",
-            "email": email,
-            "PLAINTEXT_pw": password
+    const runLogin = e => {
+        // e.preventDefault()
+        console.log(e.currentTarget.id)
+        let prep_loginInfo = undefined
+        
+        if (e.currentTarget.id === 'login') {
+            // Prep Login Info
+            prep_loginInfo = {
+                "type": "email",
+                "email": email,
+                "PLAINTEXT_pw": password
+            }
+            console.log(prep_loginInfo)
         }
-        console.log(prep_loginInfo)
+        if (e.currentTarget.id === 'guest') {
+            prep_loginInfo = {
+                "type": 'email',
+                "email": 'guest@example.com',
+                "PLAINTEXT_pw": 'guest',
+            }
+            console.log(prep_loginInfo)
+        }
 
         // Call Login action creator
         props.a_login(prep_loginInfo)
@@ -84,7 +95,6 @@ function SignIn(props) {
                 <form 
                     className={classes.form} 
                     noValidate
-                    onSubmit={submit}
                 >
                 <TextField
                     required
@@ -111,7 +121,8 @@ function SignIn(props) {
                 />
                 <Button
                     variant="contained"
-                    type="submit"
+                    id="login"
+                    onClick={runLogin}
                     
                     fullWidth
                     color="primary"
@@ -131,7 +142,8 @@ function SignIn(props) {
                         {"Don't have an account?"}
                     </Button>
                     <Button 
-                        type='submit'
+                        id='guest'
+                        onClick={runLogin}
                         className={classes.submit}
                     >
                         {"Sign in as a guest!"}

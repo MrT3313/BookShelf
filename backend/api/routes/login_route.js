@@ -61,17 +61,23 @@ const sign_JWT = require('../../utils/sign_JWT.js')
                 .then(foundUser => {
                 console.log('FOUND USER', foundUser)
                 // -- //
-                    // SIGN JWT
-                    const token = sign_JWT(foundUser)
 
-                    // RESPONSE
-                    res.status(200).json({
-                        message: 'welcome to the BookShelf',
-                        token,
-                        username: foundUser.username,
-                        email: foundUser.email,
-                        publicProfile: foundUser.publicProfile
-                    })
+                    const pwVerification = bcrypt.compareSync(PLAINTEXT_pw, foundUser.HASHED_pw)
+                    if (pwVerification) {
+                        // SIGN JWT
+                        const token = sign_JWT(foundUser)
+    
+                        // RESPONSE
+                        res.status(200).json({
+                            message: 'welcome to the BookShelf',
+                            token,
+                            username: foundUser.username,
+                            email: foundUser.email,
+                            publicProfile: foundUser.publicProfile
+                        })
+                    } else {
+                        res.status(401).json( {error: 'Invalid Credentials'})
+                    }
                 })
                 .catch(err => {
                 // console.log(err)
