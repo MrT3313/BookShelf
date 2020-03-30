@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 // MATERIAL UI
 // -1- Components
-import { Card } from '@material-ui/core';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
-    addBook_root: {
+    addReview_root: {
         display: 'flex',
         justifyContent: 'center',
 
@@ -29,8 +28,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // -B- COMPONENT
-function AddBook(props) {
-// console.log('Add Book PROPS: ', props)
+function AddReview(props) {
+// console.log('Add Review PROPS: ', props)
 // -- //
     // Styles
     const classes = useStyles({})
@@ -41,14 +40,13 @@ function AddBook(props) {
 
     // Return
     return (
-        <Card
-            className={classes.addBook_root}
+        <div
+            className={classes.addReview_root}
         >
-            Add Book Coming Soon
-        </Card>
+            Add Review Coming Soon
+        </div>
     )
 }
-
 
 // MAP STATE TO PROPS
 const mstp = state => {
@@ -63,4 +61,4 @@ export default connect(
     {
         
     }
-)(AddBook)
+)(AddReview)
