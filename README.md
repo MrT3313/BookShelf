@@ -59,6 +59,9 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 
+- 1.3.0: Profile Page: 
+    --in progress--
+
 - 1.2.0: Account Page can update:
     1. Username
     2. Email
