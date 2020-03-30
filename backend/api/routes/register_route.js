@@ -24,9 +24,9 @@ const sign_JWT = require('../../utils/sign_JWT.js')
     // - POST - //
         /* ACCEPTED SHAPE 
             {
-                "username": "STRING"
-                "email": "STRING"
-                "PLAINTEXT_pw": "STRING"
+                "username": "STRING",
+                "email": "STRING",
+                "PLAINTEXT_pw": "STRING",
             }
 
             - Notes:

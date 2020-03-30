@@ -14,6 +14,7 @@ import './styles/index.css'
 import PrivateRoute from './components/PrivateRoute.js'
 import Homepage from './views/homepage.jsx'
 import Account from './views/account.jsx'
+import Profile from './views/profile.jsx'
 
 // -- OPEN Routes -- //
 import Login from './views/login.jsx'
@@ -37,6 +38,8 @@ console.log('APP PROPS: ', props)
       {/* <Route exact path='/' theme={props.theme} component={Homepage} /> */}
       <PrivateRoute exact path='/' theme={props.theme} component={Homepage} />
       <PrivateRoute exact path='/account' theme={props.theme} component={Account} />
+      <PrivateRoute exact path='/profile' theme={props.theme} component={Profile} />
+
       <Route exact path='/login' theme={props.theme} component={Login} />
       <Route exact path='/register' theme={props.theme} component={Register} />
     </div>
@@ -46,6 +49,7 @@ console.log('APP PROPS: ', props)
 // MAP STATE TO PROPS
 const mstp = state => {
   return {
+    
   }
 }
 

@@ -59,6 +59,13 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 
+- 1.3.0: Profile Page: 
+    - Can add book to DB
+    - Login Hotfix -- forced premature merge
+
+    Screenshots:  
+    <img src="client/src/assets/readMeImgs/ProfilePage__hotfix_1.3.0.png" width='250'>
+
 - 1.2.0: Account Page can update:
     1. Username
     2. Email

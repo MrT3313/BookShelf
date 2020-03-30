@@ -13,11 +13,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
-import API_dataAttribution from './API_DataAttribution.js'
 
 // ACTION CREATORS
-import {a_GETspecific_list} from '../redux/actions/a_specificList.js'
-
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -25,7 +22,7 @@ import {a_GETspecific_list} from '../redux/actions/a_specificList.js'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles( theme => ({
-    listSelection__root: {
+    bookList__root: {
         backgroundColor: theme.palette.secondary.main,
         
         display: 'flex',
@@ -38,62 +35,53 @@ const useStyles = makeStyles( theme => ({
         paddingBottom: '10px',
 
     },
-    listSelection__FormControl: {
+    bookSelection__FormControl: {
         minWidth: '50%',
         maxWidth: '90%',
     },
 }))
 
 // -B- COMPONENT
-function ListSelector(props){
-// console.log('listSelector PROPS: ', props)
+function BookSelector(props) {
+// console.log('BookSelector PROPS: ', props)
+const {DB_books, selectBook} = props
 // -- //
     // Styles
     const classes = useStyles()
 
+    // State
+    // const [book, setBook] = useState('Add New Book') 
+    
     // Methods
     const handleChange = e => {
         console.log(e)
         console.log(e.target)
-        setListName(e.target.value)
+        selectBook(e.target.value)
     }
 
     // State
-    const [listName, setListName] = useState(props.listName)
-
-    // UseEffect
-    useEffect(() => {
-        // console.log('TOP 10 USE EFFECT')
-            async function fetchData(){
-                await props.a_GETspecific_list('current', listName)
-                setListName(listName)
-            }
-            fetchData()
-    // eslint-disable-next-line no-use-before-define
-    },[listName]) 
 
     // Return
     return (
-        <div className={classes.listSelection__root}>
-            <FormControl className={classes.listSelection__FormControl}>
+        <div className={classes.bookList__root}>
+            <FormControl className={classes.bookSelection__FormControl}>
                 <InputLabel shrink id="demo-simple-select-placeholder-label-label">
-                    Active NYT Bestseller List
+                    Book Database
                 </InputLabel>
                 <Select
-                    value={listName}
+                    // value={book}
                     onChange={handleChange}
                     displayEmpty
                 >
-                    {props.allLists.map((list, key) => {
-                        // console.log(list);
+                    <MenuItem key={1} value={'newBook'}>--Add A New Book--</MenuItem>
+                    {DB_books.map((book, key) => {
+                        // console.log(book);
                         return (
-                            <MenuItem key={key} value={list.list_name}>{list.list_name}</MenuItem>
+                            <MenuItem key={key + 1} value={book.title}>TITLE: {book.title} -- by: {book.author}</MenuItem>
                         )
                     })}
                 </Select>
             </FormControl>
-
-            <API_dataAttribution />
         </div>
     )
 }
@@ -101,8 +89,7 @@ function ListSelector(props){
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        allLists: state.r_lists.list_names,
-        listName: state.r_specificList.listName,
+        DB_books: state.r_books.DB_books
     }
 }
 
@@ -110,6 +97,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_GETspecific_list
+        
     }
-)(ListSelector)
+)(BookSelector)

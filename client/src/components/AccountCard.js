@@ -78,7 +78,6 @@ const { token, username, email, publicProfile } = props
     const classes = useStyles({})
 
     // State
-    const [isEditing, setIsEditing] = useState(false)
     const [editUser_view, setEditUser_view] = useState(false)
     const [id, setID] = useState()
     const [privileges, setPrivileges] = useState()
@@ -97,7 +96,6 @@ const { token, username, email, publicProfile } = props
 
     // Methods
     const saveEdits = () => {
-        setIsEditing(true)
         setEditUser_view(!editUser_view)
 
         const prepObj = {
