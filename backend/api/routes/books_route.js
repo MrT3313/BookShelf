@@ -39,6 +39,37 @@ const router = express.Router()
                 })
         })
     // - POST - //
+        /* ACCEPTED SHAPE
+            {
+                "title": "STRING",
+                "author": "STRING",
+            } 
+        */
+        router.post('/', async(req,res) => {
+        console.log('** BOOKS ROUTER: books/ POST/')
+        // -- //
+            KNEX_DB('books').insert(req.body)
+                .then( results => {
+                console.log(results)
+                // -- //
+                    KNEX_DB('books').where('title', req.body.title).first()
+                        .then( newBook => {
+                        console.log(newBook)
+                        // -- //
+                            res.status(200).json(newBook)
+                        })
+                        .catch(err => {
+                        console.log(err)
+                        // -- //
+                            res.status(500).json({ ERROR: 'Unabel to get newly created book'})
+                        })
+                })
+                .catch(err => {
+                console.log(err)
+                // -- //
+                    res.status(500).json({ ERROR: 'Unable to add book to DB'})
+                })
+        })
     // - PUT - //
     // - DEL - //
 
