@@ -21,15 +21,13 @@ const router = express.Router()
         console.log('** USERS ROUTE: users/all GET/')
         // -- //
             KNEX_BD('users')
-                .then( info => {
-                console.log(info)
-                console.log('FUCK YOU')
+                .then( allUsers => {
+                console.log(allUsers)
                 // -- //
-                    res.status(200).json(info)
+                    res.status(200).json(allUsers)
                 })
                 .catch( err => {
                 console.log(err)
-                console.log('FUCK THIS')
                 // -- //
                     res.status(200).json(err)
             })
