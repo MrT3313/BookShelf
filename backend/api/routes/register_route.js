@@ -14,10 +14,10 @@ const sign_JWT = require('../../utils/sign_JWT.js')
 // __MAIN__
     // - GET - //
         // - 1 - //
-        router.get('/', async(req,res) => {
+        router.get('/test', async(req,res) => {
             console.log('** REGISTER ROUTE: TEST GET/')
             res.status(200).json({
-                message: 'TEST GET requrest for REGISTER ROUTE working'
+                message: 'TEST GET request for REGISTER ROUTE working'
             })
         })
 
@@ -51,7 +51,15 @@ const sign_JWT = require('../../utils/sign_JWT.js')
                         const token = sign_JWT(newUser)
 
                         // Response
-                        res.status(201).json({ message: 'Successful registration', user: {token, id: newUser.id, username: newUser.username}})
+                        res.status(201).json({ 
+                            message: 'Successful Registration', 
+                            user: {
+                                token,
+                                username: newUser.username,
+                                email: newUser.email,
+                                publicProfile: newUser.publicProfile,
+                            }
+                        })
                     })
                     // ERROR - unable to find newly created user
                     .catch(err => {
@@ -59,7 +67,7 @@ const sign_JWT = require('../../utils/sign_JWT.js')
                     // -- //
 
                         // Response
-                        res.status(500).json({error: 'Cant find newly created user'})
+                        res.status(500).json({error: 'Cant find newly created user  from DB'})
                     })
             })
             // ERROR - unable to register

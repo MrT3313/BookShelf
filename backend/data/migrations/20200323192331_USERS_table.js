@@ -15,6 +15,8 @@ exports.up = function(knex) {
             .defaultTo(false)
         tbl.integer('privileges')
             .defaultTo(3)
+
+        tbl.timestamps(true, true)
     })
 };
 

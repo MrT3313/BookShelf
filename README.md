@@ -59,10 +59,14 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 
-- 1.2.0: Account Page
-    - Updates: 
-        1. Update Password
-        2. Update Username
+- 1.2.0: Account Page can update:
+    1. Username
+    2. Email
+    3. Public Profile
+
+    Screenshots:  
+    <img src="client/src/assets/readMeImgs/accountPage_1.2.0.png" width='250'>
+    <img src="client/src/assets/readMeImgs/editAccountPage_1.2.0.png" width='250'>
 
 - 1.1.0: Sign in as guest
     - FE
@@ -80,7 +84,7 @@ Package Manager: NPM
     - BE: Hosted
         - Login & Register both setting token on Redux store -> login & register 1 step to homepage
 
-    Screenshot:  
+    Screenshots:  
     <img src="client/src/assets/readMeImgs/Register_0.0.3.png" width='250'>
     <img src="client/src/assets/readMeImgs/Login_0.0.3.png" width='250'>
 

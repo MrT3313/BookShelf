@@ -39,7 +39,7 @@ import { LIVE_BE_base_URL } from '../../utils'
                     loginInfo,
                 )
                 .then(res => {
-                // console.log(res)
+                console.log(res)
                 // -- //    
                     // DISPATCH LOGIN_SUCCESS
                     dispatch({

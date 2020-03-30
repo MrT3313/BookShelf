@@ -14,11 +14,21 @@ import {
     LOGOUT
 } from '../actions/a_logout.js'
 
+import {
+    UPDATE_USER_START, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE
+} from '../actions/a_updateUser.js'
+
 // INITIAL STATE
 const initialState = {
     is_loggingIn: false,
     is_registering: false,
+    is_updating: false,
+    
     token: '',
+    username: '',
+    email: '',
+    publicProfile: undefined,
+
     error: '',
 }
 
@@ -42,6 +52,9 @@ export const r_login = (state=initialState, action) => {
                 ...state,
 
                 token: action.payload.token,
+                username: action.payload.username,
+                email: action.payload.email,
+                publicProfile: action.payload.publicProfile,
 
                 is_loggingIn: false,
                 error: ''
@@ -67,6 +80,9 @@ export const r_login = (state=initialState, action) => {
                 ...state,
 
                 token: action.payload.user.token,
+                username: action.payload.user.username,
+                email: action.payload.user.email,
+                publicProfile: action.payload.user.publicProfile,
 
                 is_registering: false,
                 error:''
@@ -86,6 +102,35 @@ export const r_login = (state=initialState, action) => {
 
                 token: ''
             }
+        // - 3 - // 
+        // UPDATE USER
+        case UPDATE_USER_START:
+            return {
+                ...state, 
+                is_updating: true,
+                error: ''
+            }
+
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state, 
+                is_updating: false,
+                
+                username: action.payload.user.username,
+                email: action.payload.user.email,
+                publicProfile: action.payload.user.publicProfile,
+                
+                error: '',
+            }
+
+        case UPDATE_USER_FAILURE:
+            return {
+                ...state, 
+                is_updating: false,
+                error: action.payload
+            }
+
+
         // - DEFAULT - //
         default:
             return state;

@@ -67,34 +67,6 @@ const useStyles = makeStyles({
         marginBottom: '10px',
         marginLeft: '20px',
     },
-
-
-
-    // title: {
-    //     display: 'flex',
-    //     alignItems: 'center',
-
-    //     fontFamily: "'Baloo', cursive",
-    //     minHeight: '65px',
-    // },
-    // author: {
-    //     display: 'flex',
-    //     flexGrow: '1',
-
-    //     alignItems: 'center',
-    //     marginTop: '10px',
-    //     marginBottom: '10px',
-    //     fontFamily: "'Special Elite', cursive",
-    // },
-    // description: {
-    //     display: 'flex',
-    //     flexGrow: '1',
-
-    //     alignItems: 'center',
-    //     marginTop: '10px',
-    //     marginBottom: '10px',
-    //     fontFamily: "'Special Elite', cursive",
-    // }
 })
 
 // -B- COMPONENT

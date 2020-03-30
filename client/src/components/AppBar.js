@@ -64,10 +64,10 @@ console.log('Menu_AppBar Props: ', props)
         <div>
             <AppBar position='static' className={classes.root}>
                 <Toolbar>
-                    <IconButton aria-label="menu">
+                    {/* <IconButton aria-label="menu">
                         <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" className={classes.title}>
+                    </IconButton> */}
+                    <Typography variant="h6" className={classes.title} onClick={() => props.history.push('/')}>
                         BookShelf
                     </Typography>
 
