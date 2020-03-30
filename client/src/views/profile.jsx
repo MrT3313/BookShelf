@@ -7,6 +7,9 @@ import {connect} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 // -2- Components
 
+// COMPONENTS
+import Menu_AppBar from '../components/AppBar.js'
+
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
 
@@ -21,7 +24,10 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function Profile(props) {
     return (
-        <div>Profile Coming Soon</div>
+        <>
+            <Menu_AppBar />
+            <div>Profile Coming Soon</div>
+        </>
     )
 }
 
