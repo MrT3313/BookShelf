@@ -62,6 +62,8 @@ Package Manager: NPM
 - 1.3.0: Profile Page: 
     --in progress--
 
+    - User can add a book they have read
+
 - 1.2.0: Account Page can update:
     1. Username
     2. Email
