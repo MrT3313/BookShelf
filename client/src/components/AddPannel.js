@@ -16,6 +16,7 @@ import AddBook from '../components/AddBook.js'
 import AddReview from '../components/AddReview.js'
 
 // ACTION CREATORS
+import { a_getBooks } from '../redux/actions/a_getBooks.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -77,6 +78,11 @@ function AddPannel(props) {
     // State
     const [is_adding, setIs_adding] = useState(false)
 
+    // UseEffect
+    useEffect(() => {
+        props.a_getBooks()
+    }, [])
+
     // Methods
     const toggleAdd = e => {
         console.log(e.currentTarget.id)
@@ -132,5 +138,17 @@ function AddPannel(props) {
     )
 }
 
-// EXPORTS
-export default AddPannel
+// MAP STATE TO PROPS
+const mstp = state => {
+    return {
+        
+    }
+}
+
+// CONNECT & EXPORT
+export default connect(
+    mstp, 
+    {
+        a_getBooks
+    }
+)(AddPannel)
