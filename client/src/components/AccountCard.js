@@ -37,16 +37,34 @@ const useStyles = makeStyles({
     profile_root: {
         display: 'flex',
         flexDirection: 'column',
+
+        paddingTop: '20px',
     },
     divider: {
-        marginRight: "10px",
-        marginLeft: "10px",
+        marginRight: "15px",
+        marginLeft: "15px",
         color: 'red'
     },
     label: {
-        minWidth: '150px', maxWidth: '150px'
+        minWidth: '140px', maxWidth: '140px'
     },
-    data: {
+    editButtons: {
+        display: 'flex',
+        justifyContent: 'space-around',
+    },
+    editSubmit: {
+        display: 'flex',
+        width: '60%',
+        backgroundColor: '#3FBCD4',
+        borderRadius: 5,
+    },
+    editCancel: {
+        display: 'flex',
+        width: '20%',
+    },
+    button: {
+        display: 'flex',
+        justifyContent: 'center',
 
     }
 })
@@ -104,64 +122,71 @@ const { token, username, email, publicProfile } = props
                 {editUser_view &&
                     <>
                         <List>
-                        <ListItem>
-                            <ListItemText
-                                className={classes.label}
-                                // style={{minWidth: '120px', maxWidth: '120px'}}
-                            >
-                                USERNAME
-                            </ListItemText>
-                            <Divider orientation="vertical" flexItem className={classes.divider}/>
-                            <TextField
-                                // required
-                                variant="outlined"
-                                defaultValue={username}
+                            <ListItem>
+                                <ListItemText
+                                    className={classes.label}
+                                    // style={{minWidth: '120px', maxWidth: '120px'}}
+                                >
+                                    USERNAME
+                                </ListItemText>
+                                <Divider orientation="vertical" flexItem className={classes.divider}/>
+                                <TextField
+                                    // required
+                                    variant="outlined"
+                                    defaultValue={username}
 
-                                id="username" label="Username" name="username"
-                                onChange={e => setEditUsername(e.target.value)}
+                                    id="username" label="Username" name="username"
+                                    onChange={e => setEditUsername(e.target.value)}
 
-                                margin="normal"
-                                fullWidth
-                            />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                className={classes.label}
-                            >
-                                EMAIL
-                            </ListItemText>
-                            <Divider orientation="vertical" flexItem className={classes.divider}/>
-                            <TextField
-                                // required
-                                variant="outlined"
-                                defaultValue={email}
-
-                                id="email" label="Email" name="email"
-                                onChange={e => setEditEmail(e.target.value)}
-
-                                margin="normal"
-                                fullWidth
-                            />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                className={classes.label}
-                            >
-                                PUBLIC PROFILE
-                            </ListItemText>
-                            <Divider orientation="vertical" flexItem className={classes.divider}/>
-                            <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                                <Switch 
-                                    checked={editDefaultProfile}
-                                    onClick={() => setEditDefaultProfile(!editDefaultProfile)}
-                                    color='primary'
+                                    margin="normal"
+                                    fullWidth
                                 />
-                            </div>
-                        </ListItem>
-                    </List>
-                    <button
-                        onClick={saveEdits}
-                    >Save Profile</button>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    className={classes.label}
+                                >
+                                    EMAIL
+                                </ListItemText>
+                                <Divider orientation="vertical" flexItem className={classes.divider}/>
+                                <TextField
+                                    // required
+                                    variant="outlined"
+                                    defaultValue={email}
+
+                                    id="email" label="Email" name="email"
+                                    onChange={e => setEditEmail(e.target.value)}
+
+                                    margin="normal"
+                                    fullWidth
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    className={classes.label}
+                                >
+                                    PUBLIC PROFILE
+                                </ListItemText>
+                                <Divider orientation="vertical" flexItem className={classes.divider}/>
+                                <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                                    <Switch 
+                                        checked={editDefaultProfile}
+                                        onClick={() => setEditDefaultProfile(!editDefaultProfile)}
+                                        color='primary'
+                                    />
+                                </div>
+                            </ListItem>
+                        </List>
+                        <div className={classes.editButtons}>
+                            <button
+                                onClick={saveEdits}
+                                className={`${classes.editSubmit} ${classes.button}`}
+                            >Save Profile</button>
+                            <button
+                                onClick={() => setEditUser_view(!editUser_view)}
+                                className={`${classes.editCancel} ${classes.button}`}
+                            >Cancel</button>
+                        </div>
                     </>
                 }
                 {!editUser_view &&
