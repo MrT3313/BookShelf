@@ -14,6 +14,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -62,8 +63,8 @@ const useStyles = makeStyles(theme => ({
 
 // -B- COMPONENT
 function AddBook(props) {
-// console.log('Add Book PROPS: ', props)
-const {a_addBook, isAdding} = props
+console.log('Add Book PROPS: ', props)
+const {a_addBook, DB_books, setIs_adding} = props
 // -- //
     // Styles
     const classes = useStyles({})
@@ -81,7 +82,7 @@ const {a_addBook, isAdding} = props
         console.log(prepObj)
 
         a_addBook(prepObj)
-        isAdding(false)
+        setIs_adding(false)
     }
 
     // Return
@@ -99,7 +100,24 @@ const {a_addBook, isAdding} = props
                         TITLE
                     </ListItemText>
                     <Divider orientation="vertical" flexItem className={classes.divider}/>
-                    <TextField
+                    {/* V2 */}
+                    <Autocomplete
+                        options={DB_books}
+                        getOptionLabel={(option) => option.title}
+                        freeSolo
+                        // defaultValue={title}
+                        renderInput={params => (
+                        <TextField
+                            {...params}
+                            onChange={(e, value) => setTitle(value)}
+                            label="freeSolo Autocomplete test"
+                            variant="outlined"
+                            fullWidth
+                        />
+                        )}
+                    />
+                    {/* V1 */}
+                    {/* <TextField
                         // required
                         variant="outlined"
                         defaultValue={title}
@@ -109,27 +127,29 @@ const {a_addBook, isAdding} = props
 
                         margin="normal"
                         fullWidth
-                    />
+                    /> */}
                 </ListItem>
-                <ListItem>
-                    <ListItemText
-                        className={classes.label}
-                    >
-                        AUTHOR
-                    </ListItemText>
-                    <Divider orientation="vertical" flexItem className={classes.divider}/>
-                    <TextField
-                        // required
-                        variant="outlined"
-                        defaultValue={author}
-
-                        id="author" label="Author" name="author"
-                        onChange={e => setAuthor(e.target.value)}
-
-                        margin="normal"
-                        fullWidth
-                    />
-                </ListItem>
+                {/* {!DB_books.includes(title) &&
+                    <ListItem>
+                        <ListItemText
+                            className={classes.label}
+                            >
+                            AUTHOR
+                        </ListItemText>
+                        <Divider orientation="vertical" flexItem className={classes.divider}/>
+                        <TextField
+                            // required
+                            variant="outlined"
+                            defaultValue={author}
+                            
+                            id="author" label="Author" name="author"
+                            onChange={e => setAuthor(e.target.value)}
+                            
+                            margin="normal"
+                            fullWidth
+                            />
+                    </ListItem>
+                } */}
             </List>
             <div className={classes.addButtons}>
                 <button
@@ -149,7 +169,7 @@ const {a_addBook, isAdding} = props
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        
+        DB_books: state.r_books.DB_books
     }
 }
 
