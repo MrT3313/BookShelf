@@ -54,6 +54,7 @@ function SignIn(props) {
     const runLogin = e => {
         // e.preventDefault()
         // console.log(e.currentTarget.id)
+
         let prep_loginInfo = undefined
         
         if (e.currentTarget.id === 'login') {
