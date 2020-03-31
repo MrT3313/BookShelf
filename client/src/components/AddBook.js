@@ -185,7 +185,7 @@ const {
                         <TextField
                             variant="outlined"
                             defaultValue={author}
-                            
+                            required
                             id="author" label="Author" name="author"
                             onChange={e => setAuthor(e.target.value)}
                             
