@@ -18,8 +18,9 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 
 // ACTION CREATORS
-import { a_addBook } from '../redux/actions/a_addBook.js'
+// import { a_addBook } from '../redux/actions/a_addBook.js'
 import { a_logCompletedBook } from '../redux/actions/a_logCompletedBook.js'
+import { a_addAndLogBook } from '../redux/actions/a_addAndLogBook.js'
 
 // FUNCTIONS
 import decode from '../utils/decode_JWT.js'
@@ -78,8 +79,9 @@ const {
     DB_books,                           // connect => all books in redux store
     token,                              // connect => token on redux store
 
-    // a_addBook, 
-    a_logCompletedBook       // Action Creators
+    a_addBook, 
+    a_logCompletedBook,       // Action Creators
+    a_addAndLogBook,
 } = props
 // -- //
     // Styles
@@ -99,9 +101,16 @@ const {
 
     // Methods
     const logBook = () => {
-        console.log(logType)
-        console.log(`Log This Book! -- ${title} -- ${author}`)
-
+    console.log(logType)
+    console.log(`Log This Book! -- ${title} -- ${author}`)
+    let userID = undefined
+    // -- //
+        // get userID
+        const decodedToken = decode(token)
+        console.log(decodedToken)
+        userID = decodedToken.user_ID
+        console.log(userID)
+    
         switch(logType) {
             // - 1 - // 
             case 'onlyLog':
@@ -110,19 +119,15 @@ const {
                 console.log(selectedBook)
                 const bookID = selectedBook.id
                 console.log(bookID)
-                
-                //userID
-                const decodedToken = decode(token)
-                console.log(decodedToken)
-                const userID = decodedToken.user_ID
-                console.log(userID)
-
+            
                 // add log to readHistory 
                 a_logCompletedBook(userID, bookID)
 
                 break;
             // - 2 - // 
             case 'addAndLog':
+                console.log(logType)
+                a_addAndLogBook({title, author}, userID)
                 break;
             // - ERROR HANDLING - // 
             default: 
@@ -261,5 +266,6 @@ export default connect(
     {
         // a_addBook,
         a_logCompletedBook,
+        a_addAndLogBook,
     }
 )(AddBook)
