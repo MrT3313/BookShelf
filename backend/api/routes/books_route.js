@@ -16,7 +16,8 @@ const router = express.Router()
     // - GET - //
         // - 1 - //
         router.get('/test', async(req,res) => {
-            console.log('** BOOKS ROUTE: TEST GET/')
+        console.log('** BOOKS ROUTE: TEST GET/')
+        // -- //
             res.status(200).json({
                 message: 'TEST GET request for BOOKS ROUTE working'
             })
