@@ -53,13 +53,13 @@ const sign_JWT = require('../../utils/sign_JWT.js')
                         error: "Login type not supported"
                     })
             }
-            console.log(type)
-            console.log(UniqueData)
+            // console.log(type)
+            // console.log(UniqueData)
             
             // Search DB for an entry where the TYPE matches the UNIQUE DATA passed in the request
             KNEX_DB('users').where(type, UniqueData ).first()
                 .then(foundUser => {
-                console.log('FOUND USER', foundUser)
+                // console.log('FOUND USER', foundUser)
                 // -- //
 
                     const pwVerification = bcrypt.compareSync(PLAINTEXT_pw, foundUser.HASHED_pw)

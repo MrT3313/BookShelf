@@ -7,8 +7,8 @@ import { connect } from 'react-redux'
 // -- *** -- START CODE -- *** -- //
 // const PrivateRoute = ({ component: Component, token, ...rest }) => {
 const PrivateRoute = ({ component: Component, redux_token, ...rest }) => {
-console.log('PRIVATE ROUTE')
-console.log(redux_token)
+// console.log('PRIVATE ROUTE')
+// console.log(redux_token)
 return (
     <Route
         {...rest}

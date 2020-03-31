@@ -53,7 +53,8 @@ function SignIn(props) {
     // Methods
     const runLogin = e => {
         // e.preventDefault()
-        console.log(e.currentTarget.id)
+        // console.log(e.currentTarget.id)
+
         let prep_loginInfo = undefined
         
         if (e.currentTarget.id === 'login') {
@@ -63,7 +64,7 @@ function SignIn(props) {
                 "email": email,
                 "PLAINTEXT_pw": password
             }
-            console.log(prep_loginInfo)
+            // console.log(prep_loginInfo)
         }
         if (e.currentTarget.id === 'guest') {
             prep_loginInfo = {
@@ -71,7 +72,7 @@ function SignIn(props) {
                 "email": 'guest@example.com',
                 "PLAINTEXT_pw": 'guest',
             }
-            console.log(prep_loginInfo)
+            // console.log(prep_loginInfo)
         }
 
         // Call Login action creator

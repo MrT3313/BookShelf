@@ -54,9 +54,8 @@ const useStyles = makeStyles(theme => ({
 
 // -B- COMPONENT
 function Top10(props) {
-console.log('Top10 PROPS:', props)
+// console.log('Top10 PROPS:', props)
 const {current_listData} = props
-console.log(current_listData)
 // -- //
     // Styles
     const classes = useStyles({})
@@ -64,17 +63,13 @@ console.log(current_listData)
     // State
     const [list_data, setListData] = useState(props.current_listData)
     const [row_data, setRow_data] = useState([])
-    console.log(list_data)
-    console.log(row_data)
 
     // useEffect
     useEffect(() => {
         let all_rows = []
         for (const rowNum of [1,2,3,4,5]){
-            console.log(rowNum)
             all_rows.push(filterBooks_forRow(current_listData, rowNum))
         }
-        console.log(all_rows)
         setRow_data(all_rows)
     }, [list_data])
 

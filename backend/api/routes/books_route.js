@@ -11,12 +11,12 @@ const router = express.Router()
 
 // UTILS
 
-
 // __MAIN__
     // - GET - //
         // - 1 - //
         router.get('/test', async(req,res) => {
-            console.log('** BOOKS ROUTE: TEST GET/')
+        console.log('** BOOKS ROUTE: TEST GET/')
+        // -- //
             res.status(200).json({
                 message: 'TEST GET request for BOOKS ROUTE working'
             })
@@ -28,7 +28,7 @@ const router = express.Router()
         // -- //
             KNEX_DB('books')
                 .then( allBooks => {
-                console.log(allBooks)
+                // console.log(allBooks)
                 // -- // 
                     res.status(200).json(allBooks)
                 })
@@ -50,16 +50,34 @@ const router = express.Router()
         // -- //
             KNEX_DB('books').insert(req.body)
                 .then( results => {
-                console.log(results)
+                // console.log(results)
                 // -- //
-                    KNEX_DB('books').where('title', req.body.title).first()
-                        .then( newBook => {
-                        console.log(newBook)
-                        // -- //
-                            res.status(200).json(newBook)
+                    // V1
+                    // Return New Book
+                    // KNEX_DB('books').where('title', req.body.title).first()
+                    // .then( newBook => {
+                    //     console.log(newBook)
+                    //     // -- //
+                    //     const objToPass = {
+                    //         bookID: newBook.id,
+                    //         bookTITLE: newBook.title, 
+                    //         bookAUTHOR: newBook.author
+                    //     }
+                        
+                    //     res.status(200).json(objToPass)
+                    // })
+
+                    // V2
+                    // Return ALL Books
+                    KNEX_DB('books')
+                        .then( allBooks => {
+                            // console.log(allBooks)
+                            // -- //
+                            
+                            res.status(200).json(allBooks)
                         })
                         .catch(err => {
-                        console.log(err)
+                        // console.log(err)
                         // -- //
                             res.status(500).json({ ERROR: 'Unabel to get newly created book'})
                         })

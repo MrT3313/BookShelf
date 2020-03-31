@@ -103,6 +103,7 @@ export const r_login = (state=initialState, action) => {
                 token: '',
                 username: '',
                 publicProfile: '',
+                email: '',
             }
         // - 3 - // 
         // UPDATE USER

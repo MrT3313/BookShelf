@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
 
 // -B- COMPONENT
 function Top10(props) {
-console.log('Top10 PROPS:', props)
+// console.log('Top10 PROPS:', props)
 const { default_searchList,  default_searchDate,                // Passed w/ passed props
         lists, current_list,                        } = props   // Passed w/ Connect
 
@@ -69,7 +69,7 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
     const [activeSearch_date, setActiveSearch_date] = useState(default_searchDate)
     
     useEffect(() => {
-    console.log('TOP 10 USE EFFECT')
+    // console.log('TOP 10 USE EFFECT')
         async function fetchData(){
             await props.a_GETspecific_list(activeSearch_date, activeList_name)
         }
@@ -79,8 +79,6 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
 
     // Methods
     const handleChange = e => {
-        console.log(e)
-        console.log(e.target)
         setActiveList_name(e.target.value)
     }
 
@@ -110,9 +108,6 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 <div className={classes.row}>
                     {current_list.books && 
                         current_list.books.filter(book => [1].includes(book.rank)).map((item, key) => {
-                            console.log('TOP ROW')
-                            console.log(item)
-
                             return (
                                 <BookCard bookInfo={item}/>
                             )
@@ -122,9 +117,6 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 <div className={classes.row}>
                     {current_list.books && 
                         current_list.books.filter(book => [2,3].includes(book.rank)).map((item, key) => {
-                            console.log('SECOND ROW')
-                            console.log(item)
-
                             return (
                                 <BookCard bookInfo={item}/>
                             )
@@ -134,9 +126,6 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 <div className={classes.row}>
                     {current_list.books && 
                         current_list.books.filter(book => [4,5,6].includes(book.rank)).map((item, key)=> {
-                            console.log('THIRD ROW')
-                            console.log(item)
-
                             return (
                                 <BookCard bookInfo={item}/>
                             )
@@ -146,9 +135,6 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 <div className={classes.row}>
                     {current_list.books && 
                         current_list.books.filter(book => [7,8,9,10].includes(book.rank)).map((item, key)=> {
-                            console.log('FOURTH ROW')
-                            console.log(item)
-
                             return (
                                 <BookCard bookInfo={item}/>
                             )
@@ -158,9 +144,6 @@ const { default_searchList,  default_searchDate,                // Passed w/ pas
                 <div className={classes.row}>
                     {current_list.books && 
                         current_list.books.filter(book => [11,12,13,14,15].includes(book.rank)).map((item, key)=> {
-                            console.log('FIFTH ROW')
-                            console.log(item)
-
                             return (
                                 <BookCard bookInfo={item}/>
                             )

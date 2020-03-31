@@ -71,7 +71,7 @@ const useStyles = makeStyles({
 
 // -B- COMPONENT
 function AccountCard(props) {
-console.log('ACCOUNT CARD PROPS: ', props)
+// console.log('ACCOUNT CARD PROPS: ', props)
 const { token, username, email, publicProfile } = props
 // -- //
     // Styles
@@ -103,7 +103,7 @@ const { token, username, email, publicProfile } = props
             username: editUsername,
             publicProfile: editDefaultProfile,
         }
-        console.log(prepObj)
+        // console.log(prepObj)
 
         props.a_UPDATE_user(id, prepObj)
     }

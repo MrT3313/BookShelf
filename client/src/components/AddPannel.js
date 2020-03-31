@@ -29,10 +29,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
 
         width: '100%',
-
         padding: '20px',
-
-        border: '1px solid black',
     },
     top: {
         display: 'flex',
@@ -57,7 +54,6 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
 
         fontSize: '40px',
-        // backgroundColor: theme.palette.primary.main,
         color: theme.palette.primary.main,
     },
     title: {
@@ -85,9 +81,7 @@ function AddPannel(props) {
 
     // Methods
     const toggleAdd = e => {
-        console.log(e.currentTarget.id)
-
-
+        // console.log(e.currentTarget.id)
         if (is_adding !== false) {
             // Close toggle
             setIs_adding(false)
@@ -127,7 +121,7 @@ function AddPannel(props) {
             </div>
             <div className={classes.bottom}>
             { is_adding && is_adding === 'book' &&
-                <AddBook isAdding={setIs_adding}/>
+                <AddBook setIs_adding={setIs_adding}/>
             }
             {/* ADD REVIEW PANNEL */}
             { is_adding && is_adding === 'review' &&

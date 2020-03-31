@@ -35,7 +35,7 @@ const sign_JWT = require('../../utils/sign_JWT.js')
         // TODO: Move pwHash to the FE so that the plaintext PW never goes over the web
         router.post('/', pwHash, async(req,res) => {
         // console.log('** REGISTER ROUTE: POST/')
-        console.log(req.body.email)
+        // console.log(req.body.email)
         // -- //
            KNEX_BD('users')
             .insert(req.body)
