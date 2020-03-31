@@ -43,12 +43,22 @@ const useStyles = makeStyles(theme => ({
         border: '1px solid blue',
     },
     divider: {
-        marginRight: "15px",
-        marginLeft: "15px",
-        color: 'red'
+        marginRight: "20px",
+        marginLeft: "20px",
+    },
+    autoComplete: {
+        display: 'flex',
+        width: '100%',
+    },
+    listRoot: {
+        display: 'flex', 
+        flexDirection: 'column',
+        width: '60%',
     },
     label: {
-        minWidth: '140px', maxWidth: '140px'
+        display: 'flex',
+        justifyContent: 'center',
+        minWidth: '100px', maxWidth: '100px'
     },
     addButtons: {
         display: 'flex',
@@ -70,53 +80,75 @@ const {a_addBook, DB_books, setIs_adding} = props
     const classes = useStyles({})
 
     // State
-    const [title, setTitle] = useState()
-    const [author, setAuthor] = useState()
+    const [title, setTitle] = useState('undefined')
+    const [author, setAuthor] = useState('')
 
     // Methods
     const saveBook = () => {
-        const prepObj = {
-            title: title,
-            author: author,
+    let prepObj = undefined
+    // -- //
+        // Close Pannel
+        setIs_adding(false)
+
+        if (author === '') {
+            // DONT NEED TO ADD A NEW BOOK
+            // Add Read Record
+        } else {
+            // ADD NEW BOOK
+            // Add Read Record
+            prepObj = {
+                title: title,
+                author: author,
+            }
         }
+        console.log(title)
+        console.log(author)
         console.log(prepObj)
 
         a_addBook(prepObj)
-        setIs_adding(false)
+        
     }
+
+    // const handleChange = (e, value) => {
+    //     e.preventDefault()
+    //     console.log(value)
+    //     setTitle(value)
+    // }
 
     // Return
     return (
         <Card
             className={classes.addBook_root}
         >
-            {/* <BookSelector selectBook={setTitle}/> */}
-            <List>
-                <ListItem>
-                    <ListItemText
-                        className={classes.label}
-                        // style={{minWidth: '120px', maxWidth: '120px'}}
-                    >
+            <List className={classes.listRoot}>
+                <ListItem className={classes.listItemRoot}> 
+                    <ListItemText className={classes.label}>
                         TITLE
                     </ListItemText>
                     <Divider orientation="vertical" flexItem className={classes.divider}/>
-                    {/* V2 */}
-                    <Autocomplete
+
+                    <Autocomplete 
+                        className={classes.autoComplete}
+                        freeSolo={true}
+
                         options={DB_books}
                         getOptionLabel={(option) => option.title}
-                        freeSolo
-                        // defaultValue={title}
-                        renderInput={params => (
-                        <TextField
-                            {...params}
-                            onChange={(e, value) => setTitle(value)}
-                            label="freeSolo Autocomplete test"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        )}
+
+                        onInputChange={(e, value) => setTitle(value)}
+                        // onChange={(e, value) => setTitle(value)}
+                        // onChange={handleChange}
+                        
+                        renderInput={ (params) => <TextField 
+                            {...params}  
+                            required 
+                            variant='outlined' 
+                            label="Title"
+                            // onChange={e => setTitle(e.target.value)}
+                            // onChange={(e, value) => setTitle(value)}
+                        /> }
                     />
-                    {/* V1 */}
+
+
                     {/* <TextField
                         // required
                         variant="outlined"
@@ -129,7 +161,7 @@ const {a_addBook, DB_books, setIs_adding} = props
                         fullWidth
                     /> */}
                 </ListItem>
-                {/* {!DB_books.includes(title) &&
+                {!DB_books.includes(title) &&
                     <ListItem>
                         <ListItemText
                             className={classes.label}
@@ -149,7 +181,7 @@ const {a_addBook, DB_books, setIs_adding} = props
                             fullWidth
                             />
                     </ListItem>
-                } */}
+                }
             </List>
             <div className={classes.addButtons}>
                 <button
