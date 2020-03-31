@@ -1,4 +1,4 @@
-// imports
+// IMPORTS
 const decode_JWT = require('jwt-decode');
 
 // __MAIN__

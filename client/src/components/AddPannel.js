@@ -86,8 +86,6 @@ function AddPannel(props) {
     // Methods
     const toggleAdd = e => {
         console.log(e.currentTarget.id)
-
-
         if (is_adding !== false) {
             // Close toggle
             setIs_adding(false)

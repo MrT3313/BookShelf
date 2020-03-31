@@ -5,11 +5,7 @@ import { connect } from 'react-redux';
 // MATERIAL UI
 // -1- Components
 import { Card } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
-import EditIcon from '@material-ui/icons/Edit';
 import Divider from '@material-ui/core/Divider';
-import Switch from '@material-ui/core/Switch';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -20,7 +16,6 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
-import BookSelector from './BookSelector.js'
 
 // ACTION CREATORS
 import { a_addBook } from '../redux/actions/a_addBook.js'
@@ -28,7 +23,6 @@ import { a_logCompletedBook } from '../redux/actions/a_logCompletedBook.js'
 
 // FUNCTIONS
 import decode from '../utils/decode_JWT.js'
-
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -78,79 +72,116 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function AddBook(props) {
 console.log('Add Book PROPS: ', props)
-const {a_addBook, DB_books, setIs_adding, token, lastAdded} = props
+const {
+    setIs_adding,                       // Close AddBook Pannel
+
+    DB_books,                           // connect => all books in redux store
+    token,                              // connect => token on redux store
+
+    // a_addBook, 
+    a_logCompletedBook       // Action Creators
+} = props
 // -- //
     // Styles
     const classes = useStyles({})
 
     // State
     const [titles, setTitles] = useState([])
-    const [title, setTitle] = useState('undefined')
+    const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
+    const [logType, setLogType] = useState('')
 
-    // UseEffect
-    useEffect(() => {
-        let titles = DB_books.map(item => item.title)
-        console.log(titles)
-        setTitles(titles)
-    }, [DB_books, lastAdded])
+    // UseEffect => Get Unique Titles
+    // - 1 - // Set Unique Titles
+    useEffect(() => { setTitles( DB_books.map(item => item.title) ) }, [DB_books])
+    // - 2 - // Set Log Type
+    useEffect(() => { setLogType(titles.includes(title) ? 'onlyLog' : 'addAndLog') }, [title])
 
     // Methods
-    const saveBook = () => {
-    let prepObj = undefined
-    // -- //
+    const logBook = () => {
+        console.log(logType)
+        console.log(`Log This Book! -- ${title} -- ${author}`)
+
+        switch(logType) {
+            // - 1 - // 
+            case 'onlyLog':
+                // get bookID
+                const selectedBook = DB_books.filter(book => book.title === title)[0]
+                console.log(selectedBook)
+                const bookID = selectedBook.id
+                console.log(bookID)
+                
+                //userID
+                const decodedToken = decode(token)
+                console.log(decodedToken)
+                const userID = decodedToken.user_ID
+                console.log(userID)
+
+                // add log to readHistory 
+                a_logCompletedBook(userID, bookID)
+
+                break;
+            // - 2 - // 
+            case 'addAndLog':
+                break;
+            // - ERROR HANDLING - // 
+            default: 
+                console.log('ERROR - UNKNOWN LOG TYPE')
+                break;
+        }
+
         // Close Pannel
         setIs_adding(false)
-
-        // Add Book If Needed & Get Book ID
-        let bookID = undefined
-        if (!titles.includes(title)) {
-            // Add Book
-            // async function addBook() {
-                const data = a_addBook({title, author})
-                console.log(data)
-                console.log(lastAdded)
-            //     return data
-            // }
-            // const addBook_RESULT = addBook()
-            // console.log(addBook_RESULT)
-            // console.log(addBook_RESULT.id)
-            // bookID = addBook_RESULT.id
-        } else {
-            const foundBook = DB_books.filter(book => {
-                console.log(book)
-                return book.title === title
-            })
-            console.log(foundBook)
-            bookID = foundBook.id
-        }
-        console.log('BOOK_ID: ', bookID)
-
-        // Decode Token
-        const decodedToken = decode(token)
-        console.log(decodedToken)
-
-        if (author === '') {
-            // DONT NEED TO ADD A NEW BOOK
-            // Add Read Record
-        } else {
-            // ADD NEW BOOK
-            // Add Read Record
-            prepObj = {
-                title: title,
-                author: author,
-            }
-        }
-
-        console.log(title)
-        console.log(author)
-        console.log(prepObj)
-
-        // 
-
-        // (decodedToken.user_ID)
-        
     }
+    // const OLD_saveBook = () => {
+    // let prepObj = undefined
+    // // -- //
+    //     // Close Pannel
+    //     setIs_adding(false)
+
+    //     // Add Book If Needed & Get Book ID
+    //     let bookID = undefined
+    //     if (!titles.includes(title)) {
+    //         // Add Book
+    //         // async function addBook() {
+    //             const data = a_addBook({title, author})
+    //             console.log(data)
+    //         //     return data
+    //         // }
+    //         // const addBook_RESULT = addBook()
+    //         // console.log(addBook_RESULT)
+    //         // console.log(addBook_RESULT.id)
+    //         // bookID = addBook_RESULT.id
+    //     } else {
+    //         const foundBook = DB_books.filter(book => {
+    //             console.log(book)
+    //             return book.title === title
+    //         })
+    //         console.log(foundBook)
+    //         bookID = foundBook.id
+    //     }
+    //     console.log('BOOK_ID: ', bookID)
+
+    //     // Decode Token
+    //     const decodedToken = decode(token)
+    //     console.log(decodedToken)
+
+    //     if (author === '') {
+    //         // DONT NEED TO ADD A NEW BOOK
+    //         // Add Read Record
+    //     } else {
+    //         // ADD NEW BOOK
+    //         // Add Read Record
+    //         prepObj = {
+    //             title: title,
+    //             author: author,
+    //         }
+    //     }
+
+    //     console.log(title)
+    //     console.log(author)
+    //     console.log(prepObj)
+    // }
 
     // Return
     return (
@@ -167,33 +198,30 @@ const {a_addBook, DB_books, setIs_adding, token, lastAdded} = props
                     <Autocomplete 
                         className={classes.autoComplete}
                         freeSolo={true}
-                        // autoSelect={true}
-
                         options={DB_books}
                         getOptionLabel={(option) => option.title}
 
                         onInputChange={(e, value) => setTitle(value)}
-                        // onChange={(e, value) => setTitle(value)}
-                        // onChange={handleChange}
                         
-                        renderInput={ (params) => <TextField 
-                            {...params}  
-                            required 
-                            variant='outlined' 
-                            label="Title"
-                        /> }
+                        renderInput={ (params) => {
+                            return (
+                                <TextField 
+                                    {...params}  
+                                    required 
+                                    variant='outlined' 
+                                    label="Title"
+                                />
+                            )
+                        }}
                     />
                 </ListItem>
                 {!titles.includes(title) &&
                     <ListItem>
-                        <ListItemText
-                            className={classes.label}
-                            >
+                        <ListItemText className={classes.label}>
                             AUTHOR
                         </ListItemText>
                         <Divider orientation="vertical" flexItem className={classes.divider}/>
                         <TextField
-                            // required
                             variant="outlined"
                             defaultValue={author}
                             
@@ -202,39 +230,36 @@ const {a_addBook, DB_books, setIs_adding, token, lastAdded} = props
                             
                             margin="normal"
                             fullWidth
-                            />
+                        />
                     </ListItem>
                 }
             </List>
             <div className={classes.addButtons}>
                 <button
-                    onClick={saveBook}
+                    onClick={logBook}
                     className={`${classes.editSubmit} ${classes.button}`}
-                >Save Profile</button>
-                {/* <button
-                    onClick={() => setEditUser_view(!editUser_view)}
+                >Log This Book!</button>
+                <button
+                    onClick={() => setIs_adding(false)}
                     className={`${classes.editCancel} ${classes.button}`}
-                >Cancel</button> */}
+                >Cancel</button>
             </div>
         </Card>
     )
 }
 
-
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
         DB_books: state.r_books.DB_books,
-        lastAdded: state.r_books.lastAdded,
         token: state.r_login.token,
-    }
-}
+}}
 
 // CONNECT & EXPORT
 export default connect(
     mstp, 
     {
-        a_addBook,
+        // a_addBook,
         a_logCompletedBook,
     }
 )(AddBook)
