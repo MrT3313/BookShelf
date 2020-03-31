@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('readHistory', tbl => {
+    return knex.schema.createTable('completedbooks', tbl => {
         tbl.increments('id')
         tbl.integer('userID')
             .references('id').inTable('users')
@@ -16,5 +16,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('readHistory')
+    return knex.schema.dropTableIfExists('completedbooks')
 };
