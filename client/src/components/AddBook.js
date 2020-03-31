@@ -80,8 +80,16 @@ const {a_addBook, DB_books, setIs_adding} = props
     const classes = useStyles({})
 
     // State
+    const [titles, setTitles] = useState([])
     const [title, setTitle] = useState('undefined')
     const [author, setAuthor] = useState('')
+
+    // UseEffect
+    useEffect(() => {
+        let titles = DB_books.map(item => item.title)
+        console.log(titles)
+        setTitles(titles)
+    }, [DB_books])
 
     // Methods
     const saveBook = () => {
@@ -109,12 +117,6 @@ const {a_addBook, DB_books, setIs_adding} = props
         
     }
 
-    // const handleChange = (e, value) => {
-    //     e.preventDefault()
-    //     console.log(value)
-    //     setTitle(value)
-    // }
-
     // Return
     return (
         <Card
@@ -130,6 +132,7 @@ const {a_addBook, DB_books, setIs_adding} = props
                     <Autocomplete 
                         className={classes.autoComplete}
                         freeSolo={true}
+                        autoSelect={true}
 
                         options={DB_books}
                         getOptionLabel={(option) => option.title}
@@ -143,25 +146,10 @@ const {a_addBook, DB_books, setIs_adding} = props
                             required 
                             variant='outlined' 
                             label="Title"
-                            // onChange={e => setTitle(e.target.value)}
-                            // onChange={(e, value) => setTitle(value)}
                         /> }
                     />
-
-
-                    {/* <TextField
-                        // required
-                        variant="outlined"
-                        defaultValue={title}
-
-                        id="title" label="Title" name="title"
-                        onChange={e => setTitle(e.target.value)}
-
-                        margin="normal"
-                        fullWidth
-                    /> */}
                 </ListItem>
-                {!DB_books.includes(title) &&
+                {!titles.includes(title) &&
                     <ListItem>
                         <ListItemText
                             className={classes.label}
