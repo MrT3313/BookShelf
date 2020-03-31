@@ -51,13 +51,19 @@ const router = express.Router()
         // -- //
             KNEX_DB('books').insert(req.body)
                 .then( results => {
-                console.log(results)
+                // console.log(results)
                 // -- //
                     KNEX_DB('books').where('title', req.body.title).first()
                         .then( newBook => {
                         console.log(newBook)
                         // -- //
-                            res.status(200).json(newBook)
+                            const objToPass = {
+                                bookID: newBook.id,
+                                bookTITLE: newBook.title, 
+                                bookAUTHOR: newBook.author
+                            }
+
+                            res.status(200).json(objToPass)
                         })
                         .catch(err => {
                         console.log(err)

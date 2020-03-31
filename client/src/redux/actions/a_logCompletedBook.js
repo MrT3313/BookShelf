@@ -7,17 +7,17 @@ import { LIVE_BE_base_URL } from '../../utils'
 
 // __MAIN__
     // Action Types
-    export const ADD_BOOK_START = 'ADD_BOOK_START'
-    export const ADD_BOOK_SUCCESS = 'ADD_BOOK_SUCCESS'
-    export const ADD_BOOK_FAILURE = 'ADD_BOOK_FAILURE'
-
-    // Action Creator:
-    export const a_addBook = (newBook) => {
-    // console.log('INSIDE: a_addBook action creator')
+    export const LOG_COMPLETEDBOOK_START = 'LOG_COMPLETEDBOOK_START'
+    export const LOG_COMPLETEDBOOK_SUCCESS = 'LOG_COMPLETEDBOOK_SUCCESS'
+    export const LOG_COMPLETEDBOOK_FAILURE = 'LOG_COMPLETEDBOOK_FAILURE'
+    
+    // Action Creator
+    export const a_logCompletedBook = (userID, bookID) => {
+    // console.log('INSIDE: a_logCompletedBook action creator')
     // -- //
         // Send First Action
         return dispatch => {
-            dispatch({ type: ADD_BOOK_START})
+            dispatch({ type: LOG_COMPLETEDBOOK_START})
             let used_URL = ''
 
             // What environment are we in?
@@ -29,28 +29,27 @@ import { LIVE_BE_base_URL } from '../../utils'
             console.log('URL USED')
             console.log(used_URL)
 
-            // Make Axios Requests
+            // Make Axios Request
             axios
                 .post(
                     used_URL,
-                    newBook
+                    {userID, bookID}
                 )
-                .then( addBookResult => {
-                console.log(addBookResult)
+                .then( results => {
+                console.log(results)
                 // -- //
                     dispatch({
-                        type: ADD_BOOK_SUCCESS,
-                        payload: addBookResult.data
+                        type: LOG_COMPLETEDBOOK_SUCCESS,
+                        payload: results.data
                     })
                 })
                 .catch( err => {
                 // console.log(err)
                 // -- //
                     dispatch({
-                        type: ADD_BOOK_FAILURE,
+                        type: LOG_COMPLETEDBOOK_FAILURE,
                         payload: err
                     })
                 })
         }
     }
-

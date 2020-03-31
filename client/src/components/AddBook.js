@@ -24,6 +24,10 @@ import BookSelector from './BookSelector.js'
 
 // ACTION CREATORS
 import { a_addBook } from '../redux/actions/a_addBook.js'
+import { a_logCompletedBook } from '../redux/actions/a_logCompletedBook.js'
+
+// FUNCTIONS
+import decode from '../utils/decode_JWT.js'
 
 
 // === === === === === === === === === === === === //
@@ -74,7 +78,7 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function AddBook(props) {
 console.log('Add Book PROPS: ', props)
-const {a_addBook, DB_books, setIs_adding} = props
+const {a_addBook, DB_books, setIs_adding, token, lastAdded} = props
 // -- //
     // Styles
     const classes = useStyles({})
@@ -89,7 +93,7 @@ const {a_addBook, DB_books, setIs_adding} = props
         let titles = DB_books.map(item => item.title)
         console.log(titles)
         setTitles(titles)
-    }, [DB_books])
+    }, [DB_books, lastAdded])
 
     // Methods
     const saveBook = () => {
@@ -97,6 +101,34 @@ const {a_addBook, DB_books, setIs_adding} = props
     // -- //
         // Close Pannel
         setIs_adding(false)
+
+        // Add Book If Needed & Get Book ID
+        let bookID = undefined
+        if (!titles.includes(title)) {
+            // Add Book
+            // async function addBook() {
+                const data = a_addBook({title, author})
+                console.log(data)
+                console.log(lastAdded)
+            //     return data
+            // }
+            // const addBook_RESULT = addBook()
+            // console.log(addBook_RESULT)
+            // console.log(addBook_RESULT.id)
+            // bookID = addBook_RESULT.id
+        } else {
+            const foundBook = DB_books.filter(book => {
+                console.log(book)
+                return book.title === title
+            })
+            console.log(foundBook)
+            bookID = foundBook.id
+        }
+        console.log('BOOK_ID: ', bookID)
+
+        // Decode Token
+        const decodedToken = decode(token)
+        console.log(decodedToken)
 
         if (author === '') {
             // DONT NEED TO ADD A NEW BOOK
@@ -109,11 +141,14 @@ const {a_addBook, DB_books, setIs_adding} = props
                 author: author,
             }
         }
+
         console.log(title)
         console.log(author)
         console.log(prepObj)
 
-        a_addBook(prepObj)
+        // 
+
+        // (decodedToken.user_ID)
         
     }
 
@@ -132,7 +167,7 @@ const {a_addBook, DB_books, setIs_adding} = props
                     <Autocomplete 
                         className={classes.autoComplete}
                         freeSolo={true}
-                        autoSelect={true}
+                        // autoSelect={true}
 
                         options={DB_books}
                         getOptionLabel={(option) => option.title}
@@ -189,7 +224,9 @@ const {a_addBook, DB_books, setIs_adding} = props
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        DB_books: state.r_books.DB_books
+        DB_books: state.r_books.DB_books,
+        lastAdded: state.r_books.lastAdded,
+        token: state.r_login.token,
     }
 }
 
@@ -197,6 +234,7 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_addBook
+        a_addBook,
+        a_logCompletedBook,
     }
 )(AddBook)
