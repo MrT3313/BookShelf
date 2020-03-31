@@ -53,17 +53,29 @@ const router = express.Router()
                 .then( results => {
                 // console.log(results)
                 // -- //
-                    KNEX_DB('books').where('title', req.body.title).first()
-                        .then( newBook => {
-                        console.log(newBook)
-                        // -- //
-                            const objToPass = {
-                                bookID: newBook.id,
-                                bookTITLE: newBook.title, 
-                                bookAUTHOR: newBook.author
-                            }
+                    // V1
+                    // Return New Book
+                    // KNEX_DB('books').where('title', req.body.title).first()
+                    // .then( newBook => {
+                    //     console.log(newBook)
+                    //     // -- //
+                    //     const objToPass = {
+                    //         bookID: newBook.id,
+                    //         bookTITLE: newBook.title, 
+                    //         bookAUTHOR: newBook.author
+                    //     }
+                        
+                    //     res.status(200).json(objToPass)
+                    // })
 
-                            res.status(200).json(objToPass)
+                    // V2
+                    // Return ALL Books
+                    KNEX_DB('books')
+                        .then( allBooks => {
+                            console.log(allBooks)
+                            // -- //
+                            
+                            res.status(200).json(allBooks)
                         })
                         .catch(err => {
                         console.log(err)

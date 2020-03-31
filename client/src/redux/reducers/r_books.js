@@ -12,7 +12,7 @@ const initialState = {
     is_adding: false,
 
     DB_books: [],
-    lastAdded: {},
+    // lastAdded: {},
     
     error: '',
 }
@@ -56,7 +56,8 @@ console.log('action.payload: ', action.payload)
                 ...state,
                 is_adding: false,
 
-                lastAdded: {...action.payload},
+                DB_books: [...action.payload],
+                // lastAdded: {...action.payload},
 
                 error: '',
             }
