@@ -59,12 +59,28 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 
+- 1.3.1: Profile Page Update
+    - Single user flow => 
+        - title input entry searching DB
+            - Title in DB
+                - no author entry
+                - log type === 'logOnly'
+            - Title NOT in DB
+                - author entry needed
+                - log type === 'addAndLog'
+
+        - adds book to DB if needed
+        - adds entry to readHistory
+    
+    Screenshot:  
+    <img src="client/src/assets/readMeImgs/1.3.1_profilePageUpdate.png" width='300'>
+
 - 1.3.0: Profile Page: 
     - Can add book to DB
     - Login Hotfix -- forced premature merge
 
-    Screenshots:  
-    <img src="client/src/assets/readMeImgs/ProfilePage__hotfix_1.3.0.png" width='250'>
+    Screenshot:  
+    <img src="client/src/assets/readMeImgs/ProfilePage__hotfix_1.3.0.png" width='300'>
 
 - 1.2.0: Account Page can update:
     1. Username
