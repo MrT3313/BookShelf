@@ -26,8 +26,8 @@ import { LIVE_BE_base_URL } from '../../utils'
             } else if (process.env.NODE_ENV === 'production') {
                 used_URL = `${LIVE_BE_base_URL}books`
             }
-            console.log('URL USED')
-            console.log(used_URL)
+            // console.log('URL USED')
+            // console.log(used_URL)
 
             // Make Axios Requests
             return axios
@@ -36,7 +36,7 @@ import { LIVE_BE_base_URL } from '../../utils'
                     newBook
                 )
                 .then( addBookResult => {
-                console.log(addBookResult)
+                // console.log(addBookResult)
                 // -- //
                     dispatch({
                         type: ADD_BOOK_SUCCESS,

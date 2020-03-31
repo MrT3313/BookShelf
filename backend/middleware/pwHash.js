@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
 
 function pwHash( req,res, next) {
-    console.log('** HASH PW MIDDLEWARE')
+    // console.log('** HASH PW MIDDLEWARE')
 
     const newUser = req.body
 
@@ -15,7 +15,7 @@ function pwHash( req,res, next) {
         // REMOVE: PLAINTEXT_pw field from the newUser
         delete newUser.PLAINTEXT_pw
 
-        console.log('Updated User POST pwHash middleware: ', newUser)
+        // console.log('Updated User POST pwHash middleware: ', newUser)
 
         // ONTO NEXT MIDDLEWARE 
         req.newUser = newUser

@@ -11,6 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Button from '@material-ui/core/Button';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -37,9 +38,12 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
 
         width: '90%',
+        padding: '10px',
         margin: '10px',
+        marginBottom: '20px',
 
-        border: '1px solid blue',
+        border: '5px solid #273238',
+        // border: '5px solid #40BCD4',
     },
     divider: {
         marginRight: "20px",
@@ -62,17 +66,18 @@ const useStyles = makeStyles(theme => ({
     addButtons: {
         display: 'flex',
         justifyContent: 'space-around',
+
+        width: '80%',
     },
     button: {
         display: 'flex',
         justifyContent: 'center',
-
     }
 }))
 
 // -B- COMPONENT
 function AddBook(props) {
-console.log('Add Book PROPS: ', props)
+// console.log('Add Book PROPS: ', props)
 const {
     setIs_adding,                       // Close AddBook Pannel
 
@@ -101,24 +106,24 @@ const {
 
     // Methods
     const logBook = () => {
-    console.log(logType)
-    console.log(`Log This Book! -- ${title} -- ${author}`)
+    // console.log(logType)
+    // console.log(`Log This Book! -- ${title} -- ${author}`)
     let userID = undefined
     // -- //
         // get userID
         const decodedToken = decode(token)
-        console.log(decodedToken)
+        // console.log(decodedToken)
         userID = decodedToken.user_ID
-        console.log(userID)
+        // console.log(userID)
     
         switch(logType) {
             // - 1 - // 
             case 'onlyLog':
                 // get bookID
                 const selectedBook = DB_books.filter(book => book.title === title)[0]
-                console.log(selectedBook)
+                // console.log(selectedBook)
                 const bookID = selectedBook.id
-                console.log(bookID)
+                // console.log(bookID)
             
                 // add log to readHistory 
                 a_logCompletedBook(userID, bookID)
@@ -126,67 +131,18 @@ const {
                 break;
             // - 2 - // 
             case 'addAndLog':
-                console.log(logType)
+                // console.log(logType)
                 a_addAndLogBook({title, author}, userID)
                 break;
             // - ERROR HANDLING - // 
             default: 
-                console.log('ERROR - UNKNOWN LOG TYPE')
+                // console.log('ERROR - UNKNOWN LOG TYPE')
                 break;
         }
 
         // Close Pannel
         setIs_adding(false)
     }
-    // const OLD_saveBook = () => {
-    // let prepObj = undefined
-    // // -- //
-    //     // Close Pannel
-    //     setIs_adding(false)
-
-    //     // Add Book If Needed & Get Book ID
-    //     let bookID = undefined
-    //     if (!titles.includes(title)) {
-    //         // Add Book
-    //         // async function addBook() {
-    //             const data = a_addBook({title, author})
-    //             console.log(data)
-    //         //     return data
-    //         // }
-    //         // const addBook_RESULT = addBook()
-    //         // console.log(addBook_RESULT)
-    //         // console.log(addBook_RESULT.id)
-    //         // bookID = addBook_RESULT.id
-    //     } else {
-    //         const foundBook = DB_books.filter(book => {
-    //             console.log(book)
-    //             return book.title === title
-    //         })
-    //         console.log(foundBook)
-    //         bookID = foundBook.id
-    //     }
-    //     console.log('BOOK_ID: ', bookID)
-
-    //     // Decode Token
-    //     const decodedToken = decode(token)
-    //     console.log(decodedToken)
-
-    //     if (author === '') {
-    //         // DONT NEED TO ADD A NEW BOOK
-    //         // Add Read Record
-    //     } else {
-    //         // ADD NEW BOOK
-    //         // Add Read Record
-    //         prepObj = {
-    //             title: title,
-    //             author: author,
-    //         }
-    //     }
-
-    //     console.log(title)
-    //     console.log(author)
-    //     console.log(prepObj)
-    // }
 
     // Return
     return (
@@ -240,14 +196,15 @@ const {
                 }
             </List>
             <div className={classes.addButtons}>
-                <button
+                <Button
                     onClick={logBook}
                     className={`${classes.editSubmit} ${classes.button}`}
-                >Log This Book!</button>
-                <button
+                    color="secondary"
+                >📚📚 Log This Book 📚📚</Button>
+                <Button
                     onClick={() => setIs_adding(false)}
                     className={`${classes.editCancel} ${classes.button}`}
-                >Cancel</button>
+                >❌ Cancel ❌</Button>
             </div>
         </Card>
     )

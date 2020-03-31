@@ -9,8 +9,8 @@ let used_URL = ''
         used_URL = `${LIVE_BE_base_URL}books`
     }
 
-    console.log('URL USED')
-    console.log(used_URL)
+    // console.log('URL USED')
+    // console.log(used_URL)
 
 return used_URL}
 

@@ -23,7 +23,7 @@ const sign_JWT = (user) => {
     )
     
 // RETURN
-console.log(token)
+// console.log(token)
 return token}
 
 // EXPORTS

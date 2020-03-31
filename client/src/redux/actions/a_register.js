@@ -25,8 +25,8 @@ import { LIVE_BE_base_URL } from '../../utils'
             } else if (process.env.NODE_ENV === 'production') {
                 register_URL = `${LIVE_BE_base_URL}register`
             }
-            console.log('URL USED')
-            console.log(register_URL)
+            // console.log('URL USED')
+            // console.log(register_URL)
 
             // Make Axios Request
             return axios
@@ -35,7 +35,7 @@ import { LIVE_BE_base_URL } from '../../utils'
                     registerInfo
                 )
                 .then(res => {
-                console.log(res)
+                // console.log(res)
                 // -- //
                     dispatch({
                         type: REGISTER_SUCCESS,

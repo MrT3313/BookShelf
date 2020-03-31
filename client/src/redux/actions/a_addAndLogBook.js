@@ -24,7 +24,7 @@ import { LIVE_BE_base_URL } from '../../utils'
 // __MAIN__
     // Action Creator
     export const a_addAndLogBook = (newBook, userID) => {
-    console.log('INSIDE: a_addAndLogBook action creator')
+    // console.log('INSIDE: a_addAndLogBook action creator')
     // https://github.com/reduxjs/redux/issues/1676
     // -- //
         return (dispatch, getState) => {

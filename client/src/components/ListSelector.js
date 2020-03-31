@@ -53,8 +53,6 @@ function ListSelector(props){
 
     // Methods
     const handleChange = e => {
-        console.log(e)
-        console.log(e.target)
         setListName(e.target.value)
     }
 

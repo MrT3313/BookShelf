@@ -53,7 +53,7 @@ function Register(props) {
     // Methods
     const submit = e => {
         e.preventDefault()
-        console.log('TRYING TO REGISTER!')
+        // console.log('TRYING TO REGISTER!')
 
         // Prep Register Info
         let prep_registerInfo = {
@@ -63,7 +63,7 @@ function Register(props) {
             "email": email,
             "PLAINTEXT_pw": password
         }
-        console.log(prep_registerInfo)
+        // console.log(prep_registerInfo)
 
         // Call Login action creator
         props.a_register(prep_registerInfo)

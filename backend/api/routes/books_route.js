@@ -28,7 +28,7 @@ const router = express.Router()
         // -- //
             KNEX_DB('books')
                 .then( allBooks => {
-                console.log(allBooks)
+                // console.log(allBooks)
                 // -- // 
                     res.status(200).json(allBooks)
                 })
@@ -71,13 +71,13 @@ const router = express.Router()
                     // Return ALL Books
                     KNEX_DB('books')
                         .then( allBooks => {
-                            console.log(allBooks)
+                            // console.log(allBooks)
                             // -- //
                             
                             res.status(200).json(allBooks)
                         })
                         .catch(err => {
-                        console.log(err)
+                        // console.log(err)
                         // -- //
                             res.status(500).json({ ERROR: 'Unabel to get newly created book'})
                         })

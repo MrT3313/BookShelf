@@ -26,9 +26,9 @@ import { LIVE_BE_base_URL } from '../../utils'
             } else if (process.env.NODE_ENV === 'production') {
                 update_URL = `${LIVE_BE_base_URL}users/${id}`
             }
-            console.log('URL USED')
-            console.log(update_URL)
-            console.log(updateInfo)
+            // console.log('URL USED')
+            // console.log(update_URL)
+            // console.log(updateInfo)
 
             // Make Axios Request
             axios
@@ -37,7 +37,7 @@ import { LIVE_BE_base_URL } from '../../utils'
                     updateInfo
                 )
                 .then( updateResult => {
-                console.log(updateResult)
+                // console.log(updateResult)
                 // -- //
                     dispatch({
                         type: UPDATE_USER_SUCCESS,
@@ -45,7 +45,7 @@ import { LIVE_BE_base_URL } from '../../utils'
                     })
                 })
                 .catch( err => {
-                console.log(err)
+                // console.log(err)
                 // -- //
                     dispatch({
                         type: UPDATE_USER_FAILURE,

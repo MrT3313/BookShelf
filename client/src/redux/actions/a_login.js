@@ -28,8 +28,8 @@ import { LIVE_BE_base_URL } from '../../utils'
             } else if (process.env.NODE_ENV === 'production') {
                 login_URL = `${LIVE_BE_base_URL}login`
             }
-            console.log('URL USED')
-            console.log(login_URL)
+            // console.log('URL USED')
+            // console.log(login_URL)
 
             // Make Axios Request 
             return axios
@@ -38,7 +38,7 @@ import { LIVE_BE_base_URL } from '../../utils'
                     loginInfo,
                 )
                 .then(res => {
-                console.log(res)
+                // console.log(res)
                 // -- //    
                     // DISPATCH LOGIN_SUCCESS
                     dispatch({

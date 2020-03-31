@@ -29,11 +29,11 @@ const router = express.Router()
             } 
         */
         router.post('/completedBook', async(req,res) => {
-        console.log('** READ HISTORY ROUTE: /log/completedBook')
+        // console.log('** READ HISTORY ROUTE: /log/completedBook')
         // -- //
             KNEX_DB('readHistory').insert(req.body)
                 .then( results => {
-                console.log(results)
+                // console.log(results)
                 // -- //
                     res.status(200).json(results)
                 })

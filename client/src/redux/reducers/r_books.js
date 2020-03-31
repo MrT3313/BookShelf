@@ -19,7 +19,7 @@ const initialState = {
 
 // __MAIN__
 export const r_books = (state=initialState, action) => {
-console.log('action.payload: ', action.payload)
+// console.log('action.payload: ', action.payload)
 // -- // 
     switch(action.type) {
         // - 1 - // 

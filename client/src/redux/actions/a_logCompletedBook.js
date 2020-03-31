@@ -55,8 +55,8 @@ import { LIVE_BE_base_URL } from '../../utils'
             } else if (process.env.NODE_ENV === 'production') {
                 used_URL = `${LIVE_BE_base_URL}log/completedBook`
             }
-            console.log('URL USED')
-            console.log(used_URL)
+            // console.log('URL USED')
+            // console.log(used_URL)
 
             // Make Axios Request
             return axios
@@ -65,7 +65,7 @@ import { LIVE_BE_base_URL } from '../../utils'
                     {userID, bookID}
                 )
                 .then( results => {
-                console.log(results)
+                // console.log(results)
                 // -- //
                     dispatch({
                         type: LOG_COMPLETEDBOOK_SUCCESS,
