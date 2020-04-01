@@ -58,72 +58,90 @@ Package Manager: NPM
     - Digit 1 = LTS (long term support)
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
-
+---
 - 1.3.1: Profile Page Update
-    - Single user flow => 
-        - title input entry searching DB
-            - Title in DB
-                - no author entry
-                - log type === 'logOnly'
-            - Title NOT in DB
-                - author entry needed
-                - log type === 'addAndLog'
+- Single user flow => 
+    - title input entry searching DB
+        - Title in DB
+            - no author entry
+            - log type === 'logOnly'
+        - Title NOT in DB
+            - author entry needed
+            - log type === 'addAndLog'
 
-        - adds book to DB if needed
-        - adds entry to readHistory
-    
-    Screenshot:  
-    <img src="client/src/assets/readMeImgs/1.3.1_profilePageUpdate.png" width='300'>
+    - adds book to DB if needed
+    - adds entry to readHistory
 
-- 1.3.0: Profile Page: 
-    - Can add book to DB
-    - Login Hotfix -- forced premature merge
-
-    Screenshot:  
-    <img src="client/src/assets/readMeImgs/ProfilePage__hotfix_1.3.0.png" width='300'>
-
-- 1.2.0: Account Page can update:
-    1. Username
-    2. Email
-    3. Public Profile
-
-    Screenshots:  
-    <img src="client/src/assets/readMeImgs/accountPage_1.2.0.png" width='250'>
-    <img src="client/src/assets/readMeImgs/editAccountPage_1.2.0.png" width='250'>
-
-- 1.1.0: Sign in as guest
-    - FE
-        - Button added to <login /> so user can login as a guest
-        - <Loader /> color & position updated
-        - <Homepage /> linking to 'helloWorld' <AccountPage />
-    - BE 
-        - User privilages added to users table
-
-- 1.0.0:
-    - FE: Hosted
-        - Login & Register
-        - Homepage - Vert Tabs - NYT Bestseller List
-    
-    - BE: Hosted
-        - Login & Register both setting token on Redux store -> login & register 1 step to homepage
-
-    Screenshots:  
-    <img src="client/src/assets/readMeImgs/Register_0.0.3.png" width='250'>
-    <img src="client/src/assets/readMeImgs/Login_0.0.3.png" width='250'>
+Screenshot:  
+<img src="client/src/assets/readMeImgs/1.3.1_profilePageUpdate.png" width='300'>
 
 
-- 0.1.1:
-    - FE: Hosted Homepage - Material UI Vertical Tabs - NYT Bestseller List Explorer 
-    - BE: Login & Register functionality working in postman but not hooked up to FE
+<details>
+<summary>1.3.0 - HOTFIX & Initial Profile Page</summary>
 
-    Screenshot:  
-    <img src="client/src/assets/readMeImgs/homepage_0.0.2.png" height='250'>
-    
-- 0.1.0:
-    - FE: Hosted Homepage - Desktop Only - NYT Bestseller List Pyramid
-    - BE: Login & Register functionality working in postman but not hooked up to FE
+- Can add book to DB
+- Login Hotfix -- forced premature merge
 
-    Screenshot:  
-    <img src="client/src/assets/readMeImgs/homepage_0.0.1.png" height='500'>
+Screenshot:  
+<img src="client/src/assets/readMeImgs/ProfilePage__hotfix_1.3.0.png" width='300'>
+</details>
+
+<details>
+<summary>1.2.0 - Account Page: Update profile</summary>
+
+1. Username
+2. Email
+3. Public Profile
+
+Screenshots:  
+<img src="client/src/assets/readMeImgs/accountPage_1.2.0.png" width='250'>
+<img src="client/src/assets/readMeImgs/editAccountPage_1.2.0.png" width='250'>
+</details>
+
+<details>
+<summary>1.1.0 - Sign in as guest</summary>
+
+- FE
+    - Button added to <login /> so user can login as a guest
+    - <Loader /> color & position updated
+    - <Homepage /> linking to 'helloWorld' <AccountPage />
+- BE 
+    - User privilages added to users table
+</details>
+
+<details>
+<summary>1.0.0 - Register & Login</summary>
+
+- FE: Hosted  
+    - Login & Register  
+    - Homepage - Vert Tabs - NYT Bestseller List  
+
+- BE: Hosted
+    - Login & Register both setting token on Redux store -> login & register 1 step to homepage
+
+Screenshots:  
+<img src="client/src/assets/readMeImgs/Register_0.0.3.png" width='250'>
+<img src="client/src/assets/readMeImgs/Login_0.0.3.png" width='250'>
+</details>
+
+<details>
+<summary>0.1.1 - Homepage Redesign: Material UI Vertical Tabs</summary>
+
+- FE: Hosted Homepage - Material UI Vertical Tabs - NYT Bestseller List Explorer 
+- BE: Login & Register functionality working in postman but not hooked up to FE
+
+Screenshot:  
+<img src="client/src/assets/readMeImgs/homepage_0.0.2.png" height='250'>
+</details>  
+
+<details>
+<summary>0.1.0 - Homepage: Pyramid</summary>
+
+- FE: Hosted Homepage - Desktop Only - NYT Bestseller List Pyramid
+- BE: Login & Register functionality working in postman but not hooked up to FE
+
+Screenshot:  
+<img src="client/src/assets/readMeImgs/homepage_0.0.1.png" height='500'>
+</details>
 ---
 Author: Reed Turgeon
