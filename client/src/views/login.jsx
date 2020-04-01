@@ -20,28 +20,46 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 // ACTION CREATORS
 import { a_login } from '../redux/actions/a_login.js'
 
+// LOADER
+import Loader from 'react-loader-spinner'
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    marginTop: '10px'
-  },
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+        avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+        form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+        submit: {
+        marginTop: '10px'
+    },
+    loaderContainer: {
+        display: 'flex', 
+        flexDirection:'column', 
+        justifyContent:'center', 
+        alignItems:'center'
+    },
+    loader: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        marginTop: '50px',
+        marginBottom: '20px',
+    }
 }));
 
 function SignIn(props) {
+const {is_loggingIn} = props
+// -- // 
     // Styles
     const classes = useStyles();
 
@@ -49,6 +67,7 @@ function SignIn(props) {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    
 
     // Methods
     const runLogin = e => {
@@ -86,6 +105,19 @@ function SignIn(props) {
     return (
         <Container component="main" maxWidth="xs">
         <CssBaseline />
+        {is_loggingIn &&
+            <div 
+                className={classes.loaderContainer}
+            >
+                <div className={classes.loader}>
+                    <Loader type='Puff' color='#00BCD4'/>
+                </div>
+                <Typography
+                    variant="h4"
+                >Logging In...</Typography>
+            </div>
+        }
+        {!is_loggingIn &&
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
@@ -152,6 +184,7 @@ function SignIn(props) {
                 </Grid>
                 </form>
             </div>
+        }
         </Container>
     );
 }
@@ -159,7 +192,7 @@ function SignIn(props) {
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-
+        is_loggingIn: state.r_login.is_loggingIn
     }
 }
         
