@@ -231,7 +231,7 @@ const { token, username, email, publicProfile } = props
                             </ListItemText>
                         </ListItem>
                     </List>
-                    {privileges !== 3 &&
+                    {privileges !== 2 &&
                         <button
                             onClick={() => setEditUser_view(!editUser_view)}
                         >Edit Profile</button>
