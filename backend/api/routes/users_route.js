@@ -66,42 +66,59 @@ const router = express.Router()
 
         // - 3 - // Get INDIVIDUAL users
     // - PUT - //
-    router.put('/:id', async(req,res) => {
-    // console.log('** USERS ROUTE: users/:id PUT/')
-    const { id } = req.params
-    // console.log('UPDATE THIS USER: ', id)
-    // console.log('UPDATE DATA: ', req.body)
-    // -- //
-        KNEX_BD('users').where({id}).update(req.body)
-            .then( updateResults => {
-            // console.log(updateResults)
+        // - 1 - //
+            router.put('/:id', async(req,res) => {
+            // console.log('** USERS ROUTE: users/:id PUT/')
+            const { id } = req.params
+            // console.log('UPDATE THIS USER: ', id)
+            // console.log('UPDATE DATA: ', req.body)
             // -- //
-                // Get updated player
-                KNEX_BD('users').where('id', id).first()
-                    .then( updatedUser => {
-                    // console.log('UPDATED USER: ', updatedUser)
+                KNEX_BD('users').where({id}).update(req.body)
+                    .then( updateResults => {
+                    // console.log(updateResults)
                     // -- //
-                        res.status(200).json({
-                            message: 'Successful Update', 
-                            user: {
-                                username: updatedUser.username,
-                                email: updatedUser.email,
-                                publicProfile: updatedUser.publicProfile,
-                            }
-                        })
+                        // Get updated player
+                        KNEX_BD('users').where('id', id).first()
+                            .then( updatedUser => {
+                            // console.log('UPDATED USER: ', updatedUser)
+                            // -- //
+                                res.status(200).json({
+                                    message: 'Successful Update', 
+                                    user: {
+                                        username: updatedUser.username,
+                                        email: updatedUser.email,
+                                        publicProfile: updatedUser.publicProfile,
+                                    }
+                                })
+                            })
+                            .catch( err => {
+                            // console.log(err)
+                            // -- //
+                                res.status(500).json({ error: 'Cant get updated user from DB'})
+                            })
+                    })
+                    .catch( err => {
+                    console.log(err)
+                    // -- // 
+                        res.status(500).json( {error: 'Unabel to update user'})
+                    })
+            })
+        // - 2 - //
+            router.put('/privileges/:id',  async (req,res) => {
+            const {id} = req.params
+            console.log(id)
+            console.log(req.body)
+            // -- //
+                KNEX_BD('users').where({id}).update(req.body)
+                    .then( updateResults => {
+                        res.status(200).json(updateResults)
                     })
                     .catch( err => {
                     // console.log(err)
                     // -- //
-                        res.status(500).json({ error: 'Cant get updated user from DB'})
+                        res.status(500).json(err)
                     })
             })
-            .catch( err => {
-            console.log(err)
-            // -- // 
-                res.status(500).json( {error: 'Unabel to update user'})
-            })
-    })
     // - DEL - //
 
 // EXPORTS
