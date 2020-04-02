@@ -17,6 +17,7 @@ import AddReview from '../components/AddReview.js'
 
 // ACTION CREATORS
 import { a_getBooks } from '../redux/actions/a_getBooks.js'
+import { a_getReviews } from '../redux/actions/a_getReviews.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -67,6 +68,7 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function AddPannel(props) {
 // console.log('Add Book PROPS: ', props)
+const {a_getBooks, a_getReviews} = props
 // -- //
     // Styles
     const classes = useStyles({})
@@ -76,7 +78,8 @@ function AddPannel(props) {
 
     // UseEffect
     useEffect(() => {
-        props.a_getBooks()
+        a_getBooks()
+        a_getReviews()
     }, [])
 
     // Methods
@@ -143,6 +146,7 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_getBooks
+        a_getBooks,
+        a_getReviews
     }
 )(AddPannel)
