@@ -20,28 +20,46 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 // ACTION CREATORS
 import { a_register } from '../redux/actions/a_register.js'
 
+// LOADER
+import Loader from 'react-loader-spinner'
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+    loaderContainer: {
+        display: 'flex', 
+        flexDirection:'column', 
+        justifyContent:'center', 
+        alignItems:'center'
+    },
+    loader: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        marginTop: '50px',
+        marginBottom: '20px',
+    }
 }));
 
 function Register(props) {
+const {is_registering} = props
+// -- // 
     // Styles
     const classes = useStyles();
 
@@ -76,6 +94,19 @@ function Register(props) {
     return (
         <Container component="main" maxWidth="xs">
         <CssBaseline />
+        {is_registering &&
+            <div 
+                className={classes.loaderContainer}
+            >
+                <div className={classes.loader}>
+                    <Loader type='Puff' color='#00BCD4'/>
+                </div>
+                <Typography
+                    variant="h4"
+                >Registering New User...</Typography>
+            </div>
+        }
+        {!is_registering &&
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
@@ -139,6 +170,7 @@ function Register(props) {
                     </Grid>
                 </form>
             </div>
+        }
         </Container>
     );
 }
@@ -146,7 +178,7 @@ function Register(props) {
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-
+        is_registering: state.r_login.is_registering
     }
 }
         
