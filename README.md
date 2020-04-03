@@ -48,18 +48,20 @@ Package Manager: NPM
             
     ** Credit Requirements: https://developer.nytimes.com/branding
 
-
-
-2. Good Reads ([LINK](https://www.goodreads.com/api))  
-3. Google Books APIs ([LINK](https://developers.google.com/books))  
-
 ## Versions
 - Version Numbering System: #.#.#
     - Digit 1 = LTS (long term support)
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 ---
-- 1.3.1: Profile Page Update
+### Latest: 1.4.0 -- Profile Page Functionality Update
+- Add Review for a book
+
+Screenshot:  
+<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__addReview.png" width='300'>
+
+<details>
+<summary>1.3.1: Profile Page Functionality Update: Log Completed Book</summary>
 - Single user flow => 
     - title input entry searching DB
         - Title in DB
@@ -74,7 +76,7 @@ Package Manager: NPM
 
 Screenshot:  
 <img src="client/src/assets/readMeImgs/1.3.1_profilePageUpdate.png" width='300'>
-
+</details>
 
 <details>
 <summary>1.3.0 - HOTFIX & Initial Profile Page</summary>
