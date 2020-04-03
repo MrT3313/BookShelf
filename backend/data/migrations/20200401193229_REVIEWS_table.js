@@ -12,6 +12,8 @@ exports.up = function(knex) {
             .onUpdate("CASCADE");
         
         tbl.string('review').notNullable()
+
+        tbl.timestamps(true, true)
     })
 };
 

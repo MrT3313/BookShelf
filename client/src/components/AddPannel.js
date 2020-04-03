@@ -85,9 +85,12 @@ const {a_getBooks, a_getReviews} = props
     // Methods
     const toggleAdd = e => {
         // console.log(e.currentTarget.id)
-        if (is_adding !== false) {
-            // Close toggle
+        if (is_adding === e.currentTarget.id) {
             setIs_adding(false)
+        // }
+        // else if (is_adding !== false) {
+        //     // Close toggle
+        //     setIs_adding(false)
         } else {
             // Set toggle to current click
             setIs_adding(e.currentTarget.id)
@@ -128,7 +131,7 @@ const {a_getBooks, a_getReviews} = props
             }
             {/* ADD REVIEW PANNEL */}
             { is_adding && is_adding === 'review' &&
-                <AddReview />
+                <AddReview setIs_adding={setIs_adding}/>
             }
             </div>
         </Paper>

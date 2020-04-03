@@ -17,6 +17,10 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 // ACTION CREATORS
+import {a_addReview} from '../redux/actions/a_addReview.js'
+
+// FUNCTIONS
+import decode from '../utils/decode_JWT.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -30,12 +34,13 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
 
         width: '90%',
+
         padding: '10px',
+        paddingRight: '25px',
         margin: '10px',
         marginBottom: '20px',
 
         border: '5px solid #273238',
-        // border: '5px solid #40BCD4',
     },
     divider: {
         marginRight: "20px",
@@ -43,13 +48,14 @@ const useStyles = makeStyles(theme => ({
     },
     autoComplete: {
         display: 'flex',
-        width: '100%',
+        width: '25%',
     },
     listRoot: {
         display: 'flex', 
         flexDirection: 'column',
         justifyContent: 'space-between',
         width: '100%',
+        paddingBottom: '0px',
     },
     listItemRoot: {
         padding: '0px',
@@ -81,19 +87,51 @@ const useStyles = makeStyles(theme => ({
 function AddReview(props) {
 // console.log('Add Review PROPS: ', props)
 const {
+    setIs_adding, 
+
     DB_books,
-    token
+    token,
+
+    a_addReview     // Action Creator
 } = props
 // -- //
     // Styles
     const classes = useStyles({})
 
     // State
-    const [bookID, setBookID] = useState()
-    const [userID, setUserID] = useState()
+    const [title, setTitle] = useState()
+    // const [bookID, setBookID] = useState()
+    // const [userID, setUserID] = useState()
     const [review, setReview] = useState()
 
     // Methods
+    const logReview = () => {
+    let userID = undefined
+    // -- //
+        // get userID
+        const decodedToken = decode(token)
+        userID = decodedToken.user_ID
+        console.log(userID)
+
+        // get bookID
+        const selectedBook = DB_books.filter(book => book.title === title)[0]
+        console.log(selectedBook)
+        // setBookID(selectedBook.id)
+
+        // Prep Object
+        const prepObj = {
+            userID: userID,
+            bookID: selectedBook.id,
+            review: review,
+        }
+
+        // Call Action Creator
+        a_addReview(prepObj)
+        // Close Pannel
+        setIs_adding(false)
+    }
+
+    // Use Effect
 
     // Return
     return (
@@ -113,7 +151,7 @@ const {
                         options={DB_books}
                         getOptionLabel={(option) => option.title}
 
-                        // onInputChange={(e, value) => setTitle(value)}
+                        onInputChange={(e, value) => setTitle(value)}
 
                         renderInput={ (params) => {
                             return (
@@ -136,10 +174,10 @@ const {
                         variant="outlined"
                         multiline
                         rows="5"
-                        defaultValue={userID}
+                        // defaultValue={userID}
                         required
                         id="review" label="Review" name="review"
-                        onChange={e => setUserID(e.target.value)}
+                        onChange={e => setReview(e.target.value)}
                         margin="normal"
                         fullWidth
                     />
@@ -147,12 +185,12 @@ const {
             </List>
             <div className={classes.addButtons}>
                 <Button
-                    // onClick={() => setIs_adding(false)}
-                    className={`${classes.editCancel} ${classes.button}`}
+                    onClick={() => setIs_adding(false)}
+                    className={classes.editCancel}
                     style={{color: 'red'}}
                 >Cancel</Button>
                 <Button
-                    // onClick={}
+                    onClick={logReview}
                     className={`${classes.editSubmit} ${classes.button}`}
                     color="secondary"
                 >Log This Book</Button>
@@ -173,6 +211,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        
+        a_addReview
     }
 )(AddReview)

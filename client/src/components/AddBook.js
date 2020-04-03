@@ -57,10 +57,11 @@ const useStyles = makeStyles(theme => ({
         display: 'flex', 
         flexDirection: 'column',
         width: '60%',
+        paddingBottom: '0px',
     },
     listItemRoot: {
         padding: '0px',
-        margin: '0px',
+        margin: '0 0 20px 0',
     },
     label: {
         display: 'flex',
@@ -207,7 +208,6 @@ const {
             <div className={classes.addButtons}>
                 <Button
                     onClick={() => setIs_adding(false)}
-                    // className={`${classes.editCancel} ${classes.button}`}
                     className={`${classes.editCancel}`}
                     style={{color: 'red'}}
                 >Cancel</Button>
