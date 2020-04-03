@@ -17,6 +17,7 @@ import AddReview from '../components/AddReview.js'
 
 // ACTION CREATORS
 import { a_getBooks } from '../redux/actions/a_getBooks.js'
+import { a_getReviews } from '../redux/actions/a_getReviews.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -67,6 +68,7 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function AddPannel(props) {
 // console.log('Add Book PROPS: ', props)
+const {a_getBooks, a_getReviews} = props
 // -- //
     // Styles
     const classes = useStyles({})
@@ -76,15 +78,19 @@ function AddPannel(props) {
 
     // UseEffect
     useEffect(() => {
-        props.a_getBooks()
+        a_getBooks()
+        a_getReviews()
     }, [])
 
     // Methods
     const toggleAdd = e => {
         // console.log(e.currentTarget.id)
-        if (is_adding !== false) {
-            // Close toggle
+        if (is_adding === e.currentTarget.id) {
             setIs_adding(false)
+        // }
+        // else if (is_adding !== false) {
+        //     // Close toggle
+        //     setIs_adding(false)
         } else {
             // Set toggle to current click
             setIs_adding(e.currentTarget.id)
@@ -104,7 +110,7 @@ function AddPannel(props) {
                 >
                     <AddBoxIcon className={classes.addButton}/>
                     <div className={classes.title}>
-                        Add Book
+                        LOG COMPLETED BOOK
                     </div>
                 </Button>
                 <Button 
@@ -125,7 +131,7 @@ function AddPannel(props) {
             }
             {/* ADD REVIEW PANNEL */}
             { is_adding && is_adding === 'review' &&
-                <AddReview />
+                <AddReview setIs_adding={setIs_adding}/>
             }
             </div>
         </Paper>
@@ -143,6 +149,7 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_getBooks
+        a_getBooks,
+        a_getReviews
     }
 )(AddPannel)

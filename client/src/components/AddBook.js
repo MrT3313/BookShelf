@@ -57,6 +57,11 @@ const useStyles = makeStyles(theme => ({
         display: 'flex', 
         flexDirection: 'column',
         width: '60%',
+        paddingBottom: '0px',
+    },
+    listItemRoot: {
+        padding: '0px',
+        margin: '0 0 20px 0',
     },
     label: {
         display: 'flex',
@@ -65,13 +70,18 @@ const useStyles = makeStyles(theme => ({
     },
     addButtons: {
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'flex-end',
 
-        width: '80%',
+        width: '60%',
     },
     button: {
         display: 'flex',
         justifyContent: 'center',
+
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.main,
+
+        marginLeft: '20px',
     }
 }))
 
@@ -177,7 +187,7 @@ const {
                     />
                 </ListItem>
                 {!titles.includes(title) &&
-                    <ListItem>
+                    <ListItem className={classes.listItemRoot}>
                         <ListItemText className={classes.label}>
                             AUTHOR
                         </ListItemText>
@@ -197,14 +207,15 @@ const {
             </List>
             <div className={classes.addButtons}>
                 <Button
+                    onClick={() => setIs_adding(false)}
+                    className={`${classes.editCancel}`}
+                    style={{color: 'red'}}
+                >Cancel</Button>
+                <Button
                     onClick={logBook}
                     className={`${classes.editSubmit} ${classes.button}`}
                     color="secondary"
-                >📚📚 Log This Book 📚📚</Button>
-                <Button
-                    onClick={() => setIs_adding(false)}
-                    className={`${classes.editCancel} ${classes.button}`}
-                >❌ Cancel ❌</Button>
+                >Log This Book</Button>
             </div>
         </Card>
     )

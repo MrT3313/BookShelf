@@ -79,7 +79,7 @@ const router = express.Router()
                         .catch(err => {
                         // console.log(err)
                         // -- //
-                            res.status(500).json({ ERROR: 'Unabel to get newly created book'})
+                            res.status(500).json({ ERROR: 'Unabel to get all books after book creation'})
                         })
                 })
                 .catch(err => {
