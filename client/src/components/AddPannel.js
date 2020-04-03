@@ -107,7 +107,7 @@ const {a_getBooks, a_getReviews} = props
                 >
                     <AddBoxIcon className={classes.addButton}/>
                     <div className={classes.title}>
-                        Add Book
+                        LOG COMPLETED BOOK
                     </div>
                 </Button>
                 <Button 
