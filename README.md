@@ -59,6 +59,7 @@ Package Manager: NPM
 
 Screenshot:  
 <img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__addReview.png" width='300'>
+<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__logCompletedBook.png" width='300'>
 
 <details>
 <summary>1.3.1: Profile Page Functionality Update: Log Completed Book</summary>
