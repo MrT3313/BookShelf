@@ -1,16 +1,16 @@
 // IMPORTS
-import React from 'react'
-import {connect} from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import { connect } from 'react-redux'
 
 // MATERIAL UI
-// -1- Styles
+// -1- Components
+
+// -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
-// -2- Components
 
 // COMPONENTS
-import Menu_AppBar from '../components/AppBar.js'
-import AddPannel from '../components/AddPannel.js'
-import ReadBooks from '../components/ReadBooks.js'
+
+// ACTION CREATORS
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -19,32 +19,36 @@ import ReadBooks from '../components/ReadBooks.js'
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
     root: {
-        
-    }
+    },
 }))
 
 // -B- COMPONENT
-function Profile(props) {
+function ReadBooks(props) {
+// console.log('ReadBooks PROPS:', props)
+// -- //
+    // Styles
+    const classes = useStyles({})
+
+    // State
+
+    // Methods
+
+    // Return Component
     return (
-        <>
-            <Menu_AppBar />
-            <AddPannel />
-            <ReadBooks />
-        </>
+        <div>ReadBooks</div>
     )
 }
-
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        
+       
     }
 }
-        
+
 // CONNECT & EXPORT
 export default connect(
-    mstp,
+    mstp, 
     {
         
     }
-)(Profile)
+)(ReadBooks)
