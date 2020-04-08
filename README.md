@@ -32,9 +32,8 @@ Package Manager: NPM
 ## Assets
 1. IMG used for favicon: [good-ware](https://www.flaticon.com/authors/good-ware)
 
-## APIs
-- BOOKS 
-1. NY Times: Books API ([LINK](https://developer.nytimes.com/docs/books-product/1/overview)) 
+## APIs  
+- NY Times: Books API ([LINK](https://developer.nytimes.com/docs/books-product/1/overview)) 
 
     - Get all available book lists:
         - Root URL: https://api.nytimes.com/svc/books/v3/lists/
@@ -147,6 +146,8 @@ Screenshot:
 
 Screenshot:  
 <img src="client/src/assets/readMeImgs/homepage_0.0.1.png" height='500'>
-</details>
----
+</details>  
+<br/>  
+
+---  
 Author: Reed Turgeon
