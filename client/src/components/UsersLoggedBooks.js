@@ -4,11 +4,6 @@ import { connect } from 'react-redux'
 
 // MATERIAL UI
 // -1- Components
-
-// -2- Styles
-import { makeStyles } from '@material-ui/core/styles';
-
-// COMPONENTS
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,6 +12,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+
+// -2- Styles
+import { makeStyles } from '@material-ui/core/styles';
+
+// COMPONENTS
+import EnhancedTable from '../components/loggedBooksTable.js'
 
 // Action Creators
 import { a_getUserLoggedBooks } from '../redux/actions/a_getUserLoggedBooks.js'
@@ -34,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
     },
-        container: {
+    container: {
         maxHeight: 440,
     },
 }))
@@ -72,7 +73,8 @@ function UsersLoggedBooks(props) {
 const {
     a_getUserLoggedBooks, a_getLoggedBooks,
 
-    token,
+    token, 
+    usersLoggedBooks,
 } = props
 // -- //
     // Styles
@@ -98,17 +100,10 @@ const {
     }, [])
 
     // Methods
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
 
     // Return Component
     return (
-        <div>ReadBooks</div>
+        <EnhancedTable />
     )
 }
 // MAP STATE TO PROPS
