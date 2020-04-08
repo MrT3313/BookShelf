@@ -16,7 +16,32 @@ const router = express.Router()
                 })
             })
 
-        // - 2 - // Completed Books for USER_ID
+        // - 2 - // All Completed Books
+            router.get('/all', async(req,res) => {
+                console.log('** COMPLETED BOOKS ROUTER: completedBooks/all GET/')
+                // -- //
+                    KNEX_DB.raw(`
+                        SELECT 
+                            completedbooks."userID",
+                            books.title, books.author
+                        
+                        FROM completedbooks
+                        
+                        JOIN books
+                        ON completedbooks."bookID" = books.id
+                    `)
+                    .then( loggedBooks => {
+                    // console.log(loggedBooks.rows)
+                    // -- // 
+                        res.status(200).json(loggedBooks.rows)
+                    })
+                    .catch( err => {
+                    // console.log(err)
+                    // -- //
+                        res.status(500).json(err)
+                    })
+                })
+        // - 3 - // Completed Books for USER_ID
         router.get('/:id', async(req, res) => {
         console.log('** COMPLETED BOOKS ROUTE: completedBooks/:id GET/')
         const { id } = req.params
@@ -37,8 +62,8 @@ const router = express.Router()
             */
             KNEX_DB.raw(`
                 SELECT 
-                    users.id as userID, users.userName, 
-                    books.id as bookID, books.title, books.author
+                    users.id,
+                    books.title, books.author
                 FROM users
                 
                 JOIN completedbooks

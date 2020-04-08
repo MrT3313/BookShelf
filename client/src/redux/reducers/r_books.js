@@ -12,7 +12,6 @@ const initialState = {
     is_adding: false,
 
     DB_books: [],
-    // lastAdded: {},
     
     error: '',
 }

@@ -25,10 +25,12 @@ Knex ([LINK](http://knexjs.org))
 
 ## UI
 Material UI ([LINK](https://material-ui.com))  
-Styled Components  ([LINK](https://styled-components.com))    
 
 ## Utils
-Package Manager: NPM  
+Package Manager: NPM 
+
+## Assets
+1. IMG used for favicon: [good-ware](https://www.flaticon.com/authors/good-ware)
 
 ## APIs
 - BOOKS 

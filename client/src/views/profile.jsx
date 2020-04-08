@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 import Menu_AppBar from '../components/AppBar.js'
 import AddPannel from '../components/AddPannel.js'
-import ReadBooks from '../components/ReadBooks.js'
+import UsersLoggedBooks from '../components/UsersLoggedBooks.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -29,7 +29,7 @@ function Profile(props) {
         <>
             <Menu_AppBar />
             <AddPannel />
-            <ReadBooks />
+            <UsersLoggedBooks />
         </>
     )
 }
