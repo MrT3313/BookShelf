@@ -4,12 +4,12 @@ exports.up = function(knex) {
         tbl.increments('id')
         tbl.integer('userID')
             .references('id').inTable('users')
-            .onDelete('NO ACTION')
+            .onDelete('CASCADE')
             .onUpdate("CASCADE");
         
         tbl.integer('bookID')
             .references('id').inTable('books')
-            .onDelete('NO ACTION')
+            .onDelete('CASCADE')
             .onUpdate("CASCADE");
             
         tbl.timestamps(true, true)

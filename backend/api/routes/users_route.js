@@ -51,22 +51,10 @@ const router = express.Router()
                         res.status(200).json(foundUser[0])
                     }
                 })
-            
-            // V1
-            // KNEX_BD('users').where({id}).first()
-            //     .then( foundUser => {
-            //     console.log(foundUser)
-            //     // -- //
-            //         res.status(200).json(foundUser)
-            //     })
-            //     .catch( err => {
-            //         res.status(500).json({ error: 'Unable to get individual user'})
-            //     })
         })
 
-        // - 3 - // Get INDIVIDUAL users
     // - PUT - //
-        // - 1 - //
+        // - 1 - // Update Individual User
             router.put('/:id', async(req,res) => {
             // console.log('** USERS ROUTE: users/:id PUT/')
             const { id } = req.params
@@ -103,7 +91,9 @@ const router = express.Router()
                         res.status(500).json( {error: 'Unabel to update user'})
                     })
             })
-        // - 2 - //
+
+        // - 2 - // Update Individual User Privileges
+            // TODO: Move to separate Admin Routing
             router.put('/privileges/:id',  async (req,res) => {
             const {id} = req.params
             console.log(id)
@@ -119,7 +109,23 @@ const router = express.Router()
                         res.status(500).json(err)
                     })
             })
+
     // - DEL - //
+        router.delete('/:userID', async(req, res) => {
+        const {userID} = req.params
+        // -- //
+            KNEX_BD('users').where('id', userID).del()
+                .then( results => {
+                // console.log(results)
+                // -- //
+                    res.status(200).json(results)
+                })
+                .catch( err => {
+                // console.log(err)
+                // -- // 
+                    res.status(500).json(err)
+                })
+        })
 
 // EXPORTS
 module.exports = router
