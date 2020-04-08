@@ -63,10 +63,10 @@ const router = express.Router()
     const {bookID} = req.params
     // -- // 
         KNEX_DB('reviews').where('bookID', bookID)
-        .then( singleReview => {
-        // console.log(singleBook)
+        .then( bookReviews => {
+        // console.log(bookReviews)
         // -- //
-            res.status(200).json(singleReview)
+            res.status(200).json(bookReviews)
         })
         .catch( err => {
         // console.log(err)
