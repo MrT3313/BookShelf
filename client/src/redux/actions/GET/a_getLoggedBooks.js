@@ -2,8 +2,8 @@
 import axios from 'axios'
 
 // URLS
-import { LOCAL_BE_base_URL } from '../../utils'
-import { LIVE_BE_base_URL } from '../../utils'
+import { LOCAL_BE_base_URL } from '../../../utils'
+import { LIVE_BE_base_URL } from '../../../utils'
 
 // __MAIN__
     // Action Types

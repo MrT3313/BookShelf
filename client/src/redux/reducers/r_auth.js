@@ -16,7 +16,7 @@ import {
 
 import {
     UPDATE_USER_START, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE
-} from '../actions/a_updateUser.js'
+} from '../actions/auth/a_updateUser.js'
 
 // INITIAL STATE
 const initialState = {

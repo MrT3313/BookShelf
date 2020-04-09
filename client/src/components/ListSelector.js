@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import API_dataAttribution from './API_DataAttribution.js'
 
 // ACTION CREATORS
-import {a_GETspecific_list} from '../redux/actions/a_specificList.js'
+import {a_getSpecificList} from '../redux/actions/GET/a_getSpecificList.js'
 
 
 // === === === === === === === === === === === === //
@@ -47,6 +47,7 @@ const useStyles = makeStyles( theme => ({
 // -B- COMPONENT
 function ListSelector(props){
 // console.log('listSelector PROPS: ', props)
+const { a_getSpecificList } = props
 // -- //
     // Styles
     const classes = useStyles()
@@ -63,7 +64,7 @@ function ListSelector(props){
     useEffect(() => {
         // console.log('TOP 10 USE EFFECT')
             async function fetchData(){
-                await props.a_GETspecific_list('current', listName)
+                await a_getSpecificList('current', listName)
                 setListName(listName)
             }
             fetchData()
@@ -108,6 +109,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_GETspecific_list
+        a_getSpecificList
     }
 )(ListSelector)

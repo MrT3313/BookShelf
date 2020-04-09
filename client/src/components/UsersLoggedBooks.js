@@ -20,8 +20,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import EnhancedTable from '../components/loggedBooksTable.js'
 
 // Action Creators
-import { a_getUserLoggedBooks } from '../redux/actions/a_getUserLoggedBooks.js'
-import { a_getLoggedBooks } from '../redux/actions/a_getLoggedBooks.js'
+import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'
+import { a_getLoggedBooks } from '../redux/actions/GET/a_getLoggedBooks.js'
 
 // FUNCTIONS
 import decode from '../utils/decode_JWT.js'
@@ -82,7 +82,7 @@ const {
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        token: state.r_login.token,
+        token: state.r_auth.token,
         usersLoggedBooks: state.r_loggedBooks.userLoggedBooks
     }
 }

@@ -16,7 +16,7 @@ import ListSelector from '../components/ListSelector.js'
 import VertTabPannel from '../components/VertTabPannel.js'
 
 // ACTION CREATORS
-import { a_GETspecific_list } from '../redux/actions/a_specificList.js'
+import { a_getSpecificList } from '../redux/actions/GET/a_getSpecificList.js'
               
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -74,6 +74,6 @@ const mstp = state => {
 export default connect(
     mstp,
     {
-        a_GETspecific_list,
+        a_getSpecificList,
     }
 )(HomePage)

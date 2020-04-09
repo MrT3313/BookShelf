@@ -19,9 +19,8 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 
 // ACTION CREATORS
-// import { a_addBook } from '../redux/actions/a_addBook.js'
-import { a_logCompletedBook } from '../redux/actions/a_logCompletedBook.js'
-import { a_addAndLogBook } from '../redux/actions/a_addAndLogBook.js'
+import { a_logCompletedBook } from '../redux/actions/POST/a_addCompletedBook.js'
+import { a_addAndLogBook } from '../redux/actions/POST/a_addAndLogBook.js'
 
 // FUNCTIONS
 import decode from '../utils/decode_JWT.js'
@@ -225,7 +224,7 @@ const {
 const mstp = state => {
     return {
         DB_books: state.r_books.DB_books,
-        token: state.r_login.token,
+        token: state.r_auth.token,
 }}
 
 // CONNECT & EXPORT

@@ -21,7 +21,7 @@ import { makeStyles } from '@material-ui/core/styles'
 // COMPONENTS
 
 // ACTION CREATORS
-import { a_UPDATE_user } from '../redux/actions/a_updateUser.js'
+import { a_UPDATE_user } from '../redux/actions/auth/a_updateUser.js'
 
 // UTILS
 import decode from '../utils/decode_JWT.js'
@@ -248,11 +248,10 @@ const { token, username, email, publicProfile } = props
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        token: state.r_login.token,
-        username: state.r_login.username,
-        email: state.r_login.email,
-        publicProfile: state.r_login.publicProfile,
-        
+        token: state.r_auth.token,
+        username: state.r_auth.username,
+        email: state.r_auth.email,
+        publicProfile: state.r_auth.publicProfile,
     }
 }
 

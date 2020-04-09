@@ -1,9 +1,9 @@
 import {
     GET_REVIEWS_START, GET_REVIEWS_SUCCESS, GET_REVIEWS_FAILURE
-} from '../actions/a_getReviews.js'
+} from '../actions/GET/a_getReviews.js'
 import {
     ADD_REVIEW_START, ADD_REVIEW_SUCCESS, ADD_REVIEW_FAILURE
-} from '../actions/a_addReview.js'
+} from '../actions/POST/a_addReview.js'
 
 // INITIAL STATE
 const initialState = {

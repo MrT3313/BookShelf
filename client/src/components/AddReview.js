@@ -17,7 +17,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 // ACTION CREATORS
-import {a_addReview} from '../redux/actions/a_addReview.js'
+import {a_addReview} from '../redux/actions/POST/a_addReview.js'
 
 // FUNCTIONS
 import decode from '../utils/decode_JWT.js'
@@ -203,7 +203,7 @@ const {
 const mstp = state => {
     return {
         DB_books: state.r_books.DB_books,
-        token: state.r_login.token,
+        token: state.r_auth.token,
     }
 }
 

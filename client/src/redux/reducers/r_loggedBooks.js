@@ -1,14 +1,14 @@
 import {
     LOG_COMPLETEDBOOK_START, LOG_COMPLETEDBOOK_SUCCESS, LOG_COMPLETEDBOOK_FAILURE
-} from '../actions/a_logCompletedBook.js'
+} from '../actions/POST/a_addCompletedBook.js'
 
 import {
     GET_USERLOGGEDBOOKS_START, GET_USERLOGGEDBOOKS_SUCCESS, GET_USERLOGGEDBOOKS_FAILURE
-} from '../actions/a_getUserLoggedBooks.js'
+} from '../actions/GET/a_getUserLoggedBooks.js'
 
 import {
     GET_ALLLOGGEDBOOKS_START, GET_ALLLOGGEDBOOKS_SUCCESS, GET_ALLLOGGEDBOOKS_FAILURE
-} from '../actions/a_getLoggedBooks.js'
+} from '../actions/GET/a_getLoggedBooks.js'
 
 // INITIAL STATE
 const initialState = {

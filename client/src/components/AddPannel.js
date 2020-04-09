@@ -16,8 +16,8 @@ import AddBook from '../components/AddBook.js'
 import AddReview from '../components/AddReview.js'
 
 // ACTION CREATORS
-import { a_getBooks } from '../redux/actions/a_getBooks.js'
-import { a_getReviews } from '../redux/actions/a_getReviews.js'
+import { a_getBooks } from '../redux/actions/GET/a_getBooks.js'
+import { a_getReviews } from '../redux/actions/GET/a_getReviews.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //

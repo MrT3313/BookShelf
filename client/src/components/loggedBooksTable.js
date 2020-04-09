@@ -344,7 +344,7 @@ console.log('ENHANCED TABLE PROPS: ', usersLoggedBooks)
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        token: state.r_login.token,
+        token: state.r_auth.token,
         usersLoggedBooks: state.r_loggedBooks.userLoggedBooks
     }
 }
