@@ -17,6 +17,9 @@ import VertTabPannel from '../components/VertTabPannel.js'
 
 // ACTION CREATORS
 import { a_getSpecificList } from '../redux/actions/GET/a_getSpecificList.js'
+import { a_getBooks } from '../redux/actions/GET/a_getBooks.js'
+import { a_getReviews } from '../redux/actions/GET/a_getReviews.js'
+import { a_getLoggedBooks } from '../redux/actions/GET/a_getLoggedBooks.js'
               
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -35,8 +38,23 @@ const useStyles = makeStyles(theme => ({
 
 // -B- COMPONENT
 function HomePage(props) {
+const { 
+    allLists, listName, searchDate,
+    a_getBooks, a_getReviews, a_getLoggedBooks            // Action Creators
+} = props
     // Styles
     const classes = useStyles({})
+
+    // UseEffect
+    /* 
+        We have just entered the app. 
+        We now want to load initial data from your DB into the redux store
+    */
+    useEffect(() => {
+        a_getBooks()
+        a_getReviews()
+        a_getLoggedBooks()
+    }, [])
 
     // Return
     if (props.current_listData.length === 0) {
@@ -64,8 +82,9 @@ function HomePage(props) {
 const mstp = state => {
     return {
         allLists: state.r_lists.list_names,
-        current_listName: state.r_specificList.listName,
+        listName: state.r_specificList.listName,
         searchDate: state.r_specificList.searchDate,
+
         current_listData: state.r_specificList.listData,
     }
 }
@@ -74,6 +93,8 @@ const mstp = state => {
 export default connect(
     mstp,
     {
-        a_getSpecificList,
+        a_getBooks,
+        a_getReviews,
+        a_getLoggedBooks,
     }
 )(HomePage)

@@ -25,17 +25,17 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 
 // --- CREATE DATE --- //
 
-function createData(title, author, date) {
-  return { title, author, date };
-}
+// function createData(title, author) {
+//   return { title, author };
+// }
 
-const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+// const rows = [
+//   createData('Book1', 'Author1'),
+//   createData('Book2', 'Author2'),
+//   createData('Book3', 'Author3'),
+//   createData('Book4', 'Author4'),
+//   createData('Book5', 'Author5'),
+// ];
 
 // --- *** --- //
 
@@ -68,7 +68,6 @@ function stableSort(array, comparator) {
 const headCells = [
   { id: 'title', numeric: false, disablePadding: true, label: 'Title' },
   { id: 'author', numeric: false, disablePadding: true, label: 'Author' },
-  { id: 'date', numeric: false, disablePadding: true, label: 'Date' },
 ];
 
 function EnhancedTableHead(props) {
@@ -218,15 +217,18 @@ const { usersLoggedBooks } = props
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rows, setRows] = React.useState([])
 
   // Styles
   const classes = useStyles();
   // UseEffect
   useEffect(() => {
     console.log('ENHANCED TABLE USE EFFECT')
-    newCreateData(usersLoggedBooks)
+    const newRows = newCreateData(usersLoggedBooks)
+    setRows(newRows)
   }, [usersLoggedBooks])
 
+  // Methods
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -277,7 +279,12 @@ const { usersLoggedBooks } = props
 
   // ADDED
   function newCreateData(userLogs) {
-    console.log(userLogs)
+    return userLogs.map(log => {
+      return {
+        title: log.title,
+        author: log.author
+      }
+    })
   
   }
 

@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function AddPannel(props) {
 // console.log('Add Book PROPS: ', props)
-const {a_getBooks, a_getReviews} = props
+// const {a_getBooks, a_getReviews} = props
 // -- //
     // Styles
     const classes = useStyles({})
@@ -77,10 +77,10 @@ const {a_getBooks, a_getReviews} = props
     const [is_adding, setIs_adding] = useState(false)
 
     // UseEffect
-    useEffect(() => {
-        a_getBooks()
-        a_getReviews()
-    }, [])
+    // useEffect(() => {
+    //     a_getBooks()
+    //     a_getReviews()
+    // }, [])
 
     // Methods
     const toggleAdd = e => {
@@ -141,7 +141,8 @@ const {a_getBooks, a_getReviews} = props
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        
+        DB_books: state.r_books.DB_books,
+        DB_reviews: state.r_reviews.DB_reviews,
     }
 }
 
@@ -149,7 +150,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_getBooks,
-        a_getReviews
+
     }
 )(AddPannel)

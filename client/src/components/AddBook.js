@@ -231,7 +231,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        // a_addBook,
         a_logCompletedBook,
         a_addAndLogBook,
     }
