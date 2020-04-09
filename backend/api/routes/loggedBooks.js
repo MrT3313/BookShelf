@@ -23,7 +23,7 @@ const router = express.Router()
                 KNEX_DB.raw(`
                     SELECT 
                         completedbooks."userID",
-                        books.title, books.author
+                        books.id as "bookID", books.title, books.author, books.created_at
                     
                     FROM completedbooks
                     
@@ -68,7 +68,7 @@ const router = express.Router()
             /* RAW Query
                 SELECT 
                     users.id as userID, users.userName, 
-                    books.id as bookID, books.title, books.author
+                    books.id as bookID, books.title, books.author, books.created_at
                 FROM users
 
                 JOIN completedbooks
@@ -82,14 +82,14 @@ const router = express.Router()
             KNEX_DB.raw(`
                 SELECT 
                     users.id as "userID",
-                    books.id as "bookID", books.title, books.author
+                    books.id as "bookID", books.title, books.author, books.created_at
                 FROM users
                 
                 JOIN completedbooks
                 ON users.id = completedbooks."userID"
                 
                 JOIN books
-                ON completedbooks."userID" = books.id
+                ON completedbooks."bookID" = books.id
                 
                 WHERE users.id = ${userID}`
             )
