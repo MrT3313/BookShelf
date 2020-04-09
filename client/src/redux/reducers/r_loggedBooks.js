@@ -77,7 +77,7 @@ console.log('action.payload: ', action.payload)
         case LOG_COMPLETEDBOOK_START:
             return {
                 ...state,
-                is_adding: false,
+                is_adding: true,
 
                 error: '',
             }
