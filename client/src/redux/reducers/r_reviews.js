@@ -23,7 +23,7 @@ export const r_reviews = (state=initialState, action) => {
         case GET_REVIEWS_START:
             return {
                 ...state,
-                is_fetching: false,
+                is_fetching: true,
                 error: ''
             }
 

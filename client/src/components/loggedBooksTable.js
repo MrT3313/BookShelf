@@ -208,7 +208,7 @@ console.log('ENHANCED TABLE PROPS: ', usersLoggedBooks)
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    const [rows, setRows] = useState([])
+    const [rows, setRows] = useState(usersLoggedBooks)
 
     // Styles
     const classes = useStyles();

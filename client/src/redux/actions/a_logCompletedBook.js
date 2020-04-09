@@ -37,11 +37,17 @@ import { LIVE_BE_base_URL } from '../../utils'
                     {userID, bookID}
                 )
                 .then( results => {
-                // console.log(results)
+                console.log(results)
                 // -- //
+                    const userResults = results.data.filter(item => item.userID == userID)
+                    console.log(userResults)
+
                     dispatch({
                         type: LOG_COMPLETEDBOOK_SUCCESS,
-                        payload: results.data
+                        payload: {
+                            allUsers: results.data,
+                            singleUser: userResults
+                        }
                     })
                 })
                 .catch( err => {
