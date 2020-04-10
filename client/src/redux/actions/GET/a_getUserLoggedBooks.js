@@ -26,14 +26,14 @@ import { LIVE_BE_base_URL } from '../../../utils'
             } else if (process.env.NODE_ENV === 'production') {
                 used_URL = `${LIVE_BE_base_URL}loggedBooks/singleUser/${userID}`
             }
-            console.log('URL USED')
-            console.log(used_URL)
+            // console.log('URL USED')
+            // console.log(used_URL)
 
             // Make Axios Request
             axios
                 .get(used_URL)
                 .then(completedBooks => {
-                console.log(completedBooks)
+                // console.log(completedBooks)
                 // -- // 
                     dispatch({
                         type: GET_USERLOGGEDBOOKS_SUCCESS,

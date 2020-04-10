@@ -19,15 +19,27 @@ import { cyan, blueGrey } from '@material-ui/core/colors'
 // COMPONENTS
 import App from './App.jsx';
 
+// MIDDLEWARE
+const middlewares = [];
+
+
 // STORE ENHANCERS
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // __MAIN__
     // -A- Create Store
-    const store = createStore(
-        rootReducer,
-        composeEnhancers(applyMiddleware(thunk, logger))
-    )
+    let store = undefined
+    if (process.env.NODE_ENV === `development`) {
+        store = createStore(
+            rootReducer,
+            composeEnhancers(applyMiddleware(thunk, logger))
+        )
+    } else {
+        store = createStore(
+            rootReducer,
+            composeEnhancers(applyMiddleware(thunk))
+        )
+    }
 
     // -B- Styles
     const theme = createMuiTheme({

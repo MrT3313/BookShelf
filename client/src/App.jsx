@@ -22,7 +22,7 @@ import Register from './views/register.jsx'
 
 // __MAIN__
 function App(props) {
-console.log('APP PROPS: ', props)
+// console.log('APP PROPS: ', props)
 const { a_getBookLists } = props
 // -- //
   // useEffect

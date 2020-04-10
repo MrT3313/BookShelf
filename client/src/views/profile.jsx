@@ -37,7 +37,7 @@ const {
 // -- //
     // UseEffect
     useEffect(() => {
-        console.log('USE EFFECT IN PROFILE')
+        // console.log('USE EFFECT IN PROFILE')
         let userID = undefined
         // -- //
             // get userID
@@ -59,8 +59,8 @@ const {
         <>
             <Menu_AppBar />
             <AddPannel />
-            {console.log(userLogs)}
-            {console.log(userLogs.length)}
+            {/* {console.log(userLogs)}
+            {console.log(userLogs.length)} */}
             {userLogs.length !== 0 &&
                 // <EnhancedTable />
                 <LogTable />

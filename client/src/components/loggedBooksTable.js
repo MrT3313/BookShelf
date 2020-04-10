@@ -223,11 +223,11 @@ const { usersLoggedBooks } = props
   const classes = useStyles();
   // UseEffect
   useEffect(() => {
-    console.log('ENHANCED TABLE USE EFFECT')
-    console.log(usersLoggedBooks)
+    // console.log('ENHANCED TABLE USE EFFECT')
+    // console.log(usersLoggedBooks)
 
     const newRows = newCreateData(usersLoggedBooks)
-    console.log('NEW ROWS!!',newRows)
+    // console.log('NEW ROWS!!',newRows)
 
     setRows(newRows)
   }, [usersLoggedBooks])
@@ -235,7 +235,7 @@ const { usersLoggedBooks } = props
   // Methods
   // ADDED
   function newCreateData(userLogs) {
-    console.log('CREATING NEW DATA')
+    // console.log('CREATING NEW DATA')
     // console.log(userLogs)
     return userLogs.map((log, key) => {
       // console.log(log)
@@ -321,7 +321,7 @@ const { usersLoggedBooks } = props
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, key) => {
 
-                  console.log(key, row)
+                  // console.log(key, row)
 
                   const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${key}`;

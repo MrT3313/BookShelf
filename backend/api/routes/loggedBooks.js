@@ -9,7 +9,7 @@ const router = express.Router()
     // - GET - //
         // - 1 - // TEST
         router.get('/test', async(req,res) => {
-        console.log('** COMPLETED BOOKS ROUTE: completedBooks/test GET/')
+        // console.log('** COMPLETED BOOKS ROUTE: completedBooks/test GET/')
         // -- //
                 res.status(200).json({
                     message: 'TEST GET request for COMPLETED BOOKS ROUTE working'
@@ -18,7 +18,7 @@ const router = express.Router()
 
         // - 2 - // GET ALL LOGS 
         router.get('/all', async(req,res) => {
-            console.log('** COMPLETED BOOKS ROUTER: completedBooks/all GET/')
+            // console.log('** COMPLETED BOOKS ROUTER: completedBooks/all GET/')
             // -- //
                 KNEX_DB.raw(`
                     SELECT 
@@ -44,7 +44,7 @@ const router = express.Router()
 
         // - 3 - // GET SPECIFIC LOG
         router.get('/singleLog/:logID', async(req, res) => {
-        console.log('** LOGGED BOOKD ROUTER: loggedBooks/:logID GET/')
+        // console.log('** LOGGED BOOKD ROUTER: loggedBooks/:logID GET/')
         const {logID} = req.params
         // -- // 
             KNEX_DB('completedbooks').where('id', logID).first()
@@ -62,7 +62,7 @@ const router = express.Router()
 
         // - 4 - // GET ALL LOGS FOR SPECIFIC USER
         router.get('/singleUser/:userID', async(req, res) => {
-        console.log('** COMPLETED BOOKS ROUTE: completedBooks/:id GET/')
+        // console.log('** COMPLETED BOOKS ROUTE: completedBooks/:id GET/')
         const { userID } = req.params
         // -- //
             /* RAW Query
@@ -95,7 +95,7 @@ const router = express.Router()
                 WHERE users.id = ${userID}`
             )
             .then( userReadHistory => {
-            console.log(userReadHistory.rows)
+            // console.log(userReadHistory.rows)
             // -- // 
                 res.status(200).json(userReadHistory.rows)
             })
@@ -106,7 +106,7 @@ const router = express.Router()
 
         // - 5 - // GET ALL LOGS FOR SPECIFIC BOOK
         router.get('/singleBook/:bookID', async(req,res) => {
-            console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
+            // console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
             const {bookID} = req.params
             // -- // 
                 KNEX_DB('completedbooks').where('bookID', bookID)
@@ -168,7 +168,7 @@ const router = express.Router()
                     })
                 })
                 .catch(err => {
-                console.log(err)
+                // console.log(err)
                 // -- //
                     res.status(500).json({ ERROR: 'Unable to update log in DB'})
                 })
@@ -196,7 +196,7 @@ const router = express.Router()
                     })
             })
             .catch(err => {
-            console.log(err)
+            // console.log(err)
             // -- //
                 res.status(500).json({ ERROR: 'Unable to remove book to DB'})
             })

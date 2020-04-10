@@ -68,7 +68,7 @@ function LogTable(props) {
 const { 
   userLogs 
 } = props
-console.log('userLogs',userLogs)
+// console.log('userLogs',userLogs)
 // -- // 
   // State
     const [order, setOrder] = React.useState('asc');
@@ -232,7 +232,7 @@ console.log('userLogs',userLogs)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   
-                  console.log('ROW!!!',row)
+                  // console.log('ROW!!!',row)
 
                   const isItemSelected = isSelected(row.key);
                   const labelId = `enhanced-table-checkbox-${index}`;
