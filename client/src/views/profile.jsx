@@ -27,55 +27,46 @@ import decode from '../utils/decode_JWT.js'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
-    root: {
+    // root: {
         
-    }
+    // }
 }))
 
 // -B- COMPONENT
 function Profile(props) {
 const { 
     token, 
-    fetchingUserLogs, fetchingUserReviews,
+    userLogs,
     a_getUserLoggedBooks, a_getUserReviews 
 } = props
 // -- //
-    // Use State
-    const [fetching, setFetching ] = useState(true)
-
     // UseEffect
     useEffect(() => {
         console.log('USE EFFECT IN PROFILE')
-        console.log(fetching)
         let userID = undefined
         // -- //
             // get userID
-                const decodedToken = decode(token)
-                // console.log(decodedToken)
-                userID = decodedToken.user_ID
-                // console.log(userID)
+            const decodedToken = decode(token)
+            // console.log(decodedToken)
+            userID = decodedToken.user_ID
+            // console.log(userID)
     
             // Call  Action Creators
-        a_getUserLoggedBooks(userID)
-        console.log('FETCHING UPDATE',fetching)
-        a_getUserReviews(userID)
-        console.log('FETCHING UPDATE',fetching)
+            async function updateData() {
+                await a_getUserLoggedBooks(userID)
+                await a_getUserReviews(userID)
+            }
+            updateData()
     }, [])
-
-    useEffect(() => {
-        console.log('FETCHING USE EFFECT IN PROFIE')
-        console.log(fetchingUserLogs, fetchingUserReviews)
-        if (fetchingUserLogs === false && fetchingUserReviews === false) {
-            setFetching(false)
-        }
-    }, [fetchingUserLogs, fetchingUserReviews])
 
     // Return
     return (
         <>
             <Menu_AppBar />
             <AddPannel />
-            {!fetching &&
+            {console.log(userLogs)}
+            {console.log(userLogs.length)}
+            {userLogs.length !== 0 &&
                 // <EnhancedTable />
                 <LogTable />
             }
@@ -87,8 +78,11 @@ const {
 const mstp = state => {
     return {
         token: state.r_auth.token,
+        
         fetchingUserLogs: state.r_loggedBooks.is_fetchingUserData,
         fetchingUserReviews: state.r_reviews.is_fetchingUserData,
+
+        userLogs: state.r_loggedBooks.userLoggedBooks,
     }
 }
         

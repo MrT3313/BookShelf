@@ -58,7 +58,10 @@ const useStyles = makeStyles((theme) => ({
 
 // __MAIN__
 function LogTable(props) {
-console.log('MAIN TABLE PROPS', props)
+const { 
+  userLogs 
+} = props
+console.log('userLogs',userLogs)
 // -- // 
   // State
     const [order, setOrder] = React.useState('asc');
@@ -72,25 +75,36 @@ console.log('MAIN TABLE PROPS', props)
 
   // ---- DATA ----  //
   // ---- DATA ----  //
-    function createData(name, calories, fat, carbs, protein) {
-        return { name, calories, fat, carbs, protein };
+    // V2 - create data
+    function createData(title, author) {
+        return { title, author };
     }
+    // V1 - create data 
+    // function createData(name, calories, fat, carbs, protein) {
+    //     return { name, calories, fat, carbs, protein };
+    // }
 
-    const rows = [
-        createData('Cupcake', 305, 3.7, 67, 4.3),
-        createData('Donut', 452, 25.0, 51, 4.9),
-        createData('Eclair', 262, 16.0, 24, 6.0),
-        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-        createData('Gingerbread', 356, 16.0, 49, 3.9),
-        createData('Honeycomb', 408, 3.2, 87, 6.5),
-        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-        createData('Jelly Bean', 375, 0.0, 94, 0.0),
-        createData('KitKat', 518, 26.0, 65, 7.0),
-        createData('Lollipop', 392, 0.2, 98, 0.0),
-        createData('Marshmallow', 318, 0, 81, 2.0),
-        createData('Nougat', 360, 19.0, 9, 37.0),
-        createData('Oreo', 437, 18.0, 63, 4.0),
-    ];
+    // V2 - rows
+    const rows = userLogs.map((item,key) => {
+      return createData(item)
+    })
+
+    // V1 - rows
+    // const rows = [
+    //     createData('Cupcake', 305, 3.7, 67, 4.3),
+    //     createData('Donut', 452, 25.0, 51, 4.9),
+    //     createData('Eclair', 262, 16.0, 24, 6.0),
+    //     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+    //     createData('Gingerbread', 356, 16.0, 49, 3.9),
+    //     createData('Honeycomb', 408, 3.2, 87, 6.5),
+    //     createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+    //     createData('Jelly Bean', 375, 0.0, 94, 0.0),
+    //     createData('KitKat', 518, 26.0, 65, 7.0),
+    //     createData('Lollipop', 392, 0.2, 98, 0.0),
+    //     createData('Marshmallow', 318, 0, 81, 2.0),
+    //     createData('Nougat', 360, 19.0, 9, 37.0),
+    //     createData('Oreo', 437, 18.0, 63, 4.0),
+    // ];
   // ---- DATA ----  //
   // ---- DATA ----  //
   // ---- COMPARISON ---- //
@@ -224,10 +238,10 @@ console.log('MAIN TABLE PROPS', props)
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         {row.name}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell padding="none" align="center">{row.calories}</TableCell>
+                      <TableCell padding="none" align="center">{row.fat}</TableCell>
+                      <TableCell padding="none" align="center">{row.carbs}</TableCell>
+                      <TableCell padding="none" align="center">{row.protein}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -256,7 +270,7 @@ console.log('MAIN TABLE PROPS', props)
 // MAP STATE TO PROPS
 const mstp = state => {
   return {
-
+    userLogs: state.r_loggedBooks.userLoggedBooks,
   }
 }
 
