@@ -10,7 +10,9 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 import Menu_AppBar from '../components/AppBar.js'
 import AddPannel from '../components/AddPannel.js'
+
 import EnhancedTable from '../components/loggedBooksTable.js'
+import LogTable from '../components/Table.js'
 
 // Action Creators
 import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'
@@ -74,7 +76,8 @@ const {
             <Menu_AppBar />
             <AddPannel />
             {!fetching &&
-                <EnhancedTable />
+                // <EnhancedTable />
+                <LogTable />
             }
         </>
     )
