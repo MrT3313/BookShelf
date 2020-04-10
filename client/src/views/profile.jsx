@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 import Menu_AppBar from '../components/AppBar.js'
 import AddPannel from '../components/AddPannel.js'
-import UsersLoggedBooks from '../components/UsersLoggedBooks.js'
+import EnhancedTable from '../components/loggedBooksTable.js'
 
 // Action Creators
 import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'
@@ -34,11 +34,17 @@ const useStyles = makeStyles(theme => ({
 function Profile(props) {
 const { 
     token, 
+    fetchingUserLogs, fetchingUserReviews,
     a_getUserLoggedBooks, a_getUserReviews 
 } = props
 // -- //
+    // Use State
+    const [fetching, setFetching ] = useState(true)
+
     // UseEffect
     useEffect(() => {
+        console.log('USE EFFECT IN PROFILE')
+        console.log(fetching)
         let userID = undefined
         // -- //
             // get userID
@@ -49,15 +55,27 @@ const {
     
             // Call  Action Creators
         a_getUserLoggedBooks(userID)
+        console.log('FETCHING UPDATE',fetching)
         a_getUserReviews(userID)
+        console.log('FETCHING UPDATE',fetching)
     }, [])
+
+    useEffect(() => {
+        console.log('FETCHING USE EFFECT IN PROFIE')
+        console.log(fetchingUserLogs, fetchingUserReviews)
+        if (fetchingUserLogs === false && fetchingUserReviews === false) {
+            setFetching(false)
+        }
+    }, [fetchingUserLogs, fetchingUserReviews])
 
     // Return
     return (
         <>
             <Menu_AppBar />
             <AddPannel />
-            <UsersLoggedBooks />
+            {!fetching &&
+                <EnhancedTable />
+            }
         </>
     )
 }
@@ -66,6 +84,8 @@ const {
 const mstp = state => {
     return {
         token: state.r_auth.token,
+        fetchingUserLogs: state.r_loggedBooks.is_fetchingUserData,
+        fetchingUserReviews: state.r_reviews.is_fetchingUserData,
     }
 }
         

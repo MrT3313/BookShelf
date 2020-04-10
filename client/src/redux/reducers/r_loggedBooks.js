@@ -13,6 +13,7 @@ import {
 // INITIAL STATE
 const initialState = {
     is_fetching: false,
+    is_fetchingUserData: false,
     is_adding: false,
 
     userLoggedBooks: [],
@@ -54,7 +55,7 @@ console.log('action.payload: ', action.payload)
         case GET_USERLOGGEDBOOKS_START:
             return {
                 ...state,
-                is_fetching: true,
+                is_fetchingUserData: true,
                 error: ''
             }
         case GET_USERLOGGEDBOOKS_SUCCESS:
@@ -62,14 +63,14 @@ console.log('action.payload: ', action.payload)
                 ...state,
 
                 userLoggedBooks: action.payload,
-                is_fetching: false,
+                is_fetchingUserData: false,
 
                 error: ''
             }
         case GET_USERLOGGEDBOOKS_FAILURE:
             return {
                 ...state,
-                is_fetching: false,
+                is_fetchingUserData: false,
                 error: action.payload
             }
 

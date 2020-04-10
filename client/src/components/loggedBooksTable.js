@@ -90,7 +90,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={headCell.numeric ? 'right' : 'left'} // TODO: center
             padding={headCell.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -159,7 +159,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Nutrition
+          Logged Books
         </Typography>
       )}
 
@@ -213,7 +213,7 @@ const { usersLoggedBooks } = props
 // -- //
   // State
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('title');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -224,11 +224,29 @@ const { usersLoggedBooks } = props
   // UseEffect
   useEffect(() => {
     console.log('ENHANCED TABLE USE EFFECT')
+    console.log(usersLoggedBooks)
+
     const newRows = newCreateData(usersLoggedBooks)
+    console.log('NEW ROWS!!',newRows)
+
     setRows(newRows)
   }, [usersLoggedBooks])
 
   // Methods
+  // ADDED
+  function newCreateData(userLogs) {
+    console.log('CREATING NEW DATA')
+    // console.log(userLogs)
+    return userLogs.map((log, key) => {
+      // console.log(log)
+      return {
+        logID: log.logID,
+        title: log.title,
+        author: log.author
+      }
+    })
+  }
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -237,7 +255,7 @@ const { usersLoggedBooks } = props
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n, key) => n.title);
       setSelected(newSelecteds);
       return;
     }
@@ -277,16 +295,6 @@ const { usersLoggedBooks } = props
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
-  // ADDED
-  function newCreateData(userLogs) {
-    return userLogs.map(log => {
-      return {
-        title: log.title,
-        author: log.author
-      }
-    })
-  
-  }
 
   return (
     <div className={classes.root}>
@@ -311,18 +319,21 @@ const { usersLoggedBooks } = props
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+                .map((row, key) => {
+
+                  console.log(key, row)
+
+                  const isItemSelected = isSelected(row.id);
+                  const labelId = `enhanced-table-checkbox-${key}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.id)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -331,13 +342,17 @@ const { usersLoggedBooks } = props
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
                       </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                      <TableCell component="th" id={labelId} scope="row" padding="none" align="center">
+                        {row.title}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell padding="none" align="center">
+                        {row.author}
+                      </TableCell>
+                        {/* 
+                            .
+                            .
+                            .
+                        */}
                     </TableRow>
                   );
                 })}
@@ -367,7 +382,6 @@ const { usersLoggedBooks } = props
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        token: state.r_auth.token,
         usersLoggedBooks: state.r_loggedBooks.userLoggedBooks
     }
 }

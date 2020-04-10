@@ -13,6 +13,7 @@ import {
 // INITIAL STATE
 const initialState = {
     is_fetching: false,
+    is_fetchingUserData: false,
     is_adding: false,
 
     USER_reviews: [],
@@ -53,7 +54,7 @@ export const r_reviews = (state=initialState, action) => {
         case GET_USERREVIEWS_START:
             return {
                 ...state,
-                is_fetching: true,
+                is_fetchingUserData: true,
                 error: '',
             }
         case GET_USERREVIEWS_SUCCESS:
@@ -62,13 +63,13 @@ export const r_reviews = (state=initialState, action) => {
 
                 USER_reviews: action.payload,
 
-                is_fetching: false,
+                is_fetchingUserData: false,
                 error: '',
             }
         case GET_USERREVIEWS_FAILURE:
             return {
                 ...state,
-                is_fetching: false,
+                is_fetchingUserData: false,
                 error: action.payload,
             }
 
