@@ -29,6 +29,7 @@ const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequ
 // -- // 
     // Data
     const headCells = [
+        { id: 'order', numeric: false, disablePadding: true, label: 'Order' },
         { id: 'title', numeric: false, disablePadding: true, label: 'Title' },
         { id: 'author', numeric: true, disablePadding: false, label: 'Author' },
         // { id: 'date', numeric: true, disablePadding: false, label: 'Date' },
@@ -56,7 +57,7 @@ const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequ
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
+                        align={'center'}
                         padding={headCell.disablePadding ? 'none' : 'default'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >

@@ -76,8 +76,17 @@ console.log('userLogs',userLogs)
   // ---- DATA ----  //
   // ---- DATA ----  //
     // V2 - create data
-    function createData(title, author) {
-        return { title, author };
+    function createData(item, key) {
+      const dataPrep = { 
+        logID: item.logID,
+        key: key + 1,
+        title: item.title, 
+        author: item.author,
+      }  
+      console.log(dataPrep)
+
+      // Return
+      return dataPrep
     }
     // V1 - create data 
     // function createData(name, calories, fat, carbs, protein) {
@@ -86,7 +95,8 @@ console.log('userLogs',userLogs)
 
     // V2 - rows
     const rows = userLogs.map((item,key) => {
-      return createData(item)
+      console.log(key, item)
+      return createData(item, key)
     })
 
     // V1 - rows
@@ -216,17 +226,20 @@ console.log('userLogs',userLogs)
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  
+                  console.log('ROW!!!',row)
+
+                  const isItemSelected = isSelected(row.key);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.key)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.key}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -235,13 +248,11 @@ console.log('userLogs',userLogs)
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
                       </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                      <TableCell component="th" id={labelId} scope="row" padding="none" align="center">
+                        {row.key}
                       </TableCell>
-                      <TableCell padding="none" align="center">{row.calories}</TableCell>
-                      <TableCell padding="none" align="center">{row.fat}</TableCell>
-                      <TableCell padding="none" align="center">{row.carbs}</TableCell>
-                      <TableCell padding="none" align="center">{row.protein}</TableCell>
+                      <TableCell padding="none" align="center">{row.title}</TableCell>
+                      <TableCell padding="none" align="center">{row.author}</TableCell>
                     </TableRow>
                   );
                 })}
