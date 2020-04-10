@@ -82,8 +82,7 @@ console.log('userLogs',userLogs)
         key: key + 1,
         title: item.title, 
         author: item.author,
-      }  
-      console.log(dataPrep)
+      }
 
       // Return
       return dataPrep
@@ -95,7 +94,6 @@ console.log('userLogs',userLogs)
 
     // V2 - rows
     const rows = userLogs.map((item,key) => {
-      console.log(key, item)
       return createData(item, key)
     })
 

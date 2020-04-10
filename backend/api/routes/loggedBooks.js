@@ -136,19 +136,36 @@ const router = express.Router()
             .then( results => {
                 // console.log(results)
                 // -- //
-                    // Return ALL Logs
-                    KNEX_DB('completedbooks')
-                        .then( allLogs => {
-                            // console.log(allLogs)
-                            // -- //
-                            
-                            res.status(200).json(allLogs)
-                        })
-                        .catch(err => {
-                        // console.log(err)
+                    // V2 
+                    // Return All Logs in appropriate format
+                    KNEX_DB.raw(`
+                        SELECT 
+                            completedbooks.id as "logID", 
+                            users.id as "userID",
+                            books.id as "bookID", books.title, books.author, books.created_at
+                        FROM users
+                        
+                        JOIN completedbooks
+                        ON users.id = completedbooks."userID"
+                        
+                        JOIN books
+                        ON completedbooks."bookID" = books.id
+                    `)
+
+                    // // V1
+                    // // Return ALL Logs
+                    // KNEX_DB('completedbooks')
+                    .then( logs => {
+                        // console.log(allLogs.rows)
                         // -- //
-                            res.status(500).json({ ERROR: 'Unabel to get all logs after updating book'})
-                        })
+                        
+                        res.status(200).json(logs.rows)
+                    })
+                    .catch(err => {
+                    // console.log(err)
+                    // -- //
+                        res.status(500).json({ ERROR: 'Unabel to get all logs after updating book'})
+                    })
                 })
                 .catch(err => {
                 console.log(err)
