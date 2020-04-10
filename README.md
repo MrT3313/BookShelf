@@ -55,12 +55,27 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 ---
-### Latest: 1.4.0 -- Profile Page Functionality Update
-- Add Review for a book
+### Latest: 1.4.1 -- Profile Page Functionality Update
 
+<details open>
+<summary>1.4.1 -- Visualize User Logs</summary>
+
+- Table that shows all of the users logged books
+- Table columns are sortable 
+
+Screenshot:   
+<img src="client/src/assets/readMeImgs/1.4.1_ProfilePage__visualizeUserLogs.png" width='300'>   
+
+</details>
+
+<details>
+<summary>1.4.0 -- Profile Page Functionality Update</summary>
+
+- Add Review for a book & styling update  
 Screenshot:  
 <img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__addReview.png" width='300'>
 <img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__logCompletedBook.png" width='300'>
+</details>
 
 <details>
 <summary>1.3.1: Profile Page Functionality Update: Log Completed Book</summary>

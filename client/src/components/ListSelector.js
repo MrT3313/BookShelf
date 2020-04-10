@@ -39,8 +39,25 @@ const useStyles = makeStyles( theme => ({
 
     },
     listSelection__FormControl: {
-        minWidth: '50%',
-        maxWidth: '90%',
+        width: '40%',
+    },
+    // listName: {
+    //     color: 'white',
+    //     fontWeight: "bold",
+
+    //     "&MuiSelect-icon": {
+    //         color: 'white'
+    //     }
+    // },
+    listName: {
+        fontWeight: "bold",
+        color: 'white',
+        '&:before': {
+            color: theme.palette.secondary.main,
+        },
+        '&:after': {
+            borderColor: theme.palette.primary.main,
+        }
     },
 }))
 
@@ -82,6 +99,7 @@ const { a_getSpecificList } = props
                     value={listName}
                     onChange={handleChange}
                     displayEmpty
+                    className={classes.listName}
                 >
                     {props.allLists.map((list, key) => {
                         // console.log(list);

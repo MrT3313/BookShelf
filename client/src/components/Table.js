@@ -34,11 +34,12 @@ import { EnhancedTableToolbar } from '../components/TableToolBar.js'
 // Styles
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    display: 'flex',
+
+    margin: '20px',
   },
   paper: {
     width: '100%',
-    marginBottom: theme.spacing(2),
   },
   table: {
     minWidth: 750,
@@ -54,6 +55,12 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     width: 1,
   },
+  pagination: {
+    marginTop: '10px',
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.primary.main,
+    borderRadius: '0 0 5px 5px',
+  }
 }));
 
 // __MAIN__
@@ -241,10 +248,11 @@ console.log('userLogs',userLogs)
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
-                        <Checkbox
+                        {/* TODO: Table Interaction */}
+                        {/* <Checkbox
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
-                        />
+                        /> */}
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none" align="center">
                         {row.key}
@@ -254,22 +262,18 @@ console.log('userLogs',userLogs)
                     </TableRow>
                   );
                 })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: (33) * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 10]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
+          className={classes.pagination}
         />
       </Paper>
     </div>

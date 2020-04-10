@@ -26,11 +26,6 @@ import decode from '../utils/decode_JWT.js'
 
 // __MAIN__
 // -A- STYLES
-const useStyles = makeStyles(theme => ({
-    // root: {
-        
-    // }
-}))
 
 // -B- COMPONENT
 function Profile(props) {

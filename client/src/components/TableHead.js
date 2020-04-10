@@ -23,18 +23,34 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- //
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- //
+
+// Styles
+const useStyles = makeStyles((theme) => ({
+    tableHead__root: {
+        
+    },
+    sortLabel: {
+        display: 'flex',
+        justifyContent: 'center',
+
+        marginTop: "10px",
+        marginBottom: "10px",
+
+        fontWeight: 'bold',
+    }
+}));
   
 export function EnhancedTableHead(props) {
-const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
 // -- // 
+    // Styles
+    const classes = useStyles();
+
     // Data
     const headCells = [
         { id: 'order', numeric: false, disablePadding: true, label: 'Order' },
         { id: 'title', numeric: false, disablePadding: true, label: 'Title' },
         { id: 'author', numeric: true, disablePadding: false, label: 'Author' },
-        // { id: 'date', numeric: true, disablePadding: false, label: 'Date' },
-        // { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-        // { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
     ];
 
     //  Methods
@@ -44,34 +60,32 @@ const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequ
 
     // Return
     return (
-        <TableHead>
+        <TableHead className={classes.tableHead__root}>
             <TableRow>
                 <TableCell padding="checkbox">
-                    <Checkbox
+                    {/* TODO: Table Interactions */}
+                    {/* <Checkbox
                         indeterminate={numSelected > 0 && numSelected < rowCount}
                         checked={rowCount > 0 && numSelected === rowCount}
                         onChange={onSelectAllClick}
                         inputProps={{ 'aria-label': 'select all logs' }}
-                    />
+                    /> */}
                 </TableCell>
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
                         align={'center'}
-                        padding={headCell.disablePadding ? 'none' : 'default'}
+                        padding={'none'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
                         <TableSortLabel
                             active={orderBy === headCell.id}
                             direction={orderBy === headCell.id ? order : 'asc'}
                             onClick={createSortHandler(headCell.id)}
+                            className={classes.sortLabel}
+                            hideSortIcon={true}
                         >
-                        {headCell.label}
-                        {orderBy === headCell.id ? (
-                            <span className={classes.visuallyHidden}>
-                                {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                            </span>
-                        ) : null}
+                            {headCell.label}
                         </TableSortLabel>
                     </TableCell>
                 ))}

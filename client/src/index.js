@@ -44,9 +44,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
                 }
             },
             MuiSelect: {
-                root: {
-                    color: 'white',
-                }
+                // root: {
+                //     color: 'white',
+                // }
             }
             // MuiSelect: {
             //     root: {

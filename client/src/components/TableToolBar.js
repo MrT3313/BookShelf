@@ -29,6 +29,10 @@ const useToolbarStyles = makeStyles((theme) => ({
     root: {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
+
+      borderRadius: '5px 5px 0 0',
     },
     highlight:
       theme.palette.type === 'light'
@@ -69,19 +73,21 @@ const { numSelected } = props;
         </Typography>
       )}
 
-      {numSelected > 0 ? (
+      {numSelected > 0 &&
         <Tooltip title="Delete">
           <IconButton aria-label="delete">
               <DeleteIcon />
           </IconButton>
         </Tooltip>
-      ) : (
+      }
+      {/* TODO: Filtering */}
+      {/* {numSelected === 0 &&
         <Tooltip title="Filter list">
           <IconButton aria-label="filter list">
               <FilterListIcon />
           </IconButton>
         </Tooltip>
-      )}
+      } */}
     </Toolbar>
   );
 };
