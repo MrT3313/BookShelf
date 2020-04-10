@@ -1,10 +1,10 @@
 import {
     GET_BOOKS_START ,GET_BOOKS_SUCCESS ,GET_BOOKS_FAILURE
-} from '../actions/a_getBooks'
+} from '../actions/GET/a_getBooks'
 
 import {
     ADD_BOOK_START, ADD_BOOK_SUCCESS, ADD_BOOK_FAILURE
-} from '../actions/a_addBook.js'
+} from '../actions/POST/a_addBook.js'
 
 // INITIAL STATE
 const initialState = {
@@ -12,7 +12,6 @@ const initialState = {
     is_adding: false,
 
     DB_books: [],
-    // lastAdded: {},
     
     error: '',
 }

@@ -1,7 +1,7 @@
 # Welcome to your BookShelf
 Your one stop shop for all your reading needs. 
 
-- Hosted FE ([LINK](https://my-book-shelf.netlify.com))  
+- Visit The Site! 👉🏼👉🏼([LINK](https://my-book-shelf.netlify.com))  
 
 
 Get a recomendation from a coworker? Log it! 
@@ -25,14 +25,15 @@ Knex ([LINK](http://knexjs.org))
 
 ## UI
 Material UI ([LINK](https://material-ui.com))  
-Styled Components  ([LINK](https://styled-components.com))    
 
 ## Utils
-Package Manager: NPM  
+Package Manager: NPM 
 
-## APIs
-- BOOKS 
-1. NY Times: Books API ([LINK](https://developer.nytimes.com/docs/books-product/1/overview)) 
+## Assets
+1. IMG used for favicon: [good-ware](https://www.flaticon.com/authors/good-ware)
+
+## APIs  
+- NY Times: Books API ([LINK](https://developer.nytimes.com/docs/books-product/1/overview)) 
 
     - Get all available book lists:
         - Root URL: https://api.nytimes.com/svc/books/v3/lists/
@@ -46,7 +47,9 @@ Package Manager: NPM
             - Date: YYYY-MM-DD or "current"
             - List: Name of the Best Sellers List (e.g. hardcover-fiction)  
             
-    ** Credit Requirements: https://developer.nytimes.com/branding
+    ** Credit Requirements: https://developer.nytimes.com/branding  
+
+    <img src="client/src/assets/NYT_dataAttribution.png" width='150'>
 
 ## Versions
 - Version Numbering System: #.#.#
@@ -54,14 +57,31 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 ---
-### Latest: 1.4.0 -- Profile Page Functionality Update
-- Add Review for a book
+### Latest: 1.4.1 -- Profile Page Functionality Update
 
+<details open>
+<summary>1.4.1 -- Visualize User Logs</summary>
+
+- Table that shows all of the users logged books
+- Table columns are sortable 
+
+Screenshot:   
+<img src="client/src/assets/readMeImgs/1.4.1_ProfilePage__visualizeUserLogs.png" width='300'>   
+
+</details>
+
+<details>
+<summary>1.4.0 -- Profile Page Functionality Update</summary>
+
+- Add Review for a book & styling update  
 Screenshot:  
 <img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__addReview.png" width='300'>
+<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__logCompletedBook.png" width='300'>
+</details>
 
 <details>
 <summary>1.3.1: Profile Page Functionality Update: Log Completed Book</summary>
+
 - Single user flow => 
     - title input entry searching DB
         - Title in DB
@@ -79,13 +99,11 @@ Screenshot:
 </details>
 
 <details>
-<summary>1.3.0 - HOTFIX & Initial Profile Page</summary>
+<summary>1.3.0 - HOTFIX: login</summary>
 
-- Can add book to DB
+- Add book to DB
 - Login Hotfix -- forced premature merge
 
-Screenshot:  
-<img src="client/src/assets/readMeImgs/ProfilePage__hotfix_1.3.0.png" width='300'>
 </details>
 
 <details>
@@ -112,7 +130,7 @@ Screenshots:
 </details>
 
 <details>
-<summary>1.0.0 - Register & Login</summary>
+<summary>1.0.0 - HOSTED: Register & Login</summary>
 
 - FE: Hosted  
     - Login & Register  
@@ -144,6 +162,8 @@ Screenshot:
 
 Screenshot:  
 <img src="client/src/assets/readMeImgs/homepage_0.0.1.png" height='500'>
-</details>
----
+</details>  
+<br/>  
+
+---  
 Author: Reed Turgeon

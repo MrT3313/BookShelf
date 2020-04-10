@@ -2,7 +2,7 @@
 import {
     GET_SPECIFICLIST_START, GET_SPECIFICLIST_SUCCESS, GET_SPECIFICLIST_FAILURE,
     
-} from '../actions/a_specificList.js'
+} from '../actions/GET/a_getSpecificList.js'
 
 // INITIAL STATE
 const initialState = {

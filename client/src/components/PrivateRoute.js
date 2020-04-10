@@ -22,7 +22,7 @@ return (
 // MAP STATE TO PROPS
 const mstp = state => {
 return {
-    redux_token: state.r_login.token
+    redux_token: state.r_auth.token
 }
 }
 // CONNECT

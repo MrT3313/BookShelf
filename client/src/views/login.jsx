@@ -18,7 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 // ACTION CREATORS
-import { a_login } from '../redux/actions/a_login.js'
+import { a_login } from '../redux/actions/auth/a_login.js'
 
 // LOADER
 import Loader from 'react-loader-spinner'
@@ -192,7 +192,7 @@ const {is_loggingIn} = props
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        is_loggingIn: state.r_login.is_loggingIn
+        is_loggingIn: state.r_auth.is_loggingIn
     }
 }
         

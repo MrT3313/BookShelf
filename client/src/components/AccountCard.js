@@ -21,7 +21,7 @@ import { makeStyles } from '@material-ui/core/styles'
 // COMPONENTS
 
 // ACTION CREATORS
-import { a_UPDATE_user } from '../redux/actions/a_updateUser.js'
+import { a_updateUser } from '../redux/actions/auth/a_updateUser.js'
 
 // UTILS
 import decode from '../utils/decode_JWT.js'
@@ -72,7 +72,10 @@ const useStyles = makeStyles({
 // -B- COMPONENT
 function AccountCard(props) {
 // console.log('ACCOUNT CARD PROPS: ', props)
-const { token, username, email, publicProfile } = props
+const { 
+    token, username, email, publicProfile, 
+    a_updateUser,                                   // Action Creator        
+} = props
 // -- //
     // Styles
     const classes = useStyles({})
@@ -105,7 +108,7 @@ const { token, username, email, publicProfile } = props
         }
         // console.log(prepObj)
 
-        props.a_UPDATE_user(id, prepObj)
+        a_updateUser(id, prepObj)
     }
 
     // Return
@@ -248,11 +251,10 @@ const { token, username, email, publicProfile } = props
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        token: state.r_login.token,
-        username: state.r_login.username,
-        email: state.r_login.email,
-        publicProfile: state.r_login.publicProfile,
-        
+        token: state.r_auth.token,
+        username: state.r_auth.username,
+        email: state.r_auth.email,
+        publicProfile: state.r_auth.publicProfile,
     }
 }
 
@@ -260,6 +262,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_UPDATE_user
+        a_updateUser
     }
 )(AccountCard)

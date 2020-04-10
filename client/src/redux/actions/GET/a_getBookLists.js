@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 // URLS
-import { NYT_booksAPI_baseURL } from '../../utils'
+import { NYT_booksAPI_baseURL } from '../../../utils'
 
 // __MAIN__    
     // Action Types:
@@ -11,7 +11,7 @@ import { NYT_booksAPI_baseURL } from '../../utils'
     export const GET_BOOKLISTS_FAILURE = "GET_BOOKLISTS_FAILURE"
     
     // Action Creator:
-    export const a_GETbook_lists = () => {
+    export const a_getBookLists = () => {
     // console.log('INSIDE: a_GETbook_lists action creator')
     // -- //
         // Send First Action --> START 

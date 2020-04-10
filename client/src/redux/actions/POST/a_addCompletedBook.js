@@ -1,37 +1,9 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// TODO: THIS IS WHAT WE NEED TO USE FROM MTHE ADD BOOK PANNEL! 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // IMPORTS
 import axios from 'axios'
 
 // URLS
-import { LOCAL_BE_base_URL } from '../../utils'
-import { LIVE_BE_base_URL } from '../../utils'
+import { LOCAL_BE_base_URL } from '../../../utils'
+import { LIVE_BE_base_URL } from '../../../utils'
 
 // __MAIN__
     // Action Types
@@ -51,9 +23,9 @@ import { LIVE_BE_base_URL } from '../../utils'
             // What environment are we in?
             // TODO: TURN INTO UTIL FUNCTION 
             if (process.env.NODE_ENV === 'development') {
-                used_URL = `${LOCAL_BE_base_URL}log/completedBook`
+                used_URL = `${LOCAL_BE_base_URL}loggedBooks`
             } else if (process.env.NODE_ENV === 'production') {
-                used_URL = `${LIVE_BE_base_URL}log/completedBook`
+                used_URL = `${LIVE_BE_base_URL}loggedBooks`
             }
             // console.log('URL USED')
             // console.log(used_URL)
@@ -65,11 +37,17 @@ import { LIVE_BE_base_URL } from '../../utils'
                     {userID, bookID}
                 )
                 .then( results => {
-                // console.log(results)
+                console.log('CHECK!!!',results)
                 // -- //
+                    const userResults = results.data.filter(item => item.userID == userID)
+                    console.log(userResults)
+
                     dispatch({
                         type: LOG_COMPLETEDBOOK_SUCCESS,
-                        payload: results.data
+                        payload: {
+                            allUsers: results.data,
+                            singleUser: userResults
+                        }
                     })
                 })
                 .catch( err => {

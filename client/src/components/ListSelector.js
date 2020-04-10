@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import API_dataAttribution from './API_DataAttribution.js'
 
 // ACTION CREATORS
-import {a_GETspecific_list} from '../redux/actions/a_specificList.js'
+import {a_getSpecificList} from '../redux/actions/GET/a_getSpecificList.js'
 
 
 // === === === === === === === === === === === === //
@@ -39,14 +39,32 @@ const useStyles = makeStyles( theme => ({
 
     },
     listSelection__FormControl: {
-        minWidth: '50%',
-        maxWidth: '90%',
+        width: '40%',
+    },
+    // listName: {
+    //     color: 'white',
+    //     fontWeight: "bold",
+
+    //     "&MuiSelect-icon": {
+    //         color: 'white'
+    //     }
+    // },
+    listName: {
+        fontWeight: "bold",
+        color: 'white',
+        '&:before': {
+            color: theme.palette.secondary.main,
+        },
+        '&:after': {
+            borderColor: theme.palette.primary.main,
+        }
     },
 }))
 
 // -B- COMPONENT
 function ListSelector(props){
 // console.log('listSelector PROPS: ', props)
+const { a_getSpecificList } = props
 // -- //
     // Styles
     const classes = useStyles()
@@ -63,7 +81,7 @@ function ListSelector(props){
     useEffect(() => {
         // console.log('TOP 10 USE EFFECT')
             async function fetchData(){
-                await props.a_GETspecific_list('current', listName)
+                await a_getSpecificList('current', listName)
                 setListName(listName)
             }
             fetchData()
@@ -81,6 +99,7 @@ function ListSelector(props){
                     value={listName}
                     onChange={handleChange}
                     displayEmpty
+                    className={classes.listName}
                 >
                     {props.allLists.map((list, key) => {
                         // console.log(list);
@@ -108,6 +127,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_GETspecific_list
+        a_getSpecificList
     }
 )(ListSelector)

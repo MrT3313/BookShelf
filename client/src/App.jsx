@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import { Route } from 'react-router-dom'
 
 // ACTION CREATORS
-import { a_GETbook_lists } from './redux/actions/a_lists.js'
+import { a_getBookLists } from './redux/actions/GET/a_getBookLists.js'
 
 // STYLES
 import './styles/index.css'
@@ -23,11 +23,12 @@ import Register from './views/register.jsx'
 // __MAIN__
 function App(props) {
 console.log('APP PROPS: ', props)
+const { a_getBookLists } = props
 // -- //
   // useEffect
   useEffect(() => {
     async function get_lists() {
-      await props.a_GETbook_lists()
+      await a_getBookLists()
     }
     get_lists()
   }, [props])
@@ -57,6 +58,6 @@ const mstp = state => {
 export default connect(
   mstp,
     {
-        a_GETbook_lists,
+      a_getBookLists,
     }
 )(App)

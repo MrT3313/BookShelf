@@ -4,19 +4,19 @@
 // ACTION TYPES
 import {
     LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE
-} from '../actions/a_login.js'
+} from '../actions/auth/a_login.js'
 
 import {
     REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE
-} from '../actions/a_register.js'
+} from '../actions/auth/a_register.js'
 
 import {
     LOGOUT
-} from '../actions/a_logout.js'
+} from '../actions/auth/a_logout.js'
 
 import {
     UPDATE_USER_START, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE
-} from '../actions/a_updateUser.js'
+} from '../actions/auth/a_updateUser.js'
 
 // INITIAL STATE
 const initialState = {
@@ -33,7 +33,7 @@ const initialState = {
 }
 
 // __MAIN__
-export const r_login = (state=initialState, action) => {
+export const r_auth = (state=initialState, action) => {
 // console.log('action.payload: ', action.payload)
 // -- //
     // Switch conditional for different action types

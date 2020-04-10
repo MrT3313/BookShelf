@@ -1,7 +1,7 @@
 // ACTION TYPES
 import {
     GET_BOOKLISTS_START, GET_BOOKLISTS_SUCCESS, GET_BOOKLISTS_FAILURE,
-} from '../actions/a_lists.js'
+} from '../actions/GET/a_getBookLists.js'
 
 // INITIAL STATE
 const initialState = {

@@ -22,7 +22,7 @@ const router = express.Router()
             })
         })
     
-    // - 2 - // Get ALL Reviews
+    // - 2 - // GET ALL REVIEWS
     router.get('/all', async(req,res) => {
     console.log('** REVIEWS ROUTER: reviews/all GET/')
     // -- // 
@@ -38,6 +38,61 @@ const router = express.Router()
                 res.status(500).json(err)
             })
     })
+
+    // - 3 - // GET SPECIFIC REVIEW
+    router.get('/singleReview/:reviewID', async(req, res) => {
+    console.log('** REVIEWS ROUTER: reviews/:reviewID GET/')
+    const {reviewID} = req.params
+    // -- // 
+        KNEX_DB('reviews').where('id', reviewID).first()
+            .then( singleReview => {
+            // console.log(singleBook)
+            // -- //
+                res.status(200).json(singleReview)
+            })
+            .catch( err => {
+            // console.log(err)
+            // -- //
+                res.status(500).json(err)
+            })
+    })
+
+    // - 4 - // GET ALL REVIEWS FOR SPECIFIC BOOK
+    router.get('/singleBook/:bookID', async(req,res) => {
+    console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
+    const {bookID} = req.params
+    // -- // 
+        KNEX_DB('reviews').where('bookID', bookID)
+        .then( bookReviews => {
+        // console.log(bookReviews)
+        // -- //
+            res.status(200).json(bookReviews)
+        })
+        .catch( err => {
+        // console.log(err)
+        // -- //
+            res.status(500).json(err)
+        })
+    })
+
+    // - 5 - // GET ALL REVIEWS FOR SPECIFIC USER
+    router.get('/singleUser/:userID', async(req,res) => {
+    console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
+    const {userID} = req.params
+    // -- // 
+        KNEX_DB('reviews').where('userID', userID)
+        .then( singleReview => {
+        // console.log(singleBook)
+        // -- //
+            res.status(200).json(singleReview)
+        })
+        .catch( err => {
+        // console.log(err)
+        // -- //
+            res.status(500).json(err)
+        })
+    })
+
 // - POST - //
     /* ACCEPTED SHAPE
         {
@@ -71,8 +126,66 @@ const router = express.Router()
                 res.status(500).json({ ERROR: 'Unable to add review to DB'})
             })
     })
-// - PUT - //
+
+// - PUT - // Update Review
+    /* ACCEPTED SHAPE
+        {
+            "review": "STRING",
+        } 
+    */
+    router.put('/:reviewID', async(req, res) => {
+    // console.log('** BOOKS ROUTER: books/ PUT/')
+    const { reviewID } = req.params
+    // -- //
+        KNEX_DB('reviews').where('id',reviewID).update(req.body)
+            .then( results => {
+            // console.log(results)
+            // -- //
+                // Return ALL Reviews
+                KNEX_DB('reviews')
+                    .then( allReviews => {
+                        // console.log(allBooks)
+                        // -- //
+                        res.status(200).json(allReviews)
+                    })
+                    .catch(err => {
+                    // console.log(err)
+                    // -- //
+                        res.status(500).json({ ERROR: 'Unabel to get all reviews after updating review'})
+                    })
+            })
+            .catch(err => {
+            console.log(err)
+            // -- //
+                res.status(500).json({ ERROR: 'Unable to update book in DB'})
+            })
+    })
 // - DEL - //
+    router.delete('/:reviewID', async(req, res) => {
+        const {reviewID} = req.params
+        KNEX_DB('reviews').where('id', reviewID).del()
+            .then( results => {
+            // console.log(results)
+            // -- //
+                // Return ALL Reviews
+                KNEX_DB('reviews')
+                    .then( allReviews => {
+                        // console.log(allReviews)
+                        // -- //
+                        res.status(200).json(allReviews)
+                    })
+                    .catch(err => {
+                    // console.log(err)
+                    // -- //
+                        res.status(500).json({ ERROR: 'Unabel to get all books after book removal'})
+                    })
+            })
+            .catch(err => {
+            console.log(err)
+            // -- //
+                res.status(500).json({ ERROR: 'Unable to remove book to DB'})
+            })
+    })
 
 // EXPORTS
 module.exports = router

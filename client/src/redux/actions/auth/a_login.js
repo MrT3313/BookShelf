@@ -3,8 +3,8 @@ import axios from 'axios';
 // import jwt from 'jsonwebtoken';
 
 // URLS
-import { LOCAL_BE_base_URL } from '../../utils'
-import { LIVE_BE_base_URL } from '../../utils'
+import { LOCAL_BE_base_URL } from '../../../utils'
+import { LIVE_BE_base_URL } from '../../../utils'
 
 // __MAIN__
     // Create Action Types

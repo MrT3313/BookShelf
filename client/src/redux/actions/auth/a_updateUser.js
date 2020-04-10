@@ -2,8 +2,8 @@
 import axios from 'axios'
 
 // UTILS
-import { LOCAL_BE_base_URL } from '../../utils'
-import { LIVE_BE_base_URL } from '../../utils'
+import { LOCAL_BE_base_URL } from '../../../utils'
+import { LIVE_BE_base_URL } from '../../../utils'
 
 // __MAIN__
     // Action Types
@@ -12,7 +12,7 @@ import { LIVE_BE_base_URL } from '../../utils'
     export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE'
 
     // Action Creator
-    export const a_UPDATE_user = (id, updateInfo) => {
+    export const a_updateUser = (id, updateInfo) => {
     // console.log('INSIDE: a_UPDATE_user action creator')
     // -- //
         // Send First Action --> START

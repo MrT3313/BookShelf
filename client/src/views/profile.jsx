@@ -1,5 +1,5 @@
 // IMPORTS
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 
 // MATERIAL UI
@@ -11,23 +11,60 @@ import { makeStyles } from '@material-ui/core/styles';
 import Menu_AppBar from '../components/AppBar.js'
 import AddPannel from '../components/AddPannel.js'
 
+import EnhancedTable from '../components/loggedBooksTable.js'
+import LogTable from '../components/Table.js'
+
+// Action Creators
+import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'
+import { a_getUserReviews } from '../redux/actions/GET/a_getUserReviews.js'
+
+// FUNCTIONS
+import decode from '../utils/decode_JWT.js'
+
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
 
 // __MAIN__
 // -A- STYLES
-const useStyles = makeStyles(theme => ({
-    root: {
-        
-    }
-}))
 
 // -B- COMPONENT
 function Profile(props) {
+const { 
+    token, 
+    userLogs,
+    a_getUserLoggedBooks, a_getUserReviews 
+} = props
+// -- //
+    // UseEffect
+    useEffect(() => {
+        console.log('USE EFFECT IN PROFILE')
+        let userID = undefined
+        // -- //
+            // get userID
+            const decodedToken = decode(token)
+            // console.log(decodedToken)
+            userID = decodedToken.user_ID
+            // console.log(userID)
+    
+            // Call  Action Creators
+            async function updateData() {
+                await a_getUserLoggedBooks(userID)
+                await a_getUserReviews(userID)
+            }
+            updateData()
+    }, [])
+
+    // Return
     return (
         <>
             <Menu_AppBar />
             <AddPannel />
+            {console.log(userLogs)}
+            {console.log(userLogs.length)}
+            {userLogs.length !== 0 &&
+                // <EnhancedTable />
+                <LogTable />
+            }
         </>
     )
 }
@@ -35,7 +72,12 @@ function Profile(props) {
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
+        token: state.r_auth.token,
         
+        fetchingUserLogs: state.r_loggedBooks.is_fetchingUserData,
+        fetchingUserReviews: state.r_reviews.is_fetchingUserData,
+
+        userLogs: state.r_loggedBooks.userLoggedBooks,
     }
 }
         
@@ -43,6 +85,7 @@ const mstp = state => {
 export default connect(
     mstp,
     {
-        
+        a_getUserLoggedBooks,
+        a_getUserReviews,
     }
 )(Profile)

@@ -2,17 +2,19 @@
 import { combineReducers } from 'redux'
 
 // REDUCERS
-import { r_login } from './r_login.js'
+import { r_auth } from './r_auth.js'
 import { r_lists } from './r_lists.js'
 import { r_books } from './r_books.js'
 import { r_specificList } from './r_specificList.js'
 import { r_reviews } from './r_reviews.js'
+import { r_loggedBooks } from './r_loggedBooks.js'
 
 // __MAIN__
 export const rootReducer = combineReducers({
-    r_login,
+    r_auth,
     r_lists,
     r_books,
     r_specificList,
-    r_reviews
+    r_reviews,
+    r_loggedBooks,
 })
