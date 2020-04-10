@@ -81,6 +81,7 @@ Screenshot:
 
 <details>
 <summary>1.3.1: Profile Page Functionality Update: Log Completed Book</summary>
+
 - Single user flow => 
     - title input entry searching DB
         - Title in DB
@@ -98,13 +99,11 @@ Screenshot:
 </details>
 
 <details>
-<summary>1.3.0 - HOTFIX & Initial Profile Page</summary>
+<summary>1.3.0 - HOTFIX: login</summary>
 
-- Can add book to DB
+- Add book to DB
 - Login Hotfix -- forced premature merge
 
-Screenshot:  
-<img src="client/src/assets/readMeImgs/ProfilePage__hotfix_1.3.0.png" width='300'>
 </details>
 
 <details>
@@ -131,7 +130,7 @@ Screenshots:
 </details>
 
 <details>
-<summary>1.0.0 - Register & Login</summary>
+<summary>1.0.0 - HOSTED: Register & Login</summary>
 
 - FE: Hosted  
     - Login & Register  
