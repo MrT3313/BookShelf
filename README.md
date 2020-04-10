@@ -1,7 +1,7 @@
 # Welcome to your BookShelf
 Your one stop shop for all your reading needs. 
 
-- Hosted FE ([LINK](https://my-book-shelf.netlify.com))  
+- Visit The Site! 👉🏼👉🏼([LINK](https://my-book-shelf.netlify.com))  
 
 
 Get a recomendation from a coworker? Log it! 
@@ -47,7 +47,9 @@ Package Manager: NPM
             - Date: YYYY-MM-DD or "current"
             - List: Name of the Best Sellers List (e.g. hardcover-fiction)  
             
-    ** Credit Requirements: https://developer.nytimes.com/branding
+    ** Credit Requirements: https://developer.nytimes.com/branding  
+
+    <img src="client/src/assets/NYT_dataAttribution.png" width='150'>
 
 ## Versions
 - Version Numbering System: #.#.#
