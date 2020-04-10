@@ -1,4 +1,7 @@
+// IMPORTS
 import React from 'react';
+import { connect } from 'react-redux'
+
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -54,7 +57,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // __MAIN__
-export default function LogTable() {
+function LogTable(props) {
+console.log('MAIN TABLE PROPS', props)
+// -- // 
   // State
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
@@ -247,3 +252,18 @@ export default function LogTable() {
     </div>
   );
 }
+
+// MAP STATE TO PROPS
+const mstp = state => {
+  return {
+
+  }
+}
+
+// CONNECT & EXPORT
+export default connect(
+  mstp, 
+  {
+      
+  }
+)(LogTable)
