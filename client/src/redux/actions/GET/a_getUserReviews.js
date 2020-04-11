@@ -26,14 +26,14 @@ import { LIVE_BE_base_URL } from '../../../utils'
             } else if (process.env.NODE_ENV === 'production') {
                 used_URL = `${LIVE_BE_base_URL}reviews/singleUser/${userID}`
             }
-            console.log('URL USED')
-            console.log(used_URL)
+            // console.log('URL USED')
+            // console.log(used_URL)
 
             // Make Axios Request
             axios
                 .get(used_URL)
                 .then(reviews => {
-                console.log(reviews)
+                // console.log(reviews)
                 // -- // 
                     dispatch({
                         type: GET_USERREVIEWS_SUCCESS,

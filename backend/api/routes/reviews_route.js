@@ -15,7 +15,7 @@ const router = express.Router()
 // - GET - //
     // - 1 - // TEST
     router.get('/test', async(req,res) => {
-        console.log('** USERS ROUTE: reviews/test GET/')
+        // console.log('** USERS ROUTE: reviews/test GET/')
         // -- //
             res.status(200).json({
                 message: 'TEST GET request for REVIEWS ROUTE working'
@@ -24,16 +24,16 @@ const router = express.Router()
     
     // - 2 - // GET ALL REVIEWS
     router.get('/all', async(req,res) => {
-    console.log('** REVIEWS ROUTER: reviews/all GET/')
+    // console.log('** REVIEWS ROUTER: reviews/all GET/')
     // -- // 
         KNEX_DB('reviews')
             .then( allReviews => {
-            console.log(allReviews)
+            // console.log(allReviews)
             // -- //
                 res.status(200).json(allReviews)
             })
             .catch(err => {
-            console.log(err)
+            // console.log(err)
             // -- //
                 res.status(500).json(err)
             })
@@ -41,7 +41,7 @@ const router = express.Router()
 
     // - 3 - // GET SPECIFIC REVIEW
     router.get('/singleReview/:reviewID', async(req, res) => {
-    console.log('** REVIEWS ROUTER: reviews/:reviewID GET/')
+    // console.log('** REVIEWS ROUTER: reviews/:reviewID GET/')
     const {reviewID} = req.params
     // -- // 
         KNEX_DB('reviews').where('id', reviewID).first()
@@ -59,7 +59,7 @@ const router = express.Router()
 
     // - 4 - // GET ALL REVIEWS FOR SPECIFIC BOOK
     router.get('/singleBook/:bookID', async(req,res) => {
-    console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
+    // console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
     const {bookID} = req.params
     // -- // 
         KNEX_DB('reviews').where('bookID', bookID)
@@ -77,7 +77,7 @@ const router = express.Router()
 
     // - 5 - // GET ALL REVIEWS FOR SPECIFIC USER
     router.get('/singleUser/:userID', async(req,res) => {
-    console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
+    // console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
     const {userID} = req.params
     // -- // 
         KNEX_DB('reviews').where('userID', userID)
@@ -102,7 +102,7 @@ const router = express.Router()
         }
     */
     router.post('/', async(req,res) => {
-    console.log('** REVIEWS ROUTER: reviews/ POST/')
+    // console.log('** REVIEWS ROUTER: reviews/ POST/')
     // -- //
         KNEX_DB('reviews').insert(req.body)
             .then( results => {
@@ -121,7 +121,7 @@ const router = express.Router()
                     })
             })
             .catch( err => {
-            console.log(err)
+            // console.log(err)
             // -- //
                 res.status(500).json({ ERROR: 'Unable to add review to DB'})
             })
@@ -155,7 +155,7 @@ const router = express.Router()
                     })
             })
             .catch(err => {
-            console.log(err)
+            // console.log(err)
             // -- //
                 res.status(500).json({ ERROR: 'Unable to update book in DB'})
             })

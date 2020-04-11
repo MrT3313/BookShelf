@@ -15,7 +15,7 @@ const router = express.Router()
     // - GET - //
         // - 1 - // TEST
         router.get('/test', async(req,res) => {
-        console.log('** BOOKS ROUTER: TEST GET/')
+        // console.log('** BOOKS ROUTER: TEST GET/')
         // -- //
             res.status(200).json({
                 message: 'TEST GET request for BOOKS ROUTE working'
@@ -24,7 +24,7 @@ const router = express.Router()
 
         // - 2 - // GET ALL BOOKS
         router.get('/all', async(req,res) => {
-        console.log('** BOOKS ROUTER: books/all GET/')
+        // console.log('** BOOKS ROUTER: books/all GET/')
         // -- //
             KNEX_DB('books')
                 .then( allBooks => {
@@ -41,7 +41,7 @@ const router = express.Router()
 
         // - 3 - // GET SINGLE BOOK
         router.get('/:bookID', async(req,res) => {
-        console.log('** BOOKS ROUTER: books/:id GET/')
+        // console.log('** BOOKS ROUTER: books/:id GET/')
         const { bookID } = req.params
         // -- //
             KNEX_DB('books').where('id', bookID)
@@ -65,7 +65,7 @@ const router = express.Router()
             } 
         */
         router.post('/', async(req,res) => {
-        console.log('** BOOKS ROUTER: books/ POST/')
+        // console.log('** BOOKS ROUTER: books/ POST/')
         // -- //
             KNEX_DB('books').insert(req.body)
                 .then( results => {
@@ -86,7 +86,7 @@ const router = express.Router()
                         })
                 })
                 .catch(err => {
-                console.log(err)
+                // console.log(err)
                 // -- //
                     res.status(500).json({ ERROR: 'Unable to add book to DB'})
                 })
@@ -122,7 +122,7 @@ const router = express.Router()
                         })
                 })
                 .catch(err => {
-                console.log(err)
+                // console.log(err)
                 // -- //
                     res.status(500).json({ ERROR: 'Unable to update book in DB'})
                 })
@@ -150,7 +150,7 @@ const router = express.Router()
                         })
                 })
                 .catch(err => {
-                console.log(err)
+                // console.log(err)
                 // -- //
                     res.status(500).json({ ERROR: 'Unable to remove book to DB'})
                 })

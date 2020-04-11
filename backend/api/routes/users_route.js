@@ -9,7 +9,7 @@ const router = express.Router()
     // - GET - //
         // - 1 - // TEST
         router.get('/test', async(req,res) => {
-        console.log('** USERS ROUTE: users/test GET/')
+        // console.log('** USERS ROUTE: users/test GET/')
         // -- //
             res.status(200).json({
                 message: 'TEST GET request for USERS ROUTE working'
@@ -86,7 +86,7 @@ const router = express.Router()
                             })
                     })
                     .catch( err => {
-                    console.log(err)
+                    // console.log(err)
                     // -- // 
                         res.status(500).json( {error: 'Unabel to update user'})
                     })
@@ -96,8 +96,8 @@ const router = express.Router()
             // TODO: Move to separate Admin Routing
             router.put('/privileges/:id',  async (req,res) => {
             const {id} = req.params
-            console.log(id)
-            console.log(req.body)
+            // console.log(id)
+            // console.log(req.body)
             // -- //
                 KNEX_BD('users').where({id}).update(req.body)
                     .then( updateResults => {

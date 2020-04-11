@@ -37,10 +37,10 @@ import { LIVE_BE_base_URL } from '../../../utils'
                     {userID, bookID}
                 )
                 .then( results => {
-                console.log('CHECK!!!',results)
+                // console.log('CHECK!!!',results)
                 // -- //
                     const userResults = results.data.filter(item => item.userID == userID)
-                    console.log(userResults)
+                    // console.log(userResults)
 
                     dispatch({
                         type: LOG_COMPLETEDBOOK_SUCCESS,

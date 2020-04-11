@@ -111,11 +111,11 @@ const {
         // get userID
         const decodedToken = decode(token)
         userID = decodedToken.user_ID
-        console.log(userID)
+        // console.log(userID)
 
         // get bookID
         const selectedBook = DB_books.filter(book => book.title === title)[0]
-        console.log(selectedBook)
+        // console.log(selectedBook)
         // setBookID(selectedBook.id)
 
         // Prep Object

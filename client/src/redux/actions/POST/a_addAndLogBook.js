@@ -41,7 +41,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                         const newBook = updatedState.r_books.DB_books[
                             updatedState.r_books.DB_books.length - 1
                         ]
-                        console.log(newBook)
+                        // console.log(newBook)
                         // -- // 
 
                         return dispatch(a_logCompletedBook(userID, newBook.id))

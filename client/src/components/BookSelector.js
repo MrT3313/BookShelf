@@ -54,8 +54,8 @@ const {DB_books, selectBook} = props
     
     // Methods
     const handleChange = e => {
-        console.log(e)
-        console.log(e.target)
+        // console.log(e)
+        // console.log(e.target)
         selectBook(e.target.value)
     }
 

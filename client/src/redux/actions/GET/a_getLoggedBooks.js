@@ -34,7 +34,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
             axios
                 .get(used_URL)
                 .then(completedBooks => {
-                console.log(completedBooks)
+                // console.log(completedBooks)
                 // -- // 
                     dispatch({
                         type: GET_ALLLOGGEDBOOKS_SUCCESS,
