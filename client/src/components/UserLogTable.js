@@ -54,7 +54,8 @@ const useStyles = makeStyles((theme) => ({
 // __MAIN__
 function UserLogTable(props) {
 const { 
-  userLogs 
+  userLogs,
+  setUserLogIndex, 
 } = props
 // console.log('userLogs',userLogs)
 // -- // 
@@ -65,18 +66,8 @@ const {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const months = {
-      0: 'Jan',
-      1: 'Feb',
-      2: 'Mar',
-      3: 'Apr',
-      4: 'May',
-      5: 'Jun',
-      6: 'Jul',
-      7: 'Aug',
-      8: 'Sep',
-      9: 'Oct',
-      10: 'Nov',
-      11: 'Dec'
+      0: 'Jan', 1: 'Feb', 2: 'Mar', 3: 'Apr', 4: 'May', 5: 'Jun',
+      6: 'Jul', 7: 'Aug', 8: 'Sep', 9: 'Oct', 10: 'Nov', 11: 'Dec'
     }
   
   // Styles
@@ -152,23 +143,31 @@ const {
       setSelected([]);
     };
 
-    const handleClick = (event, name) => {
-      const selectedIndex = selected.indexOf(name);
-      let newSelected = [];
+    const handleClick = (event, key) => {
+      const multiSelect = false
+      const selectedIndex = selected.indexOf(key);
 
-      if (selectedIndex === -1) {
-        newSelected = newSelected.concat(selected, name);
-      } else if (selectedIndex === 0) {
-        newSelected = newSelected.concat(selected.slice(1));
-      } else if (selectedIndex === selected.length - 1) {
-        newSelected = newSelected.concat(selected.slice(0, -1));
-      } else if (selectedIndex > 0) {
-        newSelected = newSelected.concat(
-          selected.slice(0, selectedIndex),
-          selected.slice(selectedIndex + 1),
-        );
+      let newSelected = [];
+      if (multiSelect) {
+        if (selectedIndex === -1) {
+          newSelected = newSelected.concat(selected, key);
+        } else if (selectedIndex === 0) {
+          newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+          newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+          newSelected = newSelected.concat(
+            selected.slice(0, selectedIndex),
+            selected.slice(selectedIndex + 1),
+          );
+        }
+      } else {
+        newSelected = [key,]
       }
 
+      console.log(newSelected)
+
+      setUserLogIndex(newSelected.map(index => index - 1).sort())
       setSelected(newSelected);
     };
 
@@ -194,7 +193,7 @@ const {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
             className={classes.table}

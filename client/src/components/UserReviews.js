@@ -22,23 +22,51 @@ import { makeStyles } from '@material-ui/core/styles';
 // -B- COMPONENT
 function UserReviews(props) {
 // console.log('USER REVIEW PROPS: ',props)
+const { 
+    UserLogIndex,        // Passed Props
+    userLogs,            // Connect 
+} = props
 // -- // 
     // Styles
     // const classes = useStyles({})
 
     // State
+    const [data, setData] = useState([])
+
+    // UseEffect
+    useEffect(() => {
+        let filtered = []
+        for (const index in UserLogIndex) {
+            console.log(index)
+            filtered.push(userLogs[index])
+        }
+        console.log(filtered)
+        setData(filtered)
+    }, [UserLogIndex])
 
     // Return
-    return (
-        <Paper>Hello From User Reviews</Paper>
-    )
+    if ( UserLogIndex.length !== 0 ) {
+        
+        return (
+            <Paper>
+                You have not reviewed this book yet!
+            </Paper>
+        )
+    } else {
+        return (
+            <Paper>
+                Select From Logged Books
+            </Paper>
+        )
+    }
 }
 
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        
-}}
+        userLogs: state.r_loggedBooks.userLoggedBooks, 
+    }
+}
 
 // CONNECT & EXPORT
 export default connect(

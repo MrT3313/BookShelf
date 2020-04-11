@@ -35,6 +35,9 @@ const {
     a_getUserLoggedBooks, a_getUserReviews 
 } = props
 // -- //
+    // State
+    const [selectedUserLogIndex, setUserLogIndex] = useState([])
+
     // UseEffect
     useEffect(() => {
         // console.log('USE EFFECT IN PROFILE')
@@ -63,9 +66,9 @@ const {
             {console.log(userLogs.length)} */}
             {userLogs.length !== 0 &&
                 // <EnhancedTable />
-                <UserLogTable />
+                <UserLogTable setUserLogIndex={setUserLogIndex}/>
             }
-            <UserReviews />
+            <UserReviews UserLogIndex={selectedUserLogIndex}/>
         </>
     )
 }
