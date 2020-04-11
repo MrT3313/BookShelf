@@ -29,6 +29,8 @@ const router = express.Router()
                     
                     JOIN books
                     ON completedbooks."bookID" = books.id
+
+                    ORDER BY books.created_at
                 `)
                 .then( loggedBooks => {
                 // console.log(loggedBooks.rows)
@@ -92,8 +94,10 @@ const router = express.Router()
                 JOIN books
                 ON completedbooks."bookID" = books.id
                 
-                WHERE users.id = ${userID}`
-            )
+                WHERE users.id = ${userID}
+
+                ORDER BY books.created_at
+            `)
             .then( userReadHistory => {
             // console.log(userReadHistory.rows)
             // -- // 
@@ -150,6 +154,8 @@ const router = express.Router()
                         
                         JOIN books
                         ON completedbooks."bookID" = books.id
+
+                        ORDER BY books.created_at
                     `)
 
                     // // V1

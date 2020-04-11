@@ -11,8 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Menu_AppBar from '../components/AppBar.js'
 import AddPannel from '../components/AddPannel.js'
 
-import EnhancedTable from '../components/loggedBooksTable.js'
-import LogTable from '../components/Table.js'
+import UserLogTable from '../components/UserLogTable.js'
+import UserReviews from '../components/UserReviews.js'
 
 // Action Creators
 import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'
@@ -63,8 +63,9 @@ const {
             {console.log(userLogs.length)} */}
             {userLogs.length !== 0 &&
                 // <EnhancedTable />
-                <LogTable />
+                <UserLogTable />
             }
+            <UserReviews />
         </>
     )
 }
