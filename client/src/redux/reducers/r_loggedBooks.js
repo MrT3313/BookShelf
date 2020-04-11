@@ -38,7 +38,7 @@ export const r_loggedBooks = (state=initialState, action) => {
             return {
                 ...state, 
 
-                allLoggedBooks: action.payload,
+                allLoggedBooks: [...action.payload],
                 is_fetching: false,
 
                 error: ''
@@ -62,7 +62,7 @@ export const r_loggedBooks = (state=initialState, action) => {
             return {
                 ...state,
 
-                userLoggedBooks: action.payload,
+                userLoggedBooks: [...action.payload],
                 is_fetchingUserData: false,
 
                 error: ''
@@ -87,8 +87,8 @@ export const r_loggedBooks = (state=initialState, action) => {
                 ...state,
                 is_adding: false,
 
-                userLoggedBooks: action.payload.singleUser,
-                allLoggedBooks: action.payload.allUsers,
+                userLoggedBooks: [...action.payload.singleUser],
+                allLoggedBooks: [...action.payload.allUsers],
 
                 error: '',
             }

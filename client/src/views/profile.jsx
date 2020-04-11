@@ -26,6 +26,25 @@ import decode from '../utils/decode_JWT.js'
 
 // __MAIN__
 // -A- STYLES
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    profile__TOP: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    profile__BOTTOM: {
+        display: 'flex',
+
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
+        padding: '20px',
+    }
+}))
+
 
 // -B- COMPONENT
 function Profile(props) {
@@ -35,8 +54,12 @@ const {
     a_getUserLoggedBooks, a_getUserReviews 
 } = props
 // -- //
+    // Styles
+    const classes = useStyles({})
+
     // State
     const [selectedUserLogIndex, setUserLogIndex] = useState([])
+    const [is_adding, setIs_adding] = useState(false)
 
     // UseEffect
     useEffect(() => {
@@ -57,19 +80,47 @@ const {
             updateData()
     }, [])
 
+    // Methods
+    const toggleAdd = e => {
+        // console.log(e.currentTarget.id)
+        if (is_adding === e.currentTarget.id) {
+            setIs_adding(false)
+        // }
+        // else if (is_adding !== false) {
+        //     // Close toggle
+        //     setIs_adding(false)
+        } else {
+            // Set toggle to current click
+            setIs_adding(e.currentTarget.id)
+        }
+    }
+
     // Return
     return (
-        <>
-            <Menu_AppBar />
-            <AddPannel />
-            {/* {console.log(userLogs)}
-            {console.log(userLogs.length)} */}
-            {userLogs.length !== 0 &&
-                // <EnhancedTable />
-                <UserLogTable setUserLogIndex={setUserLogIndex}/>
-            }
-            <UserReviews UserLogIndex={selectedUserLogIndex}/>
-        </>
+        <div className={classes.root}>
+            <div className={classes.profile__TOP}>
+                <Menu_AppBar />
+                <AddPannel 
+                    is_adding={is_adding}
+                    setIs_adding={setIs_adding}
+                    toggleAdd={toggleAdd}
+                />
+            </div>
+            <div className={classes.profile__BOTTOM}>
+                {userLogs.length !== 0 &&
+                    // <EnhancedTable />
+                    <UserLogTable setUserLogIndex={setUserLogIndex}/>
+                }
+                <div style={{width: '20px'}}></div>
+                <UserReviews
+                    UserLogIndex={selectedUserLogIndex}
+                    
+                    is_adding={is_adding}
+                    setIs_adding={setIs_adding}
+                    toggleAdd={toggleAdd}
+                />
+            </div>
+        </div>
     )
 }
 

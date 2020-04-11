@@ -56,7 +56,6 @@ export const r_books = (state=initialState, action) => {
                 is_adding: false,
 
                 DB_books: [...action.payload],
-                // lastAdded: {...action.payload},
 
                 error: '',
             }

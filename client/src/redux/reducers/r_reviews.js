@@ -24,7 +24,7 @@ const initialState = {
 
 // __MAIN__
 export const r_reviews = (state=initialState, action) => {
-// console.log('action.payload: ', action.payload)
+console.log('action.payload: ', action.payload)
 // -- //
     switch(action.type) {
         // - 1 - // Get All Reviews
@@ -39,7 +39,7 @@ export const r_reviews = (state=initialState, action) => {
             return {
                 ...state,
                 
-                DB_reviews: action.payload,
+                DB_reviews: [...action.payload],
                 is_fetching: false,
 
                 error: ''
@@ -63,7 +63,7 @@ export const r_reviews = (state=initialState, action) => {
             return {
                 ...state,
 
-                USER_reviews: action.payload,
+                USER_reviews: [...action.payload],
                 is_fetchingUserData: false,
 
                 error: '',
@@ -86,7 +86,8 @@ export const r_reviews = (state=initialState, action) => {
             return {
                 ...state,
 
-                DB_reviews: action.payload,
+                DB_reviews: [...action.payload.allUsers],
+                USER_reviews: [...action.payload.singleUser],
                 is_adding: false,
                 
                 error: ''

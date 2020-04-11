@@ -23,14 +23,17 @@ import { EnhancedTableToolbar } from './TableToolBar.js'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-
-    margin: '20px',
+    width: '50%',
   },
   paper: {
     width: '100%',
   },
   table: {
-    minWidth: 750,
+    // minWidth: '750',
+
+    // width: 'auto',
+    minWidth: '100%',
+    tableLayout: 'auto'
   },
   visuallyHidden: {
     border: 0,
@@ -238,7 +241,7 @@ const {
                         /> */}
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none" align="center">
-                        {`${row.date.getMonth() + 1} / ${row.date.getFullYear()}`}
+                        {`${months[row.date.getMonth()]} - ${row.date.getFullYear()}`}
                       </TableCell>
                       <TableCell padding="none" align="center">{row.title}</TableCell>
                       <TableCell padding="none" align="center">{row.author}</TableCell>
