@@ -57,7 +57,7 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 ---
-### Latest: 1.4.1 -- Profile Page Functionality Update
+### Latest: 1.4.2 -- Profile Page Functionality Update
 
 <details open>
 <summary>1.4.2 -- Visualize User Reviews</summary>
