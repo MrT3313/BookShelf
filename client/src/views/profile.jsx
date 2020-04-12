@@ -11,8 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Menu_AppBar from '../components/AppBar.js'
 import AddPannel from '../components/AddPannel.js'
 
-import EnhancedTable from '../components/loggedBooksTable.js'
-import LogTable from '../components/Table.js'
+import UserLogTable from '../components/UserLogTable.js'
+import UserReviews from '../components/UserReviews.js'
 
 // Action Creators
 import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'
@@ -26,15 +26,42 @@ import decode from '../utils/decode_JWT.js'
 
 // __MAIN__
 // -A- STYLES
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    profile__TOP: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    profile__BOTTOM: {
+        display: 'flex',
+
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
+        padding: '20px',
+    }
+}))
+
 
 // -B- COMPONENT
 function Profile(props) {
 const { 
     token, 
-    userLogs,
+    userLogs, userReviews,
     a_getUserLoggedBooks, a_getUserReviews 
 } = props
 // -- //
+    // Styles
+    const classes = useStyles({})
+
+    // State
+    const [selectedUserLogIndex, setUserLogIndex] = useState([])
+    const [selectedReviews, setSelectedReviews] = useState([])
+    const [is_adding, setIs_adding] = useState(false)
+
     // UseEffect
     useEffect(() => {
         // console.log('USE EFFECT IN PROFILE')
@@ -54,18 +81,56 @@ const {
             updateData()
     }, [])
 
+    useEffect(() => {
+        // console.log(userReviews)
+        // console.log(userLogs)
+
+        let filtered = []
+
+        if (selectedUserLogIndex.length > 0) {
+            const logIndex = selectedUserLogIndex[0]
+            // console.log(logIndex)
+            
+            filtered = userReviews.filter(review => review.bookID === userLogs[logIndex].bookID)
+            // console.log(filtered)
+        }
+
+        setSelectedReviews(filtered)
+    }, [selectedUserLogIndex, userReviews])
+
+    // Methods
+    const toggleAdd = e => {
+        // console.log(e.currentTarget.id)
+        if (is_adding === e.currentTarget.id) {
+            setIs_adding(false)
+        } else {
+            setIs_adding(e.currentTarget.id)
+        }
+    }
+
     // Return
     return (
-        <>
-            <Menu_AppBar />
-            <AddPannel />
-            {/* {console.log(userLogs)}
-            {console.log(userLogs.length)} */}
-            {userLogs.length !== 0 &&
-                // <EnhancedTable />
-                <LogTable />
-            }
-        </>
+        <div className={classes.root}>
+            <div className={classes.profile__TOP}>
+                <Menu_AppBar />
+                <AddPannel 
+                    is_adding={is_adding}
+                    setIs_adding={setIs_adding}
+                    toggleAdd={toggleAdd}
+                />
+            </div>
+            <div className={classes.profile__BOTTOM}>
+                {userLogs.length !== 0 &&
+                    // <EnhancedTable />
+                    <UserLogTable setUserLogIndex={setUserLogIndex}/>
+                }
+                <div style={{width: '20px'}}></div>
+                <UserReviews 
+                    selectedReviews={selectedReviews}
+                    toggleAdd={toggleAdd}
+                />
+            </div>
+        </div>
     )
 }
 
@@ -78,6 +143,7 @@ const mstp = state => {
         fetchingUserReviews: state.r_reviews.is_fetchingUserData,
 
         userLogs: state.r_loggedBooks.userLoggedBooks,
+        userReviews: state.r_reviews.USER_reviews,
     }
 }
         

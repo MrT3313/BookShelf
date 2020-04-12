@@ -27,7 +27,7 @@ export const r_lists = (state=initialState, action) => {
                 return {
                     ...state,
 
-                    list_names: action.payload,
+                    list_names: [...action.payload],
 
                     is_fetching: false,
                     error: '',

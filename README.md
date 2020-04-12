@@ -57,9 +57,20 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 ---
-### Latest: 1.4.1 -- Profile Page Functionality Update
+### Latest: 1.4.2 -- Profile Page Functionality Update
 
 <details open>
+<summary>1.4.2 -- Visualize User Reviews</summary>
+
+- Card that shows the users most revent review for that book
+
+Screenshot:   
+<img src="client/src/assets/readMeImgs/1.4.2_ProfilePageUpdate__visualizeUserReviews.png" width='300'>     
+<img src="client/src/assets/readMeImgs/1.4.2_ProfilePageUpdate__visualizeUserReviews_addReview.png" width='300'>     
+
+</details>
+
+<details>
 <summary>1.4.1 -- Visualize User Logs</summary>
 
 - Table that shows all of the users logged books
@@ -74,9 +85,11 @@ Screenshot:
 <summary>1.4.0 -- Profile Page Functionality Update</summary>
 
 - Add Review for a book & styling update  
+
 Screenshot:  
-<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__addReview.png" width='300'>
-<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__logCompletedBook.png" width='300'>
+<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__addReview.png" width='300'>  
+<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__logCompletedBook.png" width='300'>  
+
 </details>
 
 <details>
@@ -95,7 +108,8 @@ Screenshot:
     - adds entry to readHistory
 
 Screenshot:  
-<img src="client/src/assets/readMeImgs/1.3.1_profilePageUpdate.png" width='300'>
+<img src="client/src/assets/readMeImgs/1.3.1_profilePageUpdate.png" width='300'>  
+
 </details>
 
 <details>
@@ -114,8 +128,8 @@ Screenshot:
 3. Public Profile
 
 Screenshots:  
-<img src="client/src/assets/readMeImgs/accountPage_1.2.0.png" width='250'>
-<img src="client/src/assets/readMeImgs/editAccountPage_1.2.0.png" width='250'>
+<img src="client/src/assets/readMeImgs/accountPage_1.2.0.png" width='250'>  
+<img src="client/src/assets/readMeImgs/editAccountPage_1.2.0.png" width='250'>  
 </details>
 
 <details>
@@ -140,8 +154,8 @@ Screenshots:
     - Login & Register both setting token on Redux store -> login & register 1 step to homepage
 
 Screenshots:  
-<img src="client/src/assets/readMeImgs/Register_0.0.3.png" width='250'>
-<img src="client/src/assets/readMeImgs/Login_0.0.3.png" width='250'>
+<img src="client/src/assets/readMeImgs/Register_0.0.3.png" width='250'>  
+<img src="client/src/assets/readMeImgs/Login_0.0.3.png" width='250'>  
 </details>
 
 <details>
@@ -151,7 +165,7 @@ Screenshots:
 - BE: Login & Register functionality working in postman but not hooked up to FE
 
 Screenshot:  
-<img src="client/src/assets/readMeImgs/homepage_0.0.2.png" height='250'>
+<img src="client/src/assets/readMeImgs/homepage_0.0.2.png" height='250'>  
 </details>  
 
 <details>
@@ -161,7 +175,7 @@ Screenshot:
 - BE: Login & Register functionality working in postman but not hooked up to FE
 
 Screenshot:  
-<img src="client/src/assets/readMeImgs/homepage_0.0.1.png" height='500'>
+<img src="client/src/assets/readMeImgs/homepage_0.0.1.png" height='500'>  
 </details>  
 <br/>  
 

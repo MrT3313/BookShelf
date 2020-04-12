@@ -80,11 +80,25 @@ const router = express.Router()
     // console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
     const {userID} = req.params
     // -- // 
-        KNEX_DB('reviews').where('userID', userID)
-        .then( singleReview => {
-        // console.log(singleBook)
+        KNEX_DB.raw(`
+            SELECT
+                reviews."userID", reviews.id as "reviewID",
+                books.id as "bookID", books.title, books.author,
+                reviews.review
+                
+            FROM reviews
+            
+            JOIN books
+            ON books.id = reviews."bookID"
+            
+            WHERE reviews."userID" = ${userID}
+
+            ORDER BY reviews.created_at
+        `)
+        .then( singleUserReviews => {
+        // console.log(singleUsersReviews.rows)
         // -- //
-            res.status(200).json(singleReview)
+            res.status(200).json(singleUserReviews.rows)
         })
         .catch( err => {
         // console.log(err)
@@ -103,27 +117,46 @@ const router = express.Router()
     */
     router.post('/', async(req,res) => {
     // console.log('** REVIEWS ROUTER: reviews/ POST/')
+    const {userID} = req.body
     // -- //
         KNEX_DB('reviews').insert(req.body)
             .then( results => {
             // console.log(results)
             // -- //
-                KNEX_DB('reviews')
-                    .then( allReviews => {
-                    // console.log(allReviews)
-                    // -- //
-                        res.status(200).json(allReviews)
-                    })
-                    .catch( err => {
-                    // console.log(err)
-                    // -- //
-                        res.status(500).json({ ERROR: 'Unabel to get all reviews after review creation'})
-                    })
-            })
-            .catch( err => {
-            // console.log(err)
-            // -- //
-                res.status(500).json({ ERROR: 'Unable to add review to DB'})
+                // KNEX_DB('reviews')
+                //     .then( allReviews => {
+                //     // console.log(allReviews)
+                //     // -- //
+                //         res.status(200).json(allReviews)
+                //     })
+                //     .catch( err => {
+                //     // console.log(err)
+                //     // -- //
+                //         res.status(500).json({ ERROR: 'Unabel to get all reviews after review creation'})
+                //     })
+                KNEX_DB.raw(`
+                    SELECT
+                        reviews."userID", reviews.id as "reviewID",
+                        books.id as "bookID", books.title, books.author,
+                        reviews.review
+                        
+                    FROM reviews
+                    
+                    JOIN books
+                    ON books.id = reviews."bookID"
+
+                    ORDER BY reviews.created_at
+                `)
+                .then( allReviews => {
+                // console.log(allReviews.rows)
+                // -- //
+                    res.status(200).json(allReviews.rows)
+                })
+                .catch( err => {
+                // console.log(err)
+                // -- //
+                    res.status(500).json({ ERROR: 'Unable to add review to DB'})
+                })
             })
     })
 
@@ -142,17 +175,16 @@ const router = express.Router()
             // console.log(results)
             // -- //
                 // Return ALL Reviews
-                KNEX_DB('reviews')
-                    .then( allReviews => {
-                        // console.log(allBooks)
-                        // -- //
-                        res.status(200).json(allReviews)
-                    })
-                    .catch(err => {
-                    // console.log(err)
-                    // -- //
-                        res.status(500).json({ ERROR: 'Unabel to get all reviews after updating review'})
-                    })
+                KNEX_DB.raw(`
+                    SELECT * FROM reviews
+
+                    ORDER BY reviews.created_at
+                `)
+                .catch(err => {
+                // console.log(err)
+                // -- //
+                    res.status(500).json({ ERROR: 'Unabel to get all reviews after updating review'})
+                })
             })
             .catch(err => {
             // console.log(err)
@@ -168,17 +200,16 @@ const router = express.Router()
             // console.log(results)
             // -- //
                 // Return ALL Reviews
-                KNEX_DB('reviews')
-                    .then( allReviews => {
-                        // console.log(allReviews)
-                        // -- //
-                        res.status(200).json(allReviews)
-                    })
-                    .catch(err => {
-                    // console.log(err)
-                    // -- //
-                        res.status(500).json({ ERROR: 'Unabel to get all books after book removal'})
-                    })
+                KNEX_DB.raw(`
+                    SELECT * FROM reviews
+
+                    ORDER BY reviews.created_at
+                `)
+                .catch(err => {
+                // console.log(err)
+                // -- //
+                    res.status(500).json({ ERROR: 'Unabel to get all books after book removal'})
+                })
             })
             .catch(err => {
             console.log(err)

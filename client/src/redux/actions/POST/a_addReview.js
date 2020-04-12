@@ -14,6 +14,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
     // Action Creator
     export const a_addReview = (newReview) => {
     // console.log('INSIDE: a_addReview action creator')
+    // console.log(newReview)
     // -- //
         // Send First Action
         return dispatch => {
@@ -35,12 +36,17 @@ import { LIVE_BE_base_URL } from '../../../utils'
                     used_URL,
                     newReview
                 )
-                .then( addReviewResult => {
-                // console.log(addReviewResult)
+                .then( results => {
+                // console.log(results)
                 // -- //
+                    const userResults = results.data.filter(item => item.userID == newReview.userID)
+
                     dispatch({
                         type: ADD_REVIEW_SUCCESS,
-                        payload: addReviewResult.data
+                        payload: {
+                            allUsers: results.data,
+                            singleUser: userResults
+                        }
                     })
                 })
                 .catch( err => {

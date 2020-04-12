@@ -30,7 +30,7 @@ export const r_specificList = (state=initialState, action) => {
             return {
                 ...state,
 
-                listData: action.payload,                    
+                listData: [...action.payload],                    
                 is_fetching: false,
 
                 error: '',

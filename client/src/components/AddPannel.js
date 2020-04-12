@@ -68,13 +68,13 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function AddPannel(props) {
 // console.log('Add Book PROPS: ', props)
-// const {a_getBooks, a_getReviews} = props
+const {is_adding, setIs_adding, toggleAdd} = props
 // -- //
     // Styles
     const classes = useStyles({})
 
     // State
-    const [is_adding, setIs_adding] = useState(false)
+    // const [is_adding, setIs_adding] = useState(false)
 
     // UseEffect
     // useEffect(() => {
@@ -83,19 +83,19 @@ function AddPannel(props) {
     // }, [])
 
     // Methods
-    const toggleAdd = e => {
-        // console.log(e.currentTarget.id)
-        if (is_adding === e.currentTarget.id) {
-            setIs_adding(false)
-        // }
-        // else if (is_adding !== false) {
-        //     // Close toggle
-        //     setIs_adding(false)
-        } else {
-            // Set toggle to current click
-            setIs_adding(e.currentTarget.id)
-        }
-    }
+    // const toggleAdd = e => {
+    //     // console.log(e.currentTarget.id)
+    //     if (is_adding === e.currentTarget.id) {
+    //         setIs_adding(false)
+    //     // }
+    //     // else if (is_adding !== false) {
+    //     //     // Close toggle
+    //     //     setIs_adding(false)
+    //     } else {
+    //         // Set toggle to current click
+    //         setIs_adding(e.currentTarget.id)
+    //     }
+    // }
 
     // Return
     return (
