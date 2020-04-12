@@ -70,8 +70,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // -B- COMPONENT
-function NewUserReviews(props) {
-console.log('NEW USER REVIEW PROPS: ', props)
+function UserReviews(props) {
+// console.log('NEW USER REVIEW PROPS: ', props)
 const { 
     selectedReviews,
     toggleAdd,
@@ -79,12 +79,6 @@ const {
 // -- //
     // Styles
     const classes = useStyles({})
-
-    // UseEffect
-    useEffect(() => {
-        console.log('NEW USER REVIEW USE EFFECT')
-        console.log(props)
-    },[])
 
     // Return 
     return (
@@ -140,4 +134,4 @@ export default connect(
     {
         
     }
-)(NewUserReviews)
+)(UserReviews)

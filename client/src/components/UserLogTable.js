@@ -168,7 +168,7 @@ const {
         newSelected = [key,]
       }
 
-      console.log(newSelected)
+      // console.log(newSelected)
 
       setUserLogIndex(newSelected.map(index => index - 1).sort())
       setSelected(newSelected);
@@ -218,7 +218,7 @@ const {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   
-                  console.log('ROW!!!',row)
+                  // console.log('ROW!!!',row)
 
                   const isItemSelected = isSelected(row.key);
                   const labelId = `enhanced-table-checkbox-${index}`;

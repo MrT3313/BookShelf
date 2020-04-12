@@ -35,7 +35,7 @@ import { NYT_booksAPI_baseURL } from '../../../utils'
                     })
                 })
                 .catch( err => {
-                console.log(err)
+                // console.log(err)
                 // -- //
                     dispatch({
                         type: GET_BOOKLISTS_FAILURE,

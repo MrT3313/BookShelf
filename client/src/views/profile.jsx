@@ -12,8 +12,7 @@ import Menu_AppBar from '../components/AppBar.js'
 import AddPannel from '../components/AddPannel.js'
 
 import UserLogTable from '../components/UserLogTable.js'
-import UserReviews from '../components/UserReviews.js'
-import NewUserReviews from '../components/newUserReview.js'
+import UserReviews from '../components/UserReview.js'
 
 // Action Creators
 import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'
@@ -83,46 +82,28 @@ const {
     }, [])
 
     useEffect(() => {
-        console.log(userReviews)
-        console.log(userLogs)
+        // console.log(userReviews)
+        // console.log(userLogs)
 
         let filtered = []
 
         if (selectedUserLogIndex.length > 0) {
             const logIndex = selectedUserLogIndex[0]
-            console.log(logIndex)
+            // console.log(logIndex)
             
             filtered = userReviews.filter(review => review.bookID === userLogs[logIndex].bookID)
-            console.log(filtered)
+            // console.log(filtered)
         }
 
         setSelectedReviews(filtered)
     }, [selectedUserLogIndex, userReviews])
-
-    // useEffect(() => {
-    //     console.log('Users or Reviews Update')
-    //     console.log(userLogs)
-    //     console.log(userReviews)
-
-    //     if (userLogs.length !== 0) {
-    //         const filtered = userLogs.filter(item => item.id === userID )
-
-    //     }
-
-
-    // }, [userLogs, userReviews,])
 
     // Methods
     const toggleAdd = e => {
         // console.log(e.currentTarget.id)
         if (is_adding === e.currentTarget.id) {
             setIs_adding(false)
-        // }
-        // else if (is_adding !== false) {
-        //     // Close toggle
-        //     setIs_adding(false)
         } else {
-            // Set toggle to current click
             setIs_adding(e.currentTarget.id)
         }
     }
@@ -144,14 +125,7 @@ const {
                     <UserLogTable setUserLogIndex={setUserLogIndex}/>
                 }
                 <div style={{width: '20px'}}></div>
-                {/* <UserReviews
-                    UserLogIndex={selectedUserLogIndex}
-                    
-                    is_adding={is_adding}
-                    setIs_adding={setIs_adding}
-                    toggleAdd={toggleAdd}
-                /> */}
-                <NewUserReviews 
+                <UserReviews 
                     selectedReviews={selectedReviews}
                     toggleAdd={toggleAdd}
                 />

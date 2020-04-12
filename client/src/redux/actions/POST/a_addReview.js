@@ -14,7 +14,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
     // Action Creator
     export const a_addReview = (newReview) => {
     // console.log('INSIDE: a_addReview action creator')
-    console.log(newReview)
+    // console.log(newReview)
     // -- //
         // Send First Action
         return dispatch => {
@@ -37,7 +37,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                     newReview
                 )
                 .then( results => {
-                console.log(results)
+                // console.log(results)
                 // -- //
                     const userResults = results.data.filter(item => item.userID == newReview.userID)
 

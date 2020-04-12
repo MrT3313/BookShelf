@@ -24,7 +24,7 @@ const initialState = {
 
 // __MAIN__
 export const r_reviews = (state=initialState, action) => {
-console.log('action.payload: ', action.payload)
+// console.log('action.payload: ', action.payload)
 // -- //
     switch(action.type) {
         // - 1 - // Get All Reviews
