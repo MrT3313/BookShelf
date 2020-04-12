@@ -93,7 +93,7 @@ const router = express.Router()
             
             WHERE reviews."userID" = ${userID}
 
-            ORDER BY reviews.created_at
+            ORDER BY reviews.created_at DESC
         `)
         .then( singleUserReviews => {
         // console.log(singleUsersReviews.rows)
@@ -145,7 +145,7 @@ const router = express.Router()
                     JOIN books
                     ON books.id = reviews."bookID"
 
-                    ORDER BY reviews.created_at
+                    ORDER BY reviews.created_at DESC
                 `)
                 .then( allReviews => {
                 // console.log(allReviews.rows)
