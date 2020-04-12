@@ -13,6 +13,7 @@ import AddPannel from '../components/AddPannel.js'
 
 import UserLogTable from '../components/UserLogTable.js'
 import UserReviews from '../components/UserReviews.js'
+import NewUserReviews from '../components/newUserReview.js'
 
 // Action Creators
 import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'
@@ -50,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 function Profile(props) {
 const { 
     token, 
-    userLogs,
+    userLogs, userReviews,
     a_getUserLoggedBooks, a_getUserReviews 
 } = props
 // -- //
@@ -59,6 +60,7 @@ const {
 
     // State
     const [selectedUserLogIndex, setUserLogIndex] = useState([])
+    const [selectedReviews, setSelectedReviews] = useState([])
     const [is_adding, setIs_adding] = useState(false)
 
     // UseEffect
@@ -79,6 +81,36 @@ const {
             }
             updateData()
     }, [])
+
+    useEffect(() => {
+        console.log(userReviews)
+        console.log(userLogs)
+
+        let filtered = []
+
+        if (selectedUserLogIndex.length > 0) {
+            const logIndex = selectedUserLogIndex[0]
+            console.log(logIndex)
+            
+            filtered = userReviews.filter(review => review.bookID === userLogs[logIndex].bookID)
+            console.log(filtered)
+        }
+
+        setSelectedReviews(filtered)
+    }, [selectedUserLogIndex, userReviews])
+
+    // useEffect(() => {
+    //     console.log('Users or Reviews Update')
+    //     console.log(userLogs)
+    //     console.log(userReviews)
+
+    //     if (userLogs.length !== 0) {
+    //         const filtered = userLogs.filter(item => item.id === userID )
+
+    //     }
+
+
+    // }, [userLogs, userReviews,])
 
     // Methods
     const toggleAdd = e => {
@@ -112,11 +144,15 @@ const {
                     <UserLogTable setUserLogIndex={setUserLogIndex}/>
                 }
                 <div style={{width: '20px'}}></div>
-                <UserReviews
+                {/* <UserReviews
                     UserLogIndex={selectedUserLogIndex}
                     
                     is_adding={is_adding}
                     setIs_adding={setIs_adding}
+                    toggleAdd={toggleAdd}
+                /> */}
+                <NewUserReviews 
+                    selectedReviews={selectedReviews}
                     toggleAdd={toggleAdd}
                 />
             </div>
@@ -133,6 +169,7 @@ const mstp = state => {
         fetchingUserReviews: state.r_reviews.is_fetchingUserData,
 
         userLogs: state.r_loggedBooks.userLoggedBooks,
+        userReviews: state.r_reviews.USER_reviews,
     }
 }
         
