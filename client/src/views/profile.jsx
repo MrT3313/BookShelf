@@ -12,7 +12,7 @@ import Menu_AppBar from '../components/AppBar.js'
 import AddPannel from '../components/AddPannel.js'
 
 import UserLogTable from '../components/UserLogTable.js'
-import UserReviews from '../components/UserReview.js'
+import UserReviews from '../components/UserReviews.js'
 
 // Action Creators
 import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'

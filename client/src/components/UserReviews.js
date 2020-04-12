@@ -27,6 +27,8 @@ const useStyles = makeStyles(theme => ({
         padding: '20px',
         backgroundColor: theme.palette.secondary.main,
         borderRadius: '5px',
+
+        width: '50%',
     },
     paperRoot: {
         display: 'flex',

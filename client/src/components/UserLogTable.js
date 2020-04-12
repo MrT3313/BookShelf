@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '50%',
+    height: '100%',
   },
   paper: {
     width: '100%',
