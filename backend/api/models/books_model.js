@@ -19,9 +19,11 @@ function getAll() {
     // - A - // Knex Query Builder
     // return KNEX_DB('books')
     // - B - // RAW SQL
-    return KNEX_DB.raw(`
+    const results = KNEX_DB.raw(`
         SELECT * FROM books
     `)
+
+    return results
 }
 
 // - 2 - // getByID
@@ -33,11 +35,13 @@ function getByID(id) {
     // return KNEX_DB('books').where({id})
 
     // - B - // RAW SQL
-    return KNEX_DB.raw(`
+    const results = KNEX_DB.raw(`
         SELECT * FROM books
 
         WHERE books.id = ${id}
     `)
+
+    return results
 }
 
 // - 3 - // addBook
@@ -59,7 +63,7 @@ async function updateBook(id, updateDate) {
 // -- //
     // - A - // Knex Query Builder
     await KNEX_DB('books').where({id}).update(updateDate)
-    return getAll()
+    return getByID(id)
 
     // - B - // RAW SQL
 }

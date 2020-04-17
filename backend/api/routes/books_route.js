@@ -14,16 +14,7 @@ const router = express.Router()
 
 // __MAIN__
     // - GET - //
-        // - 1 - // TEST
-        router.get('/test', async(req,res) => {
-        // console.log('** BOOKS ROUTER: TEST GET/')
-        // -- //
-            res.status(200).json({
-                message: 'TEST GET request for BOOKS ROUTE working'
-            })
-        })
-
-        // - 2 - // GET ALL BOOKS
+        // - 1 - // GET ALL BOOKS
         router.get('/all', async(req,res) => {
         // console.log('** BOOKS ROUTER: books/all GET/')
         // -- //
@@ -40,14 +31,14 @@ const router = express.Router()
                 })
         })
 
-        // - 3 - // GET SINGLE BOOK
+        // - 2 - // GET SINGLE BOOK
         router.get('/:bookID', async(req,res) => {
         // console.log('** BOOKS ROUTER: books/:id GET/')
         const { bookID } = req.params
         // -- //
             BOOKS_MODEL.getByID(bookID)
                 .then( singleBook => {
-                // console.log(singleBook.rows[0])
+                console.log(singleBook.rows[0])
                 // -- //
                     res.status(200).json(singleBook.rows[0])
                 })
@@ -106,9 +97,9 @@ const router = express.Router()
         // -- //
             BOOKS_MODEL.updateBook(bookID, req.body)
                 .then( results => {
-                // console.log(results.rows)
+                // console.log(results.rows[0])
                 // -- //
-                    res.status(200).json(results.rows)
+                    res.status(200).json(results.rows[0])
                 })
                 .catch(err => {
                 // console.log(err)

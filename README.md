@@ -71,9 +71,9 @@ Package Manager: NPM
     2. ❌ Test ENV
 
 - 🚧 Utils 🚧
-    1. TODO: sign_JWT
-    2. TODO: verify_JWT
-    3. TODO: decode_JWT
+    1. TODO: ❌ Unit Testing: sign_JWT
+    2. TODO: ❌ Unit Testing: verify_JWT
+    3. TODO: ❌ Unit Testing: decode_JWT
 
 - 🚧 API 🚧
     - TODO: Users
