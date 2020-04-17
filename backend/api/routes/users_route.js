@@ -1,6 +1,5 @@
-// IMPORTS
+// EXPRESS
 const express = require('express')
-const KNEX_BD = require('../../data/dbConfig.js')
 
 // MODELS
 const USERS_MODEL = require('../models/users_model.js')

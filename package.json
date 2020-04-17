@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open",
     "start": "node backend/index.js",
     "server": "nodemon backend/index.js"
   },

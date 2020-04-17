@@ -51,6 +51,7 @@ async function updateUser(id, updateData) {
     // - A - // Knex Query Builder
     await KNEX_DB('users').where({id}).update(updateData)
     return getByID(id)
+
     // - B - // RAW SQL
 }
 
@@ -62,16 +63,19 @@ async function updatePrivileges(id, updateData) {
 // -- // 
     // - A - // Knex Query Builder
     await KNEX_DB('users').where({id}).update(updateData)
+
     return getByID(id)
     // - B - // RAW SQL
 }
 
 // - 5 - // deleteUser
 async function deleteUser(id) {
+// console.log('MODEL - USERS - deleteUser')
 // console.log(id)
 // -- // 
     // - A - // Knex Query Builder
     await KNEX_DB('users').where({id}).del()
     return getAll()
+    
     // - B - // RAW SQL
 }

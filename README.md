@@ -51,6 +51,10 @@ Package Manager: NPM
 
     <img src="client/src/assets/NYT_dataAttribution.png" width='150'>
 
+## Testing
+- End to End: Cypress.io
+- API Integration Testing: Supertest
+
 ## Versions
 - Version Numbering System: #.#.#
     - Digit 1 = LTS (long term support)
@@ -60,6 +64,30 @@ Package Manager: NPM
 ### Latest: 1.4.2 -- Profile Page Functionality Update
 
 <details open>
+<summary>1.3.0 -- Testing</summary>
+
+- 🚧 Utils 🚧
+    1. TODO: sign_JWT
+    2. TODO: verify_JWT
+    3. TODO: decode_JWT
+
+- 🚧 API 🚧
+    - TODO: Users
+        - ✅ Routes & Models Separated
+        - ❌ Integration Testing: Models & Routes 
+    - TODO: Books
+        - ❌ Routes & Models Separated
+        - ❌ Integration Testing: Models & Routes 
+    - TODO: Reviews
+        - ❌ Routes & Models Separated
+        - ❌ Integration Testing: Models & Routes 
+    - TODO: Logs
+        - ❌ Routes & Models Separated
+        - ❌ Integration Testing: Models & Routes 
+
+</details>
+
+<details>
 <summary>1.4.2 -- Visualize User Reviews</summary>
 
 - Card that shows the users most revent review for that book
