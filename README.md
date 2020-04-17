@@ -22,7 +22,6 @@ Axios ([LINK](https://github.com/axios/axios))
 ## Query Builder
 Knex ([LINK](http://knexjs.org))  
 
-
 ## UI
 Material UI ([LINK](https://material-ui.com))  
 
@@ -52,8 +51,9 @@ Package Manager: NPM
     <img src="client/src/assets/NYT_dataAttribution.png" width='150'>
 
 ## Testing
-- End to End: Cypress.io
-- API Integration Testing: Supertest
+- End to End: Cypress.io  
+- Unit & Integration Testing: Jest  
+- API Integration Testing: SuperTest  
 
 ## Versions
 - Version Numbering System: #.#.#
@@ -61,10 +61,10 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 ---
-### Latest: 1.4.2 -- Profile Page Functionality Update
+### Latest: 1.5.0 -- Testing
 
 <details open>
-<summary>1.3.0 -- Testing</summary>
+<summary>1.5.0 -- Testing</summary>
 
 - 🚧 Utils 🚧
     1. TODO: sign_JWT
@@ -76,14 +76,26 @@ Package Manager: NPM
         - ✅ Routes & Models Separated
         - ❌ Integration Testing: Models & Routes 
     - TODO: Books
-        - ❌ Routes & Models Separated
+        - ✅ Routes & Models Separated
         - ❌ Integration Testing: Models & Routes 
     - TODO: Reviews
-        - ❌ Routes & Models Separated
+        - ✅ Routes & Models Separated
         - ❌ Integration Testing: Models & Routes 
     - TODO: Logs
-        - ❌ Routes & Models Separated
+        - ✅ Routes & Models Separated
         - ❌ Integration Testing: Models & Routes 
+    - TODO: Register
+        - ❌ Routes & Models Separated
+        - ❌ Integration Testing: Models & Routes
+    - TODO: Login
+        - ❌ Routes & Models Separated
+        - ❌ Integration Testing: Models & Routes
+
+- 🚧 End to End 🚧
+    - TODO: ❌ User Login
+    - TODO: ❌ User Registration
+    - TODO: ❌ User Add Book
+    - TODO: ❌ User Add Review
 
 </details>
 
