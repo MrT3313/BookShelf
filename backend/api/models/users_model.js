@@ -8,6 +8,7 @@ module.exports = {
     updateUser,
     updatePrivileges, 
     deleteUser,
+    addUser,
 }
 
 // Functions
@@ -78,4 +79,15 @@ async function deleteUser(id) {
     return getAll()
     
     // - B - // RAW SQL
+}
+
+// - 6 - // addUser
+function addUser(userData) {
+// console.log('MODEL - USERS - addUser')
+// console.log('USER DATA: ', userData)
+// -- // 
+    // - A - // Knex Query Builder
+    return KNEX_DB('users').insert(userData)
+
+    // - B - // RAW SQL 
 }

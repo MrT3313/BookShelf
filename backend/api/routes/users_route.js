@@ -9,16 +9,7 @@ const router = express.Router()
 
 // __MAIN__
     // - GET - //
-        // - 1 - // TEST
-        router.get('/test', async(req,res) => {
-        // console.log('** USERS ROUTE: users/test GET/')
-        // -- //
-            res.status(200).json({
-                message: 'TEST GET request for USERS ROUTE working'
-            })
-        })
-
-        // - 2 - // Get ALL users
+        // - 1 - // Get ALL users
         router.get('/all', async(req,res) => {
         // console.log('** USERS ROUTE: users/all GET/')
         // -- //
@@ -35,7 +26,7 @@ const router = express.Router()
             })
         })
 
-        // - 3 - // Get INDIVIDUAL user
+        // - 2 - // Get INDIVIDUAL user
         router.get('/:id', async(req, res) => {
         // console.log('** USERS ROUTE: users/:id GET/')
         const { id } = req.params
@@ -60,14 +51,14 @@ const router = express.Router()
 
     // - PUT - //
         // - 1 - // Update Individual User
-            router.put('/:id', async(req,res) => {
-            // console.log('** USERS ROUTE: users/:id PUT/')
-            const { id } = req.params
-            // console.log('UPDATE THIS USER: ', id)
+            router.put('/:userID', async(req,res) => {
+            // console.log('** USERS ROUTE: users/:userID PUT/')
+            const { userID } = req.params
+            // console.log('UPDATE THIS USER: ', userID)
             // console.log('UPDATE DATA: ', req.body)
             // -- //
-                // KNEX_BD('users').where({id}).update(req.body)
-                USERS_MODEL.updateUser(id, req.body)
+                // KNEX_BD('users').where({userID}).update(req.body)
+                USERS_MODEL.updateUser(userID, req.body)
                     .then( updateResults => {
                     // console.log(updateResults)
                     // -- //
@@ -82,12 +73,12 @@ const router = express.Router()
 
         // - 2 - // Update Individual User Privileges
             // TODO: Move to separate Admin Routing
-            router.put('/privileges/:id',  async (req,res) => {
-            const {id} = req.params
-            // console.log(id)
+            router.put('/privileges/:userID',  async (req,res) => {
+            const {userID} = req.params
+            // console.log(userID)
             // console.log(req.body)
             // -- //
-                USERS_MODEL.updatePrivileges(id, req.body)
+                USERS_MODEL.updatePrivileges(userID, req.body)
                     .then( updateResults => {
                     // console.log(updateResults)
                     // -- //

@@ -36,7 +36,9 @@ describe('/books/', function() {
     // - GET Sub Suite
     describe('GET /', function() {
         it('books/all => return 200 JSON data w/ len(array) === 1', async function() {
-            const response = await request(server).get('/books/all');
+            const response = await request(server)
+                .get('/books/all');
+                
             expect(response.status).toBe(200)
             expect(response.type).toMatch(/json/i)
             expect(response.body).toBeInstanceOf(Array)

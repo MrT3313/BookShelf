@@ -15,16 +15,18 @@ describe('/users/', function() {
             `);
         });
 
-        it.todo('Post')
-        
-    })
-    describe('GET /', function() {
-        it.todo('Get')
-    })
-    describe('PUT /', function() {
-        it.todo('Put')
-    })
-    describe('DEL /', function() {
-        it.todo('Del')
+        it('register/ => Add user & return 200 JSON data w/ len(array) === 1', async function() {
+            // Prepare Data
+            const data = {
+                "username": "jestTestUser",
+                "email": "jestTestUser@example.com",
+                "PLAINTEXT_pw": "jestTestUser"
+            }
+            // Make Test Request
+            const response = await request(server)
+                .post('/register/').send(data).set('Accept', 'application/json')
+    
+            expect(response.body['message']).toEqual('Successful Registration')
+        })
     })
 })
