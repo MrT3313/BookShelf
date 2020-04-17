@@ -81,7 +81,13 @@ Package Manager: NPM
         - ❌ Integration Testing: Models & Routes 
     - TODO: Books
         - ✅ Routes & Models Separated
-        - ❌ Integration Testing: Models & Routes 
+        - ✅ Integration Testing: Models & Routes 
+            - beforeEach() => truncate
+            1. Post /books/
+            2. Get /books/all
+            3. Get /books/:bookID
+            4. Put /books/:bookID
+            5. Del /books/:bookID 
     - TODO: Reviews
         - ✅ Routes & Models Separated
         - ❌ Integration Testing: Models & Routes 

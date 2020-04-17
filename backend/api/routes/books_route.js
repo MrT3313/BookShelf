@@ -38,7 +38,7 @@ const router = express.Router()
         // -- //
             BOOKS_MODEL.getByID(bookID)
                 .then( singleBook => {
-                console.log(singleBook.rows[0])
+                // console.log(singleBook.rows[0])
                 // -- //
                     res.status(200).json(singleBook.rows[0])
                 })
