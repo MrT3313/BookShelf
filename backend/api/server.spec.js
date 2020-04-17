@@ -7,6 +7,6 @@ describe('Base BE Server', function() {
         const res = await request(server).get('/');
         expect(res.status).toBe(200)
         expect(res.type).toMatch(/json/i)
-        expect(res.body.API).toBe('BookShelf ROOT ROUTE working')
+        expect(res.body.API).toBe('BookShelf API -- Base BE')
     })
 })

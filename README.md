@@ -66,6 +66,10 @@ Package Manager: NPM
 <details open>
 <summary>1.5.0 -- Testing</summary>
 
+- 🚧 Test DB 🚧
+    1. ❌ Test DB
+    2. ❌ Test ENV
+
 - 🚧 Utils 🚧
     1. TODO: sign_JWT
     2. TODO: verify_JWT

@@ -25,7 +25,7 @@ server.use('/', routes)
 
 // ROOT ROUTE
 server.get('/', (req, res) => {
-    res.status(200).json({API: 'BookShelf ROOT ROUTE working'})
+    res.status(200).json({API: `BookShelf API -- Base BE`})
 })
 
 // EXPORTS
