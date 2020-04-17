@@ -18,15 +18,16 @@ describe('/users/', function() {
         it('register/ => Add user & return 200 JSON data w/ len(array) === 1', async function() {
             // Prepare Data
             const data = {
-                "username": "jestTestUser",
-                "email": "jestTestUser@example.com",
-                "PLAINTEXT_pw": "jestTestUser"
+                "username": "jestTestUser_register",
+                "email": "jestTestUser_register@example.com",
+                "PLAINTEXT_pw": "jestTestUser_register"
             }
             // Make Test Request
             const response = await request(server)
                 .post('/register/').send(data).set('Accept', 'application/json')
     
             expect(response.body['message']).toEqual('Successful Registration')
+            expect(response.status).toBe(201)
         })
     })
 })

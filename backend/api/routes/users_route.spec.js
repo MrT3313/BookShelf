@@ -18,9 +18,9 @@ describe('/users/', function() {
         it('users/all => Add user & get new user data', async function() {
             // Prepare Data
                 const data = {
-                    "username": "jestTestUser",
-                    "email": "jestTestUser@example.com",
-                    "PLAINTEXT_pw": "jestTestUser"
+                    "username": "jestTestUser_users",
+                    "email": "jestTestUser_users@example.com",
+                    "PLAINTEXT_pw": "jestTestUser_users"
                 }
             
             // Post Data
@@ -39,8 +39,8 @@ describe('/users/', function() {
     describe("PUT /", function() {
         it('users/:userID => Update User Username / Email / Public Profile', async function() {
             const updateData = {
-                "username": "jestUpdate",
-                "email": "jestUpdate@example.com",
+                "username": "jestUpdate_users",
+                "email": "jestUpdate_users@example.com",
                 "publicProfile": true
             }
             const response = await request(server)
