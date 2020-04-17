@@ -97,7 +97,6 @@ function getReview(id) {
     return KNEX_DB('reviews').where('id', id).first()
 
     // - B - // RAW SQL
-
 }
 
 // - 5 - // postReview

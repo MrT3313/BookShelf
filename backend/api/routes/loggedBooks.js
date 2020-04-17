@@ -2,6 +2,9 @@
 const express = require('express')
 const KNEX_DB = require('../../data/dbConfig.js')
 
+// MODELS 
+const LOGS_MODEL = require('../models/logs_model.js')
+
 // ROUTER
 const router = express.Router()
 
@@ -18,20 +21,9 @@ const router = express.Router()
 
         // - 2 - // GET ALL LOGS 
         router.get('/all', async(req,res) => {
-            // console.log('** COMPLETED BOOKS ROUTER: completedBooks/all GET/')
-            // -- //
-                KNEX_DB.raw(`
-                    SELECT 
-                        completedbooks.id as "logID", completedbooks."userID",
-                        books.id as "bookID", books.title, books.author, books.created_at
-                    
-                    FROM completedbooks
-                    
-                    JOIN books
-                    ON completedbooks."bookID" = books.id
-
-                    ORDER BY books.created_at
-                `)
+        // console.log('** COMPLETED BOOKS ROUTER: completedBooks/all GET/')
+        // -- //
+            LOGS_MODEL.getAll()
                 .then( loggedBooks => {
                 // console.log(loggedBooks.rows)
                 // -- // 
@@ -49,11 +41,11 @@ const router = express.Router()
         // console.log('** LOGGED BOOKD ROUTER: loggedBooks/:logID GET/')
         const {logID} = req.params
         // -- // 
-            KNEX_DB('completedbooks').where('id', logID).first()
+            LOGS_MODEL.getLog(logID)
                 .then( singleLog => {
-                // console.log(singleBook)
+                // console.log(singleBook.rows[0])
                 // -- //
-                    res.status(200).json(singleLog)
+                    res.status(200).json(singleLog.rows[0])
                 })
                 .catch( err => {
                 // console.log(err)
@@ -67,45 +59,15 @@ const router = express.Router()
         // console.log('** COMPLETED BOOKS ROUTE: completedBooks/:id GET/')
         const { userID } = req.params
         // -- //
-            /* RAW Query
-                SELECT 
-                    users.id as userID, users.userName, 
-                    books.id as bookID, books.title, books.author, books.created_at
-                FROM users
-
-                JOIN completedbooks
-                ON users.id = completedbooks."userID"
-
-                JOIN books
-                ON completedbooks."userID" = books.id
-
-                WHERE users.id = 1 
-            */
-            KNEX_DB.raw(`
-                SELECT 
-                    completedbooks.id as "logID", 
-                    users.id as "userID",
-                    books.id as "bookID", books.title, books.author, books.created_at
-                FROM users
-                
-                JOIN completedbooks
-                ON users.id = completedbooks."userID"
-                
-                JOIN books
-                ON completedbooks."bookID" = books.id
-                
-                WHERE users.id = ${userID}
-
-                ORDER BY books.created_at
-            `)
-            .then( userReadHistory => {
-            // console.log(userReadHistory.rows)
-            // -- // 
-                res.status(200).json(userReadHistory.rows)
-            })
-            .catch(err => {
-                res.status(500).json(err)
-            })
+            LOGS_MODEL.getLogs_by_userID(userID)
+                .then( userReadHistory => {
+                // console.log(userReadHistory.rows)
+                // -- // 
+                    res.status(200).json(userReadHistory.rows)
+                })
+                .catch(err => {
+                    res.status(500).json(err)
+                })
         })
 
         // - 5 - // GET ALL LOGS FOR SPECIFIC BOOK
@@ -113,17 +75,17 @@ const router = express.Router()
             // console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
             const {bookID} = req.params
             // -- // 
-                KNEX_DB('completedbooks').where('bookID', bookID)
-                .then( bookLogs => {
-                // console.log(bookLogs)
-                // -- //
-                    res.status(200).json(bookLogs)
-                })
-                .catch( err => {
-                // console.log(err)
-                // -- //
-                    res.status(500).json(err)
-                })
+                LOGS_MODEL.getLogs_by_bookID(bookID)
+                    .then( bookLogs => {
+                    // console.log(bookLogs.rows)
+                    // -- //
+                        res.status(200).json(bookLogs.rows)
+                    })
+                    .catch( err => {
+                    // console.log(err)
+                    // -- //
+                        res.status(500).json(err)
+                    })
         })
 
     // - POST - //
@@ -136,70 +98,27 @@ const router = express.Router()
        router.post('/', async(req,res) => {
         // console.log('** READ HISTORY ROUTE: /log/completedBook')
         // -- //
-            KNEX_DB('completedbooks').insert(req.body)
+            LOGS_MODEL.logBook(req.body)
             .then( results => {
-                // console.log(results)
+                // console.log(results.rows)
                 // -- //
-                    // V2 
-                    // Return All Logs in appropriate format
-                    KNEX_DB.raw(`
-                        SELECT 
-                            completedbooks.id as "logID", 
-                            users.id as "userID",
-                            books.id as "bookID", books.title, books.author, books.created_at
-                        FROM users
-                        
-                        JOIN completedbooks
-                        ON users.id = completedbooks."userID"
-                        
-                        JOIN books
-                        ON completedbooks."bookID" = books.id
-
-                        ORDER BY books.created_at
-                    `)
-
-                    // // V1
-                    // // Return ALL Logs
-                    // KNEX_DB('completedbooks')
-                    .then( logs => {
-                        // console.log(allLogs.rows)
-                        // -- //
-                        
-                        res.status(200).json(logs.rows)
-                    })
-                    .catch(err => {
-                    // console.log(err)
-                    // -- //
-                        res.status(500).json({ ERROR: 'Unabel to get all logs after updating book'})
-                    })
-                })
-                .catch(err => {
-                // console.log(err)
-                // -- //
-                    res.status(500).json({ ERROR: 'Unable to update log in DB'})
-                })
+                res.status(200).json(results.rows)
+            })
+            .catch(err => {
+            // console.log(err)
+            // -- //
+                res.status(500).json({ ERROR: 'Unable to update log in DB'})
+            })
         })
     // - PUT - //
     // - DEL - //
     router.delete('/:logID', async(req, res) => {
         const {logID} = req.params
-        KNEX_DB('completedbooks').where('id', logID).del()
+        LOGS_MODEL.deleteLog(logID)
             .then( results => {
-            // console.log(results)
+            // console.log(results.rows)
             // -- //
-                // Return ALL Books
-                KNEX_DB('completedbooks')
-                    .then( allLogs => {
-                        // console.log(allLogs)
-                        // -- //
-                        
-                        res.status(200).json(allLogs)
-                    })
-                    .catch(err => {
-                    // console.log(err)
-                    // -- //
-                        res.status(500).json({ ERROR: 'Unabel to get all books after book removal'})
-                    })
+                res.status(200).json(results.rows)
             })
             .catch(err => {
             // console.log(err)
