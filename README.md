@@ -10,27 +10,25 @@ Just finish a book? Review it!
 Is it a new favorite of yours? Rate it against your yearly and all time rankings & promote it to your friends!
 Want to know what another user is reading? Turn your profile 'public' and allow other to interact with you and your BookShelf!
 
-# Tech
-## Stack
-S - SQL  
-E - EXPRESS  
-R - React  
-N - Node 
-
-## HTTP Client
-Axios ([LINK](https://github.com/axios/axios))  
-
-## Query Builder
-Knex ([LINK](http://knexjs.org))  
-
-## UI
-Material UI ([LINK](https://material-ui.com))  
-
-## Utils
-Package Manager: NPM 
+# Tech Stack
+| title                | name              | link                                   |
+| -------------------- | ----------------- | -------------------------------------- | 
+| Database             | S: SQL - Postgres | [LINK](https://www.postgresql.org)     |
+| Server               | E: Express        | [LINK](https://expressjs.com)          |
+| UI Component Library | R: React          | [LINK](https://reactjs.org)            |
+| Server Run Time      | N: NodeJS         | [LINK](https://nodejs.org/en/)         |
+| -------------------- | ----------------- | -------------------------------------- | 
+| HTTP Client          | Axios             | [LINK](https://github.com/axios/axios) |
+| Query Builder        | Knex              | [LINK](http://knexjs.org)              |
+| Styling              | Material UI       | [LINK](https://material-ui.com)        |
+| Package Manage       | NPM               | [LINK](https://nodejs.org/en/)         |
 
 ## Assets
-1. IMG used for favicon: [good-ware](https://www.flaticon.com/authors/good-ware)
+
+| title   | notes             | link                                                    |
+| ------- | ----------------- | ------------------------------------------------------- |
+| favicon | Author: Good Ware | [LINK](https://www.flaticon.com/authors/good-ware) |
+
 
 ## APIs  
 - NY Times: Books API ([LINK](https://developer.nytimes.com/docs/books-product/1/overview)) 
