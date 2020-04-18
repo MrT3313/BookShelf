@@ -12,7 +12,7 @@ Want to know what another user is reading? Turn your profile 'public' and allow 
 
 # Tech Stack
 | title                   | name                                    | link                                                                             |
-| --- --- ---             | --- --- ---                             | --- --- ---                                                                      | 
+| ---                     | ---                                     | ---                                                                              | 
 | Database                | S: SQL - Postgres                       | [LINK](https://www.postgresql.org)                                               |
 | Server                  | E: Express                              | [LINK](https://expressjs.com)                                                    |
 | UI Component Library    | R: React                                | [LINK](https://reactjs.org)                                                      |
