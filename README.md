@@ -1,7 +1,8 @@
 # Welcome to your BookShelf
 Your one stop shop for all your reading needs. 
 
-- Visit The Site! 👉🏼👉🏼([LINK](https://my-book-shelf.netlify.com))  
+- Visit The Site! 👉🏼👉🏼 ([LINK](https://my-book-shelf.netlify.com))  
+- API Documentation: ([Postman Documenter](https://documenter.getpostman.com/view/10122836/Szf54pe1?version=latest))
 
 
 Get a recomendation from a coworker? Log it! 
@@ -9,27 +10,23 @@ Just finish a book? Review it!
 Is it a new favorite of yours? Rate it against your yearly and all time rankings & promote it to your friends!
 Want to know what another user is reading? Turn your profile 'public' and allow other to interact with you and your BookShelf!
 
-# Tech
-## Stack
-S - SQL  
-E - EXPRESS  
-R - React  
-N - Node 
-
-## HTTP Client
-Axios ([LINK](https://github.com/axios/axios))  
-
-## Query Builder
-Knex ([LINK](http://knexjs.org))  
-
-## UI
-Material UI ([LINK](https://material-ui.com))  
-
-## Utils
-Package Manager: NPM 
-
-## Assets
-1. IMG used for favicon: [good-ware](https://www.flaticon.com/authors/good-ware)
+# Tech Stack
+| title                   | name                                    | link                                                                             |
+| ---                     | ---                                     | ---                                                                              | 
+| Database                | S: SQL - Postgres                       | [LINK](https://www.postgresql.org)                                               |
+| Server                  | E: Express                              | [LINK](https://expressjs.com)                                                    |
+| UI Component Library    | R: React                                | [LINK](https://reactjs.org)                                                      |
+| Server Run Time         | N: NodeJS                               | [LINK](https://nodejs.org/en/)                                                   |
+| --- --- ---             | --- --- ---                             | --- --- ---                                                                      | 
+| Package Manage          | NPM                                     | [LINK](https://nodejs.org/en/)                                                   |
+| --- --- ---             | --- --- ---                             | --- --- ---                                                                      | 
+| HTTP Client             | Axios                                   | [LINK](https://github.com/axios/axios)                                           |
+| Query Builder           | Knex (prioritized used of .raw(``))     | [LINK](http://knexjs.org)                                                        |
+| Styling                 | Material UI                             | [LINK](https://material-ui.com)                                                  |
+| --- --- ---             | --- --- ---                             | --- --- ---                                                                      | 
+| API Integration Testing | SuperTest & Jest                        | [SuperTest](https://www.npmjs.com/package/supertest) / [Jest](https://jestjs.io) |
+| Unit Testing            | Jest                                    | [LINK](https://jestjs.io)                                                        | 
+| End to End Testing      | Cypress                                 | [LINK](https://www.cypress.io)
 
 ## APIs  
 - NY Times: Books API ([LINK](https://developer.nytimes.com/docs/books-product/1/overview)) 
@@ -46,14 +43,15 @@ Package Manager: NPM
             - Date: YYYY-MM-DD or "current"
             - List: Name of the Best Sellers List (e.g. hardcover-fiction)  
             
-    ** Credit Requirements: https://developer.nytimes.com/branding  
+    ** NYT API Credit Requirements: [LINK](https://developer.nytimes.com/branding  )
 
     <img src="client/src/assets/NYT_dataAttribution.png" width='150'>
 
-## Testing
-- End to End: Cypress.io  
-- Unit & Integration Testing: Jest  
-- API Integration Testing: SuperTest  
+## Credit
+| title         | notes                    | link                                                                |
+| ------------- | ------------------------ | ------------------------------------------------------------------- |
+| favicon       | Author: Good Ware        | [LINK](https://www.flaticon.com/authors/good-ware)                  |
+| Books API     | Title: NYT Books API     | [LINK](https://developer.nytimes.com/docs/books-product/1/overview) |
 
 ## Versions
 - Version Numbering System: #.#.#
