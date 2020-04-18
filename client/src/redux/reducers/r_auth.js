@@ -34,7 +34,7 @@ const initialState = {
 
 // __MAIN__
 export const r_auth = (state=initialState, action) => {
-// console.log('action.payload: ', action.payload)
+console.log('action.payload: ', action.payload)
 // -- //
     // Switch conditional for different action types
     switch (action.type) {
@@ -119,9 +119,9 @@ export const r_auth = (state=initialState, action) => {
                 ...state, 
                 is_updating: false,
                 
-                username: action.payload.user.username,
-                email: action.payload.user.email,
-                publicProfile: action.payload.user.publicProfile,
+                username: action.payload.username,
+                email: action.payload.email,
+                publicProfile: action.payload.publicProfile,
                 
                 error: '',
             }

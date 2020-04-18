@@ -38,7 +38,7 @@ const router = express.Router()
 
         // - 3 - // GET SPECIFIC LOG
         router.get('/singleLog/:logID', async(req, res) => {
-        // console.log('** LOGGED BOOKD ROUTER: loggedBooks/:logID GET/')
+        // console.log('** LOGGED BOOKD ROUTER: logs/singleLog/:logID GET/')
         const {logID} = req.params
         // -- // 
             LOGS_MODEL.getLog(logID)
