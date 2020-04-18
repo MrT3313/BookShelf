@@ -159,7 +159,9 @@ Screenshot:
 </details>
 
 <details>
-<summary>1.3.1: Profile Page Functionality Update: Log Completed Book</summary>
+<summary>1.3.1 -- Profile Page Functionality Update</summary>
+
+- Log completed Book
 
 - Single user flow => 
     - title input entry searching DB
@@ -179,15 +181,15 @@ Screenshot:
 </details>
 
 <details>
-<summary>1.3.0 - HOTFIX: login</summary>
+<summary>1.3.0 -- HOTFIX: login</summary>
 
 - Add book to DB
-- Login Hotfix -- forced premature merge
+- Login Hotfix - forced premature merge
 
 </details>
 
 <details>
-<summary>1.2.0 - Account Page: Update profile</summary>
+<summary>1.2.0 -- Account Page: Update profile</summary>
 
 1. Username
 2. Email
@@ -199,7 +201,7 @@ Screenshots:
 </details>
 
 <details>
-<summary>1.1.0 - Sign in as guest</summary>
+<summary>1.1.0 -- Sign in as guest</summary>
 
 - FE
     - Button added to <login /> so user can login as a guest
@@ -210,7 +212,7 @@ Screenshots:
 </details>
 
 <details>
-<summary>1.0.0 - HOSTED: Register & Login</summary>
+<summary>1.0.0 -- HOSTED: Register & Login</summary>
 
 - FE: Hosted  
     - Login & Register  
@@ -225,7 +227,7 @@ Screenshots:
 </details>
 
 <details>
-<summary>0.1.1 - Homepage Redesign: Material UI Vertical Tabs</summary>
+<summary>0.1.1 -- Homepage Redesign: Material UI Vertical Tabs</summary>
 
 - FE: Hosted Homepage - Material UI Vertical Tabs - NYT Bestseller List Explorer 
 - BE: Login & Register functionality working in postman but not hooked up to FE
@@ -235,7 +237,7 @@ Screenshot:
 </details>  
 
 <details>
-<summary>0.1.0 - Homepage: Pyramid</summary>
+<summary>0.1.0 -- Homepage: Pyramid</summary>
 
 - FE: Hosted Homepage - Desktop Only - NYT Bestseller List Pyramid
 - BE: Login & Register functionality working in postman but not hooked up to FE
