@@ -1,7 +1,8 @@
 # Welcome to your BookShelf
 Your one stop shop for all your reading needs. 
 
-- Visit The Site! 👉🏼👉🏼([LINK](https://my-book-shelf.netlify.com))  
+- Visit The Site! 👉🏼👉🏼 ([LINK](https://my-book-shelf.netlify.com))  
+- API Documentation: ([Postman Documenter](https://documenter.getpostman.com/view/10122836/Szf54pe1?version=latest))
 
 
 Get a recomendation from a coworker? Log it! 
