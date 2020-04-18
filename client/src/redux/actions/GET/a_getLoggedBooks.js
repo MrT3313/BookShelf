@@ -23,9 +23,9 @@ import { LIVE_BE_base_URL } from '../../../utils'
 
             // What environment are we in?
             if (process.env.NODE_ENV === 'development') {
-                used_URL = `${LOCAL_BE_base_URL}loggedBooks/all`
+                used_URL = `${LOCAL_BE_base_URL}logs/all`
             } else if (process.env.NODE_ENV === 'production') {
-                used_URL = `${LIVE_BE_base_URL}loggedBooks/all`
+                used_URL = `${LIVE_BE_base_URL}logs/all`
             }
             // console.log('URL USED')
             // console.log(used_URL)

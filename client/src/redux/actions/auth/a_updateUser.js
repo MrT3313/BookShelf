@@ -27,8 +27,8 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 update_URL = `${LIVE_BE_base_URL}users/${id}`
             }
             // console.log('URL USED')
-            // console.log(update_URL)
-            // console.log(updateInfo)
+            console.log(update_URL)
+            console.log(updateInfo)
 
             // Make Axios Request
             axios
@@ -37,7 +37,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                     updateInfo
                 )
                 .then( updateResult => {
-                // console.log(updateResult)
+                console.log('updateResults: ',updateResult)
                 // -- //
                     dispatch({
                         type: UPDATE_USER_SUCCESS,

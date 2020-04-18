@@ -1,10 +1,11 @@
-// IMPORTS
-
 // EXPRESS
 const express = require('express')
 
 // KNEX
 const KNEX_DB = require('../../data/dbConfig.js')
+
+// MODELS
+const BOOKS_MODEL = require('../models/books_model.js')
 
 // ROUTER
 const router = express.Router()
@@ -13,24 +14,15 @@ const router = express.Router()
 
 // __MAIN__
     // - GET - //
-        // - 1 - // TEST
-        router.get('/test', async(req,res) => {
-        // console.log('** BOOKS ROUTER: TEST GET/')
-        // -- //
-            res.status(200).json({
-                message: 'TEST GET request for BOOKS ROUTE working'
-            })
-        })
-
-        // - 2 - // GET ALL BOOKS
+        // - 1 - // GET ALL BOOKS
         router.get('/all', async(req,res) => {
         // console.log('** BOOKS ROUTER: books/all GET/')
         // -- //
-            KNEX_DB('books')
+            BOOKS_MODEL.getAll()
                 .then( allBooks => {
-                // console.log(allBooks)
+                // console.log(allBooks.rows)
                 // -- // 
-                    res.status(200).json(allBooks)
+                    res.status(200).json(allBooks.rows)
                 })
                 .catch( err => {
                 // console.log(err)
@@ -39,16 +31,16 @@ const router = express.Router()
                 })
         })
 
-        // - 3 - // GET SINGLE BOOK
+        // - 2 - // GET SINGLE BOOK
         router.get('/:bookID', async(req,res) => {
         // console.log('** BOOKS ROUTER: books/:id GET/')
         const { bookID } = req.params
         // -- //
-            KNEX_DB('books').where('id', bookID)
+            BOOKS_MODEL.getByID(bookID)
                 .then( singleBook => {
-                // console.log(singleBook)
+                // console.log(singleBook.rows[0])
                 // -- //
-                    res.status(200).json(singleBook)
+                    res.status(200).json(singleBook.rows[0])
                 })
                 .catch( err => {
                 // console.log(err)
@@ -67,7 +59,7 @@ const router = express.Router()
         router.post('/', async(req,res) => {
         // console.log('** BOOKS ROUTER: books/ POST/')
         // -- //
-            KNEX_DB('books').insert(req.body)
+            BOOKS_MODEL.addBook(req.body)
                 .then( results => {
                 // console.log(results)
                 // -- //
@@ -103,23 +95,11 @@ const router = express.Router()
         // console.log('** BOOKS ROUTER: books/ PUT/')
         const { bookID } = req.params
         // -- //
-            KNEX_DB('books').where('id',bookID).update(req.body)
+            BOOKS_MODEL.updateBook(bookID, req.body)
                 .then( results => {
-                // console.log(results)
+                // console.log(results.rows[0])
                 // -- //
-                    // Return ALL Books
-                    KNEX_DB('books')
-                        .then( allBooks => {
-                            // console.log(allBooks)
-                            // -- //
-                            
-                            res.status(200).json(allBooks)
-                        })
-                        .catch(err => {
-                        // console.log(err)
-                        // -- //
-                            res.status(500).json({ ERROR: 'Unabel to get all books after updating book'})
-                        })
+                    res.status(200).json(results.rows[0])
                 })
                 .catch(err => {
                 // console.log(err)
@@ -131,23 +111,11 @@ const router = express.Router()
     // - DEL - //
         router.delete('/:bookID', async(req, res) => {
             const {bookID} = req.params
-            KNEX_DB('books').where('id', bookID).del()
+            BOOKS_MODEL.deleteBook(bookID)
                 .then( results => {
-                // console.log(results)
+                // console.log(results.rows)
                 // -- //
-                    // Return ALL Books
-                    KNEX_DB('books')
-                        .then( allBooks => {
-                            // console.log(allBooks)
-                            // -- //
-                            
-                            res.status(200).json(allBooks)
-                        })
-                        .catch(err => {
-                        // console.log(err)
-                        // -- //
-                            res.status(500).json({ ERROR: 'Unabel to get all books after book removal'})
-                        })
+                    res.status(200).json(results.rows)
                 })
                 .catch(err => {
                 // console.log(err)

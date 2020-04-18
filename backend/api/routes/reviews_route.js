@@ -6,6 +6,9 @@ const express = require('express')
 // KNEX
 const KNEX_DB = require('../../data/dbConfig.js')
 
+// MODELS
+const REVIEWS_MODEL = require('../models/reviews_model.js')
+
 // ROUTER
 const router = express.Router()
 
@@ -26,11 +29,11 @@ const router = express.Router()
     router.get('/all', async(req,res) => {
     // console.log('** REVIEWS ROUTER: reviews/all GET/')
     // -- // 
-        KNEX_DB('reviews')
+        REVIEWS_MODEL.getAll()
             .then( allReviews => {
-            // console.log(allReviews)
+            // console.log(allReviews.rows)
             // -- //
-                res.status(200).json(allReviews)
+                res.status(200).json(allReviews.rows)
             })
             .catch(err => {
             // console.log(err)
@@ -44,7 +47,7 @@ const router = express.Router()
     // console.log('** REVIEWS ROUTER: reviews/:reviewID GET/')
     const {reviewID} = req.params
     // -- // 
-        KNEX_DB('reviews').where('id', reviewID).first()
+        REVIEWS_MODEL.getReview(reviewID)
             .then( singleReview => {
             // console.log(singleBook)
             // -- //
@@ -62,11 +65,11 @@ const router = express.Router()
     // console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
     const {bookID} = req.params
     // -- // 
-        KNEX_DB('reviews').where('bookID', bookID)
+        REVIEWS_MODEL.getReviews_by_bookID(bookID)
         .then( bookReviews => {
-        // console.log(bookReviews)
+        // console.log(bookReviews.rows)
         // -- //
-            res.status(200).json(bookReviews)
+            res.status(200).json(bookReviews.rows)
         })
         .catch( err => {
         // console.log(err)
@@ -80,21 +83,7 @@ const router = express.Router()
     // console.log('** REVIEWS ROUTER: reviews/:bookID GET/')
     const {userID} = req.params
     // -- // 
-        KNEX_DB.raw(`
-            SELECT
-                reviews."userID", reviews.id as "reviewID",
-                books.id as "bookID", books.title, books.author,
-                reviews.review
-                
-            FROM reviews
-            
-            JOIN books
-            ON books.id = reviews."bookID"
-            
-            WHERE reviews."userID" = ${userID}
-
-            ORDER BY reviews.created_at DESC
-        `)
+        REVIEWS_MODEL.getReviews_by_userID(userID)
         .then( singleUserReviews => {
         // console.log(singleUsersReviews.rows)
         // -- //
@@ -119,44 +108,16 @@ const router = express.Router()
     // console.log('** REVIEWS ROUTER: reviews/ POST/')
     const {userID} = req.body
     // -- //
-        KNEX_DB('reviews').insert(req.body)
+        REVIEWS_MODEL.postReview(req.body)
             .then( results => {
             // console.log(results)
             // -- //
-                // KNEX_DB('reviews')
-                //     .then( allReviews => {
-                //     // console.log(allReviews)
-                //     // -- //
-                //         res.status(200).json(allReviews)
-                //     })
-                //     .catch( err => {
-                //     // console.log(err)
-                //     // -- //
-                //         res.status(500).json({ ERROR: 'Unabel to get all reviews after review creation'})
-                //     })
-                KNEX_DB.raw(`
-                    SELECT
-                        reviews."userID", reviews.id as "reviewID",
-                        books.id as "bookID", books.title, books.author,
-                        reviews.review
-                        
-                    FROM reviews
-                    
-                    JOIN books
-                    ON books.id = reviews."bookID"
-
-                    ORDER BY reviews.created_at DESC
-                `)
-                .then( allReviews => {
-                // console.log(allReviews.rows)
-                // -- //
-                    res.status(200).json(allReviews.rows)
-                })
-                .catch( err => {
-                // console.log(err)
-                // -- //
-                    res.status(500).json({ ERROR: 'Unable to add review to DB'})
-                })
+                res.status(200).json(results.rows)
+            })
+            .catch( err => {
+            // console.log(err)
+            // -- //
+                res.status(500).json({ ERROR: 'Unable to add review to DB'})
             })
     })
 
@@ -170,21 +131,12 @@ const router = express.Router()
     // console.log('** BOOKS ROUTER: books/ PUT/')
     const { reviewID } = req.params
     // -- //
-        KNEX_DB('reviews').where('id',reviewID).update(req.body)
+        // KNEX_DB('reviews').where('id',reviewID).update(req.body)
+        REVIEWS_MODEL.updateReview(reviewID, req.body)
             .then( results => {
             // console.log(results)
             // -- //
-                // Return ALL Reviews
-                KNEX_DB.raw(`
-                    SELECT * FROM reviews
-
-                    ORDER BY reviews.created_at
-                `)
-                .catch(err => {
-                // console.log(err)
-                // -- //
-                    res.status(500).json({ ERROR: 'Unabel to get all reviews after updating review'})
-                })
+                res.status(500).json(results)
             })
             .catch(err => {
             // console.log(err)
@@ -195,21 +147,11 @@ const router = express.Router()
 // - DEL - //
     router.delete('/:reviewID', async(req, res) => {
         const {reviewID} = req.params
-        KNEX_DB('reviews').where('id', reviewID).del()
+        REVIEWS_MODEL.deleteReview(reviewID)
             .then( results => {
-            // console.log(results)
+            // console.log(results.rows)
             // -- //
-                // Return ALL Reviews
-                KNEX_DB.raw(`
-                    SELECT * FROM reviews
-
-                    ORDER BY reviews.created_at
-                `)
-                .catch(err => {
-                // console.log(err)
-                // -- //
-                    res.status(500).json({ ERROR: 'Unabel to get all books after book removal'})
-                })
+            res.status(200).json(results.rows)
             })
             .catch(err => {
             console.log(err)

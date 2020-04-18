@@ -22,7 +22,6 @@ Axios ([LINK](https://github.com/axios/axios))
 ## Query Builder
 Knex ([LINK](http://knexjs.org))  
 
-
 ## UI
 Material UI ([LINK](https://material-ui.com))  
 
@@ -51,15 +50,82 @@ Package Manager: NPM
 
     <img src="client/src/assets/NYT_dataAttribution.png" width='150'>
 
+## Testing
+- End to End: Cypress.io  
+- Unit & Integration Testing: Jest  
+- API Integration Testing: SuperTest  
+
 ## Versions
 - Version Numbering System: #.#.#
     - Digit 1 = LTS (long term support)
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 ---
-### Latest: 1.4.2 -- Profile Page Functionality Update
+### Latest: 1.5.0 -- Testing Update
 
 <details open>
+<summary>1.5.0 -- Initial API Integration Testing</summary>
+
+- End to End Testing - Cypress
+    - Guest Login 
+
+- API Integration Testing - JEST
+    - TODO: Users
+        - ✅ Routes & Models Separated
+        - ✅ Integration Testing: Models & Routes 
+            - beforeEach() => truncate USERS table
+            1. Get /users/all
+            2. Put /users/:userID
+            3. Del /users/:userID
+
+    - TODO: Books
+        - ✅ Routes & Models Separated
+        - ✅ Integration Testing: Models & Routes 
+            - beforeEach() => truncate BOOKS table
+            1. Post /books/
+            2. Get /books/all
+            3. Get /books/:bookID
+            4. Put /books/:bookID
+            5. Del /books/:bookID
+            
+    - TODO: Reviews
+        - ✅ Routes & Models Separated
+        - ✅ Integration Testing: Models & Routes 
+            - beforeEach() => truncate REVIEWS / BOOKS / USERS table
+            1. Post /reviews/
+            2. Get /reviews/all
+            3. Get /reviews/singleReview/:reviewID
+            4. Get /reviews/singleBook/:bookID
+            5. Get /reviews/singleUser/:userID
+            6. Put /reviews/:reviewID
+            7. Del /reviews/:reviewID
+
+    - TODO: Logs
+        - ✅ Routes & Models Separated
+        - ✅ Integration Testing: Models & Routes 
+            - beforeEach() => truncate COMPLETEDBOOKS / BOOKS / USERS table
+            1. Post /logs/
+            2. Get /logs/all
+            3. Get /logs/:singleUser/:userID
+            4. Get /logs/:singleBook/:bookID
+            5. Get /logs/:singleLog/:logID
+            6. Del /logs/:logID
+
+    - TODO: Register
+        - ✅ Routes & Models Separated
+        - ✅ Integration Testing: Models & Routes
+            - beforeEach() => truncate USERS table
+            1. Post /register/
+
+    - TODO: Login
+        - ✅ Routes & Models Separated
+        - ✅ Integration Testing: Models & Routes
+            - beforeEach() => truncate USERS table
+            1. Post /login/
+
+</details>
+
+<details>
 <summary>1.4.2 -- Visualize User Reviews</summary>
 
 - Card that shows the users most revent review for that book
@@ -93,7 +159,9 @@ Screenshot:
 </details>
 
 <details>
-<summary>1.3.1: Profile Page Functionality Update: Log Completed Book</summary>
+<summary>1.3.1 -- Profile Page Functionality Update</summary>
+
+- Log completed Book
 
 - Single user flow => 
     - title input entry searching DB
@@ -113,15 +181,15 @@ Screenshot:
 </details>
 
 <details>
-<summary>1.3.0 - HOTFIX: login</summary>
+<summary>1.3.0 -- HOTFIX: login</summary>
 
 - Add book to DB
-- Login Hotfix -- forced premature merge
+- Login Hotfix - forced premature merge
 
 </details>
 
 <details>
-<summary>1.2.0 - Account Page: Update profile</summary>
+<summary>1.2.0 -- Account Page: Update profile</summary>
 
 1. Username
 2. Email
@@ -133,7 +201,7 @@ Screenshots:
 </details>
 
 <details>
-<summary>1.1.0 - Sign in as guest</summary>
+<summary>1.1.0 -- Sign in as guest</summary>
 
 - FE
     - Button added to <login /> so user can login as a guest
@@ -144,7 +212,7 @@ Screenshots:
 </details>
 
 <details>
-<summary>1.0.0 - HOSTED: Register & Login</summary>
+<summary>1.0.0 -- HOSTED: Register & Login</summary>
 
 - FE: Hosted  
     - Login & Register  
@@ -159,7 +227,7 @@ Screenshots:
 </details>
 
 <details>
-<summary>0.1.1 - Homepage Redesign: Material UI Vertical Tabs</summary>
+<summary>0.1.1 -- Homepage Redesign: Material UI Vertical Tabs</summary>
 
 - FE: Hosted Homepage - Material UI Vertical Tabs - NYT Bestseller List Explorer 
 - BE: Login & Register functionality working in postman but not hooked up to FE
@@ -169,7 +237,7 @@ Screenshot:
 </details>  
 
 <details>
-<summary>0.1.0 - Homepage: Pyramid</summary>
+<summary>0.1.0 -- Homepage: Pyramid</summary>
 
 - FE: Hosted Homepage - Desktop Only - NYT Bestseller List Pyramid
 - BE: Login & Register functionality working in postman but not hooked up to FE
