@@ -12,18 +12,18 @@ Want to know what another user is reading? Turn your profile 'public' and allow 
 
 # Tech Stack
 | title                   | name                                    | link                                                                             |
-| ----------------------- | --------------------------------------- | -------------------------------------------------------------------------------- | 
+| --- --- ---             | --- --- ---                             | --- --- ---                                                                      | 
 | Database                | S: SQL - Postgres                       | [LINK](https://www.postgresql.org)                                               |
 | Server                  | E: Express                              | [LINK](https://expressjs.com)                                                    |
 | UI Component Library    | R: React                                | [LINK](https://reactjs.org)                                                      |
 | Server Run Time         | N: NodeJS                               | [LINK](https://nodejs.org/en/)                                                   |
-| ----------------------- | --------------------------------------- | -------------------------------------------------------------------------------- | 
+| --- --- ---             | --- --- ---                             | --- --- ---                                                                      | 
 | Package Manage          | NPM                                     | [LINK](https://nodejs.org/en/)                                                   |
-| ----------------------- | --------------------------------------- | -------------------------------------------------------------------------------- | 
+| --- --- ---             | --- --- ---                             | --- --- ---                                                                      | 
 | HTTP Client             | Axios                                   | [LINK](https://github.com/axios/axios)                                           |
 | Query Builder           | Knex (prioritized used of .raw(``))     | [LINK](http://knexjs.org)                                                        |
 | Styling                 | Material UI                             | [LINK](https://material-ui.com)                                                  |
-| ----------------------- | --------------------------------------- | -------------------------------------------------------------------------------- | 
+| --- --- ---             | --- --- ---                             | --- --- ---                                                                      | 
 | API Integration Testing | SuperTest & Jest                        | [SuperTest](https://www.npmjs.com/package/supertest) / [Jest](https://jestjs.io) |
 | Unit Testing            | Jest                                    | [LINK](https://jestjs.io)                                                        | 
 | End to End Testing      | Cypress                                 | [LINK](https://www.cypress.io)
