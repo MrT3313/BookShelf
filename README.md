@@ -66,7 +66,10 @@ Package Manager: NPM
 <details open>
 <summary>1.5.0 -- Initial API Integration Testing</summary>
 
-- 🚧 API Integration Testing 🚧
+- End to End Testing - Cypress
+    1. Guest Login 
+
+- API Integration Testing - JEST
     - TODO: Users
         - ✅ Routes & Models Separated
         - ✅ Integration Testing: Models & Routes 
