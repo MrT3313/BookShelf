@@ -58,6 +58,35 @@ describe('/logs/', function() {
             expect(response.body).toBeInstanceOf(Array)
             expect(response.body).toHaveLength(1)
         })
+
+        it('logs/singleUser => return 200 JSON data w/ len(array) === 1', async function() {
+            const response = await request(server)
+                .get('/logs/singleUser/1');
+                
+            expect(response.status).toBe(200)
+            expect(response.type).toMatch(/json/i)
+            expect(response.body).toBeInstanceOf(Array)
+            expect(response.body).toHaveLength(1)
+        })
+
+        it('logs/singleBook => return 200 JSON data w/ len(array) === 1', async function() {
+            const response = await request(server)
+                .get('/logs/singleBook/1');
+                
+            expect(response.status).toBe(200)
+            expect(response.type).toMatch(/json/i)
+            expect(response.body).toBeInstanceOf(Array)
+            expect(response.body).toHaveLength(1)
+        })
+
+        it('logs/singleLog => return 200 JSON data w/ len(array) === 1', async function() {
+            const response = await request(server)
+                .get('/logs/singleLog/1');
+                
+            expect(response.status).toBe(200)
+            expect(response.type).toMatch(/json/i)
+            expect(response.body).toBeInstanceOf(Object)
+        })
     })
 
     describe('DEL /', function() {

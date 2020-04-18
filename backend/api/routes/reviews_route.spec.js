@@ -61,6 +61,33 @@ describe('/reviews/', function() {
             expect(response.body).toBeInstanceOf(Array)
             expect(response.body).toHaveLength(1)
         })
+
+        it('reviews/reviewID => return 200 JSON data w/ len(array) === 1', async function() {
+            const response = await request(server)
+                .get('/reviews/singleReview/1');
+                
+            expect(response.status).toBe(200)
+            expect(response.type).toMatch(/json/i)
+            expect(response.body).toBeInstanceOf(Object)
+        })
+
+        it('reviews/userID => return 200 JSON data w/ len(array) === 1', async function() {
+            const response = await request(server)
+                .get('/reviews/singleUser/1');
+                
+            expect(response.status).toBe(200)
+            expect(response.type).toMatch(/json/i)
+            expect(response.body).toBeInstanceOf(Object)
+        })
+
+        it('reviews/bookID => return 200 JSON data w/ len(array) === 1', async function() {
+            const response = await request(server)
+                .get('/reviews/singleBook/1');
+                
+            expect(response.status).toBe(200)
+            expect(response.type).toMatch(/json/i)
+            expect(response.body).toBeInstanceOf(Object)
+        })
     })
 
     describe("PUT /", function() {

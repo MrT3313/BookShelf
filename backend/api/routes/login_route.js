@@ -7,8 +7,12 @@ const express = require('express')
 // KNEX
 const KNEX_DB = require('../../data/dbConfig.js')
 
+// MODELS
+const USERS_MODEL = require('../models/users_model.js')
+
 // ROUTER
 const router = express.Router()
+
 
 // UTILS
 const sign_JWT = require('../../utils/sign_JWT.js') 
@@ -57,7 +61,8 @@ const sign_JWT = require('../../utils/sign_JWT.js')
             // console.log(UniqueData)
             
             // Search DB for an entry where the TYPE matches the UNIQUE DATA passed in the request
-            KNEX_DB('users').where(type, UniqueData ).first()
+            // KNEX_DB('users').where(type, UniqueData ).first()
+            USERS_MODEL.login(type, UniqueData)
                 .then(foundUser => {
                 // console.log('FOUND USER', foundUser)
                 // -- //

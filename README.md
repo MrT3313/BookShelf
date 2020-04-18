@@ -61,51 +61,64 @@ Package Manager: NPM
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 ---
-### Latest: 1.5.0 -- Testing
+### Latest: 1.5.0 -- Testing Update
 
 <details open>
-<summary>1.5.0 -- Testing</summary>
+<summary>1.5.0 -- Initial API Integration Testing</summary>
 
-- 🚧 Test DB 🚧
-    1. ❌ Test DB
-    2. ❌ Test ENV
-
-- 🚧 Utils 🚧
-    1. TODO: ❌ Unit Testing: sign_JWT
-    2. TODO: ❌ Unit Testing: verify_JWT
-    3. TODO: ❌ Unit Testing: decode_JWT
-
-- 🚧 API 🚧
+- 🚧 API Integration Testing 🚧
     - TODO: Users
         - ✅ Routes & Models Separated
-        - ❌ Integration Testing: Models & Routes 
+        - ✅ Integration Testing: Models & Routes 
+            - beforeEach() => truncate USERS table
+            1. Get /users/all
+            2. Put /users/:userID
+            3. Del /users/:userID
+
     - TODO: Books
         - ✅ Routes & Models Separated
         - ✅ Integration Testing: Models & Routes 
-            - beforeEach() => truncate
+            - beforeEach() => truncate BOOKS table
             1. Post /books/
             2. Get /books/all
             3. Get /books/:bookID
             4. Put /books/:bookID
-            5. Del /books/:bookID 
+            5. Del /books/:bookID
+            
     - TODO: Reviews
         - ✅ Routes & Models Separated
-        - ❌ Integration Testing: Models & Routes 
+        - ✅ Integration Testing: Models & Routes 
+            - beforeEach() => truncate REVIEWS / BOOKS / USERS table
+            1. Post /reviews/
+            2. Get /reviews/all
+            3. Get /reviews/singleReview/:reviewID
+            4. Get /reviews/singleBook/:bookID
+            5. Get /reviews/singleUser/:userID
+            6. Put /reviews/:reviewID
+            7. Del /reviews/:reviewID
+
     - TODO: Logs
         - ✅ Routes & Models Separated
-        - ❌ Integration Testing: Models & Routes 
-    - TODO: Register
-        - ❌ Routes & Models Separated
-        - ❌ Integration Testing: Models & Routes
-    - TODO: Login
-        - ❌ Routes & Models Separated
-        - ❌ Integration Testing: Models & Routes
+        - ✅ Integration Testing: Models & Routes 
+            - beforeEach() => truncate COMPLETEDBOOKS / BOOKS / USERS table
+            1. Post /logs/
+            2. Get /logs/all
+            3. Get /logs/:singleUser/:userID
+            4. Get /logs/:singleBook/:bookID
+            5. Get /logs/:singleLog/:logID
+            6. Del /logs/:logID
 
-- 🚧 End to End 🚧
-    - TODO: ❌ User Login
-    - TODO: ❌ User Registration
-    - TODO: ❌ User Add Book
-    - TODO: ❌ User Add Review
+    - TODO: Register
+        - ✅ Routes & Models Separated
+        - ✅ Integration Testing: Models & Routes
+            - beforeEach() => truncate USERS table
+            1. Post /register/
+
+    - TODO: Login
+        - ✅ Routes & Models Separated
+        - ✅ Integration Testing: Models & Routes
+            - beforeEach() => truncate USERS table
+            1. Post /login/
 
 </details>
 

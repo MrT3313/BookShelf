@@ -9,6 +9,7 @@ module.exports = {
     updatePrivileges, 
     deleteUser,
     addUser,
+    login, 
 }
 
 // Functions
@@ -90,4 +91,15 @@ function addUser(userData) {
     return KNEX_DB('users').insert(userData)
 
     // - B - // RAW SQL 
+}
+
+// - 7 - // login
+function login(type, data) {
+// console.log('MODEL - USERS - login')
+// console.log('DATA: ', data)
+// console.log('TYPE: ', type)
+// -- // 
+    // - A - // Knex Query Builder
+    return KNEX_DB('users').where(type, data).first()
+    // - B - // RAW SQL   
 }
