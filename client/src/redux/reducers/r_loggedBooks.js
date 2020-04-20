@@ -24,7 +24,7 @@ const initialState = {
 
 // __MAIN__
 export const r_loggedBooks = (state=initialState, action) => {
-// console.log('action.payload: ', action.payload)
+console.log('LOGS REDUCER => action.payload: ', action.payload)
 // -- // 
     switch(action.type) {
         // - 1 - // GET ALL LOGGED BOOKS

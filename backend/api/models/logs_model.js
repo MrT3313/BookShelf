@@ -22,7 +22,7 @@ function getAll() {
     // - B - // RAW SQL
     return KNEX_DB.raw(`
         SELECT 
-            completedbooks.id as "logID", completedbooks."userID", completedbooks.rank,
+            completedbooks.id as "logID", completedbooks."userID",
             books.id as "bookID", books.title, books.author, books.created_at
         
         FROM completedbooks
@@ -44,7 +44,7 @@ function getLogs_by_userID(userID) {
     // - B - // RAW SQL
     return KNEX_DB.raw(`
         SELECT 
-            completedbooks.id as "logID",  completedbooks.rank, 
+            completedbooks.id as "logID",   
             users.id as "userID",
             books.id as "bookID", books.title, books.author, books.created_at
         FROM users
@@ -71,7 +71,7 @@ function getLogs_by_bookID(bookID) {
     // - B - // RAW SQL
     return KNEX_DB.raw(`
         SELECT 
-            completedbooks.id as "logID",  completedbooks.rank,
+            completedbooks.id as "logID",  
             users.id as "userID",
             books.id as "bookID", books.title, books.author, books.created_at
         FROM users
@@ -99,7 +99,7 @@ function getLog(id) {
     // - B - // RAW SQL
     return KNEX_DB.raw(`
         SELECT 
-            completedbooks.id as "logID",  completedbooks.rank,
+            completedbooks.id as "logID",  
             users.id as "userID",
             books.id as "bookID", books.title, books.author, books.created_at
         FROM users
