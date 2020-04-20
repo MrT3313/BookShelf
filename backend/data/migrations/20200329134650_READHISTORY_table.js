@@ -11,8 +11,6 @@ exports.up = function(knex) {
             .references('id').inTable('books')
             .onDelete('CASCADE')
             .onUpdate("CASCADE");
-
-        tbl.integer('rank').defaultTo(-1)
             
         tbl.timestamps(true, true)
     })
