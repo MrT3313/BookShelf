@@ -10,6 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 
 
 // COMPONENTS
@@ -89,6 +90,7 @@ const {
         key: key + 1,
         title: item.title, 
         author: item.author,
+        rank: item.rank,
       }
 
       // Return
@@ -219,7 +221,7 @@ const {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   
-                  // console.log('ROW!!!',row)
+                  console.log('ROW!!!',row)
 
                   const isItemSelected = isSelected(row.key);
                   const labelId = `enhanced-table-checkbox-${index}`;
@@ -246,6 +248,12 @@ const {
                       </TableCell>
                       <TableCell padding="none" align="center">{row.title}</TableCell>
                       <TableCell padding="none" align="center">{row.author}</TableCell>
+                      {row.rank !== -1 &&
+                        <TableCell padding="none" align="center">{row.rank}</TableCell>
+                      }
+                      {row.rank === -1 &&
+                        <TableCell padding="none" align="center">~</TableCell>
+                      }
                     </TableRow>
                   );
                 })}

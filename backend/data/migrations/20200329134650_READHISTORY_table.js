@@ -12,7 +12,7 @@ exports.up = function(knex) {
             .onDelete('CASCADE')
             .onUpdate("CASCADE");
 
-        tbl.integer('rank')
+        tbl.integer('rank').defaultTo(-1)
             
         tbl.timestamps(true, true)
     })
