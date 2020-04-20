@@ -12,6 +12,7 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
+import RankCard from './RankCard.js'
 
 // ACTION CREATORS
 
@@ -101,6 +102,7 @@ const {
                             </div>
                         </div>
                     </Card>
+                    <RankCard rank={selectedReviews[0].rank}/>
                 </Paper>
             }
 

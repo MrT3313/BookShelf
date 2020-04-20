@@ -82,7 +82,7 @@ const {
     }, [])
 
     useEffect(() => {
-        // console.log(userReviews)
+        console.log('UNFILTERED',userReviews)
         // console.log(userLogs)
 
         let filtered = []
@@ -92,7 +92,7 @@ const {
             // console.log(logIndex)
             
             filtered = userReviews.filter(review => review.bookID === userLogs[logIndex].bookID)
-            // console.log(filtered)
+            console.log('FILTERED',filtered)
         }
 
         setSelectedReviews(filtered)
