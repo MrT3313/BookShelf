@@ -248,12 +248,14 @@ const {
                       </TableCell>
                       <TableCell padding="none" align="center">{row.title}</TableCell>
                       <TableCell padding="none" align="center">{row.author}</TableCell>
-                      {row.rank !== -1 &&
+                      
+                      {/* TODO: UPDATE RANK DATA */}
+                      {/* {row.rank !== -1 &&
                         <TableCell padding="none" align="center">{row.rank}</TableCell>
                       }
                       {row.rank === -1 &&
                         <TableCell padding="none" align="center">~</TableCell>
-                      }
+                      } */}
                     </TableRow>
                   );
                 })}
