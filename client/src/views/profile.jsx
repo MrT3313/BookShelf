@@ -17,6 +17,7 @@ import UserReviews from '../components/UserReviews.js'
 // Action Creators
 import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'
 import { a_getUserReviews } from '../redux/actions/GET/a_getUserReviews.js'
+import { a_getUserRanks } from '../redux/actions/GET/a_getUserRanks.js'
 
 // FUNCTIONS
 import decode from '../utils/decode_JWT.js'
@@ -51,7 +52,8 @@ function Profile(props) {
 const { 
     token, 
     userLogs, userReviews,
-    a_getUserLoggedBooks, a_getUserReviews 
+    a_getUserLoggedBooks, a_getUserReviews,
+    a_getUserRanks, a_getRanks
 } = props
 // -- //
     // Styles
@@ -77,6 +79,8 @@ const {
             async function updateData() {
                 await a_getUserLoggedBooks(userID)
                 await a_getUserReviews(userID)
+                await a_getUserRanks(userID)
+
             }
             updateData()
     }, [])
@@ -151,7 +155,7 @@ const mstp = state => {
 export default connect(
     mstp,
     {
-        a_getUserLoggedBooks,
-        a_getUserReviews,
+        a_getUserLoggedBooks, a_getUserReviews,
+        a_getUserRanks,
     }
 )(Profile)

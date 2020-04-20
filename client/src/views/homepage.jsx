@@ -20,6 +20,7 @@ import { a_getSpecificList } from '../redux/actions/GET/a_getSpecificList.js'
 import { a_getBooks } from '../redux/actions/GET/a_getBooks.js'
 import { a_getReviews } from '../redux/actions/GET/a_getReviews.js'
 import { a_getLoggedBooks } from '../redux/actions/GET/a_getLoggedBooks.js'
+import { a_getRanks } from  '../redux/actions/GET/a_getRanks.js'
               
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -40,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 function HomePage(props) {
 const { 
     allLists, listName, searchDate,
-    a_getBooks, a_getReviews, a_getLoggedBooks            // Action Creators
+    a_getBooks, a_getReviews, a_getLoggedBooks, a_getRanks     // Action Creators
 } = props
     // Styles
     const classes = useStyles({})
@@ -54,6 +55,7 @@ const {
         a_getBooks()
         a_getReviews()
         a_getLoggedBooks()
+        a_getRanks()
     }, [])
 
     // Return
@@ -96,5 +98,6 @@ export default connect(
         a_getBooks,
         a_getReviews,
         a_getLoggedBooks,
+        a_getRanks,
     }
 )(HomePage)

@@ -25,9 +25,9 @@ const router = express.Router()
         // -- //
             LOGS_MODEL.getAll()
                 .then( loggedBooks => {
-                // console.log(loggedBooks)
+                // console.log(loggedBooks.rows)
                 // -- // 
-                    res.status(200).json(loggedBooks)
+                    res.status(200).json(loggedBooks.rows)
                 })
                 .catch( err => {
                 // console.log(err)
