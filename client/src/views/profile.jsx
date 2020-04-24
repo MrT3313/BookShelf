@@ -142,6 +142,7 @@ const {
                 <div style={{width: '20px'}}></div>
                 <UserReviews 
                     selectedReviews={selectedReviews}
+                    selectedRanks={selectedRanks}
                     toggleAdd={toggleAdd}
                 />
             </div>

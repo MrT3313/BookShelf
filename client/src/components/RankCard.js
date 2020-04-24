@@ -22,30 +22,54 @@ import { makeStyles } from '@material-ui/core/styles'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles({
-    root: {
+    // root: {
+    //     border: '1px solid black',
+    //     display: 'flex',
+    //     height: 'auto'
+    // },
+    RankCard: { 
+        position: 'absolute',
+        top: '20px',
+        right: '20px',
 
-    },
+        fontSize: '25px',
+        fontWeight: 'bold',
+    }
 })
 
 // -B- COMPONENT
 function RankCard(props) {
-    // console.log('RANK CARD PROPS: ', props)
+console.log('RANK CARD PROPS: ', props)
+const { 
+    selectedRanks
+} = props
+// -- //
+    // Styles
+    const classes = useStyles({})
 
-    // -- //
-        // Styles
-        const classes = useStyles({})
+    // State
 
-        // State
-
-        // UseEffect
+    // UseEffect
 
 
-        // Methods
+    // Methods
 
-        // Return
+    // Return
+    if (selectedRanks.length === 0) {
         return (
-            <div>HELLO FROM RANK CARD</div>
+            <div className={classes.RankCard}>
+                {`~ ~ ~`}
+            </div>
         )
+    } 
+    if (selectedRanks.length !== 0) {
+        return (
+            <div className={classes.RankCard}>
+                {/* <div>{rank}</div> */}
+                {selectedRanks[0].rank}
+            </div>
+        )
+    } 
 }
 
 // MAP STATE TO PROPS

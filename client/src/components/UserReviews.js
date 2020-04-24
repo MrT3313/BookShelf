@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
         width: '50%',
     },
     paperRoot: {
+        position: 'relative',           // for BookCard Position
         display: 'flex',
         flexGrow: '1',
 
@@ -39,6 +40,7 @@ const useStyles = makeStyles(theme => ({
     },
     // -- // 
     reviewRoot: {
+        // position: 'relative',           // for BookCard Position
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
@@ -69,7 +71,6 @@ const useStyles = makeStyles(theme => ({
 
         marginTop: '10px',
     },
-    
 }))
 
 // -B- COMPONENT
@@ -77,6 +78,7 @@ function UserReviews(props) {
 // console.log('NEW USER REVIEW PROPS: ', props)
 const { 
     selectedReviews,
+    selectedRanks,
     toggleAdd,
 } = props
 // -- //
@@ -87,6 +89,7 @@ const {
     return (
         <div className={classes.root}>
             {selectedReviews.length !== 0 &&
+            <>
                 <Paper className={classes.paperRoot}>
                     <Card className={classes.reviewRoot}>
                         <div className={classes.title}>
@@ -102,16 +105,16 @@ const {
                             </div>
                         </div>
                     </Card>
-                    <RankCard rank={selectedReviews[0].rank}/>
+                    <RankCard selectedRanks={selectedRanks}/>
                 </Paper>
+            </>
             }
-
 
             {selectedReviews.length === 0 &&
                 <Paper className={classes.paperRoot}>
                     <Card className={classes.noReviewRoot}>
                         <div>
-                            Add a review for this book!
+                            Select a Log Entry!
                         </div>
                         <AddBoxIcon
                             id='review'
@@ -120,6 +123,7 @@ const {
                         />
                     </Card>
                 </Paper>
+
             }
         </div>
     )
