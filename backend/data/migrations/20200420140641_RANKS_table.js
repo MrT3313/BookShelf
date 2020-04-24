@@ -13,6 +13,7 @@ exports.up = function(knex) {
             .onUpdate("CASCADE");
 
         tbl.integer('logID')
+            .unique()
             .references('id').inTable('completedbooks')
             .onDelete('CASCADE')
             .onUpdate("CASCADE")

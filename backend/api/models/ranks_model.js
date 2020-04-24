@@ -171,11 +171,18 @@ module.exports = {
     async function logRank(logData) {
     // -- //
         // - A - // Knex Query Builder
-        await KNEX_DB('ranks').insert(logData)
-        return getAll()
+        // await KNEX_DB('ranks').insert(logData)
+        // return getAll()
 
         // - B - // RAW SQL
+        await KNEX_DB.raw(`
+            INSERT INTO ranks ("userID", "bookID", "logID", rank)
+            VALUES (${logData.userID},${logData.bookID},${logData.logID},${logData.rank})
 
+            ON CONFLICT ("logID") DO UPDATE
+            SET rank = ${logData.rank}
+        `)
+        return getAll()
     }
 
 // - PUT - //
