@@ -50,10 +50,12 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function Profile(props) {
 const { 
+    // MSTP
     token, 
-    userLogs, userReviews,
-    a_getUserLoggedBooks, a_getUserReviews,
-    a_getUserRanks, a_getRanks
+    userLogs, userReviews, userRanks,  
+
+    // Action Creators
+    a_getUserLoggedBooks, a_getUserReviews, a_getUserRanks      
 } = props
 // -- //
     // Styles
@@ -62,6 +64,7 @@ const {
     // State
     const [selectedUserLogIndex, setUserLogIndex] = useState([])
     const [selectedReviews, setSelectedReviews] = useState([])
+    const [selectedRanks, setSelectedRanks] = useState([])
     const [is_adding, setIs_adding] = useState(false)
 
     // UseEffect
@@ -86,21 +89,29 @@ const {
     }, [])
 
     useEffect(() => {
-        console.log('UNFILTERED',userReviews)
-        // console.log(userLogs)
+        console.log('UNFILTERED REVIEWS',userReviews)
+        console.log('UNFILTERED RANKS', userRanks)
 
-        let filtered = []
+
+
+        let filteredReviews = []
+        let filteredRanks = []
 
         if (selectedUserLogIndex.length > 0) {
             const logIndex = selectedUserLogIndex[0]
             // console.log(logIndex)
             
-            filtered = userReviews.filter(review => review.bookID === userLogs[logIndex].bookID)
-            console.log('FILTERED',filtered)
+            filteredReviews = userReviews.filter(review => review.bookID === userLogs[logIndex].bookID)
+            console.log('FILTERED REVIEWS', filteredReviews)
+
+            filteredRanks = userRanks.filter(rank => rank.bookID === userLogs[logIndex].bookID)
+            console.log('FILTERED RANKS', filteredRanks)
         }
 
-        setSelectedReviews(filtered)
-    }, [selectedUserLogIndex, userReviews])
+        setSelectedReviews(filteredReviews)
+        setSelectedRanks(filteredRanks)
+
+    }, [selectedUserLogIndex, userReviews, userRanks])
 
     // Methods
     const toggleAdd = e => {
@@ -148,6 +159,7 @@ const mstp = state => {
 
         userLogs: state.r_loggedBooks.userLoggedBooks,
         userReviews: state.r_reviews.USER_reviews,
+        userRanks: state.r_ranks.USER_ranks,
     }
 }
         

@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "jest": "DB_CONNECT=testing jest --watch --detectOpenHandles --verbose",
-
     "testEnv": "nodemon backend/index.js DB_CONNECT=testing",
     "server": "nodemon backend/index.js",
-    
     "start": "node backend/index.js"
   },
   "keywords": [],

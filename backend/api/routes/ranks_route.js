@@ -75,6 +75,23 @@ const router = express.Router()
             })
     })
 
+    // - 5 - // get RANK for specific log
+    router.get('/singleLog/:logID', async(req,res) => {
+    const {logID} = req.params
+    // -- //
+        RANKS_MODEL.getRank_by_logID(logID)
+            .then( results => {
+            console.log(results.rows[0])
+            // -- //
+                res.status(200).json(results.rows[0])
+            })
+            .catch(err => {
+            // console.log(err)
+            // -- //
+                res.status(500).json(err)
+            })
+    })
+
     // - POST - //
         /* ACCEPTED SHAPE
             {

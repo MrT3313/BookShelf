@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 // __MAIN__
 function UserLogTable(props) {
 const { 
-  userLogs,
+  userLogs, userRanks,
   setUserLogIndex, 
 } = props
 // console.log('userLogs',userLogs)
@@ -81,7 +81,12 @@ const {
   // ---- DATA ----  //
   // ---- DATA ----  //
     // V2 - create data
-    function createData(item, key) {
+    function createData(item, key, rank=false) {
+      console.log('CREATE DATA: ')
+      console.log(item)
+      console.log(key)
+      console.log(rank)
+
       let date = new Date(item.created_at)
 
       const dataPrep = { 
@@ -90,15 +95,26 @@ const {
         key: key + 1,
         title: item.title, 
         author: item.author,
-        rank: item.rank,
+        rank: rank,
       }
+      console.log("DATA PREP: ", dataPrep)
 
       // Return
       return dataPrep
     }
 
     const rows = userLogs.map((item,key) => {
-      return createData(item, key)
+      console.log(item)
+      console.log('!!!***', userRanks)
+
+      let filtered = userRanks.filter(rank => rank.logID === item.logID)
+      console.log('FILTERED RANKS by Log ID', filtered)
+
+      if (filtered.length === 0) {
+        return createData(item, key)
+      } else {
+        return createData(item, key, filtered[0].rank)
+      }
     })
 
   // ---- DATA ----  //
@@ -250,12 +266,12 @@ const {
                       <TableCell padding="none" align="center">{row.author}</TableCell>
                       
                       {/* TODO: UPDATE RANK DATA */}
-                      {/* {row.rank !== -1 &&
+                      {row.rank !== false &&
                         <TableCell padding="none" align="center">{row.rank}</TableCell>
                       }
-                      {row.rank === -1 &&
+                      {row.rank === false &&
                         <TableCell padding="none" align="center">~</TableCell>
-                      } */}
+                      }
                     </TableRow>
                   );
                 })}
@@ -281,6 +297,7 @@ const {
 const mstp = state => {
   return {
     userLogs: state.r_loggedBooks.userLoggedBooks,
+    userRanks: state.r_ranks.USER_ranks, 
   }
 }
 

@@ -12,7 +12,7 @@ const initialState = {
     if_fetchingUserData: false,
     is_adding: false,
 
-    USERS_ranks: [],
+    USER_ranks: [],
     DB_ranks: [],
 
     error: ''
@@ -61,7 +61,7 @@ export const r_ranks = (state=initialState, action) => {
                 ...state,
                 is_fetchingUserData: false,
 
-                USERS_ranks: [...action.payload],
+                USER_ranks: [...action.payload],
 
                 error: ''
             }
