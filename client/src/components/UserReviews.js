@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import EditIcon from '@material-ui/icons/Edit';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -71,6 +72,21 @@ const useStyles = makeStyles(theme => ({
 
         marginTop: '10px',
     },
+    // -- //
+    EditIcon: {
+        position: 'absolute',
+        bottom: '20px',
+        right: '15px',
+        color: "#263238",
+
+        padding: '5px',
+        borderRadius: '5px',
+
+        '&:Hover': {
+            color: theme.palette.primary.main,
+            backgroundColor: theme.palette.secondary.main,
+        }
+    }
 }))
 
 // -B- COMPONENT
@@ -85,6 +101,10 @@ const {
     // Styles
     const classes = useStyles({})
 
+    // Methods
+    const editHelper = () => {
+        console.log('TRYING TO EDIT')
+    }
     // Return 
     return (
         <div className={classes.root}>
@@ -106,6 +126,9 @@ const {
                         </div>
                     </Card>
                     <RankCard selectedRanks={selectedRanks}/>
+                    <div className={classes.EditIcon} onClick={editHelper}>
+                        <EditIcon />
+                    </div>
                 </Paper>
             </>
             }

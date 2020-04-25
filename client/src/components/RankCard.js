@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 // MATERIAL UI
 // -1- Components
-import { Card } from '@material-ui/core';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles'
@@ -22,15 +21,10 @@ import { makeStyles } from '@material-ui/core/styles'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles({
-    // root: {
-    //     border: '1px solid black',
-    //     display: 'flex',
-    //     height: 'auto'
-    // },
     RankCard: { 
         position: 'absolute',
-        top: '20px',
-        right: '20px',
+        top: '15px',
+        right: '15px',
 
         fontSize: '25px',
         fontWeight: 'bold',
