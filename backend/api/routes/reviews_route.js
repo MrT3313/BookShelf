@@ -49,9 +49,9 @@ const router = express.Router()
     // -- // 
         REVIEWS_MODEL.getReview(reviewID)
             .then( singleReview => {
-            // console.log(singleBook)
+            // console.log(singleBook.rows[0])
             // -- //
-                res.status(200).json(singleReview)
+                res.status(200).json(singleReview.rows[0])
             })
             .catch( err => {
             // console.log(err)
@@ -136,7 +136,7 @@ const router = express.Router()
             .then( results => {
             // console.log(results)
             // -- //
-                res.status(500).json(results)
+                res.status(200).json(results)
             })
             .catch(err => {
             // console.log(err)

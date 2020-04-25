@@ -141,21 +141,21 @@ const router = express.Router()
     })
     
     // - DEL - //
-    // router.delete('/:id', async(req,res) => {
-    // const {id} = req.params
-    // // -- //
-    //     RANKS_MODEL.deleteRank(id)
-    //     .then( results => {
-    //         // console.log(results)
-    //         // -- //
-    //             res.status(200).json(results)
-    //         })
-    //         .catch(err => {
-    //         // console.log(err)
-    //         // -- //
-    //             res.status(500).json(err)
-    //         })
-    // })
+    router.delete('/:id', async(req,res) => {
+    const {id} = req.params
+    // -- //
+        RANKS_MODEL.deleteRank(id)
+        .then( results => {
+            // console.log(results.rows)
+            // -- //
+                res.status(200).json(results.rows)
+            })
+            .catch(err => {
+            // console.log(err)
+            // -- //
+                res.status(500).json(err)
+            })
+    })
 
 
 

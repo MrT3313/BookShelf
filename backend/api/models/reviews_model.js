@@ -22,15 +22,20 @@ function getAll() {
 
     // - B - // RAW SQL
     return KNEX_DB.raw(`
-        SELECT
-            reviews."userID", reviews.id as "reviewID",
-            books.id as "bookID", books.title, books.author,
-            reviews.review
+        SELECT 
+            -- IDs
+                reviews.id as "reviewID", completedbooks.id as "logID", completedbooks."userID", completedbooks."bookID",
             
-        FROM reviews
+            -- Data
+                books.title, books.author,
+                reviews.review
+        FROM completedbooks
+
+        JOIN reviews
+        ON completedbooks.id = reviews."logID"
 
         JOIN books
-        ON books.id = reviews."bookID"
+        ON completedbooks."bookID" = books.id
 
         ORDER BY reviews.created_at DESC
     `)
@@ -47,20 +52,25 @@ function getReviews_by_userID(userID) {
     // - B - // RAW SQL
     return KNEX_DB.raw(`
         SELECT
-            reviews."userID", reviews.id as "reviewID",
-            books.id as "bookID", books.title, books.author,
-            reviews.review
-            
-        FROM reviews
-        
-        JOIN books
-        ON books.id = reviews."bookID"
-        
-        WHERE reviews."userID" = ${userID}
+            -- IDs
+            reviews.id as "reviewID", completedbooks.id as "logID", completedbooks."userID", completedbooks."bookID",
 
-        ORDER BY reviews.created_at DESC
+            -- Data
+            books.title, books.author,
+            reviews.review
+
+        FROM completedbooks
+            
+        JOIN reviews
+        ON reviews."logID" = completedbooks.id
+
+        JOIN books
+        ON completedbooks."bookID" = books.id
+
+        WHERE completedbooks."userID" = ${userID}
     `)
 }
+
 
 // - 3 - // getReviews_by_bookID
 function getReviews_by_bookID(bookID) {
@@ -72,18 +82,23 @@ function getReviews_by_bookID(bookID) {
 
     // - B - // RAW SQL
     return KNEX_DB.raw(`
-        SELECT
-            reviews."userID", reviews.id as "reviewID",
-            books.id as "bookID", books.title, books.author,
+        SELECT 
+        -- IDs
+            completedbooks.id as "logID", reviews.id as "reviewID", completedbooks."userID", completedbooks."bookID",
+        
+        -- Data
+            books.title, books.author,
             reviews.review
-            
-        FROM reviews
+        FROM completedbooks
+        
+        JOIN reviews
+        ON completedbooks.id = reviews."logID"
         
         JOIN books
-        ON books.id = reviews."bookID"
+        ON completedbooks."bookID" = books.id
         
-        WHERE reviews."bookID" = ${bookID}
-
+        WHERE books.id = ${bookID}
+        
         ORDER BY reviews.created_at DESC
     `)
 }
@@ -94,12 +109,31 @@ function getReview(id) {
 // console.log(id)
 // -- //
     // - A - // Knex Query Builder
-    return KNEX_DB('reviews').where('id', id).first()
+    // return KNEX_DB('reviews').where({id}).first()
 
     // - B - // RAW SQL
+    return KNEX_DB.raw(`
+        SELECT 
+        -- IDs
+            completedbooks.id as "logID", reviews.id as "reviewID", completedbooks."userID", completedbooks."bookID",
+        
+        -- Data
+            books.title, books.author,
+            reviews.review
+        FROM completedbooks
+
+        JOIN reviews
+        ON completedbooks.id = reviews."logID"
+
+        JOIN books
+        ON completedbooks."bookID" = books.id
+
+        WHERE reviews.id = ${id}
+    `)
 }
 
-// - 5 - // postReview
+// - POST - //
+// - 1 - // postReview
 async function postReview(postData) { 
 // console.log(postData)
 // -- //
@@ -109,7 +143,8 @@ async function postReview(postData) {
     // - B - // RAW SQL
 }
 
-// - 6 - // updateReview
+// - PUT - //
+// - 1 - // updateReview
 async function updateReview(id, updateData) { 
 console.log(updateData)
 console.log(id)
@@ -120,7 +155,8 @@ console.log(id)
     // - B - // RAW SQL
 }
 
-// - 7 - // deleteUser
+// - DEL - //
+// - 1 - // deleteUser
 async function deleteReview(id) {
 // console.log('MODEL - REVIEWS - deleteReview')
 // console.log(id)

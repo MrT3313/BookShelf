@@ -2,16 +2,6 @@ exports.up = function(knex) {
     return knex.schema.createTable('ranks', tbl => {
         tbl.increments('id')
 
-        tbl.integer('userID')
-            .references('id').inTable('users')
-            .onDelete('CASCADE')
-            .onUpdate("CASCADE");
-
-        tbl.integer('bookID')
-            .references('id').inTable('books')
-            .onDelete('CASCADE')
-            .onUpdate("CASCADE");
-
         tbl.integer('logID')
             .unique()
             .references('id').inTable('completedbooks')

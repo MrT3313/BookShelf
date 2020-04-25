@@ -126,11 +126,13 @@ const {is_adding, setIs_adding, toggleAdd} = props
             
             </div>
             <div className={classes.bottom}>
-            { is_adding && is_adding === 'book' &&
+            {/* { is_adding && is_adding === 'book' && */}
+            { is_adding === 'book' &&
                 <AddBook setIs_adding={setIs_adding}/>
             }
             {/* ADD REVIEW PANNEL */}
-            { is_adding && is_adding === 'review' &&
+            {/* { is_adding && is_adding === 'review' && */}
+            { is_adding === 'review' &&
                 <AddReview setIs_adding={setIs_adding}/>
             }
             </div>

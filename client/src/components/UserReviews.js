@@ -8,6 +8,9 @@ import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import EditIcon from '@material-ui/icons/Edit';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -56,6 +59,8 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         marginTop: '10px',
+        width: '70%',
+
     },
     // -- // 
     noReviewRoot: {
@@ -75,6 +80,7 @@ const useStyles = makeStyles(theme => ({
     // -- //
     EditIcon: {
         position: 'absolute',
+
         bottom: '20px',
         right: '15px',
         color: "#263238",
@@ -82,10 +88,20 @@ const useStyles = makeStyles(theme => ({
         padding: '5px',
         borderRadius: '5px',
 
+        minWidth: '0px', 
+
         '&:Hover': {
             color: theme.palette.primary.main,
             backgroundColor: theme.palette.secondary.main,
         }
+    },
+    updateContainer: {
+        position: 'absolute',
+        display: 'flex',
+        flexDirection: 'column',
+
+        bottom: '15px',
+        right: '15px',
     }
 }))
 
@@ -101,9 +117,27 @@ const {
     // Styles
     const classes = useStyles({})
 
+    // State
+    const [is_adding, setIsAdding] = useState(false)
+    const [updatedRank, setUpdatedRank] = useState()
+    const [updatedReview, setUpdatedReview] = useState()
+
     // Methods
-    const editHelper = () => {
+    const toggleEdit = () => {
         console.log('TRYING TO EDIT')
+        setIsAdding(!is_adding)
+    }
+    const submitEdit = () => {
+        console.log('SUBMITTING')
+        // setIsAdding(!is_adding)
+
+        console.log(updatedReview)
+        console.log(updatedRank)
+
+        // const prepData = {
+            
+        // }
+
     }
     // Return 
     return (
@@ -120,15 +154,43 @@ const {
                         </div>
                         <div className={classes.reviewContent}>
                             My Review: 
-                            <div style={{padding: '10px 20px 20px 20px', marginTop: '10px'}}>
-                                {selectedReviews[0].review}
-                            </div>
+                            {is_adding &&
+                                <TextField
+                                    id="rank" 
+                                    // label="Edit Your Review"
+                                    defaultValue={selectedReviews[0].review}
+                                    multiline
+                                    rows="5"
+                                    onChange={e =>setUpdatedReview(e.target.value)}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    style={{padding: '0 0 0 20px', marginTop: '10px'}}
+                                />
+                            }
+                            {!is_adding &&
+                                <div style={{display: 'flex', padding: '10px 20px 20px 20px', marginTop: '10px'}}>
+                                    {selectedReviews[0].review}
+                                </div>
+                            }
                         </div>
                     </Card>
-                    <RankCard selectedRanks={selectedRanks}/>
-                    <div className={classes.EditIcon} onClick={editHelper}>
-                        <EditIcon />
-                    </div>
+                    <RankCard selectedRanks={selectedRanks} is_adding={is_adding} setUpdatedRank={setUpdatedRank}/>
+                    {is_adding && 
+                        <div className={classes.updateContainer}>
+                            <Button style={{color: 'red', marginBottom: '5px'}} onClick={toggleEdit}>
+                                Cancel
+                            </Button>
+                            <Button style={{color: '#00BCD4', backgroundColor: '#263238'}} onClick={submitEdit}>
+                                Update
+                            </Button>
+                        </div>
+                    }
+                    {!is_adding && 
+                        <Button className={classes.EditIcon} onClick={toggleEdit}>
+                            <EditIcon />
+                        </Button>
+                    }
                 </Paper>
             </>
             }

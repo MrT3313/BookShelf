@@ -31,15 +31,19 @@ module.exports = {
         // - B - // RAW SQL
         return KNEX_DB.raw(`
             SELECT 
-                ranks.id as "rankID", ranks."userID", ranks.created_at as "rankDate", ranks.rank,
-                books.id as "bookID", books.title, books.author
+                -- IDs
+                ranks.id as "rankID", completedbooks.id as "logID", completedbooks."userID", completedbooks."bookID",
+                
+                -- Data
+                books.title, books.author,
+                ranks.rank
+            FROM completedbooks
             
-            FROM ranks
+            JOIN ranks
+            ON completedbooks.id = ranks."logID"
             
             JOIN books
-            ON ranks."bookID" = books.id
-
-            ORDER BY books.created_at
+            ON completedbooks."bookID" = books.id
         `)
     }
     // - 2 - // getRank
@@ -52,16 +56,19 @@ module.exports = {
         // - B - // RAW SQL
         return KNEX_DB.raw(`
             SELECT 
-                ranks.id as "rankID", ranks.created_at as "rankDate", ranks.rank, 
-                users.id as "userID",
-                books.id as "bookID", books.title, books.author
-            FROM users
+                -- IDs
+                ranks.id as "rankID", completedbooks.id as "logID", completedbooks."userID", completedbooks."bookID",
+                
+                -- Data
+                books.title, books.author,
+                ranks.rank
+            FROM completedbooks
             
             JOIN ranks
-            ON users.id = ranks."userID"
+            ON completedbooks.id = ranks."logID"
             
             JOIN books
-            ON ranks."bookID" = books.id
+            ON completedbooks."bookID" = books.id
             
             WHERE ranks.id = ${id}
 
@@ -79,16 +86,19 @@ module.exports = {
         // - B - // RAW SQL
         return KNEX_DB.raw(`
             SELECT 
-                ranks.id as "rankID",  ranks.created_at as "rankDate", ranks.rank,
-                users.id as "userID",
-                books.id as "bookID", books.title, books.author, books.created_at
-            FROM users
+                -- IDs
+                ranks.id as "rankID", completedbooks.id as "logID", completedbooks."userID", completedbooks."bookID",
+                
+                -- Data
+                books.title, books.author,
+                ranks.rank
+            FROM completedbooks
             
             JOIN ranks
-            ON users.id = ranks."userID"
+            ON completedbooks.id = ranks."logID"
             
             JOIN books
-            ON ranks."bookID" = books.id
+            ON completedbooks."bookID" = books.id
             
             WHERE books.id = ${bookID}
 
@@ -104,30 +114,22 @@ module.exports = {
         
         // - B - // RAW SQL
         return KNEX_DB.raw(`
-            SELECT
-            -- IDs
-                users.id as "userID",
-                ranks.id as "rankID", 
-                books.id as "bookID", 
-            -- Data
-                ranks.created_at as "rankDate", ranks.rank,
-                books.title, books.author, books.created_at,
-                completedbooks.id as "logID"
+            SELECT 
+                -- IDs
+                ranks.id as "rankID", completedbooks.id as "logID", completedbooks."userID", completedbooks."bookID",
                 
-            FROM users
+                -- Data
+                books.title, books.author,
+                ranks.rank
+            FROM completedbooks
             
             JOIN ranks
-            ON users.id = ranks."userID"
+            ON completedbooks.id = ranks."logID"
             
             JOIN books
-            ON ranks."bookID" = books.id
+            ON completedbooks."bookID" = books.id
             
-            JOIN completedbooks 
-            on ranks."logID" = completedbooks.id
-            
-            WHERE users.id = 1
-            
-            ORDER BY books.created_at
+            WHERE completedbooks."userID" = ${userID}
         `)
     }
 
@@ -140,24 +142,19 @@ module.exports = {
         // - B - // RAW SQL
         return KNEX_DB.raw(`
             SELECT 
-            -- IDs 
-                ranks.id as "rankID",  
-                users.id as "userID",
-                completedbooks.id as "logID",
+                -- IDs
+                ranks.id as "rankID", completedbooks.id as "logID", completedbooks."userID", completedbooks."bookID",
                 
-            -- Data
-                ranks.created_at as "rankDate", ranks.rank,
-                books.id as "bookID", books.title, books.author, books.created_at
-            FROM users
+                -- Data
+                books.title, books.author,
+                ranks.rank
+            FROM completedbooks
             
             JOIN ranks
-            ON users.id = ranks."userID"
+            ON completedbooks.id = ranks."logID"
             
             JOIN books
-            ON ranks."bookID" = books.id
-            
-            JOIN completedbooks
-            on ranks."logID" = completedbooks.id
+            ON completedbooks."bookID" = books.id
             
             WHERE completedbooks.id = ${logID}
             
@@ -166,8 +163,7 @@ module.exports = {
         
     }
 
-// - POST - //
-    // - 1 - // logRank
+// - POST - // logRank
     async function logRank(logData) {
     // -- //
         // - A - // Knex Query Builder
@@ -176,8 +172,8 @@ module.exports = {
 
         // - B - // RAW SQL
         await KNEX_DB.raw(`
-            INSERT INTO ranks ("userID", "bookID", "logID", rank)
-            VALUES (${logData.userID},${logData.bookID},${logData.logID},${logData.rank})
+            INSERT INTO ranks ("logID", rank)
+            VALUES (${logData.logID},${logData.rank})
 
             ON CONFLICT ("logID") DO UPDATE
             SET rank = ${logData.rank}
@@ -185,12 +181,11 @@ module.exports = {
         return getAll()
     }
 
-// - PUT - //
-// - 1 - // updateRank
+// - PUT - // updateRank
 async function updateRank(id, updateData) {
     // console.log('MODEL - USERS - RANKS')
-    // console.log(id)
-    // console.log(updateData)
+    console.log(id)
+    console.log(updateData)
     // -- //
         // - A - // Knex Query Builder
         await KNEX_DB('ranks').where({id}).update(updateData)
@@ -199,8 +194,7 @@ async function updateRank(id, updateData) {
         // - B - // RAW SQL
     }
 
-// - DEL - //
-// - 1 - // deleteRank
+// - DEL - // deleteRank
 async function deleteRank(id) {
 // console.log('MODEL - REVIEWS - deleteLog')
 // console.log(id)
