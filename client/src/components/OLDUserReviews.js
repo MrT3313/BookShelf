@@ -119,18 +119,18 @@ const {
     const classes = useStyles({})
 
     // State
-    const [is_adding, setIsAdding] = useState(false)
+    const [is_editing, setIsEditing] = useState(false)
     const [updatedRank, setUpdatedRank] = useState()
     const [updatedReview, setUpdatedReview] = useState()
 
     // Methods
     const toggleEdit = () => {
         console.log('TRYING TO EDIT')
-        setIsAdding(!is_adding)
+        setIsAdding(!is_editing)
     }
     const submitEdit = () => {
         console.log('SUBMITTING')
-        // setIsAdding(!is_adding)
+        // setIsAdding(!is_editing)
 
         console.log(updatedReview)
         console.log(updatedRank)
@@ -155,7 +155,7 @@ const {
                         </div>
                         <div className={classes.reviewContent}>
                             My Review: 
-                            {is_adding &&
+                            {is_editing &&
                                 <TextField
                                     id="rank" 
                                     // label="Edit Your Review"
@@ -169,15 +169,15 @@ const {
                                     style={{padding: '0 0 0 20px', marginTop: '10px'}}
                                 />
                             }
-                            {!is_adding &&
+                            {!is_editing &&
                                 <div style={{display: 'flex', padding: '10px 20px 20px 20px', marginTop: '10px'}}>
                                     {selectedReviews[0].review}
                                 </div>
                             }
                         </div>
                     </Card>
-                    <RankCard selectedRanks={selectedRanks} is_adding={is_adding} setUpdatedRank={setUpdatedRank}/>
-                    {is_adding && 
+                    <RankCard selectedRanks={selectedRanks} is_editing={is_editing} setUpdatedRank={setUpdatedRank}/>
+                    {is_editing && 
                         <div className={classes.updateContainer}>
                             <Button style={{color: 'red', marginBottom: '5px'}} onClick={toggleEdit}>
                                 Cancel
@@ -187,7 +187,7 @@ const {
                             </Button>
                         </div>
                     }
-                    {!is_adding && 
+                    {!is_editing && 
                         <Button className={classes.EditIcon} onClick={toggleEdit}>
                             <EditIcon />
                         </Button>

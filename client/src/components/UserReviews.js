@@ -17,6 +17,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
 import RankCard from './RankCard.js'
+import ReviewCard from './ReviewCard.js'
 
 // ACTION CREATORS
 
@@ -34,17 +35,23 @@ const useStyles = makeStyles(theme => ({
     },
     review__left:{
         display: 'flex',
+        flexDirection: 'column',
         flexGrow: '1',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
     },
     review__right:{
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
         width: '25%',
     },
+    title: {
+        fontWeight: 'bold',
+        marginBottom: '10px',
+    }
 }))
 
 // -B- COMPONENT
@@ -58,6 +65,9 @@ const {
     const classes = useStyles({})
 
     // State
+    const [is_editing, setIsEditing] = useState(false)
+    const [updatedRank, setUpdatedRank] = useState()
+    const [updatedReview, setUpdatedReview] = useState()
 
     // Methods
 
@@ -70,40 +80,40 @@ const {
         )
     } else {
         return (
-        <>
+        <Paper className={classes.paperRoot}>
             <div className={classes.review__left}>
+                <div className={classes.title}>
+                    My Review:
+                </div>
                 {selectedReviews.length !== 0 &&
-                    <div>WE HAVE REVIEW</div>
+                    <ReviewCard 
+                        setIsEditing={setIsEditing}
+                        selectedReviews={selectedReviews}
+                        setUpdatedReview={setUpdatedReview}
+                    />
                 }
                 {selectedReviews.length === 0 &&
-                    <div>ADD REVIEW</div>
+                    <AddBoxIcon />
                 }
             </div>
             <div className={classes.review__right}>
+                <div className={classes.title}>
+                    My Rank:
+                </div>
                 {selectedRanks.length !== 0 &&
-                    <div>WE HAVE RANK</div>
+                    <RankCard 
+                        setIsEditing={setIsEditing} 
+                        selectedRanks={selectedRanks}
+                        setUpdatedRank={setUpdatedRank}
+                    />
                 }
                 {selectedRanks.length === 0 &&
-                    <div>ADD RANK</div>
+                    <AddBoxIcon />
                 }
             </div>
-        </>
+        </Paper>
         )
     }
-
-    // if (selectedUserLogIndex.length === 0){
-    //     return (
-    //         <Paper className={classes.paperRoot}>
-    //                 <div className={classes.review__left}>
-    //                         <div>Select Log Entry!</div>
-    //                 </div>
-    //         </Paper>
-    //     )
-    // } else if (selectedUserLogIndex.length !== 0 && selectedReviews.length !== 0) {
-    //     <div>THERE IS A REVIEW</div>
-    // } else if (selectedUserLogIndex.length !== 0 && selectedRanks.length !== 0) {
-    //     <div>THERE IS A</div>
-    // }
 }
 
 // MAP STATE TO PROPS

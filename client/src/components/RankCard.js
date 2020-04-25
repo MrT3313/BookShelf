@@ -23,9 +23,7 @@ import { makeStyles } from '@material-ui/core/styles'
 // -A- STYLES
 const useStyles = makeStyles({
     RankCard: { 
-        position: 'absolute',
-        top: '15px',
-        right: '15px',
+        display: 'flex',
 
         fontSize: '25px',
         fontWeight: 'bold',
@@ -39,7 +37,7 @@ function RankCard(props) {
 console.log('RANK CARD PROPS: ', props)
 const { 
     selectedRanks,
-    is_adding,
+    is_editing,
     setUpdatedRank,         // Update <UserReviews /> State
 } = props
 // -- //
@@ -55,41 +53,39 @@ const {
 
     // Return
     
-    if (selectedRanks.length === 0) {
+    // if (selectedRanks.length === 0) {
+    //     return (
+    //         <div className={classes.RankCard}>
+    //             {`~ ~ ~`}
+    //         </div>
+    //     )
+    // } else {
+    if (is_editing === true) {
         return (
             <div className={classes.RankCard}>
-                {`~ ~ ~`}
+                <TextField
+                    id="rank"
+                    // label="Edit Rank"
+                    type="number"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    onChange={e =>setUpdatedRank(e.target.value)}
+                    defaultValue={selectedRanks[0].rank}
+                />
             </div>
         )
     } else {
-        if (is_adding === true) {
+        if (selectedRanks.length !== 0) {
             return (
                 <div className={classes.RankCard}>
-                    <TextField
-                        id="rank"
-                        // label="Edit Rank"
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        onChange={e =>setUpdatedRank(e.target.value)}
-                        defaultValue={selectedRanks[0].rank}
-                    />
+                    {/* <div>{rank}</div> */}
+                    {selectedRanks[0].rank}
                 </div>
             )
-        } else {
-            if (selectedRanks.length !== 0) {
-                return (
-                    <div className={classes.RankCard}>
-                        {/* <div>{rank}</div> */}
-                        {selectedRanks[0].rank}
-                    </div>
-                )
-            }
         }
-    } 
-
-}
+    }
+} 
 
 // MAP STATE TO PROPS
 const mstp = state => {
