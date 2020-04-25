@@ -36,22 +36,39 @@ const useStyles = makeStyles(theme => ({
     review__left:{
         display: 'flex',
         flexDirection: 'column',
-        flexGrow: '1',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'flex-start',
+
+        flexGrow: '1',
     },
     review__right:{
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         textAlign: 'center',
+        
         width: '25%',
     },
     title: {
         fontWeight: 'bold',
         marginBottom: '10px',
-    }
+    },
+    content: {
+        display: 'flex',
+        justifyContent: 'center',
+
+        width: '100%',
+        height: '100%',
+        alignItems: 'space-between',
+    },
+    icons: {
+        fontSize: '30px'
+    },
+    buttons: {
+        display: 'flex',
+        width: '100%',
+    },
 }))
 
 // -B- COMPONENT
@@ -85,31 +102,39 @@ const {
                 <div className={classes.title}>
                     My Review:
                 </div>
-                {selectedReviews.length !== 0 &&
-                    <ReviewCard 
-                        setIsEditing={setIsEditing}
-                        selectedReviews={selectedReviews}
-                        setUpdatedReview={setUpdatedReview}
-                    />
-                }
-                {selectedReviews.length === 0 &&
-                    <AddBoxIcon />
-                }
+                <div className={classes.content}>
+                    {selectedReviews.length !== 0 &&
+                        <ReviewCard 
+                            setIsEditing={setIsEditing}
+                            selectedReviews={selectedReviews}
+                            setUpdatedReview={setUpdatedReview}
+                        />
+                    }
+                </div>
+                <div className={classes.buttons} style={{justifyContent: 'flex-start', marginLeft: '20px'}}>
+                    {selectedReviews.length === 0 &&
+                        <AddBoxIcon className={classes.icons}/>
+                    }
+                </div>
             </div>
             <div className={classes.review__right}>
                 <div className={classes.title}>
                     My Rank:
                 </div>
-                {selectedRanks.length !== 0 &&
-                    <RankCard 
-                        setIsEditing={setIsEditing} 
-                        selectedRanks={selectedRanks}
-                        setUpdatedRank={setUpdatedRank}
-                    />
-                }
-                {selectedRanks.length === 0 &&
-                    <AddBoxIcon />
-                }
+                <div className={classes.content}>
+                    {selectedRanks.length !== 0 &&
+                        <RankCard 
+                            setIsEditing={setIsEditing} 
+                            selectedRanks={selectedRanks}
+                            setUpdatedRank={setUpdatedRank}
+                        />
+                    }
+                </div>
+                <div className={classes.buttons} style={{justifyContent: 'center'}}>
+                    {selectedRanks.length === 0 &&
+                        <AddBoxIcon className={classes.icons}/>
+                    }
+                </div>
             </div>
         </Paper>
         )

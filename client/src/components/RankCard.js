@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 // MATERIAL UI
 // -1- Components
 import TextField from '@material-ui/core/TextField';
+import EditIcon from '@material-ui/icons/Edit';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles'
@@ -24,12 +25,11 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
     RankCard: { 
         display: 'flex',
-
-        fontSize: '25px',
-        fontWeight: 'bold',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
 
         maxWidth: '25%',
-    }
+    },
 })
 
 // -B- COMPONENT
