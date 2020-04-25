@@ -143,6 +143,7 @@ const {
                 <UserReviews 
                     selectedReviews={selectedReviews}
                     selectedRanks={selectedRanks}
+                    selectedUserLogIndex={selectedUserLogIndex}
                     toggleAdd={toggleAdd}
                 />
             </div>

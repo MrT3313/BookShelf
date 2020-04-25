@@ -26,192 +26,84 @@ import RankCard from './RankCard.js'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-        flexGrow: '1',
-        padding: '20px',
-        backgroundColor: theme.palette.secondary.main,
-        borderRadius: '5px',
-
-        width: '50%',
-    },
     paperRoot: {
-        position: 'relative',           // for BookCard Position
         display: 'flex',
         flexGrow: '1',
 
         justifyContent: 'center',
     },
-    // -- // 
-    reviewRoot: {
-        // position: 'relative',           // for BookCard Position
+    review__left:{
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        width: '100%',
-        padding: '10px',
-    },
-    title: {
-        fontWeight: 'bold',
-        fontSize: '20px',
-    },
-    reviewContent: {
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: '10px',
-        width: '70%',
-
-    },
-    // -- // 
-    noReviewRoot: {
-        display: 'flex',
-        flexDirection: 'column',
+        flexGrow: '1',
+        justifyContent: 'center',
         alignItems: 'center',
-        width: '100%',
-        padding: '10px',
-    }, 
-    // -- // 
-    addButton: {
-        fontSize: '40px',
-        color: theme.palette.primary.main,
-
-        marginTop: '10px',
     },
-    // -- //
-    EditIcon: {
-        position: 'absolute',
-
-        bottom: '20px',
-        right: '15px',
-        color: "#263238",
-
-        padding: '5px',
-        borderRadius: '5px',
-
-        minWidth: '0px', 
-
-        '&:Hover': {
-            color: theme.palette.primary.main,
-            backgroundColor: theme.palette.secondary.main,
-        }
-    },
-    updateContainer: {
-        position: 'absolute',
+    review__right:{
         display: 'flex',
-        flexDirection: 'column',
-
-        bottom: '15px',
-        right: '15px',
-    }
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        width: '25%',
+    },
 }))
 
 // -B- COMPONENT
 function UserReviews(props) {
 // console.log('NEW USER REVIEW PROPS: ', props)
 const { 
-    selectedReviews,
-    selectedRanks,
-    toggleAdd,
+    selectedUserLogIndex, selectedRanks, selectedReviews,
 } = props
 // -- //
     // Styles
     const classes = useStyles({})
 
     // State
-    const [is_adding, setIsAdding] = useState(false)
-    const [updatedRank, setUpdatedRank] = useState()
-    const [updatedReview, setUpdatedReview] = useState()
 
     // Methods
-    const toggleEdit = () => {
-        console.log('TRYING TO EDIT')
-        setIsAdding(!is_adding)
-    }
-    const submitEdit = () => {
-        console.log('SUBMITTING')
-        // setIsAdding(!is_adding)
 
-        console.log(updatedReview)
-        console.log(updatedRank)
-
-        // const prepData = {
-            
-        // }
-
-    }
     // Return 
-    return (
-        <div className={classes.root}>
-            {selectedReviews.length !== 0 &&
-            <>
-                <Paper className={classes.paperRoot}>
-                    <Card className={classes.reviewRoot}>
-                        <div className={classes.title}>
-                            {selectedReviews[0].title}
-                        </div>
-                        <div className={classes.author}>
-                            {`By: ${selectedReviews[0].author}`}
-                        </div>
-                        <div className={classes.reviewContent}>
-                            My Review: 
-                            {is_adding &&
-                                <TextField
-                                    id="rank" 
-                                    // label="Edit Your Review"
-                                    defaultValue={selectedReviews[0].review}
-                                    multiline
-                                    rows="5"
-                                    onChange={e =>setUpdatedReview(e.target.value)}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    style={{padding: '0 0 0 20px', marginTop: '10px'}}
-                                />
-                            }
-                            {!is_adding &&
-                                <div style={{display: 'flex', padding: '10px 20px 20px 20px', marginTop: '10px'}}>
-                                    {selectedReviews[0].review}
-                                </div>
-                            }
-                        </div>
-                    </Card>
-                    <RankCard selectedRanks={selectedRanks} is_adding={is_adding} setUpdatedRank={setUpdatedRank}/>
-                    {is_adding && 
-                        <div className={classes.updateContainer}>
-                            <Button style={{color: 'red', marginBottom: '5px'}} onClick={toggleEdit}>
-                                Cancel
-                            </Button>
-                            <Button style={{color: '#00BCD4', backgroundColor: '#263238'}} onClick={submitEdit}>
-                                Update
-                            </Button>
-                        </div>
-                    }
-                    {!is_adding && 
-                        <Button className={classes.EditIcon} onClick={toggleEdit}>
-                            <EditIcon />
-                        </Button>
-                    }
-                </Paper>
-            </>
-            }
+    if (selectedUserLogIndex.length === 0){
+        return (
+            <div>
+                <div>Select Log Entry!</div>
+            </div>
+        )
+    } else {
+        return (
+        <>
+            <div className={classes.review__left}>
+                {selectedReviews.length !== 0 &&
+                    <div>WE HAVE REVIEW</div>
+                }
+                {selectedReviews.length === 0 &&
+                    <div>ADD REVIEW</div>
+                }
+            </div>
+            <div className={classes.review__right}>
+                {selectedRanks.length !== 0 &&
+                    <div>WE HAVE RANK</div>
+                }
+                {selectedRanks.length === 0 &&
+                    <div>ADD RANK</div>
+                }
+            </div>
+        </>
+        )
+    }
 
-            {selectedReviews.length === 0 &&
-                <Paper className={classes.paperRoot}>
-                    <Card className={classes.noReviewRoot}>
-                        <div>
-                            Select a Log Entry!
-                        </div>
-                        <AddBoxIcon
-                            id='review'
-                            onClick={toggleAdd}
-                            className={classes.addButton}
-                        />
-                    </Card>
-                </Paper>
-
-            }
-        </div>
-    )
+    // if (selectedUserLogIndex.length === 0){
+    //     return (
+    //         <Paper className={classes.paperRoot}>
+    //                 <div className={classes.review__left}>
+    //                         <div>Select Log Entry!</div>
+    //                 </div>
+    //         </Paper>
+    //     )
+    // } else if (selectedUserLogIndex.length !== 0 && selectedReviews.length !== 0) {
+    //     <div>THERE IS A REVIEW</div>
+    // } else if (selectedUserLogIndex.length !== 0 && selectedRanks.length !== 0) {
+    //     <div>THERE IS A</div>
+    // }
 }
 
 // MAP STATE TO PROPS
