@@ -31,6 +31,9 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexGrow: '1',
 
+        padding: '10px',
+        backgroundColor: theme.palette.secondary.main, 
+
         justifyContent: 'center',
     },
     review__left:{
@@ -40,6 +43,10 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'flex-start',
 
         flexGrow: '1',
+
+        padding: '5px',
+        backgroundColor: '#FFFFFF', 
+        borderRadius: '5px 0 0 5px'
     },
     review__right:{
         display: 'flex',
@@ -48,7 +55,12 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         textAlign: 'center',
         
-        width: '25%',
+        width: '40%',
+        // height: '100%',
+
+        padding: '5px',
+        backgroundColor: '#FFFFFF',
+        borderRadius: '0 5px 5px 0'
     },
     title: {
         fontWeight: 'bold',
@@ -63,11 +75,14 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'space-between',
     },
     icons: {
-        fontSize: '30px'
+        fontSize: '30px',
+        color: theme.palette.primary.main, 
     },
     buttons: {
         display: 'flex',
         width: '100%',
+        height: '100%',
+        marginBottom: '5px',
     },
 }))
 
@@ -102,15 +117,14 @@ const {
                 <div className={classes.title}>
                     My Review:
                 </div>
-                <div className={classes.content}>
-                    {selectedReviews.length !== 0 &&
+                {selectedReviews.length !== 0 &&
+                    <div className={classes.content}>
                         <ReviewCard 
-                            setIsEditing={setIsEditing}
                             selectedReviews={selectedReviews}
                             setUpdatedReview={setUpdatedReview}
                         />
-                    }
-                </div>
+                    </div>
+                }
                 <div className={classes.buttons} style={{justifyContent: 'flex-start', marginLeft: '20px'}}>
                     {selectedReviews.length === 0 &&
                         <AddBoxIcon className={classes.icons}/>
@@ -121,15 +135,14 @@ const {
                 <div className={classes.title}>
                     My Rank:
                 </div>
-                <div className={classes.content}>
-                    {selectedRanks.length !== 0 &&
+                {selectedRanks.length !== 0 &&
+                    <div className={classes.content}>
                         <RankCard 
-                            setIsEditing={setIsEditing} 
                             selectedRanks={selectedRanks}
                             setUpdatedRank={setUpdatedRank}
                         />
-                    }
-                </div>
+                    </div>
+                }
                 <div className={classes.buttons} style={{justifyContent: 'center'}}>
                     {selectedRanks.length === 0 &&
                         <AddBoxIcon className={classes.icons}/>

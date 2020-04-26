@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 // -1- Components
 import TextField from '@material-ui/core/TextField';
 import EditIcon from '@material-ui/icons/Edit';
+import Button from '@material-ui/core/Button';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles'
@@ -22,22 +23,45 @@ import { makeStyles } from '@material-ui/core/styles'
 
 // __MAIN__
 // -A- STYLES
-const useStyles = makeStyles({
-    RankCard: { 
+const useStyles = makeStyles(theme => ({
+    RankCard__root: { 
+        display: 'flex',
+        // alignItems: 'center',
+        justifyContent: 'center',
+
+        width: '100%',
+    },
+    editReview: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-
-        maxWidth: '25%',
+        width: '100%',
     },
-})
+    editIcon: {
+        fontSize: '30px',
+        color: theme.palette.primary.main, 
+    },
+    addButtons: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+
+        width: '100%',
+    },
+    button: {
+        display: 'flex',
+        justifyContent: 'center',
+
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.main,
+
+        marginLeft: '20px',
+    },
+}))
 
 // -B- COMPONENT
 function RankCard(props) {
 console.log('RANK CARD PROPS: ', props)
 const { 
     selectedRanks,
-    is_editing,
     setUpdatedRank,         // Update <UserReviews /> State
 } = props
 // -- //
@@ -45,46 +69,61 @@ const {
     const classes = useStyles({})
 
     // State
+    const [showEditIcon, SetShowEditIcong] = useState(false)
+    const [isEditing, setIsEditing] = useState(false)
 
     // UseEffect
 
-
     // Methods
+    const stopEditing = () => {
+        SetShowEditIcong(false)
+        setIsEditing(false)
+    }
 
     // Return
-    
-    // if (selectedRanks.length === 0) {
-    //     return (
-    //         <div className={classes.RankCard}>
-    //             {`~ ~ ~`}
-    //         </div>
-    //     )
-    // } else {
-    if (is_editing === true) {
-        return (
-            <div className={classes.RankCard}>
-                <TextField
-                    id="rank"
-                    // label="Edit Rank"
-                    type="number"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    onChange={e =>setUpdatedRank(e.target.value)}
-                    defaultValue={selectedRanks[0].rank}
+    return (
+        <div className={classes.RankCard__root}
+            onMouseEnter={() => SetShowEditIcong(true)}
+            // onMouseLeave={stopEditing}
+        >
+            {showEditIcon && !isEditing &&
+                <EditIcon 
+                    className={classes.editIcon}
+                    onClick={() => setIsEditing(!isEditing)}
                 />
-            </div>
-        )
-    } else {
-        if (selectedRanks.length !== 0) {
-            return (
-                <div className={classes.RankCard}>
+            }
+            {!showEditIcon && !isEditing &&
+                <div style={{fontSize: '25px'}}>
                     {/* <div>{rank}</div> */}
                     {selectedRanks[0].rank}
                 </div>
-            )
-        }
-    }
+            }
+            {showEditIcon && isEditing &&
+                <div className={classes.editReview}>
+                    <TextField
+                        variant="outlined"
+                        defaultValue={selectedRanks[0].rank}
+                        id="rank" label="Update Rank" name="rank"
+                        // onChange={e => setReview(e.target.value)}
+                        // margin="normal"
+                        // fullWidth
+                    />
+                    <div className={classes.addButtons}>
+                        <Button
+                            onClick={stopEditing}
+                            className={classes.editCancel}
+                            style={{color: 'red'}}
+                        >Cancel</Button>
+                        <Button
+                            // onClick={logReview}
+                            className={`${classes.editSubmit} ${classes.button}`}
+                            color="secondary"
+                        >Update Rank</Button>
+                    </div>
+                </div>
+            }
+        </div>
+    )
 } 
 
 // MAP STATE TO PROPS
