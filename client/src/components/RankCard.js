@@ -63,6 +63,7 @@ console.log('RANK CARD PROPS: ', props)
 const { 
     selectedRanks,
     setUpdatedRank,         // Update <UserReviews /> State
+    updateRank,
 } = props
 // -- //
     // Styles
@@ -104,7 +105,8 @@ const {
                         variant="outlined"
                         defaultValue={selectedRanks[0].rank}
                         id="rank" label="Update Rank" name="rank"
-                        // onChange={e => setReview(e.target.value)}
+                        type="number"
+                        onChange={e => setUpdatedRank(e.target.value)}
                         // margin="normal"
                         // fullWidth
                     />
@@ -115,7 +117,7 @@ const {
                             style={{color: 'red'}}
                         >Cancel</Button>
                         <Button
-                            // onClick={logReview}
+                            onClick={updateRank}
                             className={`${classes.editSubmit} ${classes.button}`}
                             color="secondary"
                         >Update Rank</Button>

@@ -102,7 +102,7 @@ const {
                         rows="5"
                         defaultValue={selectedReviews[0].review}
                         id="review" label="Update Review" name="review"
-                        // onChange={e => setReview(e.target.value)}
+                        onChange={e => setUpdatedReview(e.target.value)}
                         margin="normal"
                         fullWidth
                     />

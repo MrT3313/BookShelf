@@ -20,6 +20,10 @@ import RankCard from './RankCard.js'
 import ReviewCard from './ReviewCard.js'
 
 // ACTION CREATORS
+// import { a_updateReview } from '../redux/actions/PUT/a_updateReview.js'
+// import { a_updateRank } from '../redux/actions/PUT/a_updateRank.js'
+// FUNCTIONS
+import decode from '../utils/decode_JWT.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -91,6 +95,8 @@ function UserReviews(props) {
 // console.log('NEW USER REVIEW PROPS: ', props)
 const { 
     selectedUserLogIndex, selectedRanks, selectedReviews,
+    a_updateReview,
+    token,
 } = props
 // -- //
     // Styles
@@ -98,11 +104,12 @@ const {
 
     // State
     const [is_editing, setIsEditing] = useState(false)
-    const [updatedRank, setUpdatedRank] = useState()
-    const [updatedReview, setUpdatedReview] = useState()
+    const [updatedRank, setUpdatedRank] = useState(false)
+    const [updatedReview, setUpdatedReview] = useState(false)
 
     // Methods
-
+    const updateRank = () => {
+    }
     // Return 
     if (selectedUserLogIndex.length === 0){
         return (
@@ -140,6 +147,7 @@ const {
                         <RankCard 
                             selectedRanks={selectedRanks}
                             setUpdatedRank={setUpdatedRank}
+                            updateRank={updateRank}
                         />
                     </div>
                 }
@@ -157,7 +165,7 @@ const {
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-
+        token: state.r_auth.token,
     }
 }
 
@@ -165,6 +173,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        
+        // a_updateReview, a_updateRank
     }
 )(UserReviews)

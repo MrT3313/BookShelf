@@ -189,7 +189,7 @@ async function updateRank(id, updateData) {
     // -- //
         // - A - // Knex Query Builder
         await KNEX_DB('ranks').where({id}).update(updateData)
-        return getRank(id)
+        return getAll()
     
         // - B - // RAW SQL
     }
