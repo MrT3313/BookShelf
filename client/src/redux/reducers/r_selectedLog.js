@@ -5,7 +5,7 @@ import {
 // INITIAL STATE
 const initialState = { 
     is_fetching: false,
-    selectedBook: {},
+    selectedLog: {},
     error: ''
 }
 
@@ -22,7 +22,7 @@ export const r_selectedLog = (state=initialState, action) => {
         case GET_SELECTED_BOOK_SUCCESS:
                 return {
                     ...state,
-                    selectedBook: action.payload,
+                    selectedLog: action.payload,
 
                     is_fetching: 'false',
                     error: ''

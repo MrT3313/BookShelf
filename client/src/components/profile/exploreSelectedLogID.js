@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // MATERIAL UI
 // -1- Components
 import Paper from '@material-ui/core/Paper';
-
+import AddBoxIcon from '@material-ui/icons/AddBox';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -42,10 +42,26 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'flex-start',
 
         margin: '10px 0 10px 0',
+
+        '& .title': {
+            fontSize: '25px',
+            fontWeight: 'bold',
+        },
+        '& .author': {
+            fontSize: '20px',
+        },
     },
     content: {
         display: 'flex',
         justifyContent: 'space-around',
+    },
+    content__review: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    content__rank: {
+        display: 'flex',
+        flexDirection: 'column'
     }
 }))
 
@@ -54,8 +70,9 @@ const useStyles = makeStyles(theme => ({
 function ExploreSelectedLogID(props) {
 console.log('ExploreSelectedLogID PROPS: ', props)
 const {
-    selected_logID,         // Passed Props
-    a_getSelectedLog,        // Action Creator
+    selected_logID,             // Passed Props
+    a_getSelectedLog,           // Action Creator
+    selectedLogData,            // Redux
 } = props
 // -- //
     // Styles
@@ -78,12 +95,40 @@ const {
         return (
             <Paper className={classes.ExploreSelectedLogID__root}>
                 <div className={classes.heading}>
-                    <div>TITLE</div>
-                    <div>AUTHOR</div>
+                    <div className="title">
+                        {selectedLogData.title}
+                    </div>
+                    <div className="author">
+                        By: {selectedLogData.author}
+                    </div>
                 </div>
                 <div className={classes.content}>
-                    <div>REVIEW</div>
-                    <div>RANK</div>
+                    <div className={classes.content__review}>
+                        <div style={{marginBottom: '10px'}}>
+                            MY REVIEW
+                        </div>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                            {!selectedLogData.rank &&
+                                <AddBoxIcon />
+                            }
+                            {selectedLogData.rank &&
+                                selectedLogData.review
+                            }
+                        </div>
+                    </div>
+                    <div className={classes.content__rank}>
+                        <div style={{marginBottom: '10px'}}>
+                            MY RANK
+                        </div>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                        {!selectedLogData.rank &&
+                            <AddBoxIcon />
+                        }
+                        {selectedLogData.rank &&
+                            selectedLogData.rank
+                        }
+                        </div>
+                    </div>
                 </div>
             </Paper>
         )
@@ -93,8 +138,7 @@ const {
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-        DB_books: state.r_books.DB_books,
-        DB_reviews: state.r_reviews.DB_reviews,
+        selectedLogData: state.r_selectedLog.selectedLog
     }
 }
 
