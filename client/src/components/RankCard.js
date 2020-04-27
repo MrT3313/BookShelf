@@ -85,7 +85,7 @@ const {
     return (
         <div className={classes.RankCard__root}
             onMouseEnter={() => SetShowEditIcong(true)}
-            // onMouseLeave={stopEditing}
+            onMouseLeave={stopEditing}
         >
             {showEditIcon && !isEditing &&
                 <EditIcon 

@@ -129,9 +129,9 @@ const router = express.Router()
     // -- //
         RANKS_MODEL.updateRank(rankID, req.body)
             .then(results => {
-            // console.log(results.rows[0])
+            console.log(results.rows)
             // -- //
-                res.status(200).json(results.rows[0])
+                res.status(200).json(results.rows)
             })
             .catch(err => {
             // console.log(err)

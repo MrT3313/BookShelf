@@ -182,13 +182,13 @@ module.exports = {
     }
 
 // - PUT - // updateRank
-async function updateRank(id, updateData) {
+async function updateRank(rankID, updateData) {
     // console.log('MODEL - USERS - RANKS')
-    console.log(id)
-    console.log(updateData)
+    console.log('rankID',rankID)
+    console.log('updateData',updateData)
     // -- //
         // - A - // Knex Query Builder
-        await KNEX_DB('ranks').where({id}).update(updateData)
+        await KNEX_DB('ranks').where('id', rankID).update(updateData)
         return getAll()
     
         // - B - // RAW SQL
