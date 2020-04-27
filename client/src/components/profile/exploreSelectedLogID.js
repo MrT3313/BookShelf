@@ -12,8 +12,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
 
-
 // ACTION CREATORS
+import { a_getSelectedLog } from '../../redux/actions/GET/a_getSelectedLog.js'
 
 
 // === === === === === === === === === === === === //
@@ -22,30 +22,72 @@ import { makeStyles } from '@material-ui/core/styles';
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
-    ExploreSelectedLogID__root: {
+    default__root: {
         display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
 
         padding: '10px',
+    }, 
+    ExploreSelectedLogID__root: {
+        display: 'flex',
+        flexDirection: 'column',
+
+        width: '50%',
+        padding: '10px',
+    },
+    heading: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+
+        margin: '10px 0 10px 0',
+    },
+    content: {
+        display: 'flex',
+        justifyContent: 'space-around',
     }
 }))
 
 
 // -B- COMPONENT
 function ExploreSelectedLogID(props) {
-// console.log('Add Book PROPS: ', props)
+console.log('ExploreSelectedLogID PROPS: ', props)
 const {
-    selected_logID,
+    selected_logID,         // Passed Props
+    a_getSelectedLog,        // Action Creator
 } = props
 // -- //
     // Styles
     const classes = useStyles({})
 
+    // UseEffect 
+    useEffect(() => {
+        console.log('EXPLORE SELECTED LOG_ID')
+        a_getSelectedLog(selected_logID)
+    }, [selected_logID])
+
     // Return
-    return (
-        <Paper className={classes.ExploreSelectedLogID__root}> 
-            {selected_logID} 
-        </Paper>
-    )
+    if (selected_logID === false) {
+        return (
+            <Paper className={classes.default__root}>
+                Select a Log Entry
+            </Paper>
+        )
+    } else {
+        return (
+            <Paper className={classes.ExploreSelectedLogID__root}>
+                <div className={classes.heading}>
+                    <div>TITLE</div>
+                    <div>AUTHOR</div>
+                </div>
+                <div className={classes.content}>
+                    <div>REVIEW</div>
+                    <div>RANK</div>
+                </div>
+            </Paper>
+        )
+    }
 }
 
 // MAP STATE TO PROPS
@@ -60,7 +102,7 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-
+        a_getSelectedLog,
     }
 )(ExploreSelectedLogID)
 

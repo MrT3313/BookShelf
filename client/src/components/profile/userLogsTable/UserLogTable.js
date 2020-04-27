@@ -24,7 +24,7 @@ import { EnhancedTableToolbar } from './TableToolBar.js'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    width: '50%',
+    width: '45%',
     height: '100%',
   },
   paper: {
