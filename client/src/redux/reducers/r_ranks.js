@@ -1,8 +1,4 @@
 import {
-    GET_USERRANKS_START, GET_USERRANKS_SUCCESS, GET_USERRANKS_FAILURE
-} from '../actions/GET/a_getUserRanks.js'
-
-import {
     GET_RANKS_START, GET_RANKS_SUCCESS, GET_RANKS_FAILURE
 } from '../actions/GET/a_getRanks.js'
 
@@ -41,7 +37,8 @@ export const r_ranks = (state=initialState, action) => {
                 ...state, 
                 is_fetchingData : false, 
 
-                DB_ranks: [...action.payload],
+                USER_ranks: [...action.payload.singleUser],
+                DB_ranks: [...action.payload.allUsers],
 
                 error: ''
             }
@@ -53,30 +50,30 @@ export const r_ranks = (state=initialState, action) => {
                 error: ''
             }
 
-        // - 2 - // Get User Ranks
-        case GET_USERRANKS_START:
-            return {
-                ...state,
-                is_fetchingUserData: true,
+        // // - 2 - // Get User Ranks
+        // case GET_USERRANKS_START:
+        //     return {
+        //         ...state,
+        //         is_fetchingUserData: true,
 
-                error: ''
-            }
-        case GET_USERRANKS_SUCCESS:
-            return {
-                ...state,
-                is_fetchingUserData: false,
+        //         error: ''
+        //     }
+        // case GET_USERRANKS_SUCCESS:
+        //     return {
+        //         ...state,
+        //         is_fetchingUserData: false,
 
-                USER_ranks: [...action.payload],
+        //         USER_ranks: [...action.payload],
 
-                error: ''
-            }
-        case GET_USERRANKS_FAILURE:
-            return {
-                ...state,
-                is_fetchingUserData: false,
+        //         error: ''
+        //     }
+        // case GET_USERRANKS_FAILURE:
+        //     return {
+        //         ...state,
+        //         is_fetchingUserData: false,
 
-                error: action.payload
-            }
+        //         error: action.payload
+        //     }
         // - 3 - // Update Rank
         case UPDATE_RANK_START:
             return {

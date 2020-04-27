@@ -4,7 +4,6 @@ import axios from 'axios'
 // URLS
 import { LOCAL_BE_base_URL } from '../../../utils'
 import { LIVE_BE_base_URL } from '../../../utils'
-import { a_getUserReviews, GET_USERREVIEWS_FAILURE } from './a_getUserReviews'
 
 // __MAIN__
     // Action Types
@@ -35,9 +34,15 @@ import { a_getUserReviews, GET_USERREVIEWS_FAILURE } from './a_getUserReviews'
                 .then( allRanks => {
                 // console.log(allRanks)
                 // -- //
+                    const userResults = allRanks.data.filter(item => item.userID === userID)
+                    console.log(userResults)
+
                     dispatch({
                         type: GET_RANKS_SUCCESS,
-                        payload: allRanks.data
+                        payload: {
+                            allUsers: allRanks.data,
+                            singleUser: userResults
+                        }
                     })
                 })
                 .catch( err => {

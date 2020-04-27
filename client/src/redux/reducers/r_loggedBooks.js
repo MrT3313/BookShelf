@@ -3,21 +3,17 @@ import {
 } from '../actions/POST/a_addCompletedBook.js'
 
 import {
-    GET_USERLOGGEDBOOKS_START, GET_USERLOGGEDBOOKS_SUCCESS, GET_USERLOGGEDBOOKS_FAILURE
-} from '../actions/GET/a_getUserLoggedBooks.js'
-
-import {
     GET_ALLLOGGEDBOOKS_START, GET_ALLLOGGEDBOOKS_SUCCESS, GET_ALLLOGGEDBOOKS_FAILURE
 } from '../actions/GET/a_getLoggedBooks.js'
 
 // INITIAL STATE
 const initialState = {
     is_fetching: false,
-    is_fetchingUserData: false,
+    // is_fetchingUserData: false,
     is_adding: false,
 
-    userLoggedBooks: [],
-    allLoggedBooks: [],
+    USER_LoggedBooks: [],
+    DB_LoggedBooks: [],
 
     error: '',
 }
@@ -38,7 +34,9 @@ console.log('LOGS REDUCER => action.payload: ', action.payload)
             return {
                 ...state, 
 
-                allLoggedBooks: [...action.payload],
+                USER_LoggedBooks: [...action.payload.singleUser],
+                DB_LoggedBooks: [...action.payload.allUsers],
+
                 is_fetching: false,
 
                 error: ''
@@ -52,29 +50,29 @@ console.log('LOGS REDUCER => action.payload: ', action.payload)
         
 
         // - 2 - // LOGGED BOOKS FOR SPECIFIC USER
-        case GET_USERLOGGEDBOOKS_START:
-            return {
-                ...state,
-                is_fetchingUserData: true,
-                error: ''
-            }
-        case GET_USERLOGGEDBOOKS_SUCCESS:
-            return {
-                ...state,
+        // case GET_USERLOGGEDBOOKS_START:
+        //     return {
+        //         ...state,
+        //         is_fetchingUserData: true,
+        //         error: ''
+        //     }
+        // case GET_USERLOGGEDBOOKS_SUCCESS:
+        //     return {
+        //         ...state,
 
-                userLoggedBooks: [...action.payload],
-                is_fetchingUserData: false,
+        //         userLoggedBooks: [...action.payload],
+        //         is_fetchingUserData: false,
 
-                error: ''
-            }
-        case GET_USERLOGGEDBOOKS_FAILURE:
-            return {
-                ...state,
-                is_fetchingUserData: false,
-                error: action.payload
-            }
+        //         error: ''
+        //     }
+        // case GET_USERLOGGEDBOOKS_FAILURE:
+        //     return {
+        //         ...state,
+        //         is_fetchingUserData: false,
+        //         error: action.payload
+        //     }
 
-        // - 3 - // LOG NEW BOOK
+        // - 2 - // LOG NEW BOOK
         case LOG_COMPLETEDBOOK_START:
             return {
                 ...state,
@@ -87,8 +85,8 @@ console.log('LOGS REDUCER => action.payload: ', action.payload)
                 ...state,
                 is_adding: false,
 
-                userLoggedBooks: [...action.payload.singleUser],
-                allLoggedBooks: [...action.payload.allUsers],
+                USER_LoggedBooks: [...action.payload.singleUser],
+                DB_LoggedBooks: [...action.payload.allUsers],
 
                 error: '',
             }
@@ -97,7 +95,7 @@ console.log('LOGS REDUCER => action.payload: ', action.payload)
                 ...state,
                 is_adding: false,
 
-                error: '',
+                error: action.payload,
             }
         // - DEFAULT - //
         default:
