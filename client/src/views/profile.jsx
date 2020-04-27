@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 import Menu_AppBar from '../components/appBar/AppBar.js'
 import UserLogTable from '../components/profile/userLogsTable/UserLogTable.js'
+import ExploreSelectedLogID from '../components/profile/exploreSelectedLogID'
 
 // Action Creators
 
@@ -23,9 +24,12 @@ import decode from '../utils/decode_JWT.js'
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
     root: {
-        
+        display: 'flex',
+        flexDirection: 'column',
     },
-    UserLogsTable: {
+    logExplorer: {
+        display: 'flex',
+        justifyContent: 'space-around',
         padding: '20px',
     }
 
@@ -52,10 +56,13 @@ const {
     return (
         <div className={classes.root}>
             <Menu_AppBar />
-            <div className={classes.UserLogsTable}>
+            <div className={classes.logExplorer}>
                 <UserLogTable 
                     setSelected_logID={setSelected_logID}
                 />
+                <ExploreSelectedLogID 
+                    selected_logID={selected_logID}
+                /> 
             </div>
         </div>
     )
