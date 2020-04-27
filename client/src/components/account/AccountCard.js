@@ -21,12 +21,12 @@ import { makeStyles } from '@material-ui/core/styles'
 // COMPONENTS
 
 // ACTION CREATORS
-import { a_updateUser } from '../redux/actions/auth/a_updateUser.js'
+import { a_updateUser } from '../../redux/actions/auth/a_updateUser.js'
 
 // UTILS
-import decode from '../utils/decode_JWT.js'
-import { LOCAL_BE_base_URL } from '../utils'
-import { LIVE_BE_base_URL } from '../utils'
+import decode from '../../utils/decode_JWT.js'
+import { LOCAL_BE_base_URL } from '../../utils'
+import { LIVE_BE_base_URL } from '../../utils'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //

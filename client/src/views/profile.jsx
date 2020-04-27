@@ -8,10 +8,10 @@ import { makeStyles } from '@material-ui/core/styles';
 // -2- Components
 
 // COMPONENTS
-import Menu_AppBar from '../components/AppBar.js'
+import Menu_AppBar from '../components/appBar/AppBar.js'
 import AddPannel from '../components/AddPannel.js'
 
-import UserLogTable from '../components/UserLogTable.js'
+import UserLogTable from '../components/profile/userLogsTable/UserLogTable.js'
 import UserReviews from '../components/UserReviews.js'
 
 // Action Creators

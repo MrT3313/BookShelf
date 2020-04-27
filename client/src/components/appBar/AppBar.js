@@ -23,7 +23,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 
 // ACTION CREATORS
-import { a_logout } from '../redux/actions/auth/a_logout.js'
+import { a_logout } from '../../redux/actions/auth/a_logout.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //

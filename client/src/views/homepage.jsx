@@ -11,9 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 // -2- Components
 
 // COMPONENTS
-import Menu_AppBar from '../components/AppBar.js'
-import ListSelector from '../components/ListSelector.js'
-import VertTabPannel from '../components/VertTabPannel.js'
+import Menu_AppBar from '../components/appBar/AppBar.js'
+import ListSelector from '../components/homepage/explore_NYT_booksAPI/ListSelector.js'
+import VertTabPannel from '../components/homepage/explore_NYT_booksAPI/VertTabPannel.js'
 
 // ACTION CREATORS
 import { a_getSpecificList } from '../redux/actions/GET/a_getSpecificList.js'
