@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 function UserLogTable(props) {
 const { 
   userLogs, userRanks,
-  setUserLogIndex, 
+  setSelected_logID, 
 } = props
 // console.log('userLogs',userLogs)
 // -- // 
@@ -165,32 +165,12 @@ const {
       setSelected([]);
     };
 
-    const handleClick = (event, key) => {
-      const multiSelect = false
-      const selectedIndex = selected.indexOf(key);
+    const handleClick = (event, rowData) => {
+      console.log(rowData)
+      const newSelected = rowData.logID
+      console.log(newSelected)
 
-      let newSelected = [];
-      if (multiSelect) {
-        if (selectedIndex === -1) {
-          newSelected = newSelected.concat(selected, key);
-        } else if (selectedIndex === 0) {
-          newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-          newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-          newSelected = newSelected.concat(
-            selected.slice(0, selectedIndex),
-            selected.slice(selectedIndex + 1),
-          );
-        }
-      } else {
-        newSelected = [key,]
-      }
-
-      // console.log(newSelected)
-
-      setUserLogIndex(newSelected.map(index => index - 1).sort())
-      setSelected(newSelected);
+      setSelected_logID(newSelected)
     };
 
     const isSelected = (name) => selected.indexOf(name) !== -1;
@@ -245,7 +225,7 @@ const {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.key)}
+                      onClick={(event) => handleClick(event, row)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -296,7 +276,7 @@ const {
 // MAP STATE TO PROPS
 const mstp = state => {
   return {
-    userLogs: state.r_loggedBooks.userLoggedBooks,
+    userLogs: state.r_loggedBooks.USER_LoggedBooks,
     userRanks: state.r_ranks.USER_ranks, 
   }
 }

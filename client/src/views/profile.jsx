@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
 import Menu_AppBar from '../components/appBar/AppBar.js'
-
+import UserLogTable from '../components/profile/userLogsTable/UserLogTable.js'
 
 // Action Creators
 
@@ -23,8 +23,11 @@ import decode from '../utils/decode_JWT.js'
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
     root: {
-
+        
     },
+    UserLogsTable: {
+        padding: '20px',
+    }
 
 }))
 
@@ -41,16 +44,18 @@ const {
     const classes = useStyles({})
 
     // State
+    const [selected_logID, setSelected_logID] = useState(false)
 
     // Methods
-
 
     // Return
     return (
         <div className={classes.root}>
             <Menu_AppBar />
-            <div className={classes.exploreUserLogs}>
-                Explore My Logs!!
+            <div className={classes.UserLogsTable}>
+                <UserLogTable 
+                    setSelected_logID={setSelected_logID}
+                />
             </div>
         </div>
     )
@@ -60,7 +65,7 @@ const {
 const mstp = state => {
     return {
         token: state.r_auth.token,
-        userLogs: state.r_loggedBooks.userLoggedBooks,
+        userLogs: state.r_loggedBooks.USER_LoggedBooks,
         userReviews: state.r_reviews.USER_reviews,
         userRanks: state.r_ranks.USER_ranks,
     }
