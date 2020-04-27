@@ -20,7 +20,7 @@ import RankCard from './RankCard.js'
 import ReviewCard from './ReviewCard.js'
 
 // ACTION CREATORS
-// import { a_updateReview } from '../redux/actions/PUT/a_updateReview.js'
+import { a_updateReview } from '../redux/actions/PUT/a_updateReview.js'
 import { a_updateRank } from '../redux/actions/PUT/a_updateRank.js'
 // FUNCTIONS
 import decode from '../utils/decode_JWT.js'
@@ -114,6 +114,12 @@ const {
 
         a_updateRank(selectedRanks[0].rankID, selectedRanks[0].userID, {rank: updatedRank})
     }
+    const updateReview = () => {
+        console.log('Updated Review: ', updatedReview)
+        console.log('reviewID', selectedReviews[0].reviewID)
+
+        a_updateReview(selectedReviews[0].reviewID, selectedReviews[0].userID, {review: updatedReview})
+    }
     // Return 
     if (selectedUserLogIndex.length === 0){
         return (
@@ -133,6 +139,7 @@ const {
                         <ReviewCard 
                             selectedReviews={selectedReviews}
                             setUpdatedReview={setUpdatedReview}
+                            updateReview={updateReview}
                         />
                     </div>
                 }
@@ -177,7 +184,7 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        // a_updateReview, 
+        a_updateReview, 
         a_updateRank
     }
 )(UserReviews)

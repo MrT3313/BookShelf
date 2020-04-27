@@ -10,6 +10,10 @@ import {
     ADD_REVIEW_START, ADD_REVIEW_SUCCESS, ADD_REVIEW_FAILURE
 } from '../actions/POST/a_addReview.js'
 
+import {
+    UPDATE_REVIEW_START, UPDATE_REVIEW_SUCCESS, UPDATE_REVIEW_FAILURE
+} from '../actions/PUT/a_updateReview.js'
+
 // INITIAL STATE
 const initialState = {
     is_fetching: false,
@@ -97,6 +101,29 @@ export const r_reviews = (state=initialState, action) => {
                 ...state,
                 is_adding: false,
                 error: ''
+            }
+        // - 4 - // Update Review
+        case UPDATE_REVIEW_START:
+            return {
+                ...state,
+                is_updating: true,
+                error: ''
+            }
+        case UPDATE_REVIEW_SUCCESS:
+            return {
+                ...state,
+                is_updating: false,
+
+                DB_reviews: [...action.payload.allUsers],
+                USER_reviews: [...action.payload.singleUser],
+
+                error: ''
+            }
+        case UPDATE_REVIEW_FAILURE:
+            return {
+                ...state,
+                is_updating: false,
+                error: action.payload
             }
         // - DEFAULT - //
         default:

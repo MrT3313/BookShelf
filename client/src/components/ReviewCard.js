@@ -62,28 +62,40 @@ console.log('REVIEW CARD PROPS: ', props)
 const { 
     selectedReviews,
     setUpdatedReview,
+    updateReview,
 } = props
 // -- //
     // Styles
     const classes = useStyles({})
 
     // State
-    const [showEditIcon, SetShowEditIcong] = useState(false)
+    const [showEditIcon, setShowEditIcong] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
 
     // UseEffect
 
     // Methods
-    const stopEditing = () => {
-        SetShowEditIcong(false)
+    const mouseEnter = () => {
+        setShowEditIcong(true)
+    }
+    const mouseLeave = () => {
+        setShowEditIcong(false)
         setIsEditing(false)
+    }
+    const stopEditing = () => {
+        setShowEditIcong(false)
+        setIsEditing(false)
+    }
+    const update = () => {
+        stopEditing()
+        updateReview()
     }
 
     // Return
     return (
         <div className={classes.ReviewCard__root}
-            onMouseEnter={() => SetShowEditIcong(true)}
-            // onMouseLeave={stopEditing}
+            onMouseEnter={mouseEnter}
+            onMouseLeave={mouseLeave}
         >
             {showEditIcon && !isEditing &&
                 <EditIcon 
@@ -113,7 +125,7 @@ const {
                             style={{color: 'red'}}
                         >Cancel</Button>
                         <Button
-                            // onClick={logReview}
+                            onClick={update}
                             className={`${classes.editSubmit} ${classes.button}`}
                             color="secondary"
                         >Update Review</Button>

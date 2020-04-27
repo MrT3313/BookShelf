@@ -7,57 +7,57 @@ import { LIVE_BE_base_URL } from '../../../utils'
 
 // __MAIN__
     // Action Types
-    export const UPDATE_RANK_START = 'UPDATE_RANK_START'
-    export const UPDATE_RANK_SUCCESS = 'UPDATE_RANK_SUCCESS'
-    export const UPDATE_RANK_FAILURE = 'UPDATE_RANK_FAILURE'
+    export const UPDATE_REVIEW_START = "UPDATE_REVIEW_START"
+    export const UPDATE_REVIEW_SUCCESS = "UPDATE_REVIEW_SUCCESS"
+    export const UPDATE_REVIEW_FAILURE = "UPDATE_REVIEW_FAILURE"
 
     // Action Creator
-    export const a_updateRank = (rankID, userID, updateData) => {
-    // console.log('INSIDE: a_updateRank action creator')
+    export const a_updateReview = (reviewID, userID, updateData) => {
+    // console.log('INSIDE: a_updateReview action creator')
     // -- //
-        // Send First Action 
+        // Send First Action
         return dispatch => {
-            dispatch({type: UPDATE_RANK_START})
-            
+            dispatch({ type: UPDATE_REVIEW_START})
+
             // Which environment are we in?
             let update_URL = ''
             if (process.env.NODE_ENV === 'development') {
-                update_URL = `${LOCAL_BE_base_URL}ranks/${rankID}`
+                update_URL = `${LOCAL_BE_base_URL}reviews/${reviewID}`
             } else if (process.env.NODE_ENV === 'production') {
-                update_URL = `${LIVE_BE_base_URL}ranks/${rankID}`
+                update_URL = `${LIVE_BE_base_URL}reviews/${reviewID}`
             }
             // console.log('URL USED')
             console.log(update_URL)
-            console.log(updateData)
+            console.log('UPDATE DATA',updateData)
 
-            // Make Axios Request
-            axios  
+            // Make Axios Request 
+            axios
                 .put(
                     update_URL,
                     updateData
                 )
-                .then( updateResult => {
-                console.log('Updated Rank Results: ', updateResult )
+                .then( updateResults => {
+                // console.log(updatedResults)
                 // -- //
-                    const userResults = updateResult.data.filter(item => item.userID == userID)
+                    const userResults = updateResults.data.filter(item => item.userID == userID)
                     console.log(userResults)
-                    
+
                     dispatch({
-                        type: UPDATE_RANK_SUCCESS,
+                        type: UPDATE_REVIEW_SUCCESS,
                         payload: {
-                            allUsers: updateResult.data,
+                            allUsers: updateResults.data,
                             singleUser: userResults
                         }
                     })
                 })
-                .catch( err => {
+                .catch(err => {
                 // console.log(err)
                 // -- //
                     dispatch({
-                        type: UPDATE_RANK_FAILURE,
+                        type: UPDATE_REVIEW_FAILURE,
                         payload: err
                     })
                 })
-
+            
         }
     }

@@ -134,9 +134,9 @@ const router = express.Router()
         // KNEX_DB('reviews').where('id',reviewID).update(req.body)
         REVIEWS_MODEL.updateReview(reviewID, req.body)
             .then( results => {
-            // console.log(results)
+            // console.log(results.rows)
             // -- //
-                res.status(200).json(results)
+                res.status(200).json(results.rows)
             })
             .catch(err => {
             // console.log(err)

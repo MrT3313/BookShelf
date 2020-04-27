@@ -151,7 +151,7 @@ console.log(id)
 // -- //
     // - A - // Knex Query Builder
     await KNEX_DB('reviews').where({id}).update(updateData)
-    return getReview(id)
+    return getAll()
     // - B - // RAW SQL
 }
 
