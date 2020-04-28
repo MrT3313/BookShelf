@@ -12,7 +12,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
     export const GET_REVIEWS_FAILURE = "GET_REVIEWS_FAILURE"
 
     // Action Creator
-    export const a_getReviews = () => {
+    export const a_getReviews = (userID) => {
     // console.log('INSIDE: a_getReviews action creator')
     // -- // 
         // Send First Action
@@ -30,16 +30,22 @@ import { LIVE_BE_base_URL } from '../../../utils'
             // console.log(used_URL)
 
             // Make Axios Request
-            axios
+            return axios
                 .get(
                     used_URL
                 )
-                .then( res => {
+                .then( allReviews => {
                 // console.log(res)
                 // -- //
+                    const userResults = allReviews.data.filter(item => item.userID === userID)
+                    // console.log(userResults)
+
                     dispatch({
                         type: GET_REVIEWS_SUCCESS,
-                        payload: res.data,
+                        payload: {
+                            allUsers: allReviews.data,
+                            singleUser: userResults
+                        }
                     })
                 })
                 .catch( err => {

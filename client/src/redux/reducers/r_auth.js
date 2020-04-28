@@ -34,7 +34,7 @@ const initialState = {
 
 // __MAIN__
 export const r_auth = (state=initialState, action) => {
-console.log('action.payload: ', action.payload)
+// console.log('action.payload: ', action.payload)
 // -- //
     // Switch conditional for different action types
     switch (action.type) {

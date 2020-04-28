@@ -6,17 +6,15 @@ import {connect} from 'react-redux'
 // -1- Styles
 import { makeStyles } from '@material-ui/core/styles';
 // -2- Components
+import AddBoxIcon from '@material-ui/icons/AddBox';
 
 // COMPONENTS
-import Menu_AppBar from '../components/AppBar.js'
-import AddPannel from '../components/AddPannel.js'
-
-import UserLogTable from '../components/UserLogTable.js'
-import UserReviews from '../components/UserReviews.js'
+import Menu_AppBar from '../components/appBar/AppBar.js'
+import UserLogTable from '../components/profile/userLogsTable/UserLogTable.js'
+import ExploreSelectedLogID from '../components/profile/exploreSelectedLogID'
+import AddBook from '../components/profile/AddBook'
 
 // Action Creators
-import { a_getUserLoggedBooks } from '../redux/actions/GET/a_getUserLoggedBooks.js'
-import { a_getUserReviews } from '../redux/actions/GET/a_getUserReviews.js'
 
 // FUNCTIONS
 import decode from '../utils/decode_JWT.js'
@@ -27,22 +25,17 @@ import decode from '../utils/decode_JWT.js'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
-    root: {
+    profile__root: {
         display: 'flex',
         flexDirection: 'column',
-    },
-    profile__TOP: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    profile__BOTTOM: {
-        display: 'flex',
 
-        justifyContent: 'space-between',
-        alignItems: 'center',
-
+    },
+    logExplorer: {
+        display: 'flex',
+        justifyContent: 'space-around',
         padding: '20px',
     }
+
 }))
 
 
@@ -50,85 +43,40 @@ const useStyles = makeStyles(theme => ({
 function Profile(props) {
 const { 
     token, 
-    userLogs, userReviews,
-    a_getUserLoggedBooks, a_getUserReviews 
+    userLogs, userReviews, userRanks,
+
 } = props
 // -- //
     // Styles
     const classes = useStyles({})
 
     // State
-    const [selectedUserLogIndex, setUserLogIndex] = useState([])
-    const [selectedReviews, setSelectedReviews] = useState([])
-    const [is_adding, setIs_adding] = useState(false)
-
-    // UseEffect
-    useEffect(() => {
-        // console.log('USE EFFECT IN PROFILE')
-        let userID = undefined
-        // -- //
-            // get userID
-            const decodedToken = decode(token)
-            // console.log(decodedToken)
-            userID = decodedToken.user_ID
-            // console.log(userID)
-    
-            // Call  Action Creators
-            async function updateData() {
-                await a_getUserLoggedBooks(userID)
-                await a_getUserReviews(userID)
-            }
-            updateData()
-    }, [])
-
-    useEffect(() => {
-        // console.log(userReviews)
-        // console.log(userLogs)
-
-        let filtered = []
-
-        if (selectedUserLogIndex.length > 0) {
-            const logIndex = selectedUserLogIndex[0]
-            // console.log(logIndex)
-            
-            filtered = userReviews.filter(review => review.bookID === userLogs[logIndex].bookID)
-            // console.log(filtered)
-        }
-
-        setSelectedReviews(filtered)
-    }, [selectedUserLogIndex, userReviews])
+    const [selected_logID, setSelected_logID] = useState(false)
+    const [adding, setIsAdding] = useState(false)
 
     // Methods
-    const toggleAdd = e => {
-        // console.log(e.currentTarget.id)
-        if (is_adding === e.currentTarget.id) {
-            setIs_adding(false)
-        } else {
-            setIs_adding(e.currentTarget.id)
-        }
-    }
 
     // Return
     return (
-        <div className={classes.root}>
-            <div className={classes.profile__TOP}>
-                <Menu_AppBar />
-                <AddPannel 
-                    is_adding={is_adding}
-                    setIs_adding={setIs_adding}
-                    toggleAdd={toggleAdd}
+        <div className={classes.profile__root}>
+            <Menu_AppBar />
+            {adding &&
+                <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+                    <AddBook 
+                        setIsAdding={setIsAdding}
+                    />
+                </div>
+            }
+            <div className={classes.logExplorer}>
+                <UserLogTable 
+                    setSelected_logID={setSelected_logID}
                 />
-            </div>
-            <div className={classes.profile__BOTTOM}>
-                {userLogs.length !== 0 &&
-                    // <EnhancedTable />
-                    <UserLogTable setUserLogIndex={setUserLogIndex}/>
-                }
-                <div style={{width: '20px'}}></div>
-                <UserReviews 
-                    selectedReviews={selectedReviews}
-                    toggleAdd={toggleAdd}
-                />
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <AddBoxIcon onClick={() => setIsAdding(true)}/>
+                </div>
+                <ExploreSelectedLogID 
+                    selected_logID={selected_logID}
+                /> 
             </div>
         </div>
     )
@@ -138,12 +86,9 @@ const {
 const mstp = state => {
     return {
         token: state.r_auth.token,
-        
-        fetchingUserLogs: state.r_loggedBooks.is_fetchingUserData,
-        fetchingUserReviews: state.r_reviews.is_fetchingUserData,
-
-        userLogs: state.r_loggedBooks.userLoggedBooks,
+        userLogs: state.r_loggedBooks.USER_LoggedBooks,
         userReviews: state.r_reviews.USER_reviews,
+        userRanks: state.r_ranks.USER_ranks,
     }
 }
         
@@ -151,7 +96,6 @@ const mstp = state => {
 export default connect(
     mstp,
     {
-        a_getUserLoggedBooks,
-        a_getUserReviews,
+
     }
 )(Profile)

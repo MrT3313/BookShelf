@@ -13,7 +13,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
 
 
     // Action Creator
-    export const a_getLoggedBooks = () => {
+    export const a_getLoggedBooks = (userID) => {
     // console.log('INSIDE: a_getLoggedBooks action creator')
     // -- //
         // Send First Action
@@ -31,14 +31,20 @@ import { LIVE_BE_base_URL } from '../../../utils'
             // console.log(used_URL)
 
             // Make Axios Request
-            axios
+            return axios
                 .get(used_URL)
-                .then(completedBooks => {
-                // console.log(completedBooks)
+                .then(allLogs => {
+                // console.log(allLogs)
                 // -- // 
+                    const userResults = allLogs.data.filter(item => item.userID === userID)
+                    // console.log(userResults)
+
                     dispatch({
                         type: GET_ALLLOGGEDBOOKS_SUCCESS,
-                        payload: completedBooks.data
+                        payload: {
+                            allUsers: allLogs.data,
+                            singleUser: userResults
+                        }
                     })
                 })
                 .catch(err => {

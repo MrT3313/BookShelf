@@ -7,24 +7,23 @@ import { LIVE_BE_base_URL } from '../../../utils'
 
 // __MAIN__
     // Action Types
-    export const GET_BOOKS_START = "GET_BOOKS_START"
-    export const GET_BOOKS_SUCCESS = "GET_BOOKS_SUCCESS"
-    export const GET_BOOKS_FAILURE= "GET_BOOKS_FAILURE"
+    export const GET_SELECTED_LOG_START = 'GET_SELECTED_LOG_START'
+    export const GET_SELECTED_LOG_SUCCESS = 'GET_SELECTED_LOG_SUCCESS'
+    export const GET_SELECTED_LOG_FAILURE = 'GET_SELECTED_LOG_FAILURE'
 
-    // Action Creator:
-    export const a_getBooks = () => {
-    // console.log('INSIDE: a_GetBooks action creator')
+    // Action Creator
+    export const a_getSelectedLog = (logID) => {
+    // console.log('INSIDE: a_getSelectedBook action creator)
     // -- //
-        // Send First Action
         return dispatch => {
-            dispatch({ type: GET_BOOKS_START })
+            dispatch({type: GET_SELECTED_LOG_START})
             let used_URL = ''
 
             // What environment are we in?
             if (process.env.NODE_ENV === 'development') {
-                used_URL = `${LOCAL_BE_base_URL}books/all`
+                used_URL = `${LOCAL_BE_base_URL}logs/singleLog/${logID}`
             } else if (process.env.NODE_ENV === 'production') {
-                used_URL = `${LIVE_BE_base_URL}books/all`
+                used_URL = `${LIVE_BE_base_URL}logs/singleLog/${logID}`
             }
             // console.log('URL USED')
             // console.log(used_URL)
@@ -34,19 +33,19 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 .get(
                     used_URL
                 )
-                .then(res => {
-                // console.log(res)
+                .then(singleLog => {
+                // console.log(singleLog)
                 // -- //
                     dispatch({
-                        type: GET_BOOKS_SUCCESS,
-                        payload: res.data,
+                        type: GET_SELECTED_LOG_SUCCESS,
+                        payload: singleLog.data
                     })
                 })
-                .catch( err => {
+                .catch(err => {
                 // console.log(err)
                 // -- //
                     dispatch({
-                        type: GET_BOOKS_FAILURE,
+                        type: GET_SELECTED_LOG_FAILURE,
                         payload: err
                     })
                 })

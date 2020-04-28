@@ -49,9 +49,9 @@ const router = express.Router()
     // -- // 
         REVIEWS_MODEL.getReview(reviewID)
             .then( singleReview => {
-            // console.log(singleBook)
+            // console.log(singleBook.rows[0])
             // -- //
-                res.status(200).json(singleReview)
+                res.status(200).json(singleReview.rows[0])
             })
             .catch( err => {
             // console.log(err)
@@ -134,9 +134,9 @@ const router = express.Router()
         // KNEX_DB('reviews').where('id',reviewID).update(req.body)
         REVIEWS_MODEL.updateReview(reviewID, req.body)
             .then( results => {
-            // console.log(results)
+            // console.log(results.rows)
             // -- //
-                res.status(500).json(results)
+                res.status(200).json(results.rows)
             })
             .catch(err => {
             // console.log(err)
@@ -154,7 +154,7 @@ const router = express.Router()
             res.status(200).json(results.rows)
             })
             .catch(err => {
-            console.log(err)
+            // console.log(err)
             // -- //
                 res.status(500).json({ ERROR: 'Unable to remove book to DB'})
             })

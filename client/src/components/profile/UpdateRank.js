@@ -17,10 +17,10 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 // ACTION CREATORS
-import {a_addReview} from '../redux/actions/POST/a_addReview.js'
+
 
 // FUNCTIONS
-import decode from '../utils/decode_JWT.js'
+import decode from '../../utils/decode_JWT.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     },
     autoComplete: {
         display: 'flex',
-        width: '25%',
+        width: '100%',
     },
     listRoot: {
         display: 'flex', 
@@ -84,10 +84,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // -B- COMPONENT
-function AddReview(props) {
+function UpdateRank(props) {
 // console.log('Add Review PROPS: ', props)
 const {
-    setIs_adding, 
+    setAdding, 
+    selectedData,
+
+    updateRank,
 
     DB_books,
     token,
@@ -99,37 +102,23 @@ const {
     const classes = useStyles({})
 
     // State
-    const [title, setTitle] = useState()
-    // const [bookID, setBookID] = useState()
-    // const [userID, setUserID] = useState()
-    const [review, setReview] = useState()
+    const [rank, setRank] = useState()
 
     // Methods
-    const logReview = () => {
-    let userID = undefined
-    // -- //
-        // get userID
-        const decodedToken = decode(token)
-        userID = decodedToken.user_ID
-        // console.log(userID)
+    // const logReview = () => {
 
-        // get bookID
-        const selectedBook = DB_books.filter(book => book.title === title)[0]
-        // console.log(selectedBook)
-        // setBookID(selectedBook.id)
+    //     // Prep Object
+    //     const prepObj = {
+    //         logID: selectedData.logID,
+    //         review: review,
+    //     }
+    //     console.log(prepObj)
 
-        // Prep Object
-        const prepObj = {
-            userID: userID,
-            bookID: selectedBook.id,
-            review: review,
-        }
-
-        // Call Action Creator
-        a_addReview(prepObj)
-        // Close Pannel
-        setIs_adding(false)
-    }
+    //     // Call Action Creator
+    //     a_addReview(prepObj)
+    //     // Close Pannel
+    //     setAdding(false)
+    // }
 
     // Use Effect
 
@@ -145,7 +134,7 @@ const {
                     </ListItemText>
                     <Divider orientation="vertical" flexItem className={classes.divider}/>
 
-                    <Autocomplete 
+                    {/* <Autocomplete 
                         className={classes.autoComplete}
                         freeSolo={true}
                         options={DB_books}
@@ -163,37 +152,46 @@ const {
                                 />
                             )
                         }}
+                    /> */}
+                    <TextField
+                        className={classes.autoComplete}
+                        defaultValue={selectedData.title}
+                        variant="outlined"
+                        // id="review" label="Update Review" name="review"
+                        id="review" name="review"
+                        onChange={e => setRank(e.target.value)}
+                        margin="normal"
+                        // fullWidth
                     />
                 </ListItem>
                 <ListItem className={classes.listItemRoot}>
                     <ListItemText className={classes.label}>
-                        REVIEW
+                        Rank
                     </ListItemText>
                     <Divider orientation="vertical" flexItem className={classes.divider}/>
                     <TextField
                         variant="outlined"
-                        multiline
-                        rows="5"
-                        // defaultValue={userID}
-                        required
-                        id="review" label="Review" name="review"
-                        onChange={e => setReview(e.target.value)}
-                        margin="normal"
-                        fullWidth
+                        defaultValue={selectedData.rank}
+                        // id="rank" label="Update Rank" name="rank"
+                        id="rank" name="rank"
+                        type="number"
+                        onChange={e => setRank(e.target.value)}
+                        // margin="normal"
+                        // fullWidth
                     />
                 </ListItem>
             </List>
             <div className={classes.addButtons}>
                 <Button
-                    onClick={() => setIs_adding(false)}
+                    onClick={() => setAdding(false)}
                     className={classes.editCancel}
                     style={{color: 'red'}}
                 >Cancel</Button>
                 <Button
-                    onClick={logReview}
+                    onClick={() => updateRank(rank)}
                     className={`${classes.editSubmit} ${classes.button}`}
                     color="secondary"
-                >Log This Book</Button>
+                >Update Rank</Button>
             </div>
         </Card>
     )
@@ -211,6 +209,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_addReview
+        
     }
-)(AddReview)
+)(UpdateRank)

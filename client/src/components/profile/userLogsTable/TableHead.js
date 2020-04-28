@@ -36,6 +36,7 @@ const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }
         { id: 'date', numeric: true, disablePadding: true, label: 'Log Date' },
         { id: 'title', numeric: false, disablePadding: true, label: 'Title' },
         { id: 'author', numeric: true, disablePadding: false, label: 'Author' },
+        { id: 'rank', numeric: true, disablePadding: false, label: 'Rank' },
     ];
 
     //  Methods

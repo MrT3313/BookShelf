@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import API_dataAttribution from './API_DataAttribution.js'
 
 // ACTION CREATORS
-import {a_getSpecificList} from '../redux/actions/GET/a_getSpecificList.js'
+import {a_getSpecificList} from '../../../redux/actions/GET/a_getSpecificList.js'
 
 
 // === === === === === === === === === === === === //

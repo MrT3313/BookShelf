@@ -44,7 +44,7 @@ function getLogs_by_userID(userID) {
     // - B - // RAW SQL
     return KNEX_DB.raw(`
         SELECT 
-            completedbooks.id as "logID", 
+            completedbooks.id as "logID",   
             users.id as "userID",
             books.id as "bookID", books.title, books.author, books.created_at
         FROM users
@@ -71,7 +71,7 @@ function getLogs_by_bookID(bookID) {
     // - B - // RAW SQL
     return KNEX_DB.raw(`
         SELECT 
-            completedbooks.id as "logID", 
+            completedbooks.id as "logID",  
             users.id as "userID",
             books.id as "bookID", books.title, books.author, books.created_at
         FROM users
@@ -99,20 +99,27 @@ function getLog(id) {
     // - B - // RAW SQL
     return KNEX_DB.raw(`
         SELECT 
-            completedbooks.id as "logID", 
-            users.id as "userID",
-            books.id as "bookID", books.title, books.author, books.created_at
-        FROM users
+        -- IDs
+            completedbooks."userID", completedbooks.id as "logID", completedbooks."bookID", 
+            ranks.id as "rankID", reviews.id as "reviewID",
+            
+        -- Data
+            books.title, books.author,
+            reviews.review,
+            ranks.rank
         
-        JOIN completedbooks
-        ON users.id = completedbooks."userID"
+        FROM completedbooks
         
         JOIN books
         ON completedbooks."bookID" = books.id
         
+        LEFT OUTER JOIN ranks
+        ON completedbooks.id = ranks."logID"
+        
+        LEFT OUTER JOIN reviews
+        ON completedbooks.id = reviews."logID"
+        
         WHERE completedbooks.id = ${id}
-
-        ORDER BY books.created_at
     `)
 }
 

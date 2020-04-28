@@ -10,8 +10,8 @@ import Grid from '@material-ui/core/Grid';
 import { Card } from '@material-ui/core';
 
 // COMPONENTS
-import Menu_AppBar from '../components/AppBar.js'
-import AccountCard from '../components/AccountCard.js'
+import Menu_AppBar from '../components/appBar/AppBar.js'
+import AccountCard from '../components/account/AccountCard.js'
 
 // ACTION CREATORS
               

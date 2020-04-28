@@ -7,32 +7,6 @@ const KNEX_DB = require('../../data/dbConfig.js')
 
 // __MAIN TEST SUITE__
 describe('/books/', function() {
-    // - POST Sub Suite 
-    describe("POST /", function() {
-        // Before Each
-        beforeEach(async function () {
-            await KNEX_DB.raw(`
-                TRUNCATE TABLE books RESTART IDENTITY CASCADE 
-            `);
-        });
-
-        // Test
-        it('books/ => Add book & return 200 JSON data w/ len(array) === 1', async function() {
-            // Prepare Data
-            const data = {
-                "title": "BLAHH",
-                "author": "BLAHH"
-            } 
-            // Make Test Request
-            const response = await request(server)
-                .post('/books/').send(data).set('Accept', 'application/json')
-    
-            expect(response.status).toBe(200)
-            expect(response.type).toMatch(/json/i)
-            expect(response.body).toHaveLength(1)
-        })
-    })
-
     // - GET Sub Suite
     describe('GET /', function() {
         it('books/all => return 200 JSON data w/ len(array) === 1', async function() {
@@ -49,6 +23,42 @@ describe('/books/', function() {
             const response = await request(server).get('/books/1');
     
             expect(response.body).toBeInstanceOf(Object)
+        })
+    })
+
+    // - POST Sub Suite 
+    describe("POST /", function() {
+        // Before Each
+        beforeEach(async function () {
+            await KNEX_DB.raw(`
+                TRUNCATE TABLE books RESTART IDENTITY CASCADE 
+            `);
+        });
+
+        // Test
+        it('books/ => Add book & return 200 JSON data w/ len(array) === 1', async function() {
+            // Prepare Data
+            const data_1 = {
+                "title": "Title_1",
+                "author": "Author_1"
+            } 
+            const data_2 = {
+                "title": "Title_2",
+                "author": "Author_2"
+            } 
+            // Make Test Request
+            const response_1 = await request(server)
+                .post('/books/').send(data_1).set('Accept', 'application/json')
+            expect(response_1.status).toBe(200)
+            expect(response_1.type).toMatch(/json/i)
+            expect(response_1.body).toHaveLength(1)
+
+            const response_2 = await request(server)
+                .post('/books/').send(data_2).set('Accept', 'application/json')
+            expect(response_2.status).toBe(200)
+            expect(response_2.body).toHaveLength(2)
+
+
         })
     })
 
@@ -70,10 +80,15 @@ describe('/books/', function() {
     // - Sub Suite - 
     describe("DEL /", function(){
         it('books/:bookID => Delete Book', async function() {
-            const response = await request(server)
+            const response_1 = await request(server)
                 .delete('/books/1')
+            expect(response_1.body).toHaveLength(1)
+            expect(response_1.body).toBeInstanceOf(Array)
 
-            expect(response.body).toHaveLength(0)
+            const response_2 = await request(server)
+                .delete('/books/2')
+            expect(response_2.body).toHaveLength(0)
+            expect(response_2.body).toBeInstanceOf(Array)
         })
     })
 })

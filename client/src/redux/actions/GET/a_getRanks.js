@@ -7,46 +7,40 @@ import { LIVE_BE_base_URL } from '../../../utils'
 
 // __MAIN__
     // Action Types
-    export const LOG_COMPLETEDBOOK_START = 'LOG_COMPLETEDBOOK_START'
-    export const LOG_COMPLETEDBOOK_SUCCESS = 'LOG_COMPLETEDBOOK_SUCCESS'
-    export const LOG_COMPLETEDBOOK_FAILURE = 'LOG_COMPLETEDBOOK_FAILURE'
-    
+    export const GET_RANKS_START = 'GET_RANKS_START'
+    export const GET_RANKS_SUCCESS = 'GET_RANKS_SUCCESS'
+    export const GET_RANKS_FAILURE = 'GET_RANKS_FAILURE'
+
     // Action Creator
-    export const a_logCompletedBook = (userID, bookID) => {
-    // console.log('INSIDE: a_logCompletedBook action creator')
+    export const a_getRanks = (userID) => {
     // -- //
         // Send First Action
         return dispatch => {
-            dispatch({ type: LOG_COMPLETEDBOOK_START})
+            dispatch({ type: GET_RANKS_START })
             let used_URL = ''
 
             // What environment are we in?
-            // TODO: TURN INTO UTIL FUNCTION 
             if (process.env.NODE_ENV === 'development') {
-                used_URL = `${LOCAL_BE_base_URL}logs`
+                used_URL = `${LOCAL_BE_base_URL}ranks/all`
             } else if (process.env.NODE_ENV === 'production') {
-                used_URL = `${LIVE_BE_base_URL}loggedBlogsooks`
+                used_URL = `${LIVE_BE_base_URL}ranks/all`
             }
             // console.log('URL USED')
             // console.log(used_URL)
-            // console.log(userID, bookID)
 
             // Make Axios Request
             return axios
-                .post(
-                    used_URL,
-                    {userID, bookID}
-                )
-                .then( results => {
-                // console.log('CHECK!!!',results)
+                .get(used_URL)
+                .then( allRanks => {
+                // console.log(allRanks)
                 // -- //
-                    const userResults = results.data.filter(item => item.userID == userID)
+                    const userResults = allRanks.data.filter(item => item.userID === userID)
                     // console.log(userResults)
 
                     dispatch({
-                        type: LOG_COMPLETEDBOOK_SUCCESS,
+                        type: GET_RANKS_SUCCESS,
                         payload: {
-                            allUsers: results.data,
+                            allUsers: allRanks.data,
                             singleUser: userResults
                         }
                     })
@@ -55,7 +49,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 // console.log(err)
                 // -- //
                     dispatch({
-                        type: LOG_COMPLETEDBOOK_FAILURE,
+                        type: GET_RANKS_FAILURE,
                         payload: err
                     })
                 })

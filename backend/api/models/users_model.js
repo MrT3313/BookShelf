@@ -22,7 +22,10 @@ function getAll() {
 
     // - B - // RAW SQL
     return KNEX_DB.raw(`
-        SELECT * FROM users
+        SELECT 
+            users.id as "userID", users.username, users.email, users."publicProfile", users.privileges,
+            users.created_at, users.updated_at 
+        FROM users
     `)
 }
 

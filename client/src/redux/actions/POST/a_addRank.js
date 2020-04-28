@@ -2,60 +2,60 @@
 import axios from 'axios'
 
 // URLS
+// URLS
 import { LOCAL_BE_base_URL } from '../../../utils'
 import { LIVE_BE_base_URL } from '../../../utils'
 
 // __MAIN__
     // Action Types
-    export const LOG_COMPLETEDBOOK_START = 'LOG_COMPLETEDBOOK_START'
-    export const LOG_COMPLETEDBOOK_SUCCESS = 'LOG_COMPLETEDBOOK_SUCCESS'
-    export const LOG_COMPLETEDBOOK_FAILURE = 'LOG_COMPLETEDBOOK_FAILURE'
-    
+    export const ADD_RANK_START = 'ADD_RANK_START'
+    export const ADD_RANK_SUCCESS = 'ADD_RANK_SUCCESS'
+    export const ADD_RANK_FAILURE = 'ADD_RANK_FAILURE'
+
     // Action Creator
-    export const a_logCompletedBook = (userID, bookID) => {
-    // console.log('INSIDE: a_logCompletedBook action creator')
+    export const a_addRank = (newRank, userID) => {
+    // console.log('INSIDE: a_addRank action creator')
+    // console.log(newRank)
     // -- //
         // Send First Action
         return dispatch => {
-            dispatch({ type: LOG_COMPLETEDBOOK_START})
+            dispatch({type: ADD_RANK_START})
             let used_URL = ''
 
             // What environment are we in?
-            // TODO: TURN INTO UTIL FUNCTION 
             if (process.env.NODE_ENV === 'development') {
-                used_URL = `${LOCAL_BE_base_URL}logs`
+                used_URL = `${LOCAL_BE_base_URL}ranks`
             } else if (process.env.NODE_ENV === 'production') {
-                used_URL = `${LIVE_BE_base_URL}loggedBlogsooks`
+                used_URL = `${LIVE_BE_base_URL}ranks`
             }
             // console.log('URL USED')
             // console.log(used_URL)
-            // console.log(userID, bookID)
 
             // Make Axios Request
             return axios
                 .post(
                     used_URL,
-                    {userID, bookID}
+                    newRank
                 )
-                .then( results => {
-                // console.log('CHECK!!!',results)
+                .then(results => {
+                // console.log(results)
                 // -- //
                     const userResults = results.data.filter(item => item.userID == userID)
                     // console.log(userResults)
-
+                    
                     dispatch({
-                        type: LOG_COMPLETEDBOOK_SUCCESS,
+                        type: ADD_RANK_SUCCESS,
                         payload: {
                             allUsers: results.data,
                             singleUser: userResults
                         }
                     })
                 })
-                .catch( err => {
+                .catch(err => {
                 // console.log(err)
                 // -- //
                     dispatch({
-                        type: LOG_COMPLETEDBOOK_FAILURE,
+                        type: ADD_RANK_FAILURE,
                         payload: err
                     })
                 })

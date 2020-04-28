@@ -16,14 +16,11 @@ import Button from '@material-ui/core/Button';
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
 
-// COMPONENTS
-
 // ACTION CREATORS
-import { a_logCompletedBook } from '../redux/actions/POST/a_addCompletedBook.js'
-import { a_addAndLogBook } from '../redux/actions/POST/a_addAndLogBook.js'
+
 
 // FUNCTIONS
-import decode from '../utils/decode_JWT.js'
+import decode from '../../utils/decode_JWT.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -31,18 +28,19 @@ import decode from '../utils/decode_JWT.js'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
-    addBook_root: {
+    addReview_root: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
 
         width: '90%',
+
         padding: '10px',
+        paddingRight: '25px',
         margin: '10px',
         marginBottom: '20px',
 
         border: '5px solid #273238',
-        // border: '5px solid #40BCD4',
     },
     divider: {
         marginRight: "20px",
@@ -55,7 +53,8 @@ const useStyles = makeStyles(theme => ({
     listRoot: {
         display: 'flex', 
         flexDirection: 'column',
-        width: '60%',
+        justifyContent: 'space-between',
+        width: '100%',
         paddingBottom: '0px',
     },
     listItemRoot: {
@@ -71,7 +70,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'flex-end',
 
-        width: '60%',
+        width: '100%',
     },
     button: {
         display: 'flex',
@@ -85,78 +84,48 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // -B- COMPONENT
-function AddBook(props) {
-// console.log('Add Book PROPS: ', props)
+function UpdateReview(props) {
+// console.log('Add Review PROPS: ', props)
 const {
-    setIs_adding,                       // Close AddBook Pannel
+    setEditing, 
+    selectedData,
 
-    DB_books,                           // connect => all books in redux store
-    token,                              // connect => token on redux store
+    updateReview,
 
-    a_addBook, 
-    a_logCompletedBook,       // Action Creators
-    a_addAndLogBook,
+    DB_books,
+    token,
+
+    a_addReview     // Action Creator
 } = props
 // -- //
     // Styles
     const classes = useStyles({})
 
     // State
-    const [titles, setTitles] = useState([])
-    const [title, setTitle] = useState('')
-    const [author, setAuthor] = useState('')
-    const [logType, setLogType] = useState('')
-
-    // UseEffect => Get Unique Titles
-    // - 1 - // Set Unique Titles
-    useEffect(() => { setTitles( DB_books.map(item => item.title) ) }, [DB_books])
-    // - 2 - // Set Log Type
-    useEffect(() => { setLogType(titles.includes(title) ? 'onlyLog' : 'addAndLog') }, [title])
+    const [review, setReview] = useState()
 
     // Methods
-    const logBook = () => {
-    // console.log(logType)
-    // console.log(`Log This Book! -- ${title} -- ${author}`)
-    let userID = undefined
-    // -- //
-        // get userID
-        const decodedToken = decode(token)
-        // console.log(decodedToken)
-        userID = decodedToken.user_ID
-        // console.log(userID)
-    
-        switch(logType) {
-            // - 1 - // 
-            case 'onlyLog':
-                // get bookID
-                const selectedBook = DB_books.filter(book => book.title === title)[0]
-                // console.log(selectedBook)
-                const bookID = selectedBook.id
-                // console.log(bookID)
-            
-                // add log to readHistory 
-                a_logCompletedBook(userID, bookID)
+    // const logReview = () => {
 
-                break;
-            // - 2 - // 
-            case 'addAndLog':
-                // console.log(logType)
-                a_addAndLogBook({title, author}, userID)
-                break;
-            // - ERROR HANDLING - // 
-            default: 
-                // console.log('ERROR - UNKNOWN LOG TYPE')
-                break;
-        }
+    //     // Prep Object
+    //     const prepObj = {
+    //         logID: selectedData.logID,
+    //         review: review,
+    //     }
+    //     console.log(prepObj)
 
-        // Close Pannel
-        setIs_adding(false)
-    }
+    //     // Call Action Creator
+    //     a_addReview(prepObj)
+    //     // Close Pannel
+    //     setEditing(false)
+    // }
+
+    // Use Effect
 
     // Return
     return (
         <Card
-            className={classes.addBook_root}
+            className={classes.addReview_root}
         >
             <List className={classes.listRoot}>
                 <ListItem className={classes.listItemRoot}> 
@@ -165,14 +134,14 @@ const {
                     </ListItemText>
                     <Divider orientation="vertical" flexItem className={classes.divider}/>
 
-                    <Autocomplete 
+                    {/* <Autocomplete 
                         className={classes.autoComplete}
                         freeSolo={true}
                         options={DB_books}
                         getOptionLabel={(option) => option.title}
 
                         onInputChange={(e, value) => setTitle(value)}
-                        
+
                         renderInput={ (params) => {
                             return (
                                 <TextField 
@@ -183,38 +152,48 @@ const {
                                 />
                             )
                         }}
+                    /> */}
+                    <TextField
+                        className={classes.autoComplete}
+                        defaultValue={selectedData.title}
+                        variant="outlined"
+                        // id="review" label="Update Review" name="review"
+                        id="review" name="review"
+                        onChange={e => setReview(e.target.value)}
+                        margin="normal"
+                        // fullWidth
                     />
                 </ListItem>
-                {!titles.includes(title) &&
-                    <ListItem className={classes.listItemRoot}>
-                        <ListItemText className={classes.label}>
-                            AUTHOR
-                        </ListItemText>
-                        <Divider orientation="vertical" flexItem className={classes.divider}/>
-                        <TextField
-                            variant="outlined"
-                            defaultValue={author}
-                            required
-                            id="author" label="Author" name="author"
-                            onChange={e => setAuthor(e.target.value)}
-                            
-                            margin="normal"
-                            fullWidth
-                        />
-                    </ListItem>
-                }
+                <ListItem className={classes.listItemRoot}>
+                    <ListItemText className={classes.label}>
+                        REVIEW
+                    </ListItemText>
+                    <Divider orientation="vertical" flexItem className={classes.divider}/>
+                    <TextField
+                        variant="outlined"
+                        multiline
+                        rows="5"
+                        defaultValue={selectedData.review}
+                        required
+                        // id="review" label="Add Review" name="review"
+                        id="review" name="review"
+                        onChange={e => setReview(e.target.value)}
+                        margin="normal"
+                        fullWidth
+                    />
+                </ListItem>
             </List>
             <div className={classes.addButtons}>
                 <Button
-                    onClick={() => setIs_adding(false)}
-                    className={`${classes.editCancel}`}
+                    onClick={() => setEditing(false)}
+                    className={classes.editCancel}
                     style={{color: 'red'}}
                 >Cancel</Button>
                 <Button
-                    onClick={logBook}
+                    onClick={() => updateReview(review)}
                     className={`${classes.editSubmit} ${classes.button}`}
                     color="secondary"
-                >Log This Book</Button>
+                >Update Review</Button>
             </div>
         </Card>
     )
@@ -225,13 +204,13 @@ const mstp = state => {
     return {
         DB_books: state.r_books.DB_books,
         token: state.r_auth.token,
-}}
+    }
+}
 
 // CONNECT & EXPORT
 export default connect(
     mstp, 
     {
-        a_logCompletedBook,
-        a_addAndLogBook,
+        
     }
-)(AddBook)
+)(UpdateReview)

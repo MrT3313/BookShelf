@@ -13,7 +13,7 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
-import BookCard from './BookCard.js'
+import BookCard from '../../homepage/explore_NYT_booksAPI/BookCard.js'
 
 // __MAIN__
 // -A- STYLES

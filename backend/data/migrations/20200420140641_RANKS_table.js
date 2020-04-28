@@ -1,6 +1,5 @@
-
 exports.up = function(knex) {
-    return knex.schema.createTable('reviews', tbl => {
+    return knex.schema.createTable('ranks', tbl => {
         tbl.increments('id')
 
         tbl.integer('logID')
@@ -8,13 +7,14 @@ exports.up = function(knex) {
             .references('id').inTable('completedbooks')
             .onDelete('CASCADE')
             .onUpdate("CASCADE")
-        
-        tbl.string('review').notNullable()
+
+        tbl.integer('rank')
+            .notNullable()
 
         tbl.timestamps(true, true)
     })
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('reviews')
-};
+    return knex.schema.dropTableIfExists('ranks')
+}

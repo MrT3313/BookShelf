@@ -10,6 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 
 
 // COMPONENTS
@@ -23,7 +24,7 @@ import { EnhancedTableToolbar } from './TableToolBar.js'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    width: '50%',
+    width: '45%',
     height: '100%',
   },
   paper: {
@@ -58,8 +59,8 @@ const useStyles = makeStyles((theme) => ({
 // __MAIN__
 function UserLogTable(props) {
 const { 
-  userLogs,
-  setUserLogIndex, 
+  userLogs, userRanks,
+  setSelected_logID, 
 } = props
 // console.log('userLogs',userLogs)
 // -- // 
@@ -80,7 +81,12 @@ const {
   // ---- DATA ----  //
   // ---- DATA ----  //
     // V2 - create data
-    function createData(item, key) {
+    function createData(item, key, rank=false) {
+      // console.log('CREATE DATA: ')
+      // console.log(item)
+      // console.log(key)
+      // console.log(rank)
+
       let date = new Date(item.created_at)
 
       const dataPrep = { 
@@ -89,14 +95,26 @@ const {
         key: key + 1,
         title: item.title, 
         author: item.author,
+        rank: rank,
       }
+      // console.log("DATA PREP: ", dataPrep)
 
       // Return
       return dataPrep
     }
 
     const rows = userLogs.map((item,key) => {
-      return createData(item, key)
+      // console.log(item)
+      // console.log('!!!***', userRanks)
+
+      let filtered = userRanks.filter(rank => rank.logID === item.logID)
+      // console.log('FILTERED RANKS by Log ID', filtered)
+
+      if (filtered.length === 0) {
+        return createData(item, key)
+      } else {
+        return createData(item, key, filtered[0].rank)
+      }
     })
 
   // ---- DATA ----  //
@@ -147,32 +165,12 @@ const {
       setSelected([]);
     };
 
-    const handleClick = (event, key) => {
-      const multiSelect = false
-      const selectedIndex = selected.indexOf(key);
-
-      let newSelected = [];
-      if (multiSelect) {
-        if (selectedIndex === -1) {
-          newSelected = newSelected.concat(selected, key);
-        } else if (selectedIndex === 0) {
-          newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-          newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-          newSelected = newSelected.concat(
-            selected.slice(0, selectedIndex),
-            selected.slice(selectedIndex + 1),
-          );
-        }
-      } else {
-        newSelected = [key,]
-      }
-
+    const handleClick = (event, rowData) => {
+      // console.log(rowData)
+      const newSelected = rowData.logID
       // console.log(newSelected)
 
-      setUserLogIndex(newSelected.map(index => index - 1).sort())
-      setSelected(newSelected);
+      setSelected_logID(newSelected)
     };
 
     const isSelected = (name) => selected.indexOf(name) !== -1;
@@ -227,7 +225,7 @@ const {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.key)}
+                      onClick={(event) => handleClick(event, row)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -246,6 +244,14 @@ const {
                       </TableCell>
                       <TableCell padding="none" align="center">{row.title}</TableCell>
                       <TableCell padding="none" align="center">{row.author}</TableCell>
+                      
+                      {/* TODO: UPDATE RANK DATA */}
+                      {row.rank !== false &&
+                        <TableCell padding="none" align="center">{row.rank}</TableCell>
+                      }
+                      {row.rank === false &&
+                        <TableCell padding="none" align="center">~</TableCell>
+                      }
                     </TableRow>
                   );
                 })}
@@ -270,7 +276,8 @@ const {
 // MAP STATE TO PROPS
 const mstp = state => {
   return {
-    userLogs: state.r_loggedBooks.userLoggedBooks,
+    userLogs: state.r_loggedBooks.USER_LoggedBooks,
+    userRanks: state.r_ranks.USER_ranks, 
   }
 }
 

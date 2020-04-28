@@ -11,15 +11,18 @@ import { makeStyles } from '@material-ui/core/styles';
 // -2- Components
 
 // COMPONENTS
-import Menu_AppBar from '../components/AppBar.js'
-import ListSelector from '../components/ListSelector.js'
-import VertTabPannel from '../components/VertTabPannel.js'
+import Menu_AppBar from '../components/appBar/AppBar.js'
+import ListSelector from '../components/homepage/explore_NYT_booksAPI/ListSelector.js'
+import VertTabPannel from '../components/homepage/explore_NYT_booksAPI/VertTabPannel.js'
 
 // ACTION CREATORS
-import { a_getSpecificList } from '../redux/actions/GET/a_getSpecificList.js'
 import { a_getBooks } from '../redux/actions/GET/a_getBooks.js'
 import { a_getReviews } from '../redux/actions/GET/a_getReviews.js'
 import { a_getLoggedBooks } from '../redux/actions/GET/a_getLoggedBooks.js'
+import { a_getRanks } from  '../redux/actions/GET/a_getRanks.js'
+
+// FUNCTIONS
+import decode from '../utils/decode_JWT.js'
               
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -39,8 +42,9 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function HomePage(props) {
 const { 
+    token,
     allLists, listName, searchDate,
-    a_getBooks, a_getReviews, a_getLoggedBooks            // Action Creators
+    a_getBooks, a_getReviews, a_getLoggedBooks, a_getRanks,
 } = props
     // Styles
     const classes = useStyles({})
@@ -51,9 +55,15 @@ const {
         We now want to load initial data from your DB into the redux store
     */
     useEffect(() => {
+        // Get User ID
+            const userID = decode(token).user_ID
+            // console.log(userID)
+
+        // Get Data
         a_getBooks()
-        a_getReviews()
-        a_getLoggedBooks()
+        a_getLoggedBooks(userID)
+        a_getReviews(userID)
+        a_getRanks(userID)
     }, [])
 
     // Return
@@ -86,6 +96,8 @@ const mstp = state => {
         searchDate: state.r_specificList.searchDate,
 
         current_listData: state.r_specificList.listData,
+
+        token: state.r_auth.token,
     }
 }
         
@@ -94,7 +106,6 @@ export default connect(
     mstp,
     {
         a_getBooks,
-        a_getReviews,
-        a_getLoggedBooks,
+        a_getLoggedBooks, a_getReviews, a_getRanks,
     }
 )(HomePage)
