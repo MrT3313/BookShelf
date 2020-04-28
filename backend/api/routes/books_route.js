@@ -13,7 +13,7 @@ const router = express.Router()
 // UTILS
 
 // __MAIN__
-    // - GET - //
+    // - GET - // 
         // - 1 - // GET ALL BOOKS
         router.get('/all', async(req,res) => {
         // console.log('** BOOKS ROUTER: books/all GET/')
@@ -31,7 +31,7 @@ const router = express.Router()
                 })
         })
 
-        // - 2 - // GET SINGLE BOOK
+        // - 2 - // GET SINGLE BOOK -- ✅ Test Made
         router.get('/:bookID', async(req,res) => {
         // console.log('** BOOKS ROUTER: books/:id GET/')
         const { bookID } = req.params
