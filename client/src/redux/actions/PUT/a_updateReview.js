@@ -34,7 +34,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
             // console.log('UPDATE DATA',updateData)
 
             // Make Axios Request 
-            axios
+            return axios
                 .put(
                     update_URL,
                     {review: updateData}

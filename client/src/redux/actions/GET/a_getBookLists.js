@@ -19,7 +19,7 @@ import { NYT_booksAPI_baseURL } from '../../../utils'
             dispatch({ type: GET_BOOKLISTS_START});
 
             // Make Axios Request
-            axios
+            return axios
                 .get(
                     `${NYT_booksAPI_baseURL}names.json`, 
                     { params: {

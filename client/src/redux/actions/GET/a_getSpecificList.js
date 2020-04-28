@@ -19,7 +19,7 @@ import { NYT_booksAPI_baseURL } from '../../../utils'
             dispatch({ type: GET_SPECIFICLIST_START, payload: list});
             
             // Make Axios Request
-            axios
+            return axios
                 .get(
                     `${NYT_booksAPI_baseURL}${date}/${list}`,  
                     { params: {
