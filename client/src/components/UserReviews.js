@@ -22,6 +22,7 @@ import ReviewCard from './ReviewCard.js'
 // ACTION CREATORS
 import { a_updateReview } from '../redux/actions/PUT/a_updateReview.js'
 import { a_updateRank } from '../redux/actions/PUT/a_updateRank.js'
+
 // FUNCTIONS
 import decode from '../utils/decode_JWT.js'
 

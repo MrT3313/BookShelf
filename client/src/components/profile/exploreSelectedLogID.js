@@ -11,11 +11,13 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
-import AddReview from '../AddReview.js'
+import AddReview from './AddReview.js'
+import AddRank from './AddRank.js'
 
 // ACTION CREATORS
 import { a_getSelectedLog } from '../../redux/actions/GET/a_getSelectedLog.js'
 import { a_addReview } from '../../redux/actions/POST/a_addReview.js'
+import { a_addRank } from '../../redux/actions/POST/a_addRank.js'
 
 
 // === === === === === === === === === === === === //
@@ -75,7 +77,7 @@ function ExploreSelectedLogID(props) {
 console.log('ExploreSelectedLogID PROPS: ', props)
 const {
     selected_logID,                             // Passed Props
-    a_getSelectedLog, a_addReview,              // Action Creator
+    a_getSelectedLog, a_addReview, a_addRank,   // Action Creator
     selectedLogData,                            // Redux
 } = props
 // -- //
@@ -111,6 +113,22 @@ const {
 
         // Call Action Creator
         await a_addReview(prepObj)
+        // Update Selected Data
+        await a_getSelectedLog(selected_logID)
+        // Close Pannel
+        await setAdding(false)
+    }
+
+    const logRank = async(rank) => {
+        console.log('LOG THIS RANK')
+
+        // Prep Object
+        const prepObj = {
+            logID: selectedLogData.logID,
+            rank: rank,
+        }
+        // Call Action Creator
+        await a_addRank(prepObj, selectedLogData.userID)
         // Update Selected Data
         await a_getSelectedLog(selected_logID)
         // Close Pannel
@@ -180,7 +198,11 @@ const {
                     />
                 }
                 {adding && adding === 'addRank' &&
-                    <div>ADD Rank</div>
+                    <AddRank 
+                        logRank={logRank}
+                        setAdding={setAdding} 
+                        selectedData={selectedLogData}
+                    />
                 }
             </Paper>
         )
@@ -199,7 +221,7 @@ export default connect(
     mstp, 
     {
         a_getSelectedLog,
-        a_addReview,
+        a_addRank, a_addReview,
     }
 )(ExploreSelectedLogID)
 

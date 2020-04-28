@@ -20,7 +20,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 // FUNCTIONS
-import decode from '../utils/decode_JWT.js'
+import decode from '../../utils/decode_JWT.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -157,7 +157,8 @@ const {
                         className={classes.autoComplete}
                         defaultValue={selectedData.title}
                         variant="outlined"
-                        id="review" label="Update Review" name="review"
+                        // id="review" label="Add Title" name="review"
+                        id="review" name="review"
                         onChange={e => setReview(e.target.value)}
                         margin="normal"
                         // fullWidth
@@ -174,7 +175,8 @@ const {
                         rows="5"
                         // defaultValue={userID}
                         required
-                        id="review" label="Review" name="review"
+                        // id="review" label="Add Review" name="review"
+                        id="review" name="review"
                         onChange={e => setReview(e.target.value)}
                         margin="normal"
                         fullWidth
@@ -191,7 +193,7 @@ const {
                     onClick={() => logReview(review)}
                     className={`${classes.editSubmit} ${classes.button}`}
                     color="secondary"
-                >Log This Book</Button>
+                >Add Review</Button>
             </div>
         </Card>
     )

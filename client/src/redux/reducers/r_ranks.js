@@ -1,4 +1,8 @@
 import {
+    ADD_RANK_START, ADD_RANK_SUCCESS, ADD_RANK_FAILURE
+} from '../actions/POST/a_addRank.js'
+
+import {
     GET_RANKS_START, GET_RANKS_SUCCESS, GET_RANKS_FAILURE
 } from '../actions/GET/a_getRanks.js'
 
@@ -96,6 +100,29 @@ export const r_ranks = (state=initialState, action) => {
                 ...state,
                 is_updating: false,
                 error: ''
+            }
+        // - 4 - // Add Rank
+        case ADD_RANK_START:
+            return {
+                ...state,
+                is_adding: true,
+                error: ''
+            }
+        case ADD_RANK_SUCCESS:
+            return {
+                ...state,
+
+                USER_ranks: [...action.payload.singleUser],
+                DB_ranks: [...action.payload.allUsers],
+
+                is_adding: false,
+                error: ''
+            }
+        case ADD_RANK_FAILURE:
+            return {
+                ...state,
+                is_adding: false,
+                error: action.payload
             }
         // - DEFAULT - //
         default:
