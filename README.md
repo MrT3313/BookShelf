@@ -59,9 +59,26 @@ Want to know what another user is reading? Turn your profile 'public' and allow 
     - Digit 2 = Feature Release / Security Enhancements
     - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
 ---
-### Latest: 1.5.0 -- Testing Update
+### Latest: 1.6.0 -- Testing Update
 
 <details open>
+<summary>1.6.0 -- Profile Page Overhaul / Functionality Update & DB Redesign</summary>
+
+- Complete Redesign of < Profile /> => new data flow and component structure  
+- Profile Page Overhaul / Functionality Update  
+    1. Log Book (existing book in BD or add new book work in one user flow)
+    2. User Logs Table (Log Date / Title / Author / Rank => ALL columns sortable)
+    3. Selected Log Explorer (Click on User Logs Table loads all LogID data in separate component)
+    4. Add / Update Rank for selected log
+    5. Add / Update Review for selected log
+- DB Redesign
+    - User Logs are now the folcrum. You cannot add a review or rank without first having a logID in the system (aka: you actually read the book). Other tables columns stripped to only essential (non-repeated) data and linked with foreign key migrations.   
+
+Screenshot:   
+<img src="client/src/assets/readMeImgs/1.6.0_ProfileOverhaul_DBupdate.png" height='200'>      
+</details>
+
+<details>
 <summary>1.5.0 -- Initial API Integration Testing</summary>
 
 - End to End Testing - Cypress
@@ -129,8 +146,8 @@ Want to know what another user is reading? Turn your profile 'public' and allow 
 - Card that shows the users most revent review for that book
 
 Screenshot:   
-<img src="client/src/assets/readMeImgs/1.4.2_ProfilePageUpdate__visualizeUserReviews.png" width='300'>     
-<img src="client/src/assets/readMeImgs/1.4.2_ProfilePageUpdate__visualizeUserReviews_addReview.png" width='300'>     
+<img src="client/src/assets/readMeImgs/1.4.2_ProfilePageUpdate__visualizeUserReviews.png" height='200'>     
+<img src="client/src/assets/readMeImgs/1.4.2_ProfilePageUpdate__visualizeUserReviews_addReview.png" height='200'>     
 
 </details>
 
@@ -141,7 +158,7 @@ Screenshot:
 - Table columns are sortable 
 
 Screenshot:   
-<img src="client/src/assets/readMeImgs/1.4.1_ProfilePage__visualizeUserLogs.png" width='300'>   
+<img src="client/src/assets/readMeImgs/1.4.1_ProfilePage__visualizeUserLogs.png" height='200'>   
 
 </details>
 
@@ -151,8 +168,8 @@ Screenshot:
 - Add Review for a book & styling update  
 
 Screenshot:  
-<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__addReview.png" width='300'>  
-<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__logCompletedBook.png" width='300'>  
+<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__addReview.png" height='200'>  
+<img src="client/src/assets/readMeImgs/1.4.0_ProfilePage__logCompletedBook.png" height='200'>  
 
 </details>
 
@@ -174,7 +191,7 @@ Screenshot:
     - adds entry to readHistory
 
 Screenshot:  
-<img src="client/src/assets/readMeImgs/1.3.1_profilePageUpdate.png" width='300'>  
+<img src="client/src/assets/readMeImgs/1.3.1_profilePageUpdate.png" height='200'>  
 
 </details>
 
@@ -194,8 +211,8 @@ Screenshot:
 3. Public Profile
 
 Screenshots:  
-<img src="client/src/assets/readMeImgs/accountPage_1.2.0.png" width='250'>  
-<img src="client/src/assets/readMeImgs/editAccountPage_1.2.0.png" width='250'>  
+<img src="client/src/assets/readMeImgs/accountPage_1.2.0.png" height='200'>  
+<img src="client/src/assets/readMeImgs/editAccountPage_1.2.0.png" height='200'>  
 </details>
 
 <details>
@@ -220,8 +237,8 @@ Screenshots:
     - Login & Register both setting token on Redux store -> login & register 1 step to homepage
 
 Screenshots:  
-<img src="client/src/assets/readMeImgs/Register_0.0.3.png" width='250'>  
-<img src="client/src/assets/readMeImgs/Login_0.0.3.png" width='250'>  
+<img src="client/src/assets/readMeImgs/Register_0.0.3.png" height='200'>  
+<img src="client/src/assets/readMeImgs/Login_0.0.3.png" height='200'>  
 </details>
 
 <details>
@@ -231,7 +248,7 @@ Screenshots:
 - BE: Login & Register functionality working in postman but not hooked up to FE
 
 Screenshot:  
-<img src="client/src/assets/readMeImgs/homepage_0.0.2.png" height='250'>  
+<img src="client/src/assets/readMeImgs/homepage_0.0.2.png" height='200'>  
 </details>  
 
 <details>

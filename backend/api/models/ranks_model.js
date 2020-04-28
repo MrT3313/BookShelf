@@ -44,6 +44,8 @@ module.exports = {
             
             JOIN books
             ON completedbooks."bookID" = books.id
+
+            ORDER BY ranks.updated_at ASC
         `)
     }
     // - 2 - // getRank
