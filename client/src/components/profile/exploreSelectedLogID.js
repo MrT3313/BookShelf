@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 // -1- Components
 import Paper from '@material-ui/core/Paper';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import EditIcon from '@material-ui/icons/Edit';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,12 +14,13 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 import AddReview from './AddReview.js'
 import AddRank from './AddRank.js'
+import UpdateRank from './UpdateRank.js'
 
 // ACTION CREATORS
 import { a_getSelectedLog } from '../../redux/actions/GET/a_getSelectedLog.js'
 import { a_addReview } from '../../redux/actions/POST/a_addReview.js'
 import { a_addRank } from '../../redux/actions/POST/a_addRank.js'
-
+import { a_updateRank } from '../../redux/actions/PUT/a_updateRank.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -67,7 +69,8 @@ const useStyles = makeStyles(theme => ({
     content__rank: {
         display: 'flex',
         flexDirection: 'column',
-        width: '20%',
+        alignItems: 'center',
+        width: '30%',
     }
 }))
 
@@ -76,9 +79,10 @@ const useStyles = makeStyles(theme => ({
 function ExploreSelectedLogID(props) {
 console.log('ExploreSelectedLogID PROPS: ', props)
 const {
-    selected_logID,                             // Passed Props
-    a_getSelectedLog, a_addReview, a_addRank,   // Action Creator
-    selectedLogData,                            // Redux
+    selected_logID,                                             // Passed Props
+    a_getSelectedLog, a_addReview, a_addRank,                   // Action Creator
+    a_updateRank,                                               // Action Creator
+    selectedLogData,                                            // Redux
 } = props
 // -- //
     // Styles
@@ -86,6 +90,7 @@ const {
 
     // State
     const [adding, setAdding] = useState(false)
+    const [editing, setEditing] = useState(false)
 
     // UseEffect 
     useEffect(() => {
@@ -99,6 +104,10 @@ const {
     const add = e => {
         console.log(e.currentTarget.id)
         setAdding(e.currentTarget.id)
+    }
+    const edit = e => {
+        console.log(e.currentTarget.id)
+        setEditing(e.currentTarget.id)
     }
 
     const logReview = async (review) => {
@@ -135,6 +144,24 @@ const {
         await setAdding(false)
     }
 
+    // TODO: UPDATE
+    const updateRank = async(updatedRank) => {
+        // console.log(selectedLogData)
+        // console.log('rankID',selectedLogData.rankID)
+
+        // Prep Object
+        // const prepObj = {
+        //     rank: updatedRank
+        // }
+        // Call Action Creator
+        await a_updateRank(updatedRank, selectedLogData.rankID, selectedLogData.userID)
+        // Update Selected Data
+        await a_getSelectedLog(selected_logID)
+        // Close Pannel
+        await setEditing(false)
+
+    }
+
     // Return
     if (selected_logID === false) {
         return (
@@ -153,11 +180,20 @@ const {
                         By: {selectedLogData.author}
                     </div>
                 </div>
-                {!adding &&
+                {!adding && !editing &&
                     <div className={classes.content}>
                         <div className={classes.content__review}>
-                            <div style={{marginBottom: '10px'}}>
-                                MY REVIEW
+                            <div style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
+                                <div style={{marginRight: '5px'}}>
+                                    MY REVIEW
+                                </div>
+                                {selectedLogData.review &&
+                                    <EditIcon 
+                                        style={{fontSize: '20px'}}
+                                        id="updateReview"
+                                        onClick={edit}
+                                    /> 
+                                }
                             </div>
                             <div style={{display: 'flex', justifyContent: 'flex-start'}}>
                                 {!selectedLogData.review &&
@@ -173,8 +209,17 @@ const {
                             </div>
                         </div>
                         <div className={classes.content__rank}>
-                            <div style={{marginBottom: '10px'}}>
-                                MY RANK
+                            <div style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
+                                <div style={{marginRight: '5px'}}>
+                                    MY RANK
+                                </div>
+                                {selectedLogData.rank &&
+                                    <EditIcon 
+                                        style={{fontSize: '20px'}}
+                                        id="updateRank"
+                                        onClick={edit}
+                                    /> 
+                                }
                             </div>
                             <div style={{display: 'flex', justifyContent: 'center'}}>
                                 {!selectedLogData.rank &&
@@ -204,6 +249,16 @@ const {
                         selectedData={selectedLogData}
                     />
                 }
+                {editing && editing === 'updateRank' &&
+                    <UpdateRank 
+                        updateRank={updateRank}
+                        setEditing={setEditing}
+                        selectedData={selectedLogData}
+                    />
+                }
+                {editing && editing === 'updateReview' &&
+                    <div>UPDATE REVIEW</div>
+                }
             </Paper>
         )
     }
@@ -222,6 +277,7 @@ export default connect(
     {
         a_getSelectedLog,
         a_addRank, a_addReview,
+        a_updateRank,
     }
 )(ExploreSelectedLogID)
 

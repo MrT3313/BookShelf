@@ -101,6 +101,7 @@ function getLog(id) {
         SELECT 
         -- IDs
             completedbooks."userID", completedbooks.id as "logID", completedbooks."bookID", 
+            ranks.id as "rankID", reviews.id as "reviewID",
             
         -- Data
             books.title, books.author,

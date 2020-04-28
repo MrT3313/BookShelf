@@ -12,8 +12,11 @@ import { LIVE_BE_base_URL } from '../../../utils'
     export const UPDATE_RANK_FAILURE = 'UPDATE_RANK_FAILURE'
 
     // Action Creator
-    export const a_updateRank = (rankID, userID, updateData) => {
+    export const a_updateRank = (updatedRank, rankID, userID) => {
     // console.log('INSIDE: a_updateRank action creator')
+    console.log(updatedRank)
+    console.log(rankID)
+    console.log(userID)
     // -- //
         // Send First Action 
         return dispatch => {
@@ -28,13 +31,12 @@ import { LIVE_BE_base_URL } from '../../../utils'
             }
             // console.log('URL USED')
             console.log(update_URL)
-            console.log(updateData)
 
             // Make Axios Request
             axios  
                 .put(
                     update_URL,
-                    updateData
+                    {rank: updatedRank}
                 )
                 .then( updateResult => {
                 console.log('Updated Rank Results: ', updateResult )
