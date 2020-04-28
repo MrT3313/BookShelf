@@ -14,6 +14,9 @@ import { LIVE_BE_base_URL } from '../../../utils'
     // Action Creator
     export const a_updateReview = (reviewID, userID, updateData) => {
     // console.log('INSIDE: a_updateReview action creator')
+    console.log(reviewID)
+    console.log(userID)
+    console.log(updateData)
     // -- //
         // Send First Action
         return dispatch => {
@@ -34,7 +37,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
             axios
                 .put(
                     update_URL,
-                    updateData
+                    {review: updateData}
                 )
                 .then( updateResults => {
                 // console.log(updatedResults)

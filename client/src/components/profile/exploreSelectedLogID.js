@@ -15,12 +15,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddReview from './AddReview.js'
 import AddRank from './AddRank.js'
 import UpdateRank from './UpdateRank.js'
+import UpdateReview from './UpdateReview.js'
 
 // ACTION CREATORS
 import { a_getSelectedLog } from '../../redux/actions/GET/a_getSelectedLog.js'
 import { a_addReview } from '../../redux/actions/POST/a_addReview.js'
 import { a_addRank } from '../../redux/actions/POST/a_addRank.js'
 import { a_updateRank } from '../../redux/actions/PUT/a_updateRank.js'
+import { a_updateReview } from '../../redux/actions/PUT/a_updateReview.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -81,7 +83,7 @@ console.log('ExploreSelectedLogID PROPS: ', props)
 const {
     selected_logID,                                             // Passed Props
     a_getSelectedLog, a_addReview, a_addRank,                   // Action Creator
-    a_updateRank,                                               // Action Creator
+    a_updateRank, a_updateReview,                               // Action Creator
     selectedLogData,                                            // Redux
 } = props
 // -- //
@@ -160,6 +162,16 @@ const {
         // Close Pannel
         await setEditing(false)
 
+    }
+
+    const updateReview = async(updatedReview) => {
+        console.log(selectedLogData)
+        // Call Action Creator
+        await a_updateReview(selectedLogData.reviewID, selectedLogData.userID, updatedReview)
+        // Update Selected Data
+        await a_getSelectedLog(selected_logID)
+        // Close Pannel
+        await setEditing(false)
     }
 
     // Return
@@ -257,7 +269,11 @@ const {
                     />
                 }
                 {editing && editing === 'updateReview' &&
-                    <div>UPDATE REVIEW</div>
+                    <UpdateReview 
+                        updateReview={updateReview}
+                        setEditing={setEditing}
+                        selectedData={selectedLogData}
+                    />
                 }
             </Paper>
         )
@@ -277,7 +293,7 @@ export default connect(
     {
         a_getSelectedLog,
         a_addRank, a_addReview,
-        a_updateRank,
+        a_updateRank, a_updateReview,
     }
 )(ExploreSelectedLogID)
 
