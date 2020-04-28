@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
 
 // -B- COMPONENT
 function ExploreSelectedLogID(props) {
-console.log('ExploreSelectedLogID PROPS: ', props)
+// console.log('ExploreSelectedLogID PROPS: ', props)
 const {
     selected_logID,                                             // Passed Props
     a_getSelectedLog, a_addReview, a_addRank,                   // Action Creator
@@ -97,30 +97,30 @@ const {
     // UseEffect 
     useEffect(() => {
         if (selected_logID) {
-            console.log('EXPLORE SELECTED LOG_ID')
+            // console.log('EXPLORE SELECTED LOG_ID')
             a_getSelectedLog(selected_logID)
         }
     }, [selected_logID])
 
     // Methods
     const add = e => {
-        console.log(e.currentTarget.id)
+        // console.log(e.currentTarget.id)
         setAdding(e.currentTarget.id)
     }
     const edit = e => {
-        console.log(e.currentTarget.id)
+        // console.log(e.currentTarget.id)
         setEditing(e.currentTarget.id)
     }
 
     const logReview = async (review) => {
-        console.log('LOG THIS REVIEW')
+        // console.log('LOG THIS REVIEW')
 
         // Prep Object
         const prepObj = {
             logID: selectedLogData.logID,
             review: review,
         }
-        console.log(prepObj)
+        // console.log(prepObj)
 
         // Call Action Creator
         await a_addReview(prepObj)
@@ -131,7 +131,7 @@ const {
     }
 
     const logRank = async(rank) => {
-        console.log('LOG THIS RANK')
+        // console.log('LOG THIS RANK')
 
         // Prep Object
         const prepObj = {
@@ -165,7 +165,7 @@ const {
     }
 
     const updateReview = async(updatedReview) => {
-        console.log(selectedLogData)
+        // console.log(selectedLogData)
         // Call Action Creator
         await a_updateReview(selectedLogData.reviewID, selectedLogData.userID, updatedReview)
         // Update Selected Data

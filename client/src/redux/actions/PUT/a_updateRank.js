@@ -14,9 +14,9 @@ import { LIVE_BE_base_URL } from '../../../utils'
     // Action Creator
     export const a_updateRank = (updatedRank, rankID, userID) => {
     // console.log('INSIDE: a_updateRank action creator')
-    console.log(updatedRank)
-    console.log(rankID)
-    console.log(userID)
+    // console.log(updatedRank)
+    // console.log(rankID)
+    // console.log(userID)
     // -- //
         // Send First Action 
         return dispatch => {
@@ -30,7 +30,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 update_URL = `${LIVE_BE_base_URL}ranks/${rankID}`
             }
             // console.log('URL USED')
-            console.log(update_URL)
+            // console.log(update_URL)
 
             // Make Axios Request
             axios  
@@ -39,10 +39,10 @@ import { LIVE_BE_base_URL } from '../../../utils'
                     {rank: updatedRank}
                 )
                 .then( updateResult => {
-                console.log('Updated Rank Results: ', updateResult )
+                // console.log('Updated Rank Results: ', updateResult )
                 // -- //
                     const userResults = updateResult.data.filter(item => item.userID == userID)
-                    console.log(userResults)
+                    // console.log(userResults)
                     
                     dispatch({
                         type: UPDATE_RANK_SUCCESS,

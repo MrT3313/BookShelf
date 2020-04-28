@@ -146,8 +146,8 @@ async function postReview(postData) {
 // - PUT - //
 // - 1 - // updateReview
 async function updateReview(id, updateData) { 
-console.log(updateData)
-console.log(id)
+// console.log(updateData)
+// console.log(id)
 // -- //
     // - A - // Knex Query Builder
     await KNEX_DB('reviews').where({id}).update(updateData)

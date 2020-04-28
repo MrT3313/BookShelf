@@ -34,7 +34,7 @@ const router = express.Router()
         // -- //
             USERS_MODEL.getByID(id)
                 .then( foundUser => {
-                console.log(foundUser.rows)
+                // console.log(foundUser.rows)
                 // -- //
                     if (foundUser.rows.length  === 0) {
                         res.status(500).json({ error: 'User not in database'})

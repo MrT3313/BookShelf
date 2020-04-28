@@ -38,7 +38,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 // console.log(res)
                 // -- //
                     const userResults = allReviews.data.filter(item => item.userID === userID)
-                    console.log(userResults)
+                    // console.log(userResults)
 
                     dispatch({
                         type: GET_REVIEWS_SUCCESS,

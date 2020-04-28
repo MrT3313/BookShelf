@@ -154,7 +154,7 @@ const router = express.Router()
             res.status(200).json(results.rows)
             })
             .catch(err => {
-            console.log(err)
+            // console.log(err)
             // -- //
                 res.status(500).json({ ERROR: 'Unable to remove book to DB'})
             })

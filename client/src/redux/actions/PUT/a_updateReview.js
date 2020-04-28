@@ -14,9 +14,9 @@ import { LIVE_BE_base_URL } from '../../../utils'
     // Action Creator
     export const a_updateReview = (reviewID, userID, updateData) => {
     // console.log('INSIDE: a_updateReview action creator')
-    console.log(reviewID)
-    console.log(userID)
-    console.log(updateData)
+    // console.log(reviewID)
+    // console.log(userID)
+    // console.log(updateData)
     // -- //
         // Send First Action
         return dispatch => {
@@ -30,8 +30,8 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 update_URL = `${LIVE_BE_base_URL}reviews/${reviewID}`
             }
             // console.log('URL USED')
-            console.log(update_URL)
-            console.log('UPDATE DATA',updateData)
+            // console.log(update_URL)
+            // console.log('UPDATE DATA',updateData)
 
             // Make Axios Request 
             axios
@@ -43,7 +43,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 // console.log(updatedResults)
                 // -- //
                     const userResults = updateResults.data.filter(item => item.userID == userID)
-                    console.log(userResults)
+                    // console.log(userResults)
 
                     dispatch({
                         type: UPDATE_REVIEW_SUCCESS,

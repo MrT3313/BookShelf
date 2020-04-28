@@ -37,7 +37,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 // console.log(allLogs)
                 // -- // 
                     const userResults = allLogs.data.filter(item => item.userID === userID)
-                    console.log(userResults)
+                    // console.log(userResults)
 
                     dispatch({
                         type: GET_ALLLOGGEDBOOKS_SUCCESS,

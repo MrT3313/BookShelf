@@ -106,7 +106,7 @@ const {
             username: editUsername,
             publicProfile: editDefaultProfile,
         }
-        console.log(prepObj)
+        // console.log(prepObj)
 
         a_updateUser(id, prepObj)
     }

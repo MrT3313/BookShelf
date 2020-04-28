@@ -14,19 +14,21 @@ const router = express.Router()
     router.get('/all', async(req,res) => {
         RANKS_MODEL.getAll()
             .then( data => {
-                console.log(data.rows)
+            // console.log(data.rows)
+            // -- //
                 res.status(200).json(data.rows)
             })
             .catch(err => {
-                console.log('WERE HERE')
+            // console.log('WERE HERE')
+            // -- //
                 res.status(500).json(err)
             })
     })
     // - 2 - // GET SPECIFIC RANK
     router.get('/:id', async(req,res) => {
-    const {id} = req.params
-    console.log('here we are')
-    console.log(id)
+    // const {id} = req.params
+    // console.log('here we are')
+    // console.log(id)
     // -- //
         RANKS_MODEL.getRank(id)
             .then( singleRank => {
@@ -43,7 +45,7 @@ const router = express.Router()
     // - 3 - // GET RANKS FOR SPECIFIC BOOK
     router.get('/singleBook/:bookID', async(req,res) => {
     const {bookID} = req.params
-    console.log(bookID)
+    // console.log(bookID)
     // -- //
         RANKS_MODEL.getRanks_by_bookID(bookID)
             .then( singleBookRanks => {
@@ -81,7 +83,7 @@ const router = express.Router()
     // -- //
         RANKS_MODEL.getRank_by_logID(logID)
             .then( results => {
-            console.log(results.rows[0])
+            // console.log(results.rows[0])
             // -- //
                 res.status(200).json(results.rows[0])
             })
@@ -129,7 +131,7 @@ const router = express.Router()
     // -- //
         RANKS_MODEL.updateRank(rankID, req.body)
             .then(results => {
-            console.log(results.rows)
+            // console.log(results.rows)
             // -- //
                 res.status(200).json(results.rows)
             })

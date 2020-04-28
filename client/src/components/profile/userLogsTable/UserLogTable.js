@@ -82,10 +82,10 @@ const {
   // ---- DATA ----  //
     // V2 - create data
     function createData(item, key, rank=false) {
-      console.log('CREATE DATA: ')
-      console.log(item)
-      console.log(key)
-      console.log(rank)
+      // console.log('CREATE DATA: ')
+      // console.log(item)
+      // console.log(key)
+      // console.log(rank)
 
       let date = new Date(item.created_at)
 
@@ -97,18 +97,18 @@ const {
         author: item.author,
         rank: rank,
       }
-      console.log("DATA PREP: ", dataPrep)
+      // console.log("DATA PREP: ", dataPrep)
 
       // Return
       return dataPrep
     }
 
     const rows = userLogs.map((item,key) => {
-      console.log(item)
-      console.log('!!!***', userRanks)
+      // console.log(item)
+      // console.log('!!!***', userRanks)
 
       let filtered = userRanks.filter(rank => rank.logID === item.logID)
-      console.log('FILTERED RANKS by Log ID', filtered)
+      // console.log('FILTERED RANKS by Log ID', filtered)
 
       if (filtered.length === 0) {
         return createData(item, key)
@@ -166,9 +166,9 @@ const {
     };
 
     const handleClick = (event, rowData) => {
-      console.log(rowData)
+      // console.log(rowData)
       const newSelected = rowData.logID
-      console.log(newSelected)
+      // console.log(newSelected)
 
       setSelected_logID(newSelected)
     };
@@ -217,7 +217,7 @@ const {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   
-                  console.log('ROW!!!',row)
+                  // console.log('ROW!!!',row)
 
                   const isItemSelected = isSelected(row.key);
                   const labelId = `enhanced-table-checkbox-${index}`;
