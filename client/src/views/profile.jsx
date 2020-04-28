@@ -6,11 +6,13 @@ import {connect} from 'react-redux'
 // -1- Styles
 import { makeStyles } from '@material-ui/core/styles';
 // -2- Components
+import AddBoxIcon from '@material-ui/icons/AddBox';
 
 // COMPONENTS
 import Menu_AppBar from '../components/appBar/AppBar.js'
 import UserLogTable from '../components/profile/userLogsTable/UserLogTable.js'
 import ExploreSelectedLogID from '../components/profile/exploreSelectedLogID'
+import AddBook from '../components/profile/AddBook'
 
 // Action Creators
 
@@ -23,9 +25,10 @@ import decode from '../utils/decode_JWT.js'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
-    root: {
+    profile__root: {
         display: 'flex',
         flexDirection: 'column',
+
     },
     logExplorer: {
         display: 'flex',
@@ -49,17 +52,28 @@ const {
 
     // State
     const [selected_logID, setSelected_logID] = useState(false)
+    const [adding, setIsAdding] = useState(false)
 
     // Methods
 
     // Return
     return (
-        <div className={classes.root}>
+        <div className={classes.profile__root}>
             <Menu_AppBar />
+            {adding &&
+                <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+                    <AddBook 
+                        setIsAdding={setIsAdding}
+                    />
+                </div>
+            }
             <div className={classes.logExplorer}>
                 <UserLogTable 
                     setSelected_logID={setSelected_logID}
                 />
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <AddBoxIcon onClick={() => setIsAdding(true)}/>
+                </div>
                 <ExploreSelectedLogID 
                     selected_logID={selected_logID}
                 /> 

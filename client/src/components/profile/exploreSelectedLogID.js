@@ -34,9 +34,19 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: theme.palette.secondary.main,
 
         padding: '10px',
     }, 
+    default__rootContent: {
+        display: 'flex', 
+        alignItems: 'center', 
+        height: '100%', 
+        borderRadius: '5px', 
+        backgroundColor: '#FFFFFF',
+        padding: '10px',
+    }, 
+    // -- //
     ExploreSelectedLogID__root: {
         display: 'flex',
         flexDirection: 'column',
@@ -127,7 +137,7 @@ const {
         // Update Selected Data
         await a_getSelectedLog(selected_logID)
         // Close Pannel
-        await setAdding(false)
+        setAdding(false)
     }
 
     const logRank = async(rank) => {
@@ -143,7 +153,7 @@ const {
         // Update Selected Data
         await a_getSelectedLog(selected_logID)
         // Close Pannel
-        await setAdding(false)
+        setAdding(false)
     }
 
     // TODO: UPDATE
@@ -160,7 +170,7 @@ const {
         // Update Selected Data
         await a_getSelectedLog(selected_logID)
         // Close Pannel
-        await setEditing(false)
+        setEditing(false)
 
     }
 
@@ -171,14 +181,14 @@ const {
         // Update Selected Data
         await a_getSelectedLog(selected_logID)
         // Close Pannel
-        await setEditing(false)
+        setEditing(false)
     }
 
     // Return
     if (selected_logID === false) {
         return (
             <Paper className={classes.default__root}>
-                Select a Log Entry
+                <div className={classes.default__rootContent}>Select a Previous Log or Add a New Log</div>
             </Paper>
         )
     } else {

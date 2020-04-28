@@ -26,11 +26,15 @@ describe('/reviews/', function() {
                 "title": "jestTitle_reviews",
                 "author": "jestAuthor_reviews"
             } 
+            const logData = {
+                "userID" : 1,
+                "bookID": 1
+            }
             const reviewData = {
-                "userID": 1,
-                "bookID": 1,
+                "logID": 1,
                 "review": "Postman Review Test"
             }
+
             // Make Test Request
             const addBook = await request(server)
                 .post('/books/').send(bookData).set('Accept', 'application/json')
@@ -41,9 +45,12 @@ describe('/reviews/', function() {
                 .post('/register/').send(userData).set('Accept', 'application/json')
             expect(adduser.status).toBe(201)
 
+            const addLog = await request(server)
+                .post('/logs/').send(logData).set('Accept', 'application/json')
+            expect(adduser.status).toBe(201)
+
             const addReview = await request(server)
                 .post('/reviews/').send(reviewData).set('Accept', 'application/json')
-    
             expect(addReview.status).toBe(200)
             expect(addReview.type).toMatch(/json/i)
             expect(addReview.body).toHaveLength(1)

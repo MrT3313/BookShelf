@@ -19,11 +19,11 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 
 // ACTION CREATORS
-import { a_logCompletedBook } from '../redux/actions/POST/a_addCompletedBook.js'
-import { a_addAndLogBook } from '../redux/actions/POST/a_addAndLogBook.js'
+import { a_logCompletedBook } from '../../redux/actions/POST/a_addCompletedBook.js'
+import { a_addAndLogBook } from '../../redux/actions/POST/a_addAndLogBook.js'
 
 // FUNCTIONS
-import decode from '../utils/decode_JWT.js'
+import decode from '../../utils/decode_JWT.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
 function AddBook(props) {
 // console.log('Add Book PROPS: ', props)
 const {
-    setIs_adding,                       // Close AddBook Pannel
+    setIsAdding,                       // Close AddBook Pannel
 
     DB_books,                           // connect => all books in redux store
     token,                              // connect => token on redux store
@@ -150,7 +150,7 @@ const {
         }
 
         // Close Pannel
-        setIs_adding(false)
+        setIsAdding(false)
     }
 
     // Return
@@ -206,7 +206,7 @@ const {
             </List>
             <div className={classes.addButtons}>
                 <Button
-                    onClick={() => setIs_adding(false)}
+                    onClick={() => setIsAdding(false)}
                     className={`${classes.editCancel}`}
                     style={{color: 'red'}}
                 >Cancel</Button>
