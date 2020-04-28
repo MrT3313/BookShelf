@@ -7,16 +7,16 @@ import { LIVE_BE_base_URL } from '../../../utils'
 
 // __MAIN__
     // Action Types
-    export const GET_SELECTED_BOOK_START = 'GET_SELECTED_BOOK_START'
-    export const GET_SELECTED_BOOK_SUCCESS = 'GET_SELECTED_BOOK_SUCCESS'
-    export const GET_SELECTED_BOOK_FAILURE = 'GET_SELECTED_BOOK_FAILURE'
+    export const GET_SELECTED_LOG_START = 'GET_SELECTED_LOG_START'
+    export const GET_SELECTED_LOG_SUCCESS = 'GET_SELECTED_LOG_SUCCESS'
+    export const GET_SELECTED_LOG_FAILURE = 'GET_SELECTED_LOG_FAILURE'
 
     // Action Creator
     export const a_getSelectedLog = (logID) => {
     // console.log('INSIDE: a_getSelectedBook action creator)
     // -- //
         return dispatch => {
-            dispatch({type: GET_SELECTED_BOOK_START})
+            dispatch({type: GET_SELECTED_LOG_START})
             let used_URL = ''
 
             // What environment are we in?
@@ -37,7 +37,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 // console.log(singleLog)
                 // -- //
                     dispatch({
-                        type: GET_SELECTED_BOOK_SUCCESS,
+                        type: GET_SELECTED_LOG_SUCCESS,
                         payload: singleLog.data
                     })
                 })
@@ -45,7 +45,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 // console.log(err)
                 // -- //
                     dispatch({
-                        type: GET_SELECTED_BOOK_FAILURE,
+                        type: GET_SELECTED_LOG_FAILURE,
                         payload: err
                     })
                 })
