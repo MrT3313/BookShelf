@@ -72,9 +72,6 @@ const {
                     setSelected_logID={setSelected_logID}
                     setIsAdding={setIsAdding}
                 />
-                {/* <div style={{display: 'flex', alignItems: 'center'}}>
-                    <AddBoxIcon onClick={() => setIsAdding(true)}/>
-                </div> */}
                 <ExploreSelectedLogID 
                     selected_logID={selected_logID}
                 /> 

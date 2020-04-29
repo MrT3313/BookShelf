@@ -14,6 +14,8 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 
 // COMPONENTS
@@ -237,12 +239,11 @@ const {
                       key={row.key}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        {/* TODO: Table Interaction */}
-                        {/* <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        /> */}
+                      <TableCell padding={"none"}>
+                        <div style={{display: 'flex', flexDirection:'center', justifyContent: 'center', alignItems: 'center'}}>
+                          <EditIcon style={{ fontSize: 20 }}/>
+                          <DeleteForeverIcon style={{ fontSize: 20 }}/>
+                        </div>
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none" align="center">
                         {`${months[row.date.getMonth()]} - ${row.date.getFullYear()}`}

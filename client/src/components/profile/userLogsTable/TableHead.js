@@ -64,7 +64,7 @@ const {
     return (
         <TableHead className={classes.tableHead__root}>
             <TableRow>
-                <TableCell padding={"none"} style={{paddingLeft: '10px'}}>
+                <TableCell padding={"none"}>
                     <div
                         style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
                     >
