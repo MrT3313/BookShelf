@@ -71,9 +71,9 @@ const {
                 <UserLogTable 
                     setSelected_logID={setSelected_logID}
                 />
-                <div style={{display: 'flex', alignItems: 'center'}}>
+                {/* <div style={{display: 'flex', alignItems: 'center'}}>
                     <AddBoxIcon onClick={() => setIsAdding(true)}/>
-                </div>
+                </div> */}
                 <ExploreSelectedLogID 
                     selected_logID={selected_logID}
                 /> 

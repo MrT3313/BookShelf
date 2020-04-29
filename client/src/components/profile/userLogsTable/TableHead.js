@@ -1,6 +1,13 @@
+// IMPORTS
 import React from 'react';
 
+// MATERIAL UI
+// -1- Styles
 import { makeStyles } from '@material-ui/core/styles';
+// -2- Components
+import AddBoxIcon from '@material-ui/icons/AddBox';
+
+// COMPONENTS
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
@@ -22,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "10px",
 
         fontWeight: 'bold',
-    }
+    },
 }));
   
 export function EnhancedTableHead(props) {
@@ -48,14 +55,12 @@ const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }
     return (
         <TableHead className={classes.tableHead__root}>
             <TableRow>
-                <TableCell padding="checkbox">
-                    {/* TODO: Table Interactions */}
-                    {/* <Checkbox
-                        indeterminate={numSelected > 0 && numSelected < rowCount}
-                        checked={rowCount > 0 && numSelected === rowCount}
-                        onChange={onSelectAllClick}
-                        inputProps={{ 'aria-label': 'select all logs' }}
-                    /> */}
+                <TableCell padding={"none"} style={{paddingLeft: '10px'}}>
+                    <div
+                        style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                    >
+                        <AddBoxIcon /> 
+                    </div>
                 </TableCell>
                 {headCells.map((headCell) => (
                     <TableCell
