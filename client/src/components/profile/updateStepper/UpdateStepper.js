@@ -14,7 +14,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 // COMPONENTS
+import UpdateReview from './UpdateReview.js'
 import UpdateRank from './UpdateRank.js'
+import CheckUpdates from './CheckUpdates.js'
 
 // ACTION CREATORS
 
@@ -84,13 +86,13 @@ function UpdatedStepper(props) {
             ) : (
               <div>
                 {activeStep === 0 &&
-                    <div>UPDATE REVIEW</div>
+                    <UpdateReview />
                 }
                 {activeStep === 1 &&
                     <UpdateRank />
                 }
                 {activeStep === 2 &&
-                    <div>CHECK UPDATES</div>
+                    <CheckUpdates />
                 }
                 <div>
                   <Button
