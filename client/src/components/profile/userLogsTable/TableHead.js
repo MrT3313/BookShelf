@@ -1,5 +1,6 @@
 // IMPORTS
 import React from 'react';
+import { connect } from 'react-redux'
 
 // MATERIAL UI
 // -1- Styles
@@ -32,8 +33,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
   
-export function EnhancedTableHead(props) {
-const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+function EnhancedTableHead(props) {
+const { 
+    onSelectAllClick, 
+    order, orderBy, 
+    numSelected, 
+    rowCount, 
+    onRequestSort,
+    setIsAdding,
+
+} = props;
 // -- // 
     // Styles
     const classes = useStyles();
@@ -59,7 +68,7 @@ const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }
                     <div
                         style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
                     >
-                        <AddBoxIcon /> 
+                        <AddBoxIcon onClick={() => setIsAdding(true)}/> 
                     </div>
                 </TableCell>
                 {headCells.map((headCell) => (
@@ -84,3 +93,18 @@ const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }
         </TableHead>
     );
 }
+
+// MAP STATE TO PROPS
+const mstp = state => {
+    return {
+
+    }
+}
+        
+// CONNECT & EXPORT
+export default connect(
+    mstp,
+    {
+
+    }
+)(EnhancedTableHead)

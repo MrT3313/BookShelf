@@ -70,6 +70,7 @@ const {
             <div className={classes.logExplorer}>
                 <UserLogTable 
                     setSelected_logID={setSelected_logID}
+                    setIsAdding={setIsAdding}
                 />
                 {/* <div style={{display: 'flex', alignItems: 'center'}}>
                     <AddBoxIcon onClick={() => setIsAdding(true)}/>

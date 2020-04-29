@@ -2,7 +2,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+// MATERIAL UI
+// -1- Styles
 import { makeStyles } from '@material-ui/core/styles';
+// -2- Components
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -14,7 +17,7 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 
 
 // COMPONENTS
-import { EnhancedTableHead } from './TableHead.js'
+import EnhancedTableHead from './TableHead.js'
 import { EnhancedTableToolbar } from './TableToolBar.js'
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- //
@@ -61,6 +64,7 @@ function UserLogTable(props) {
 const { 
   userLogs, userRanks,
   setSelected_logID, 
+  setIsAdding                     // Pass Through to open add book
 } = props
 // console.log('userLogs',userLogs)
 // -- // 
@@ -211,6 +215,7 @@ const {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
+              setIsAdding={setIsAdding}
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
