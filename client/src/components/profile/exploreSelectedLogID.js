@@ -17,7 +17,7 @@ import UpdateRank from './updateStepper/OLDUpdateRank.js'
 import UpdateReview from './updateStepper/OLDUpdateReview.js'
 
 // ACTION CREATORS
-import { a_getSelectedLog } from '../../redux/actions/GET/a_getSelectedLog.js'
+// import { a_getSelectedLog } from '../../redux/actions/GET/a_getSelectedLog.js'
 import { a_addReview } from '../../redux/actions/POST/a_addReview.js'
 import { a_addRank } from '../../redux/actions/POST/a_addRank.js'
 import { a_updateRank } from '../../redux/actions/PUT/a_updateRank.js'
@@ -104,12 +104,12 @@ const {
     const [editing, setEditing] = useState(false)
 
     // UseEffect 
-    useEffect(() => {
-        if (selected_logID) {
-            // console.log('EXPLORE SELECTED LOG_ID')
-            a_getSelectedLog(selected_logID)
-        }
-    }, [selected_logID])
+    // useEffect(() => {
+    //     if (selected_logID) {
+    //         // console.log('EXPLORE SELECTED LOG_ID')
+    //         a_getSelectedLog(selected_logID)
+    //     }
+    // }, [selected_logID])
 
     // Methods
     const add = e => {
@@ -150,7 +150,7 @@ const {
         // Call Action Creator
         await a_addRank(prepObj, selectedLogData.userID)
         // Update Selected Data
-        await a_getSelectedLog(selected_logID)
+        // await a_getSelectedLog(selected_logID)
         // Close Pannel
         setAdding(false)
     }
@@ -286,7 +286,6 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
-        a_getSelectedLog,
         a_addRank, a_addReview,
         a_updateRank, a_updateReview,
     }

@@ -49,6 +49,8 @@ const useStyles = makeStyles(theme => ({
 
 // -B- COMPONENT
 function UpdateReview(props) {
+const { selectedData } = props
+// -- //
     // Styles
     const classes = useStyles({})
 
@@ -69,7 +71,7 @@ function UpdateReview(props) {
 
                     <TextField
                         
-                        // defaultValue={selectedData.title}
+                        defaultValue={selectedData.title}
                         variant="outlined"
                         // id="review" label="Update Review" name="review"
                         id="review" name="review"
@@ -87,7 +89,7 @@ function UpdateReview(props) {
                         variant="outlined"
                         multiline
                         rows="5"
-                        // defaultValue={selectedData.review}
+                        defaultValue={selectedData.review}
                         required
                         // id="review" label="Add Review" name="review"
                         id="review" name="review"

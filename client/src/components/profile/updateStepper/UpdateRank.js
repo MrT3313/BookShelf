@@ -43,6 +43,8 @@ const useStyles = makeStyles(theme => ({
 
 // -B- COMPONENT
 function UpdateRank(props) {
+const { selectedData } = props
+// -- //
     // Styles
     const classes = useStyles({})
 
@@ -63,7 +65,7 @@ function UpdateRank(props) {
 
                     <TextField
                         
-                        // defaultValue={selectedData.title}
+                        defaultValue={selectedData.title}
                         variant="outlined"
                         // id="review" label="Update Review" name="review"
                         id="review" name="review"
@@ -79,7 +81,7 @@ function UpdateRank(props) {
                     <Divider className={classes.divider} orientation="vertical" flexItem />
                     <TextField
                         variant="outlined"
-                        // defaultValue={selectedData.rank}
+                        defaultValue={selectedData.rank}
                         // id="rank" label="Update Rank" name="rank"
                         id="rank" name="rank"
                         type="number"

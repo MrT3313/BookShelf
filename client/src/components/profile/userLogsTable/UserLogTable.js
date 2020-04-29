@@ -16,10 +16,10 @@ import Paper from '@material-ui/core/Paper';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-
 // COMPONENTS
 import EnhancedTableHead from './TableHead.js'
 import { EnhancedTableToolbar } from './TableToolBar.js'
+
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- //
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- //
@@ -65,7 +65,8 @@ function UserLogTable(props) {
 const { 
   userLogs, userRanks,
   setSelected_logID, 
-  setIsAdding                     // Pass Through to open add book
+  setIsAdding,                    // Pass Through to open add book
+  setIsEditing,                   // Pass Through to edit LogID
 } = props
 // console.log('userLogs',userLogs)
 // -- // 
@@ -171,12 +172,18 @@ const {
     };
 
     const handleClick = (event, rowData) => {
-      // console.log(rowData)
+      console.log(rowData)
       const newSelected = rowData.logID
-      // console.log(newSelected)
+      console.log(newSelected)
 
       setSelected_logID(newSelected)
     };
+
+    const handleEdit = (rowData) => {
+      console.log(rowData)
+      setSelected_logID(rowData.logID)
+      setIsEditing(true)
+    }
 
     const isSelected = (name) => selected.indexOf(name) !== -1;
   // ---- SELECTION ---- //
@@ -240,7 +247,7 @@ const {
                     >
                       <TableCell padding={"none"}>
                         <div style={{display: 'flex', flexDirection:'center', justifyContent: 'center', alignItems: 'center'}}>
-                          <EditIcon style={{ fontSize: 20 }}/>
+                          <EditIcon onClick={() => handleEdit(row)} style={{ fontSize: 20 }}/>
                           <DeleteForeverIcon style={{ fontSize: 20 }}/>
                         </div>
                       </TableCell>

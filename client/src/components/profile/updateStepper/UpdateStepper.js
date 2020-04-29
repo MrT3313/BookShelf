@@ -19,6 +19,8 @@ import UpdateRank from './UpdateRank.js'
 import CheckUpdates from './CheckUpdates.js'
 
 // ACTION CREATORS
+import { a_getSelectedLog } from '../../../redux/actions/GET/a_getSelectedLog.js'
+
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -27,8 +29,6 @@ import CheckUpdates from './CheckUpdates.js'
 // -A- STYLES
 const useStyles = makeStyles(theme => ({
   UpdateStepper__root: {
-        width: '100%',
-
         padding: '10px'
       },
       backButton: {
@@ -49,11 +49,27 @@ const steps = getSteps();
 
 // -B- COMPONENT
 function UpdatedStepper(props) {
+  const {
+    selected_logID,             // Passed Props 
+    setIsEditing,               // Passed Props
+    a_getSelectedLog,           // Action Creator
+    selectedLogData,            // Redux
+} = props
+// -- //
     // Styles
     const classes = useStyles({})
 
     // State
     const [activeStep, setActiveStep] = React.useState(0);
+
+
+    // UseEffect 
+    useEffect(() => {
+      if (selected_logID) {
+          // console.log('EXPLORE SELECTED LOG_ID')
+          a_getSelectedLog(selected_logID)
+      }
+  }, [selected_logID])
 
     // Return
     const handleNext = () => {
@@ -86,15 +102,27 @@ function UpdatedStepper(props) {
             ) : (
               <div>
                 {activeStep === 0 &&
-                    <UpdateReview />
+                    <UpdateReview 
+                      selectedData={selectedLogData}
+                    />
                 }
                 {activeStep === 1 &&
-                    <UpdateRank />
+                    <UpdateRank 
+                      selectedData={selectedLogData}
+                    />
                 }
                 {activeStep === 2 &&
-                    <CheckUpdates />
+                    <CheckUpdates 
+                      selectedData={selectedLogData}
+                    />
                 }
                 <div>
+                  <Button 
+                    onClick={() => setIsEditing(false)}
+                    style={{color: 'red'}}
+                  >
+                    Cancel
+                  </Button>
                   <Button
                     disabled={activeStep === 0}
                     onClick={handleBack}
@@ -116,7 +144,7 @@ function UpdatedStepper(props) {
 // MAP STATE TO PROPS
 const mstp = state => {
     return {
-
+      selectedLogData: state.r_selectedLog.selectedLog,
     }
 }
         
@@ -124,6 +152,6 @@ const mstp = state => {
 export default connect(
     mstp,
     {
-
+      a_getSelectedLog,
     }
 )(UpdatedStepper)

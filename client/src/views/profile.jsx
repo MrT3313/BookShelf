@@ -17,6 +17,8 @@ import AddBook from '../components/profile/AddBook'
 
 
 // Action Creators
+import { a_getSelectedLog } from '../redux/actions/GET/a_getSelectedLog.js'
+
 
 // FUNCTIONS
 import decode from '../utils/decode_JWT.js'
@@ -46,6 +48,7 @@ function Profile(props) {
 const { 
     token, 
     userLogs, userReviews, userRanks,
+    a_getSelectedLog,
 
 } = props
 // -- //
@@ -55,6 +58,14 @@ const {
     // State
     const [selected_logID, setSelected_logID] = useState(false)
     const [adding, setIsAdding] = useState(false)
+    const [editing, setIsEditing] = useState(false)
+
+    useEffect(() => {
+        if (selected_logID) {
+            console.log('EXPLORE SELECTED LOG_ID')
+            a_getSelectedLog(selected_logID)
+        }
+    }, [selected_logID])
 
     // Methods
 
@@ -73,12 +84,20 @@ const {
                 <UserLogTable 
                     setSelected_logID={setSelected_logID}
                     setIsAdding={setIsAdding}
+                    setIsEditing={setIsEditing}
                 />
-                <ExploreSelectedLogID 
-                    selected_logID={selected_logID}
-                /> 
+                {!editing &&
+                    <ExploreSelectedLogID 
+                        selected_logID={selected_logID}
+                    /> 
+                }
+                {editing &&
+                    <UpdateStepper 
+                        selected_logID={selected_logID}
+                        setIsEditing={setIsEditing}
+                    /> 
+                }
             </div>
-            <UpdateStepper /> 
         </div>
     )
 }
@@ -97,6 +116,6 @@ const mstp = state => {
 export default connect(
     mstp,
     {
-
+        a_getSelectedLog
     }
 )(Profile)
