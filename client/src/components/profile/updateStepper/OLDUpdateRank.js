@@ -20,7 +20,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 // FUNCTIONS
-import decode from '../../utils/decode_JWT.js'
+import decode from '../../../utils/decode_JWT.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -84,13 +84,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // -B- COMPONENT
-function UpdateReview(props) {
+function UpdateRank(props) {
 // console.log('Add Review PROPS: ', props)
 const {
-    setEditing, 
+    setAdding, 
     selectedData,
 
-    updateReview,
+    updateRank,
 
     DB_books,
     token,
@@ -102,7 +102,7 @@ const {
     const classes = useStyles({})
 
     // State
-    const [review, setReview] = useState()
+    const [rank, setRank] = useState()
 
     // Methods
     // const logReview = () => {
@@ -117,7 +117,7 @@ const {
     //     // Call Action Creator
     //     a_addReview(prepObj)
     //     // Close Pannel
-    //     setEditing(false)
+    //     setAdding(false)
     // }
 
     // Use Effect
@@ -159,41 +159,39 @@ const {
                         variant="outlined"
                         // id="review" label="Update Review" name="review"
                         id="review" name="review"
-                        onChange={e => setReview(e.target.value)}
+                        onChange={e => setRank(e.target.value)}
                         margin="normal"
                         // fullWidth
                     />
                 </ListItem>
                 <ListItem className={classes.listItemRoot}>
                     <ListItemText className={classes.label}>
-                        REVIEW
+                        Rank
                     </ListItemText>
                     <Divider orientation="vertical" flexItem className={classes.divider}/>
                     <TextField
                         variant="outlined"
-                        multiline
-                        rows="5"
-                        defaultValue={selectedData.review}
-                        required
-                        // id="review" label="Add Review" name="review"
-                        id="review" name="review"
-                        onChange={e => setReview(e.target.value)}
-                        margin="normal"
-                        fullWidth
+                        defaultValue={selectedData.rank}
+                        // id="rank" label="Update Rank" name="rank"
+                        id="rank" name="rank"
+                        type="number"
+                        onChange={e => setRank(e.target.value)}
+                        // margin="normal"
+                        // fullWidth
                     />
                 </ListItem>
             </List>
             <div className={classes.addButtons}>
                 <Button
-                    onClick={() => setEditing(false)}
+                    onClick={() => setAdding(false)}
                     className={classes.editCancel}
                     style={{color: 'red'}}
                 >Cancel</Button>
                 <Button
-                    onClick={() => updateReview(review)}
+                    onClick={() => updateRank(rank)}
                     className={`${classes.editSubmit} ${classes.button}`}
                     color="secondary"
-                >Update Review</Button>
+                >Update Rank</Button>
             </div>
         </Card>
     )
@@ -213,4 +211,4 @@ export default connect(
     {
         
     }
-)(UpdateReview)
+)(UpdateRank)

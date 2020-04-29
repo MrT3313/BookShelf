@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 // -1- Components
 import Paper from '@material-ui/core/Paper';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import EditIcon from '@material-ui/icons/Edit';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,8 +13,8 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 import AddReview from './AddReview.js'
 import AddRank from './AddRank.js'
-import UpdateRank from './UpdateRank.js'
-import UpdateReview from './UpdateReview.js'
+import UpdateRank from './updateStepper/OLDUpdateRank.js'
+import UpdateReview from './updateStepper/OLDUpdateReview.js'
 
 // ACTION CREATORS
 import { a_getSelectedLog } from '../../redux/actions/GET/a_getSelectedLog.js'
@@ -209,13 +208,6 @@ const {
                                 <div style={{marginRight: '5px'}}>
                                     MY REVIEW
                                 </div>
-                                {selectedLogData.review &&
-                                    <EditIcon 
-                                        style={{fontSize: '20px'}}
-                                        id="updateReview"
-                                        onClick={edit}
-                                    /> 
-                                }
                             </div>
                             <div style={{display: 'flex', justifyContent: 'flex-start'}}>
                                 {!selectedLogData.review &&
@@ -235,13 +227,6 @@ const {
                                 <div style={{marginRight: '5px'}}>
                                     MY RANK
                                 </div>
-                                {selectedLogData.rank &&
-                                    <EditIcon 
-                                        style={{fontSize: '20px'}}
-                                        id="updateRank"
-                                        onClick={edit}
-                                    /> 
-                                }
                             </div>
                             <div style={{display: 'flex', justifyContent: 'center'}}>
                                 {!selectedLogData.rank &&

@@ -7,12 +7,14 @@ import {connect} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 // -2- Components
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import UpdateStepper from '../components/profile/updateStepper/UpdateStepper.js'
 
 // COMPONENTS
 import Menu_AppBar from '../components/appBar/AppBar.js'
 import UserLogTable from '../components/profile/userLogsTable/UserLogTable.js'
-import ExploreSelectedLogID from '../components/profile/exploreSelectedLogID'
+import ExploreSelectedLogID from '../components/profile/ExploreSelectedLogID'
 import AddBook from '../components/profile/AddBook'
+
 
 // Action Creators
 
@@ -76,6 +78,7 @@ const {
                     selected_logID={selected_logID}
                 /> 
             </div>
+            <UpdateStepper /> 
         </div>
     )
 }
