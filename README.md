@@ -75,7 +75,10 @@ Want to know what another user is reading? Turn your profile 'public' and allow 
     - User Logs are now the folcrum. You cannot add a review or rank without first having a logID in the system (aka: you actually read the book). Other tables columns stripped to only essential (non-repeated) data and linked with foreign key migrations.   
 
 Screenshot:   
-<img src="client/src/assets/readMeImgs/1.6.0_ProfileOverhaul_DBupdate.png" height='200'>      
+<img src="client/src/assets/readMeImgs/1.6.0_ProfileOverhaul_DBupdate.png" height='200'>        
+<img src="client/src/assets/readMeImgs/1.6.0_ProfileOverhaul_onlyLog.png" height='200'>        
+<img src="client/src/assets/readMeImgs/1.6.0_ProfileOverhaul_addReview.png" height='200'>        
+<img src="client/src/assets/readMeImgs/1.6.0_ProfileOverhaul_addRank.png" height='200'>        
 </details>
 
 <details>
