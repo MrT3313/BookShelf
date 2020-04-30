@@ -1,0 +1,2 @@
+token_secret=
+DB_CONNECT=development
