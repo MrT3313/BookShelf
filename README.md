@@ -53,7 +53,7 @@ Want to know what another user is reading? Turn your profile 'public' and allow 
 | favicon       | Author: Good Ware        | [LINK](https://www.flaticon.com/authors/good-ware)                  |
 | Books API     | Title: NYT Books API     | [LINK](https://developer.nytimes.com/docs/books-product/1/overview) |
 
-## Versions
+## Versions -- Latest: 1.6.1
 <details open>
 <summary>1.6.1 -- Individual Log Exploration & Log Interactions Update</summary>
 
