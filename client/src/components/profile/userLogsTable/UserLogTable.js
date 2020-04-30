@@ -189,13 +189,18 @@ const {
       const newSelected = rowData.logID
       console.log(newSelected)
 
+      setIsEditing(false)
       setSelected_logID(newSelected)
     };
 
-    const handleEdit = async (e, rowData) => {
+    const handleEdit = (e, rowData) => {
       e.stopPropagation()
       console.log(rowData)
-      await setSelected_logID(rowData.logID)
+      async function updateSelectedLog() {
+        await setSelected_logID(rowData.logID)
+      }
+      updateSelectedLog()
+      console.log('!!!!!!!!!!!!!!!!!!')
       setIsEditing(true)
     }
 

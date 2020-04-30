@@ -13,8 +13,6 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 import AddReview from './AddReview.js'
 import AddRank from './AddRank.js'
-import UpdateRank from './updateStepper/OLDUpdateRank.js'
-import UpdateReview from './updateStepper/OLDUpdateReview.js'
 
 // ACTION CREATORS
 import { a_getSelectedLog } from '../../redux/actions/GET/a_getSelectedLog.js'

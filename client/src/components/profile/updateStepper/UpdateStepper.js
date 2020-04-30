@@ -60,7 +60,9 @@ function UpdatedStepper(props) {
     const classes = useStyles({})
 
     // State
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = useState(0);
+    const [updatedReview, setUpdatedReview] = useState()
+    const [updateRank, setUpdateRank] = useState()
 
 
     // UseEffect 
@@ -104,16 +106,20 @@ function UpdatedStepper(props) {
                 {activeStep === 0 &&
                     <UpdateReview 
                       selectedData={selectedLogData}
+                      setUpdatedReview={setUpdatedReview}
                     />
                 }
                 {activeStep === 1 &&
                     <UpdateRank 
                       selectedData={selectedLogData}
+                      setUpdateRank={setUpdateRank}
                     />
                 }
                 {activeStep === 2 &&
                     <CheckUpdates 
                       selectedData={selectedLogData}
+                      updatedReview={updatedReview}
+                      updateRank={updateRank}
                     />
                 }
                 <div>

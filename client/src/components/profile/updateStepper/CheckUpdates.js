@@ -28,19 +28,37 @@ const useStyles = makeStyles(theme => ({
     CheckUpdates__root: {
         display: 'flex',
         justifyContent: 'space-around',
+    },
+    content__root: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+
+        width: '45%',
+        marginBottom: '5px',
     }
 }))
 
 // -B- COMPONENT
 function CheckUpdates(props) {
+const {
+    updatedReview,
+    updateRank,
+} = props
     // Styles
     const classes = useStyles({})
 
     // Return
     return(
         <div className={classes.CheckUpdates__root}>
-            <div>UPDATED REVIEW:</div>
-            <div>UPDATED RANK:</div>
+            <div className={classes.content__root}>
+                <div>UPDATED REVIEW:</div>
+                <div>{updatedReview}</div>
+            </div>
+            <div className={classes.content__root}>
+                <div>UPDATED RANK:</div>
+                <div>{updateRank}</div>
+            </div>
         </div>
     )
 }

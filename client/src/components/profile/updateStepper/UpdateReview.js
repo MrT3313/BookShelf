@@ -49,13 +49,13 @@ const useStyles = makeStyles(theme => ({
 
 // -B- COMPONENT
 function UpdateReview(props) {
-const { selectedData } = props
+const { 
+    setUpdatedReview, 
+    selectedData 
+} = props
 // -- //
     // Styles
     const classes = useStyles({})
-
-    // State
-    const [review, setReview] = useState()
 
     // Return
     return (
@@ -87,13 +87,11 @@ const { selectedData } = props
                     <Divider className={classes.divider} orientation="vertical" flexItem />
                     <TextField
                         variant="outlined"
-                        multiline
-                        rows="5"
+                        multiline rows="5"
                         defaultValue={selectedData.review}
-                        required
                         // id="review" label="Add Review" name="review"
                         id="review" name="review"
-                        onChange={e => setReview(e.target.value)}
+                        onChange={e => setUpdatedReview(e.target.value)}
                         margin="normal"
                         fullWidth
                     />

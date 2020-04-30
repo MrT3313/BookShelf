@@ -43,13 +43,13 @@ const useStyles = makeStyles(theme => ({
 
 // -B- COMPONENT
 function UpdateRank(props) {
-const { selectedData } = props
+const { 
+    setUpdateRank,
+    selectedData 
+} = props
 // -- //
     // Styles
     const classes = useStyles({})
-
-    // State
-    const [rank, setRank] = useState()
 
     // Return
     return (
@@ -64,14 +64,10 @@ const { selectedData } = props
                     <Divider className={classes.divider} orientation="vertical" flexItem />
 
                     <TextField
-                        
                         defaultValue={selectedData.title}
                         variant="outlined"
-                        // id="review" label="Update Review" name="review"
                         id="review" name="review"
-                        onChange={e => setRank(e.target.value)}
                         margin="normal"
-                        // fullWidth
                     />
                 </ListItem>
                 <ListItem >
@@ -82,12 +78,9 @@ const { selectedData } = props
                     <TextField
                         variant="outlined"
                         defaultValue={selectedData.rank}
-                        // id="rank" label="Update Rank" name="rank"
                         id="rank" name="rank"
                         type="number"
-                        onChange={e => setRank(e.target.value)}
-                        // margin="normal"
-                        // fullWidth
+                        onChange={e => setUpdateRank(e.target.value)}
                     />
                 </ListItem>
             </List>
