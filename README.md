@@ -5,11 +5,6 @@ Your one stop shop for all your reading needs.
 - API Documentation: ([Postman Documenter](https://documenter.getpostman.com/view/10122836/Szf54pe1?version=latest))
 
 
-Get a recomendation from a coworker? Log it! 
-Just finish a book? Review it! 
-Is it a new favorite of yours? Rate it against your yearly and all time rankings & promote it to your friends!
-Want to know what another user is reading? Turn your profile 'public' and allow other to interact with you and your BookShelf!
-
 # Tech Stack
 | title                   | name                                    | link                                                                             |
 | ---                     | ---                                     | ---                                                                              | 
