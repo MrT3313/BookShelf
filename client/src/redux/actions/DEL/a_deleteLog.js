@@ -12,7 +12,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
     export const DELETE_LOG_FAILURE = 'DELETE_LOG_FAILURE'
 
     // Action Creator:
-    export const a_deleteLog = (logID) => {
+    export const a_deleteLog = (userID, logID) => {
     // console.log('INSIDE: a_deleteLog action creator')
     console.log(logID)
     // -- //
@@ -36,11 +36,18 @@ import { LIVE_BE_base_URL } from '../../../utils'
                     used_URL
                 )
                 .then( deleteResults => {
-                // console.log(deleteResults)
+                console.log(deleteResults.data)
+                console.log(userID)
                 // -- //
+                    const userResults = deleteResults.data.filter(item => item.userID == userID)
+                    console.log(userResults)
+
                     dispatch({
                         type: DELETE_LOG_SUCCESS,
-                        payload: deleteResults.data
+                        payload: {
+                            allUsers: deleteResults.data,
+                            singleUser: userResults
+                        }
                     })
                 })
                 .catch(err => {

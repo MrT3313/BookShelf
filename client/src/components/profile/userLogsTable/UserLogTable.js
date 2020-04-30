@@ -26,7 +26,8 @@ import { a_getReviews } from '../../../redux/actions/GET/a_getReviews.js'
 import { a_getLoggedBooks } from '../../../redux/actions/GET/a_getLoggedBooks.js'
 import { a_getRanks } from  '../../../redux/actions/GET/a_getRanks.js'
 
-
+// FUNCTIONS
+import decode from '../../../utils/decode_JWT.js'
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- //
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- //
 
@@ -74,6 +75,7 @@ const {
   setAddType,                    // Pass Through to open add book
   setIsEditing,                   // Pass Through to edit LogID
 
+  token,
   a_deleteLog,                    // Action Creator
   a_getReviews,                         // After ^^
   a_getLoggedBooks,                     // After ^^
@@ -199,14 +201,17 @@ const {
 
     const handleDelete = (e, rowData) => {
       e.stopPropagation()
+
+      const userID = decode(token).user_ID
+
       console.log(rowData)
       async function deleteFlow() {
-        await a_deleteLog(rowData.logID)
+        await a_deleteLog(userID, rowData.logID)
       }
       deleteFlow()
       a_getReviews()
-      a_getLoggedBooks()
       a_getRanks()
+      setSelected_logID(false)
     }
 
     const isSelected = (name) => selected.indexOf(name) !== -1;
@@ -320,6 +325,7 @@ const mstp = state => {
   return {
     userLogs: state.r_loggedBooks.USER_LoggedBooks,
     userRanks: state.r_ranks.USER_ranks, 
+    token: state.r_auth.token,
   }
 }
 

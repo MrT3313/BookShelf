@@ -6,6 +6,10 @@ import {
     GET_ALLLOGGEDBOOKS_START, GET_ALLLOGGEDBOOKS_SUCCESS, GET_ALLLOGGEDBOOKS_FAILURE
 } from '../actions/GET/a_getLoggedBooks.js'
 
+import {
+    DELETE_LOG_START, DELETE_LOG_SUCCESS, DELETE_LOG_FAILURE
+} from '../actions/DEL/a_deleteLog.js'
+
 // INITIAL STATE
 const initialState = {
     is_fetching: false,
@@ -97,6 +101,29 @@ export const r_loggedBooks = (state=initialState, action) => {
 
                 error: action.payload,
             }
+            // - 3 - // Delete
+        case DELETE_LOG_START:
+            return {
+                ...state,
+                is_deleting: 'false',
+                error: ''
+            }
+        case DELETE_LOG_SUCCESS:
+            return {
+                ...state,
+                is_deleting: 'false',
+
+                USER_LoggedBooks: [...action.payload.singleUser],
+                DB_LoggedBooks: [...action.payload.allUsers],
+                
+                error: ''
+            }
+            case DELETE_LOG_FAILURE:
+                return {
+                    ...state,
+                    is_deleting: 'false',
+                    error: ''
+                }
         // - DEFAULT - //
         default:
             return state;
