@@ -175,7 +175,7 @@ const {
                         type="number"
                         onChange={e => setRank(e.target.value)}
                         // margin="normal"
-                        // fullWidth
+                        fullWidth
                     />
                 </ListItem>
             </List>

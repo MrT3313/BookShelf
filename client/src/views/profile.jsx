@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
     profile__root: {
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
 
     },
     logExplorer: {
