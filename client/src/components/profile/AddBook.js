@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
 function AddBook(props) {
 // console.log('Add Book PROPS: ', props)
 const {
-    setIsAdding,                       // Close AddBook Pannel
+    setAddType,                       // Close AddBook Pannel
 
     DB_books,                           // connect => all books in redux store
     token,                              // connect => token on redux store
@@ -150,7 +150,7 @@ const {
         }
 
         // Close Pannel
-        setIsAdding(false)
+        setAddType(false)
     }
 
     // Return
@@ -206,7 +206,7 @@ const {
             </List>
             <div className={classes.addButtons}>
                 <Button
-                    onClick={() => setIsAdding(false)}
+                    onClick={() => setAddType(false)}
                     className={`${classes.editCancel}`}
                     style={{color: 'red'}}
                 >Cancel</Button>

@@ -54,7 +54,7 @@ const {
 
     // State
     const [selected_logID, setSelected_logID] = useState(false)
-    const [adding, setIsAdding] = useState(false)
+    const [addType, setAddType] = useState(false)
     const [editing, setIsEditing] = useState(false)
 
     useEffect(() => {
@@ -70,17 +70,17 @@ const {
     return (
         <div className={classes.profile__root}>
             <Menu_AppBar />
-            {adding &&
+            {addType === 'addBook' &&
                 <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
                     <AddBook 
-                        setIsAdding={setIsAdding}
+                        setAddType={setAddType}
                     />
                 </div>
             }
             <div className={classes.logExplorer}>
                 <UserLogTable 
                     setSelected_logID={setSelected_logID}
-                    setIsAdding={setIsAdding}
+                    setAddType={setAddType}
                     setIsEditing={setIsEditing}
                 />
                 {!editing &&

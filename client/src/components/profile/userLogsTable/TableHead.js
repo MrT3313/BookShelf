@@ -41,7 +41,7 @@ const {
 
     order, orderBy,         // Table
     onRequestSort,          // Table
-    setIsAdding,            // Passed Props
+    setAddType,            // Passed Props
 
 } = props;
 // -- // 
@@ -69,7 +69,7 @@ const {
                     <div
                         style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
                     >
-                        <AddBoxIcon onClick={() => setIsAdding(true)}/> 
+                        <AddBoxIcon onClick={() => setAddType('addBook')}/> 
                     </div>
                 </TableCell>
                 {headCells.map((headCell) => (

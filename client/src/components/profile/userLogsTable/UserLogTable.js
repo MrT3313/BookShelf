@@ -71,7 +71,7 @@ function UserLogTable(props) {
 const { 
   userLogs, userRanks,
   setSelected_logID,              // Passed Props
-  setIsAdding,                    // Pass Through to open add book
+  setAddType,                    // Pass Through to open add book
   setIsEditing,                   // Pass Through to edit LogID
 
   a_deleteLog,                    // Action Creator
@@ -190,10 +190,10 @@ const {
       setSelected_logID(newSelected)
     };
 
-    const handleEdit = (e, rowData) => {
+    const handleEdit = async (e, rowData) => {
       e.stopPropagation()
       console.log(rowData)
-      setSelected_logID(rowData.logID)
+      await setSelected_logID(rowData.logID)
       setIsEditing(true)
     }
 
@@ -247,7 +247,7 @@ const {
               // onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
-              setIsAdding={setIsAdding}
+              setAddType={setAddType}
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
