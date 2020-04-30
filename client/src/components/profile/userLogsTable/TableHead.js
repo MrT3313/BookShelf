@@ -36,11 +36,12 @@ const useStyles = makeStyles((theme) => ({
 function EnhancedTableHead(props) {
 const { 
     onSelectAllClick, 
-    order, orderBy, 
     numSelected, 
     rowCount, 
-    onRequestSort,
-    setIsAdding,
+
+    order, orderBy,         // Table
+    onRequestSort,          // Table
+    setIsAdding,            // Passed Props
 
 } = props;
 // -- // 

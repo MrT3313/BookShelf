@@ -20,6 +20,12 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EnhancedTableHead from './TableHead.js'
 import { EnhancedTableToolbar } from './TableToolBar.js'
 
+// ACTION CREATOR
+import { a_deleteLog } from '../../../redux/actions/DEL/a_deleteLog.js'
+import { a_getReviews } from '../../../redux/actions/GET/a_getReviews.js'
+import { a_getLoggedBooks } from '../../../redux/actions/GET/a_getLoggedBooks.js'
+import { a_getRanks } from  '../../../redux/actions/GET/a_getRanks.js'
+
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- //
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- //
@@ -64,9 +70,14 @@ const useStyles = makeStyles((theme) => ({
 function UserLogTable(props) {
 const { 
   userLogs, userRanks,
-  setSelected_logID, 
+  setSelected_logID,              // Passed Props
   setIsAdding,                    // Pass Through to open add book
   setIsEditing,                   // Pass Through to edit LogID
+
+  a_deleteLog,                    // Action Creator
+  a_getReviews,                         // After ^^
+  a_getLoggedBooks,                     // After ^^
+  a_getRanks,                           // After ^^
 } = props
 // console.log('userLogs',userLogs)
 // -- // 
@@ -162,16 +173,16 @@ const {
   // ---- COMPARISON ---- //
   // ---- SELECTION ---- //
   // ---- SELECTION ---- //
-    const handleSelectAllClick = (event) => {
-      if (event.target.checked) {
-        const newSelecteds = rows.map((n) => n.name);
-        setSelected(newSelecteds);
-        return;
-      }
-      setSelected([]);
-    };
+    // const handleSelectAllClick = (event) => {
+    //   if (event.target.checked) {
+    //     const newSelecteds = rows.map((n) => n.name);
+    //     setSelected(newSelecteds);
+    //     return;
+    //   }
+    //   setSelected([]);
+    // };
 
-    const handleClick = (event, rowData) => {
+    const handleClick = (e, rowData) => {
       console.log(rowData)
       const newSelected = rowData.logID
       console.log(newSelected)
@@ -179,10 +190,23 @@ const {
       setSelected_logID(newSelected)
     };
 
-    const handleEdit = (rowData) => {
+    const handleEdit = (e, rowData) => {
+      e.stopPropagation()
       console.log(rowData)
       setSelected_logID(rowData.logID)
       setIsEditing(true)
+    }
+
+    const handleDelete = (e, rowData) => {
+      e.stopPropagation()
+      console.log(rowData)
+      async function deleteFlow() {
+        await a_deleteLog(rowData.logID)
+      }
+      deleteFlow()
+      a_getReviews()
+      a_getLoggedBooks()
+      a_getRanks()
     }
 
     const isSelected = (name) => selected.indexOf(name) !== -1;
@@ -220,7 +244,7 @@ const {
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
+              // onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
               setIsAdding={setIsAdding}
@@ -247,8 +271,14 @@ const {
                     >
                       <TableCell padding={"none"}>
                         <div style={{display: 'flex', flexDirection:'center', justifyContent: 'center', alignItems: 'center'}}>
-                          <EditIcon onClick={() => handleEdit(row)} style={{ fontSize: 20 }}/>
-                          <DeleteForeverIcon style={{ fontSize: 20 }}/>
+                          <EditIcon 
+                            style={{ fontSize: 20 }}
+                            onClick={(e) => handleEdit(e,row)} 
+                          />
+                          <DeleteForeverIcon 
+                            style={{ fontSize: 20 }}
+                            onClick={(e) => handleDelete(e,row)}
+                          />
                         </div>
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none" align="center">
@@ -297,6 +327,9 @@ const mstp = state => {
 export default connect(
   mstp, 
   {
-      
+    a_deleteLog,        // Initiate Delete
+    a_getReviews,           // AFTER ^^ 
+    a_getLoggedBooks,       // AFTER ^^ 
+    a_getRanks,             // AFTER ^^ 
   }
 )(UserLogTable)
