@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
 function AddReview(props) {
 // console.log('Add Review PROPS: ', props)
 const {
-    setAdding, 
+    setAddtype, 
     selectedData,
 
     logReview,
@@ -117,7 +117,7 @@ const {
     //     // Call Action Creator
     //     a_addReview(prepObj)
     //     // Close Pannel
-    //     setAdding(false)
+    //     setAddtype(false)
     // }
 
     // Use Effect
@@ -185,7 +185,7 @@ const {
             </List>
             <div className={classes.addButtons}>
                 <Button
-                    onClick={() => setAdding(false)}
+                    onClick={() => setAddtype(false)}
                     className={classes.editCancel}
                     style={{color: 'red'}}
                 >Cancel</Button>

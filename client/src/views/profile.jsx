@@ -12,7 +12,7 @@ import UpdateStepper from '../components/profile/updateStepper/UpdateStepper.js'
 // COMPONENTS
 import Menu_AppBar from '../components/appBar/AppBar.js'
 import UserLogTable from '../components/profile/userLogsTable/UserLogTable.js'
-import ExploreSelectedLogID from '../components/profile/ExploreSelectedLogID'
+import ExploreSelectedLogID from '../components/profile/exploreSelectedLogID.js'
 import AddBook from '../components/profile/AddBook'
 
 
@@ -46,10 +46,7 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function Profile(props) {
 const { 
-    token, 
-    userLogs, userReviews, userRanks,
     a_getSelectedLog,
-
 } = props
 // -- //
     // Styles

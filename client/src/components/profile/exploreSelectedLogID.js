@@ -17,7 +17,7 @@ import UpdateRank from './updateStepper/OLDUpdateRank.js'
 import UpdateReview from './updateStepper/OLDUpdateReview.js'
 
 // ACTION CREATORS
-// import { a_getSelectedLog } from '../../redux/actions/GET/a_getSelectedLog.js'
+import { a_getSelectedLog } from '../../redux/actions/GET/a_getSelectedLog.js'
 import { a_addReview } from '../../redux/actions/POST/a_addReview.js'
 import { a_addRank } from '../../redux/actions/POST/a_addRank.js'
 import { a_updateRank } from '../../redux/actions/PUT/a_updateRank.js'
@@ -92,7 +92,6 @@ function ExploreSelectedLogID(props) {
 const {
     selected_logID,                                             // Passed Props
     a_getSelectedLog, a_addReview, a_addRank,                   // Action Creator
-    a_updateRank, a_updateReview,                               // Action Creator
     selectedLogData,                                            // Redux
 } = props
 // -- //
@@ -100,25 +99,20 @@ const {
     const classes = useStyles({})
 
     // State
-    const [adding, setAdding] = useState(false)
-    const [editing, setEditing] = useState(false)
+    const [addType, setAddtype] = useState(false)
 
     // UseEffect 
-    // useEffect(() => {
-    //     if (selected_logID) {
-    //         // console.log('EXPLORE SELECTED LOG_ID')
-    //         a_getSelectedLog(selected_logID)
-    //     }
-    // }, [selected_logID])
+    useEffect(() => {
+        if (selected_logID) {
+            // console.log('EXPLORE SELECTED LOG_ID')
+            setAddtype(false)
+        }
+    }, [selected_logID])
 
     // Methods
     const add = e => {
         // console.log(e.currentTarget.id)
-        setAdding(e.currentTarget.id)
-    }
-    const edit = e => {
-        // console.log(e.currentTarget.id)
-        setEditing(e.currentTarget.id)
+        setAddtype(e.currentTarget.id)
     }
 
     const logReview = async (review) => {
@@ -134,9 +128,9 @@ const {
         // Call Action Creator
         await a_addReview(prepObj)
         // Update Selected Data
-        await a_getSelectedLog(selected_logID)
+        await a_getSelectedLog(selectedLogData.logID)
         // Close Pannel
-        setAdding(false)
+        setAddtype(false)
     }
 
     const logRank = async(rank) => {
@@ -150,37 +144,9 @@ const {
         // Call Action Creator
         await a_addRank(prepObj, selectedLogData.userID)
         // Update Selected Data
-        // await a_getSelectedLog(selected_logID)
+        await a_getSelectedLog(selectedLogData.logID)
         // Close Pannel
-        setAdding(false)
-    }
-
-    // TODO: UPDATE
-    const updateRank = async(updatedRank) => {
-        // console.log(selectedLogData)
-        // console.log('rankID',selectedLogData.rankID)
-
-        // Prep Object
-        // const prepObj = {
-        //     rank: updatedRank
-        // }
-        // Call Action Creator
-        await a_updateRank(updatedRank, selectedLogData.rankID, selectedLogData.userID)
-        // Update Selected Data
-        await a_getSelectedLog(selected_logID)
-        // Close Pannel
-        setEditing(false)
-
-    }
-
-    const updateReview = async(updatedReview) => {
-        // console.log(selectedLogData)
-        // Call Action Creator
-        await a_updateReview(selectedLogData.reviewID, selectedLogData.userID, updatedReview)
-        // Update Selected Data
-        await a_getSelectedLog(selected_logID)
-        // Close Pannel
-        setEditing(false)
+        setAddtype(false)
     }
 
     // Return
@@ -201,7 +167,7 @@ const {
                         By: {selectedLogData.author}
                     </div>
                 </div>
-                {!adding && !editing &&
+                {!addType &&
                     <div className={classes.content}>
                         <div className={classes.content__review}>
                             <div style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
@@ -242,31 +208,17 @@ const {
                         </div>
                     </div>
                 }
-                {adding && adding === 'addReview' &&
+                {addType === 'addReview' &&
                     <AddReview 
                         logReview={logReview}
-                        setAdding={setAdding} 
+                        setAddtype={setAddtype} 
                         selectedData={selectedLogData}
                     />
                 }
-                {adding && adding === 'addRank' &&
+                {addType === 'addRank' &&
                     <AddRank 
                         logRank={logRank}
-                        setAdding={setAdding} 
-                        selectedData={selectedLogData}
-                    />
-                }
-                {editing && editing === 'updateRank' &&
-                    <UpdateRank 
-                        updateRank={updateRank}
-                        setEditing={setEditing}
-                        selectedData={selectedLogData}
-                    />
-                }
-                {editing && editing === 'updateReview' &&
-                    <UpdateReview 
-                        updateReview={updateReview}
-                        setEditing={setEditing}
+                        setAddtype={setAddtype} 
                         selectedData={selectedLogData}
                     />
                 }
@@ -286,6 +238,7 @@ const mstp = state => {
 export default connect(
     mstp, 
     {
+        a_getSelectedLog,
         a_addRank, a_addReview,
         a_updateRank, a_updateReview,
     }
