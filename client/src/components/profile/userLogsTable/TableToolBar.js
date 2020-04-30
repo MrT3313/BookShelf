@@ -1,16 +1,20 @@
+// IMPORTS
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
+// MATERIAL UI
+// -1- Styles
 import { lighten, makeStyles } from '@material-ui/core/styles';
+
+// -2- Components
+import clsx from 'clsx';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- //
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- //
+// === === === === === === === === === === === === //
+// === === === === === === === === === === === === //
 
 // STYLES
 const useToolbarStyles = makeStyles((theme) => ({
@@ -68,14 +72,6 @@ const { numSelected } = props;
           </IconButton>
         </Tooltip>
       }
-      {/* TODO: Filtering */}
-      {/* {numSelected === 0 &&
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-              <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      } */}
     </Toolbar>
   );
 };

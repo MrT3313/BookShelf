@@ -1,5 +1,5 @@
 // IMPORTS
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux'
 
 // MATERIAL UI
@@ -28,8 +28,9 @@ import { a_getRanks } from  '../../../redux/actions/GET/a_getRanks.js'
 
 // FUNCTIONS
 import decode from '../../../utils/decode_JWT.js'
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- //
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- //
+
+// === === === === === === === === === === === === //
+// === === === === === === === === === === === === //
 
 // Styles
 const useStyles = makeStyles((theme) => ({
@@ -42,9 +43,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   table: {
-    // minWidth: '750',
-
-    // width: 'auto',
     minWidth: '100%',
     tableLayout: 'auto'
   },
@@ -69,11 +67,12 @@ const useStyles = makeStyles((theme) => ({
 
 // __MAIN__
 function UserLogTable(props) {
+console.log('UserLogTable: ', props)
 const { 
   userLogs, userRanks,
-  setSelected_logID,              // Passed Props
-  setAddType,                    // Pass Through to open add book
-  setIsEditing,                   // Pass Through to edit LogID
+  setSelected_logID,                // Passed Props
+  setAddType,                       // Pass Through to open add book
+  setIsEditing,                     // Pass Through to edit LogID
 
   token,
   a_deleteLog,                    // Action Creator
@@ -83,9 +82,12 @@ const {
 } = props
 // console.log('userLogs',userLogs)
 // -- // 
+  // Styles
+    const classes = useStyles();
+
   // State
     const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
+    const [orderBy, setOrderBy] = React.useState('rank');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -93,9 +95,14 @@ const {
       0: 'Jan', 1: 'Feb', 2: 'Mar', 3: 'Apr', 4: 'May', 5: 'Jun',
       6: 'Jul', 7: 'Aug', 8: 'Sep', 9: 'Oct', 10: 'Nov', 11: 'Dec'
     }
-  
-  // Styles
-    const classes = useStyles();
+
+  // UseEffect 
+  // useEffect(() => {
+  //   if (selected_logID) {
+  //       // console.log('EXPLORE SELECTED LOG_ID')
+  //       setAddtype(false)
+  //   }
+  // }, [selected_logID])
 
   // ---- DATA ----  //
   // ---- DATA ----  //
@@ -116,7 +123,7 @@ const {
         author: item.author,
         rank: rank,
       }
-      // console.log("DATA PREP: ", dataPrep)
+      console.log("DATA PREP: ", dataPrep)
 
       // Return
       return dataPrep
@@ -124,7 +131,7 @@ const {
 
     const rows = userLogs.map((item,key) => {
       // console.log(item)
-      // console.log('!!!***', userRanks)
+      console.log('!!!***', userRanks)
 
       let filtered = userRanks.filter(rank => rank.logID === item.logID)
       // console.log('FILTERED RANKS by Log ID', filtered)
@@ -185,9 +192,9 @@ const {
     // };
 
     const handleClick = (e, rowData) => {
-      console.log(rowData)
+      // console.log(rowData)
       const newSelected = rowData.logID
-      console.log(newSelected)
+      // console.log(newSelected)
 
       setIsEditing(false)
       setSelected_logID(newSelected)
@@ -195,12 +202,11 @@ const {
 
     const handleEdit = (e, rowData) => {
       e.stopPropagation()
-      console.log(rowData)
+      // console.log(rowData)
       async function updateSelectedLog() {
         await setSelected_logID(rowData.logID)
       }
       updateSelectedLog()
-      console.log('!!!!!!!!!!!!!!!!!!')
       setIsEditing(true)
     }
 
@@ -209,7 +215,7 @@ const {
 
       const userID = decode(token).user_ID
 
-      console.log(rowData)
+      // console.log(rowData)
       async function deleteFlow() {
         await a_deleteLog(userID, rowData.logID)
       }
@@ -264,7 +270,7 @@ const {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   
-                  // console.log('ROW!!!',row)
+                  console.log('ROW!!!',row)
 
                   const isItemSelected = isSelected(row.key);
                   const labelId = `enhanced-table-checkbox-${index}`;
@@ -331,6 +337,7 @@ const mstp = state => {
     userLogs: state.r_loggedBooks.USER_LoggedBooks,
     userRanks: state.r_ranks.USER_ranks, 
     token: state.r_auth.token,
+    selectedLogData: state.r_selectedLog.selectedLog,
   }
 }
 

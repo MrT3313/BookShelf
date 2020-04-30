@@ -23,6 +23,11 @@ import { a_login } from '../redux/actions/auth/a_login.js'
 // LOADER
 import Loader from 'react-loader-spinner'
 
+// === === === === === === === === === === === === //
+// === === === === === === === === === === === === //
+
+// __MAIN__
+// -A- STYLES
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -57,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+// -B- COMPONENT
 function SignIn(props) {
 const {is_loggingIn} = props
 // -- // 

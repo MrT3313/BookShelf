@@ -14,8 +14,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- //
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- //
+// === === === === === === === === === === === === //
+// === === === === === === === === === === === === //
 
 // Styles
 const useStyles = makeStyles((theme) => ({
@@ -35,10 +35,6 @@ const useStyles = makeStyles((theme) => ({
   
 function EnhancedTableHead(props) {
 const { 
-    onSelectAllClick, 
-    numSelected, 
-    rowCount, 
-
     order, orderBy,         // Table
     onRequestSort,          // Table
     setAddType,            // Passed Props

@@ -1,5 +1,3 @@
-// IMPORTS
-
 // EXPRESS
 const express = require('express')
 

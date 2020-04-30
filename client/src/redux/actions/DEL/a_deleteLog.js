@@ -14,7 +14,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
     // Action Creator:
     export const a_deleteLog = (userID, logID) => {
     // console.log('INSIDE: a_deleteLog action creator')
-    console.log(logID)
+    // console.log(logID)
     // -- //
         // Send First Action
         return dispatch => {
@@ -36,11 +36,11 @@ import { LIVE_BE_base_URL } from '../../../utils'
                     used_URL
                 )
                 .then( deleteResults => {
-                console.log(deleteResults.data)
-                console.log(userID)
+                // console.log(deleteResults.data)
+                // console.log(userID)
                 // -- //
                     const userResults = deleteResults.data.filter(item => item.userID == userID)
-                    console.log(userResults)
+                    // console.log(userResults)
 
                     dispatch({
                         type: DELETE_LOG_SUCCESS,

@@ -58,11 +58,13 @@ function UpdatedStepper(props) {
   const {
     selected_logID,             // Passed Props 
     setIsEditing,               // Passed Props
+
     a_getSelectedLog,           // Action Creator
     a_updateRank,               // Action Creator
     a_updateReview,             // Action Creator
     a_addReview,                // Action Creator
     a_addRank,                  // Action Creator
+
     selectedLogData,            // Redux
 } = props
 // -- //
@@ -71,8 +73,8 @@ function UpdatedStepper(props) {
 
     // State
     const [activeStep, setActiveStep] = useState(0);
-    const [updatedReview, setUpdatedReview] = useState()
-    const [updatedRank, setUpdatedRank] = useState()
+    const [updatedReview, setUpdatedReview] = useState(undefined)
+    const [updatedRank, setUpdatedRank] = useState(undefined)
 
 
     // UseEffect 
@@ -85,38 +87,48 @@ function UpdatedStepper(props) {
 
     // Methods
     const update = async () => {
-      console.log(updatedReview)
-      console.log(updatedRank)
+      // console.log(updatedReview)
+      // console.log(updatedRank)
 
       // REVIEW
-      if (selectedLogData.reviewID && updatedReview !== undefined) {
-        await a_updateReview(updatedReview, selectedLogData)
-      } else {
-        await a_addReview(
-          {
-            review: updatedReview, 
-            logID: selectedLogData.logID
-          },
-          selectedLogData
-        )
+      if (updatedReview !== undefined){
+        if (selectedLogData.reviewID) {
+          await a_updateReview(updatedReview, selectedLogData)
+        } else {
+          await a_addReview(
+            {
+              review: updatedReview, 
+              logID: selectedLogData.logID
+            },
+            selectedLogData
+          )
+        }
       }
 
       // RANK
-      // if (selectedLogData.rankID && updatedRank !== undefined) {
-      //   await a_updateRank(updatedRank, selectedLogData)
-      // } else {
-      //   await a_addRank(
-      //     {
-      //       rank: updatedRank,
-      //       logID: selectedLogData.logID 
-      //     },
-      //     selectedLogData
-      //   )
-      // }
+      if (updatedRank !== undefined){
+        if (selectedLogData.rankID && updatedRank !== undefined) {
+          await a_updateRank(updatedRank, selectedLogData)
+        } else {
+          await a_addRank(
+            {
+              rank: updatedRank,
+              logID: selectedLogData.logID 
+            },
+            selectedLogData
+          )
+        }
+      }
+
+      // Update Selected Log
+      a_getSelectedLog(selected_logID)
+      
+      // Clear State
+      setUpdatedReview(false)
+      setUpdatedRank(false)
 
       // Close Edit Pannel
       setIsEditing(false)
-      a_getSelectedLog(selected_logID)
     }
 
     // Return
@@ -185,9 +197,6 @@ function UpdatedStepper(props) {
                   <Button 
                     variant="contained" 
                     color="primary" 
-                    // onClick={(e) => {}handleNext}
-                    // onClick={(e) => {e.currentTarget.value}}
-                    // onClick={() => {activeStep === steps.length - 1 ? handleNext : update}}
                     onClick={activeStep === steps.length - 1 ? update : handleNext}
                   >
                     {activeStep === steps.length - 1 ? 'Submit' : 'Next'}

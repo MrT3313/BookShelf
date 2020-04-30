@@ -1,5 +1,5 @@
 // IMPORTS 
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
 
 // MATERIAL UI
@@ -12,12 +12,6 @@ import TextField from '@material-ui/core/TextField';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
-
-// ACTION CREATORS
-
-
-// FUNCTIONS
-import decode from '../../../utils/decode_JWT.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //

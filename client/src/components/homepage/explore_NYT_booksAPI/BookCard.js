@@ -19,11 +19,6 @@ import { makeStyles } from '@material-ui/core/styles'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles({
-    // root: {
-    //     marginTop: '10px',
-    //     marginBottom: '10px',
-    //     marginRight: '15px',
-    // },
     card: {
         display: 'flex',
         alignItems: 'center',
@@ -79,11 +74,7 @@ const {title, author, book_image, description,
     // Styles
     const classes = useStyles()
 
-    // Statte
-
-    // Methods
-
-    // Returned Component
+    // Return
     return(
             <Card className={classes.card}>
                 <div className={classes.card__left}>

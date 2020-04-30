@@ -15,8 +15,8 @@ import { LIVE_BE_base_URL } from '../../../utils'
     // Action Creator
     export const a_addRank = (newRank, selectedLogData) => {
     // console.log('INSIDE: a_addRank action creator')
-    console.log(newRank)
-    console.log(selectedLogData)
+    // console.log(newRank)
+    // console.log(selectedLogData)
     // -- //
         // Send First Action
         return dispatch => {

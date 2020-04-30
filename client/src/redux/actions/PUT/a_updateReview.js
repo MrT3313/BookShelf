@@ -14,8 +14,8 @@ import { LIVE_BE_base_URL } from '../../../utils'
     // Action Creator
     export const a_updateReview = (updateData, selectedLogData) => {
     // console.log('INSIDE: a_updateReview action creator')
-    console.log(updateData)
-    console.log(selectedLogData)
+    // console.log(updateData)
+    // console.log(selectedLogData)
     // -- //
         // Send First Action
         return dispatch => {

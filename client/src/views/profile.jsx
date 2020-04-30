@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
 // -1- Styles
 import { makeStyles } from '@material-ui/core/styles';
 // -2- Components
-import AddBoxIcon from '@material-ui/icons/AddBox';
 import UpdateStepper from '../components/profile/updateStepper/UpdateStepper.js'
 
 // COMPONENTS
@@ -15,13 +14,8 @@ import UserLogTable from '../components/profile/userLogsTable/UserLogTable.js'
 import ExploreSelectedLogID from '../components/profile/exploreSelectedLogID.js'
 import AddBook from '../components/profile/AddBook'
 
-
 // Action Creators
 import { a_getSelectedLog } from '../redux/actions/GET/a_getSelectedLog.js'
-
-
-// FUNCTIONS
-import decode from '../utils/decode_JWT.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -39,9 +33,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'space-around',
         padding: '20px',
     }
-
 }))
-
 
 // -B- COMPONENT
 function Profile(props) {
@@ -59,7 +51,6 @@ const {
 
     useEffect(() => {
         if (selected_logID) {
-            console.log('EXPLORE SELECTED LOG_ID')
             a_getSelectedLog(selected_logID)
         }
     }, [selected_logID])

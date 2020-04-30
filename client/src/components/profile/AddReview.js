@@ -16,9 +16,6 @@ import Button from '@material-ui/core/Button';
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
 
-// ACTION CREATORS
-
-
 // FUNCTIONS
 import decode from '../../utils/decode_JWT.js'
 
@@ -104,24 +101,6 @@ const {
     // State
     const [review, setReview] = useState()
 
-    // Methods
-    // const logReview = () => {
-
-    //     // Prep Object
-    //     const prepObj = {
-    //         logID: selectedData.logID,
-    //         review: review,
-    //     }
-    //     console.log(prepObj)
-
-    //     // Call Action Creator
-    //     a_addReview(prepObj)
-    //     // Close Pannel
-    //     setAddtype(false)
-    // }
-
-    // Use Effect
-
     // Return
     return (
         <Card
@@ -133,35 +112,13 @@ const {
                         TITLE
                     </ListItemText>
                     <Divider orientation="vertical" flexItem className={classes.divider}/>
-
-                    {/* <Autocomplete 
-                        className={classes.autoComplete}
-                        freeSolo={true}
-                        options={DB_books}
-                        getOptionLabel={(option) => option.title}
-
-                        onInputChange={(e, value) => setTitle(value)}
-
-                        renderInput={ (params) => {
-                            return (
-                                <TextField 
-                                    {...params}  
-                                    required 
-                                    variant='outlined' 
-                                    label="Title"
-                                />
-                            )
-                        }}
-                    /> */}
                     <TextField
                         className={classes.autoComplete}
                         defaultValue={selectedData.title}
                         variant="outlined"
-                        // id="review" label="Add Title" name="review"
                         id="review" name="review"
                         onChange={e => setReview(e.target.value)}
                         margin="normal"
-                        // fullWidth
                     />
                 </ListItem>
                 <ListItem className={classes.listItemRoot}>
@@ -173,9 +130,7 @@ const {
                         variant="outlined"
                         multiline
                         rows="5"
-                        // defaultValue={userID}
                         required
-                        // id="review" label="Add Review" name="review"
                         id="review" name="review"
                         onChange={e => setReview(e.target.value)}
                         margin="normal"

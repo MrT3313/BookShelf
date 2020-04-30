@@ -140,7 +140,7 @@ const {
             rank: rank,
         }
         // Call Action Creator
-        await a_addRank(prepObj, selectedLogData.userID)
+        await a_addRank(prepObj, selectedLogData)
         // Update Selected Data
         await a_getSelectedLog(selectedLogData.logID)
         // Close Pannel
