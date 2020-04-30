@@ -13,9 +13,10 @@ import { LIVE_BE_base_URL } from '../../../utils'
     export const ADD_RANK_FAILURE = 'ADD_RANK_FAILURE'
 
     // Action Creator
-    export const a_addRank = (newRank, userID) => {
+    export const a_addRank = (newRank, selectedLogData) => {
     // console.log('INSIDE: a_addRank action creator')
     // console.log(newRank)
+    // console.log(selectedLogData)
     // -- //
         // Send First Action
         return dispatch => {
@@ -40,7 +41,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 .then(results => {
                 // console.log(results)
                 // -- //
-                    const userResults = results.data.filter(item => item.userID == userID)
+                    const userResults = results.data.filter(item => item.userID == selectedLogData.userID)
                     // console.log(userResults)
                     
                     dispatch({

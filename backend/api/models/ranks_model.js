@@ -1,8 +1,3 @@
-// TODO: [1][] -- UPDATE RANK -- ONLY ABLE TO ENTER ONE RANK PER BOOK PER USER
-
-// ------------------------------------------------------------------ //
-// ------------------------------------------------------------------ //
-
 // KNEX
 const KNEX_DB = require('../../data/dbConfig.js')
 
@@ -16,8 +11,6 @@ module.exports = {
     logRank,
     deleteRank,
     updateRank,
-
-
 }
 
 // Functions

@@ -6,18 +6,16 @@ import {connect} from 'react-redux'
 // -1- Styles
 import { makeStyles } from '@material-ui/core/styles';
 // -2- Components
-import AddBoxIcon from '@material-ui/icons/AddBox';
+import UpdateStepper from '../components/profile/updateStepper/UpdateStepper.js'
 
 // COMPONENTS
 import Menu_AppBar from '../components/appBar/AppBar.js'
 import UserLogTable from '../components/profile/userLogsTable/UserLogTable.js'
-import ExploreSelectedLogID from '../components/profile/exploreSelectedLogID'
+import ExploreSelectedLogID from '../components/profile/exploreSelectedLogID.js'
 import AddBook from '../components/profile/AddBook'
 
 // Action Creators
-
-// FUNCTIONS
-import decode from '../utils/decode_JWT.js'
+import { a_getSelectedLog } from '../redux/actions/GET/a_getSelectedLog.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -28,6 +26,7 @@ const useStyles = makeStyles(theme => ({
     profile__root: {
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
 
     },
     logExplorer: {
@@ -35,16 +34,12 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'space-around',
         padding: '20px',
     }
-
 }))
-
 
 // -B- COMPONENT
 function Profile(props) {
 const { 
-    token, 
-    userLogs, userReviews, userRanks,
-
+    a_getSelectedLog,
 } = props
 // -- //
     // Styles
@@ -52,7 +47,14 @@ const {
 
     // State
     const [selected_logID, setSelected_logID] = useState(false)
-    const [adding, setIsAdding] = useState(false)
+    const [addType, setAddType] = useState(false)
+    const [editing, setIsEditing] = useState(false)
+
+    useEffect(() => {
+        if (selected_logID) {
+            a_getSelectedLog(selected_logID)
+        }
+    }, [selected_logID])
 
     // Methods
 
@@ -60,23 +62,30 @@ const {
     return (
         <div className={classes.profile__root}>
             <Menu_AppBar />
-            {adding &&
+            {addType === 'addBook' &&
                 <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
                     <AddBook 
-                        setIsAdding={setIsAdding}
+                        setAddType={setAddType}
                     />
                 </div>
             }
             <div className={classes.logExplorer}>
                 <UserLogTable 
                     setSelected_logID={setSelected_logID}
+                    setAddType={setAddType}
+                    setIsEditing={setIsEditing}
                 />
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                    <AddBoxIcon onClick={() => setIsAdding(true)}/>
-                </div>
-                <ExploreSelectedLogID 
-                    selected_logID={selected_logID}
-                /> 
+                {!editing &&
+                    <ExploreSelectedLogID 
+                        selected_logID={selected_logID}
+                    /> 
+                }
+                {editing &&
+                    <UpdateStepper 
+                        selected_logID={selected_logID}
+                        setIsEditing={setIsEditing}
+                    /> 
+                }
             </div>
         </div>
     )
@@ -96,6 +105,6 @@ const mstp = state => {
 export default connect(
     mstp,
     {
-
+        a_getSelectedLog
     }
 )(Profile)

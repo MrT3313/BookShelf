@@ -1,8 +1,11 @@
 // IMPORTS
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux'
 
+// MATERIAL UI
+// -1- Styles
 import { makeStyles } from '@material-ui/core/styles';
+// -2- Components
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,15 +13,24 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 // COMPONENTS
-import { EnhancedTableHead } from './TableHead.js'
+import EnhancedTableHead from './TableHead.js'
 import { EnhancedTableToolbar } from './TableToolBar.js'
 
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- //
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- //
+// ACTION CREATOR
+import { a_deleteLog } from '../../../redux/actions/DEL/a_deleteLog.js'
+import { a_getReviews } from '../../../redux/actions/GET/a_getReviews.js'
+import { a_getLoggedBooks } from '../../../redux/actions/GET/a_getLoggedBooks.js'
+import { a_getRanks } from  '../../../redux/actions/GET/a_getRanks.js'
+
+// FUNCTIONS
+import decode from '../../../utils/decode_JWT.js'
+
+// === === === === === === === === === === === === //
+// === === === === === === === === === === === === //
 
 // Styles
 const useStyles = makeStyles((theme) => ({
@@ -31,9 +43,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   table: {
-    // minWidth: '750',
-
-    // width: 'auto',
     minWidth: '100%',
     tableLayout: 'auto'
   },
@@ -58,15 +67,27 @@ const useStyles = makeStyles((theme) => ({
 
 // __MAIN__
 function UserLogTable(props) {
+console.log('UserLogTable: ', props)
 const { 
   userLogs, userRanks,
-  setSelected_logID, 
+  setSelected_logID,                // Passed Props
+  setAddType,                       // Pass Through to open add book
+  setIsEditing,                     // Pass Through to edit LogID
+
+  token,
+  a_deleteLog,                    // Action Creator
+  a_getReviews,                         // After ^^
+  a_getLoggedBooks,                     // After ^^
+  a_getRanks,                           // After ^^
 } = props
 // console.log('userLogs',userLogs)
 // -- // 
+  // Styles
+    const classes = useStyles();
+
   // State
     const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
+    const [orderBy, setOrderBy] = React.useState('rank');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -74,9 +95,14 @@ const {
       0: 'Jan', 1: 'Feb', 2: 'Mar', 3: 'Apr', 4: 'May', 5: 'Jun',
       6: 'Jul', 7: 'Aug', 8: 'Sep', 9: 'Oct', 10: 'Nov', 11: 'Dec'
     }
-  
-  // Styles
-    const classes = useStyles();
+
+  // UseEffect 
+  // useEffect(() => {
+  //   if (selected_logID) {
+  //       // console.log('EXPLORE SELECTED LOG_ID')
+  //       setAddtype(false)
+  //   }
+  // }, [selected_logID])
 
   // ---- DATA ----  //
   // ---- DATA ----  //
@@ -97,7 +123,7 @@ const {
         author: item.author,
         rank: rank,
       }
-      // console.log("DATA PREP: ", dataPrep)
+      console.log("DATA PREP: ", dataPrep)
 
       // Return
       return dataPrep
@@ -105,7 +131,7 @@ const {
 
     const rows = userLogs.map((item,key) => {
       // console.log(item)
-      // console.log('!!!***', userRanks)
+      console.log('!!!***', userRanks)
 
       let filtered = userRanks.filter(rank => rank.logID === item.logID)
       // console.log('FILTERED RANKS by Log ID', filtered)
@@ -156,22 +182,48 @@ const {
   // ---- COMPARISON ---- //
   // ---- SELECTION ---- //
   // ---- SELECTION ---- //
-    const handleSelectAllClick = (event) => {
-      if (event.target.checked) {
-        const newSelecteds = rows.map((n) => n.name);
-        setSelected(newSelecteds);
-        return;
-      }
-      setSelected([]);
-    };
+    // const handleSelectAllClick = (event) => {
+    //   if (event.target.checked) {
+    //     const newSelecteds = rows.map((n) => n.name);
+    //     setSelected(newSelecteds);
+    //     return;
+    //   }
+    //   setSelected([]);
+    // };
 
-    const handleClick = (event, rowData) => {
+    const handleClick = (e, rowData) => {
       // console.log(rowData)
       const newSelected = rowData.logID
       // console.log(newSelected)
 
+      setIsEditing(false)
       setSelected_logID(newSelected)
     };
+
+    const handleEdit = (e, rowData) => {
+      e.stopPropagation()
+      // console.log(rowData)
+      async function updateSelectedLog() {
+        await setSelected_logID(rowData.logID)
+      }
+      updateSelectedLog()
+      setIsEditing(true)
+    }
+
+    const handleDelete = (e, rowData) => {
+      e.stopPropagation()
+
+      const userID = decode(token).user_ID
+
+      // console.log(rowData)
+      async function deleteFlow() {
+        await a_deleteLog(userID, rowData.logID)
+      }
+      deleteFlow()
+      a_getReviews()
+      a_getRanks()
+      setSelected_logID(false)
+    }
 
     const isSelected = (name) => selected.indexOf(name) !== -1;
   // ---- SELECTION ---- //
@@ -208,16 +260,17 @@ const {
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
+              // onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
+              setAddType={setAddType}
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   
-                  // console.log('ROW!!!',row)
+                  console.log('ROW!!!',row)
 
                   const isItemSelected = isSelected(row.key);
                   const labelId = `enhanced-table-checkbox-${index}`;
@@ -232,12 +285,17 @@ const {
                       key={row.key}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        {/* TODO: Table Interaction */}
-                        {/* <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        /> */}
+                      <TableCell padding={"none"}>
+                        <div style={{display: 'flex', flexDirection:'center', justifyContent: 'center', alignItems: 'center'}}>
+                          <EditIcon 
+                            style={{ fontSize: 20 }}
+                            onClick={(e) => handleEdit(e,row)} 
+                          />
+                          <DeleteForeverIcon 
+                            style={{ fontSize: 20 }}
+                            onClick={(e) => handleDelete(e,row)}
+                          />
+                        </div>
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none" align="center">
                         {`${months[row.date.getMonth()]} - ${row.date.getFullYear()}`}
@@ -278,6 +336,8 @@ const mstp = state => {
   return {
     userLogs: state.r_loggedBooks.USER_LoggedBooks,
     userRanks: state.r_ranks.USER_ranks, 
+    token: state.r_auth.token,
+    selectedLogData: state.r_selectedLog.selectedLog,
   }
 }
 
@@ -285,6 +345,9 @@ const mstp = state => {
 export default connect(
   mstp, 
   {
-      
+    a_deleteLog,        // Initiate Delete
+    a_getReviews,           // AFTER ^^ 
+    a_getLoggedBooks,       // AFTER ^^ 
+    a_getRanks,             // AFTER ^^ 
   }
 )(UserLogTable)

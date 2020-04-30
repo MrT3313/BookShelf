@@ -18,7 +18,6 @@ import API_dataAttribution from './API_DataAttribution.js'
 // ACTION CREATORS
 import {a_getSpecificList} from '../../../redux/actions/GET/a_getSpecificList.js'
 
-
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
 
@@ -41,14 +40,6 @@ const useStyles = makeStyles( theme => ({
     listSelection__FormControl: {
         width: '40%',
     },
-    // listName: {
-    //     color: 'white',
-    //     fontWeight: "bold",
-
-    //     "&MuiSelect-icon": {
-    //         color: 'white'
-    //     }
-    // },
     listName: {
         fontWeight: "bold",
         color: 'white',

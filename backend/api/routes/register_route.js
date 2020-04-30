@@ -22,11 +22,7 @@ const sign_JWT = require('../../utils/sign_JWT.js')
             "email": "STRING",
             "PLAINTEXT_pw": "STRING",
         }
-
-        - Notes:
-            publicProfile is not needed in body of post as it is defaulted to FALSE
     */ 
-    // TODO: Move pwHash to the FE so that the plaintext PW never goes over the web
     router.post('/', pwHash, async(req,res) => {
     // console.log('** REGISTER ROUTE: POST/')
     // console.log(req.body.email)

@@ -12,11 +12,10 @@ import { LIVE_BE_base_URL } from '../../../utils'
     export const UPDATE_RANK_FAILURE = 'UPDATE_RANK_FAILURE'
 
     // Action Creator
-    export const a_updateRank = (updatedRank, rankID, userID) => {
+    export const a_updateRank = (updatedRank, selectedLogData) => {
     // console.log('INSIDE: a_updateRank action creator')
     // console.log(updatedRank)
-    // console.log(rankID)
-    // console.log(userID)
+    // console.log(selectedLogData)
     // -- //
         // Send First Action 
         return dispatch => {
@@ -25,9 +24,9 @@ import { LIVE_BE_base_URL } from '../../../utils'
             // Which environment are we in?
             let update_URL = ''
             if (process.env.NODE_ENV === 'development') {
-                update_URL = `${LOCAL_BE_base_URL}ranks/${rankID}`
+                update_URL = `${LOCAL_BE_base_URL}ranks/${selectedLogData.rankID}`
             } else if (process.env.NODE_ENV === 'production') {
-                update_URL = `${LIVE_BE_base_URL}ranks/${rankID}`
+                update_URL = `${LIVE_BE_base_URL}ranks/${selectedLogData.rankID}`
             }
             // console.log('URL USED')
             // console.log(update_URL)
@@ -41,7 +40,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 .then( updateResult => {
                 // console.log('Updated Rank Results: ', updateResult )
                 // -- //
-                    const userResults = updateResult.data.filter(item => item.userID == userID)
+                    const userResults = updateResult.data.filter(item => item.userID == selectedLogData.userID)
                     // console.log(userResults)
                     
                     dispatch({

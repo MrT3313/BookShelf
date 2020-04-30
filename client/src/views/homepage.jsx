@@ -43,7 +43,6 @@ const useStyles = makeStyles(theme => ({
 function HomePage(props) {
 const { 
     token,
-    allLists, listName, searchDate,
     a_getBooks, a_getReviews, a_getLoggedBooks, a_getRanks,
 } = props
     // Styles

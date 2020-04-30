@@ -1,14 +1,8 @@
 # Welcome to your BookShelf
-Your one stop shop for all your reading needs. 
 
 - Visit The Site! 👉🏼👉🏼 ([LINK](https://my-book-shelf.netlify.com))  
 - API Documentation: ([Postman Documenter](https://documenter.getpostman.com/view/10122836/Szf54pe1?version=latest))
 
-
-Get a recomendation from a coworker? Log it! 
-Just finish a book? Review it! 
-Is it a new favorite of yours? Rate it against your yearly and all time rankings & promote it to your friends!
-Want to know what another user is reading? Turn your profile 'public' and allow other to interact with you and your BookShelf!
 
 # Tech Stack
 | title                   | name                                    | link                                                                             |
@@ -48,20 +42,28 @@ Want to know what another user is reading? Turn your profile 'public' and allow 
     <img src="client/src/assets/NYT_dataAttribution.png" width='150'>
 
 ## Credit
-| title         | notes                    | link                                                                |
+| asset         | attribution              | link                                                                |
 | ------------- | ------------------------ | ------------------------------------------------------------------- |
 | favicon       | Author: Good Ware        | [LINK](https://www.flaticon.com/authors/good-ware)                  |
 | Books API     | Title: NYT Books API     | [LINK](https://developer.nytimes.com/docs/books-product/1/overview) |
 
-## Versions
-- Version Numbering System: #.#.#
-    - Digit 1 = LTS (long term support)
-    - Digit 2 = Feature Release / Security Enhancements
-    - Digit 3 = Maitenance Release - smaller improvements to existing features & defect corrections 
----
-### Latest: 1.6.0 -- Testing Update
-
+## Versions -- Latest: 1.6.1
 <details open>
+<summary>1.6.1 -- Individual Log Exploration & Log Interactions Update</summary>
+
+1. Updates to accessing data from redux store and app data flow
+2. <UserLogTable /> now holds the ability to add a log while individual table rows hode the ability to toggle editing an individual log or delete the individual log (delete cascades to Reviews & Ranks tables)
+3. <ExploreSelectedLogID /> rebuilt subComponents to match new dataflow after <UserLogTable /> built. Individual subcomponents can (based on the state of the current selected log) either add a Rank or add a Review to a log
+
+Screenshot:   
+<img src="client/src/assets/readMeImgs/1.6.1_Profile__noRank__noReview.png" width='600'>   
+<img src="client/src/assets/readMeImgs/1.6.1_Profile__AddRank.png" width='600'>
+<img src="client/src/assets/readMeImgs/1.6.1_Profile__AddReview.png" width='600'>     
+<img src="client/src/assets/readMeImgs/1.6.1_Profile__Rank__Review.png" width='600'>   
+<img src="client/src/assets/readMeImgs/1.6.1_Profile__UpdateStepper.png" width='600'>   
+</details>
+
+<details>
 <summary>1.6.0 -- Profile Page Overhaul / Functionality Update & DB Redesign</summary>
 
 - Complete Redesign of < Profile /> => new data flow and component structure  

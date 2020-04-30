@@ -1,6 +1,6 @@
 {
   "name": "BookShelf_BE",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -19,13 +19,13 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.20.15",
+    "knex": "^0.21.1",
     "morgan": "^1.10.0",
-    "pg": "^8.0.2"
+    "pg": "^8.0.3"
   },
   "devDependencies": {
-    "cypress": "^4.4.0",
-    "jest": "^25.3.0",
+    "cypress": "^4.5.0",
+    "jest": "^25.5.3",
     "nodemon": "^2.0.3",
     "supertest": "^4.0.2"
   }
