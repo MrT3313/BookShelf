@@ -35,7 +35,9 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
 
         width: '45%',
-        marginBottom: '5px',
+    }, 
+    content: {
+        padding: '10px 0 10px 0',
     }
 }))
 
@@ -43,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 function CheckUpdates(props) {
 const {
     updatedReview,
-    updateRank,
+    updatedRank,
 } = props
     // Styles
     const classes = useStyles({})
@@ -52,12 +54,20 @@ const {
     return(
         <div className={classes.CheckUpdates__root}>
             <div className={classes.content__root}>
-                <div>UPDATED REVIEW:</div>
-                <div>{updatedReview}</div>
+                <div>
+                    UPDATED REVIEW:
+                </div>
+                <div className={classes.content}>
+                    {updatedReview}
+                </div>
             </div>
             <div className={classes.content__root}>
-                <div>UPDATED RANK:</div>
-                <div>{updateRank}</div>
+                <div>
+                    UPDATED RANK:
+                </div>
+                <div className={classes.content}>
+                    {updatedRank}
+                </div>
             </div>
         </div>
     )

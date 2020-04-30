@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 // -B- COMPONENT
 function UpdateRank(props) {
 const { 
-    setUpdateRank,
+    setUpdatedRank,
     selectedData 
 } = props
 // -- //
@@ -80,7 +80,7 @@ const {
                         defaultValue={selectedData.rank}
                         id="rank" name="rank"
                         type="number"
-                        onChange={e => setUpdateRank(e.target.value)}
+                        onChange={e => setUpdatedRank(e.target.value)}
                     />
                 </ListItem>
             </List>

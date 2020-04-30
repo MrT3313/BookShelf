@@ -12,7 +12,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
     export const ADD_REVIEW_FAILURE = 'ADD_REVIEW_FAILURE'
     
     // Action Creator
-    export const a_addReview = (newReview) => {
+    export const a_addReview = (newReview, selectedLogData) => {
     // console.log('INSIDE: a_addReview action creator')
     // console.log(newReview)
     // -- //
@@ -39,7 +39,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 .then( results => {
                 // console.log(results)
                 // -- //
-                    const userResults = results.data.filter(item => item.userID == newReview.userID)
+                    const userResults = results.data.filter(item => item.userID == selectedLogData.userID)
 
                     dispatch({
                         type: ADD_REVIEW_SUCCESS,

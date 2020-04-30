@@ -21,6 +21,12 @@ import CheckUpdates from './CheckUpdates.js'
 // ACTION CREATORS
 import { a_getSelectedLog } from '../../../redux/actions/GET/a_getSelectedLog.js'
 
+import { a_updateRank } from '../../../redux/actions/PUT/a_updateRank.js'
+import { a_updateReview } from '../../../redux/actions/PUT/a_updateReview.js'
+
+import { a_addReview } from '../../../redux/actions/POST/a_addReview'
+import { a_addRank } from '../../../redux/actions/POST/a_addRank'
+
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -53,6 +59,10 @@ function UpdatedStepper(props) {
     selected_logID,             // Passed Props 
     setIsEditing,               // Passed Props
     a_getSelectedLog,           // Action Creator
+    a_updateRank,               // Action Creator
+    a_updateReview,             // Action Creator
+    a_addReview,                // Action Creator
+    a_addRank,                  // Action Creator
     selectedLogData,            // Redux
 } = props
 // -- //
@@ -62,7 +72,7 @@ function UpdatedStepper(props) {
     // State
     const [activeStep, setActiveStep] = useState(0);
     const [updatedReview, setUpdatedReview] = useState()
-    const [updateRank, setUpdateRank] = useState()
+    const [updatedRank, setUpdatedRank] = useState()
 
 
     // UseEffect 
@@ -71,7 +81,43 @@ function UpdatedStepper(props) {
           // console.log('EXPLORE SELECTED LOG_ID')
           a_getSelectedLog(selected_logID)
       }
-  }, [selected_logID])
+    }, [selected_logID])
+
+    // Methods
+    const update = async () => {
+      console.log(updatedReview)
+      console.log(updatedRank)
+
+      // REVIEW
+      if (selectedLogData.reviewID && updatedReview !== undefined) {
+        await a_updateReview(updatedReview, selectedLogData)
+      } else {
+        await a_addReview(
+          {
+            review: updatedReview, 
+            logID: selectedLogData.logID
+          },
+          selectedLogData
+        )
+      }
+
+      // RANK
+      // if (selectedLogData.rankID && updatedRank !== undefined) {
+      //   await a_updateRank(updatedRank, selectedLogData)
+      // } else {
+      //   await a_addRank(
+      //     {
+      //       rank: updatedRank,
+      //       logID: selectedLogData.logID 
+      //     },
+      //     selectedLogData
+      //   )
+      // }
+
+      // Close Edit Pannel
+      setIsEditing(false)
+      a_getSelectedLog(selected_logID)
+    }
 
     // Return
     const handleNext = () => {
@@ -112,14 +158,14 @@ function UpdatedStepper(props) {
                 {activeStep === 1 &&
                     <UpdateRank 
                       selectedData={selectedLogData}
-                      setUpdateRank={setUpdateRank}
+                      setUpdatedRank={setUpdatedRank}
                     />
                 }
                 {activeStep === 2 &&
                     <CheckUpdates 
                       selectedData={selectedLogData}
                       updatedReview={updatedReview}
-                      updateRank={updateRank}
+                      updatedRank={updatedRank}
                     />
                 }
                 <div>
@@ -136,7 +182,14 @@ function UpdatedStepper(props) {
                   >
                     Back
                   </Button>
-                  <Button variant="contained" color="primary" onClick={handleNext}>
+                  <Button 
+                    variant="contained" 
+                    color="primary" 
+                    // onClick={(e) => {}handleNext}
+                    // onClick={(e) => {e.currentTarget.value}}
+                    // onClick={() => {activeStep === steps.length - 1 ? handleNext : update}}
+                    onClick={activeStep === steps.length - 1 ? update : handleNext}
+                  >
                     {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
                   </Button>
                 </div>
@@ -159,5 +212,8 @@ export default connect(
     mstp,
     {
       a_getSelectedLog,
+
+      a_addReview, a_addRank,
+      a_updateRank, a_updateReview
     }
 )(UpdatedStepper)
