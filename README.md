@@ -42,7 +42,7 @@
     <img src="client/src/assets/NYT_dataAttribution.png" width='150'>
 
 ## Credit
-| title         | notes                    | link                                                                |
+| asset         | attribution              | link                                                                |
 | ------------- | ------------------------ | ------------------------------------------------------------------- |
 | favicon       | Author: Good Ware        | [LINK](https://www.flaticon.com/authors/good-ware)                  |
 | Books API     | Title: NYT Books API     | [LINK](https://developer.nytimes.com/docs/books-product/1/overview) |
