@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // COMPONENTS
 import MenuAppBar from '../components/appBar/AppBar.js'
 import ListSelector from '../components/homepage/explore_NYT_booksAPI/ListSelector.js'
-import VertTabPannel from '../components/homepage/explore_NYT_booksAPI/VertTabPannel.js'
+import Explorer from '../components/homepage/explore_NYT_booksAPI/listExplorer/Tabs.js' 
 
 // ACTION CREATORS
 import { a_getBooks } from '../redux/actions/GET/a_getBooks.js'
@@ -81,7 +81,7 @@ const {
             <>
                 <MenuAppBar />
                 <ListSelector />
-                <VertTabPannel />
+                <Explorer />
             </>
         )
     }
