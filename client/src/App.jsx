@@ -10,19 +10,18 @@ import { a_getBookLists } from './redux/actions/GET/a_getBookLists.js'
 import './styles/index.css'
 
 // COMPONENTS
+// -- OPEN Routes -- //
+import Login from './views/login.jsx'
+import Register from './views/register.jsx'
+
 // -- PRIVATE Routes -- //
 import PrivateRoute from './components/PrivateRoute.js'
 import Homepage from './views/homepage.jsx'
 import Account from './views/account.jsx'
 import Profile from './views/profile.jsx'
 
-// -- OPEN Routes -- //
-import Login from './views/login.jsx'
-import Register from './views/register.jsx'
-
-// __MAIN__
+// __ MAIN FUNCIONAL COMPONENT __
 function App(props) {
-// console.log('APP PROPS: ', props)
 const { a_getBookLists } = props
 // -- //
   // useEffect
@@ -36,7 +35,6 @@ const { a_getBookLists } = props
   // Return
   return ( 
     <div className="App">
-      {/* <Route exact path='/' theme={props.theme} component={Homepage} /> */}
       <PrivateRoute exact path='/' theme={props.theme} component={Homepage} />
       <PrivateRoute exact path='/account' theme={props.theme} component={Account} />
       <PrivateRoute exact path='/profile' theme={props.theme} component={Profile} />
@@ -49,9 +47,7 @@ const { a_getBookLists } = props
 
 // MAP STATE TO PROPS
 const mstp = state => {
-  return {
-    
-  }
+  return {}
 }
 
 // CONNECT & EXPORT

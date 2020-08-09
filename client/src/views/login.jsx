@@ -2,6 +2,9 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux'
 
+// COMPONENTS
+import LoginLoader from '../components/LoginLoader.js'
+
 // MATERIAL UI
 // -1- Components
 import Avatar from '@material-ui/core/Avatar';
@@ -29,37 +32,23 @@ import Loader from 'react-loader-spinner'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(8),
+    mainContainer: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
-        avatar: {
+    avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
     },
-        form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-    },
-        submit: {
+    submit: {
         marginTop: '10px'
     },
-    loaderContainer: {
-        display: 'flex', 
-        flexDirection:'column', 
-        justifyContent:'center', 
-        alignItems:'center'
-    },
-    loader: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
 
-        marginTop: '50px',
-        marginBottom: '20px',
-    }
+    secondaryOptions: {
+        display:'flex',
+        justifyContent: 'space-between',
+    },
 }));
 
 // -B- COMPONENT
@@ -73,7 +62,6 @@ const {is_loggingIn} = props
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    
 
     // Methods
     const runLogin = e => {
@@ -109,24 +97,12 @@ const {is_loggingIn} = props
 
     // Return
     return (
-        <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        {is_loggingIn &&
-            <div 
-                className={classes.loaderContainer}
-            >
-                <div className={classes.loader}>
-                    <Loader type='Puff' color='#00BCD4'/>
-                </div>
-                <Typography
-                    variant="h4"
-                >Logging In...</Typography>
-            </div>
-        }
+        <div>
+        {is_loggingIn && <LoginLoader /> }
         {!is_loggingIn &&
-            <div className={classes.paper}>
+            <div className={classes.mainContainer}>
                 <Avatar className={classes.avatar}>
-                <LockOutlinedIcon />
+                    <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Login
@@ -135,63 +111,59 @@ const {is_loggingIn} = props
                     className={classes.form} 
                     noValidate
                 >
-                <TextField
-                    required
-                    variant="outlined"
+                    <TextField
+                        required
+                        variant="outlined"
 
-                    id="email" label="Email Address" name="email"
-                    onChange={e => setEmail(e.target.value)}
+                        id="email" label="Email Address" name="email"
+                        onChange={e => setEmail(e.target.value)}
 
-                    margin="normal"
-                    fullWidth
-                    autoComplete="email"
-                    autoFocus
-                />
-                <TextField
-                    variant="outlined"
-                    required    
-                    
-                    id="password" label="Password" name="password" type="password"
-                    onChange={e => setPassword(e.target.value)}
+                        margin="normal"
+                        fullWidth
+                        autoComplete="email"
+                        autoFocus
+                    />
+                    <TextField
+                        variant="outlined"
+                        required    
+                        
+                        id="password" label="Password" name="password" type="password"
+                        onChange={e => setPassword(e.target.value)}
 
-                    margin="normal"
-                    fullWidth
-                    autoComplete="current-password"
-                />
-                <Button
-                    variant="contained"
-                    id="login"
-                    onClick={runLogin}
-                    
-                    fullWidth
-                    color="primary"
-                    className={classes.submit}
-                >
-                    Login
-                </Button>
-                <Grid 
-                    container
-                    justify="space-between"
-                    alignItems="center"
-                >
-                    <Button 
-                        className={classes.submit}
-                        onClick={() => props.history.push("/register")} 
-                    >
-                        {"Don't have an account?"}
-                    </Button>
-                    <Button 
-                        id='guest'
+                        margin="normal"
+                        fullWidth
+                        autoComplete="current-password"
+                    />
+                    <Button
+                        variant="contained"
+                        id="login"
                         onClick={runLogin}
+                        
+                        fullWidth
+                        color="primary"
                         className={classes.submit}
                     >
-                        {"Sign in as a guest!"}
+                        Login
                     </Button>
-                </Grid>
+                    <div className={classes.secondaryOptions}>
+                        <Button 
+                            className={classes.submit}
+                            onClick={() => props.history.push("/register")} 
+                        >
+                            {"Don't have an account?"}
+                        </Button>
+                        <Button 
+                            id='guest'
+                            onClick={runLogin}
+                            className={classes.submit}
+                        >
+                            {"Sign in as a guest!"}
+                        </Button>
+                    </div>
                 </form>
             </div>
         }
-        </Container>
+        </div>
     );
 }
 
