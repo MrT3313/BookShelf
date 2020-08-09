@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
         minWidth: '10px',
         marginLeft: '10px',
         color: theme.palette.primary.main,
+    },
+    '& .MuiTabs-scroller': {
+        display: 'flex',
+        justifyContent: 'center',
     }
   },
   rankSelector: {
@@ -52,7 +56,9 @@ function ScrollableTabsButtonAuto(props) {
 
   return (
     <div className={classes.root}>
-        <AppBar position="static" color="default" className={classes.rankSelector}>
+        <AppBar 
+            position="static" color="default" className={classes.rankSelector}
+        >
             <Tabs
                 value={value}
                 onChange={handleChange}

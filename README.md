@@ -46,8 +46,17 @@
 | favicon       | Author: Good Ware        | [LINK](https://www.flaticon.com/authors/good-ware)                  |
 | Books API     | Title: NYT Books API     | [LINK](https://developer.nytimes.com/docs/books-product/1/overview) |
 
-## Versions -- Latest: 1.6.1
+## Versions -- Latest: 1.6.2
 <details open>
+<summary>1.6.2 -- Homepage NYT Books API Explorer Update</summary>
+    - Mobile Styling
+    - Switched from Material-UI Vertical Tabs to Material-UI Horizontal Tabs
+
+Screenshot:   
+<img src="client/src/assets/readMeImgs/1.6.1_Profile__noRank__noReview.png" width='600'>   
+</details>
+
+<details>
 <summary>1.6.1 -- Individual Log Exploration & Log Interactions Update</summary>
 
 1. Updates to accessing data from redux store and app data flow
