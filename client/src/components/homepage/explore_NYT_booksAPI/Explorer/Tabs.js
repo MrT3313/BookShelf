@@ -32,13 +32,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
     '& .MuiTab-root': {
         minWidth: '10px',
-        marginLeft: '10px',
         color: theme.palette.primary.main,
     },
-    '& .MuiTabs-scroller': {
-        display: 'flex',
-        justifyContent: 'center',
-    }
   },
   rankSelector: {
     backgroundColor: theme.palette.secondary.main,
