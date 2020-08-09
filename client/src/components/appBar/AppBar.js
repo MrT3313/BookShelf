@@ -62,65 +62,46 @@ function MenuAppBar(props) {
     };
     // Returned Component
     return (
-        <div>
-            <AppBar position='static' className={classes.root}>
-                <Toolbar>
-                    {/* <IconButton aria-label="menu">
-                        <MenuIcon />
-                    </IconButton> */}
-                    <Typography variant="h6" className={classes.title} onClick={() => props.history.push('/')}>
-                        BookShelf
-                    </Typography>
+        <AppBar position='static' className={classes.root}>
+            <Toolbar>
+                <Typography variant="h6" className={classes.title} onClick={() => props.history.push('/')}>
+                    BookShelf
+                </Typography>
 
-                    {auth && (
-                        <div>
-                            <IconButton
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                // onClick={handleMenu}
-                                color="inherit"
-                            >
-                                <AccountCircle 
-                                    onClick={handleClick}
-                                />
-                            </IconButton>
-                            <Menu
-                                id="simple-menu"
-                                anchorEl={anchorEl}
-                                keepMounted
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={() => props.history.push('/profile')}>Profile</MenuItem>
-                                <MenuItem onClick={() => props.history.push('/account')}>My account</MenuItem>
-                                <MenuItem onClick={() => props.a_logout()}>Logout</MenuItem>
-                            </Menu>
-                            {/* <Menu
-                                open={open}
-                                onClose={handleClose}
-                            >
-                                <MenuItem 
-                                    // onClick={handleClose}
-                                >Profile</MenuItem>
-                                <MenuItem 
-                                    // onClick={handleClose}
-                                >My account</MenuItem>
-                            </Menu> */}
-                        </div>
-                    )}
-                </Toolbar>
-            </AppBar>
-        </div>
+                {auth && (
+                    <div>
+                        <IconButton
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            color="inherit"
+                        >
+                            <AccountCircle 
+                                onClick={handleClick}
+                            />
+                        </IconButton>
+                        <Menu
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem onClick={() => props.history.push('/profile')}>Profile</MenuItem>
+                            <MenuItem onClick={() => props.history.push('/account')}>My account</MenuItem>
+                            <MenuItem onClick={() => props.a_logout()}>Logout</MenuItem>
+                        </Menu>
+                    </div>
+                )}
+            </Toolbar>
+        </AppBar>
     )
 }
 
 
 // MAP STATE TO PROPS
 const mstp = state => {
-    return {
-
-    }
+    return {}
 }
 
 // CONNECT & Export & withRouter (so we can access props.history)

@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        width: '100%',
 
     },
     logExplorer: {
