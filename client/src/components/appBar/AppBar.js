@@ -75,10 +75,9 @@ function MenuAppBar(props) {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             color="inherit"
+                            onClick={handleClick}
                         >
-                            <AccountCircle 
-                                onClick={handleClick}
-                            />
+                            <AccountCircle />
                         </IconButton>
                         <Menu
                             id="simple-menu"
