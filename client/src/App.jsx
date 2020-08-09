@@ -34,7 +34,7 @@ const { a_getBookLists } = props
 
   // Return
   return ( 
-    <div className="App">
+    <div className="App" style={{display: 'flex', justifyContent: 'center'}}>
       <PrivateRoute exact path='/' theme={props.theme} component={Homepage} />
       <PrivateRoute exact path='/account' theme={props.theme} component={Account} />
       <PrivateRoute exact path='/profile' theme={props.theme} component={Profile} />

@@ -27,6 +27,11 @@ import { a_login } from '../redux/actions/auth/a_login.js'
 const useStyles = makeStyles((theme) => ({
     mainContainer: {
         display: 'flex',
+        justifyContent: 'center',
+        width: '300px',
+    },
+    loginContainer: {
+        display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
@@ -34,8 +39,14 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
     },
+    form: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
     submit: {
-        marginTop: '10px'
+        marginTop: '10px',
+        '&:last-child': { marginLeft: '10px' },
     },
 
     secondaryOptions: {
@@ -90,10 +101,10 @@ const {is_loggingIn} = props
 
     // Return
     return (
-        <div>
+        <div className={classes.mainContainer} >
         {is_loggingIn && <LoginLoader /> }
         {!is_loggingIn &&
-            <div className={classes.mainContainer}>
+            <div className={classes.loginContainer}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
                 </Avatar>
@@ -141,16 +152,18 @@ const {is_loggingIn} = props
                     <div className={classes.secondaryOptions}>
                         <Button 
                             className={classes.submit}
+                            variant="contained"
                             onClick={() => props.history.push("/register")} 
                         >
-                            {"Don't have an account?"}
+                            {"Register"}
                         </Button>
                         <Button 
                             id='guest'
                             onClick={runLogin}
+                            variant="contained"
                             className={classes.submit}
                         >
-                            {"Sign in as a guest!"}
+                            {"Guest Sign In"}
                         </Button>
                     </div>
                 </form>
