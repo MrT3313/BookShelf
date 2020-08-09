@@ -96,7 +96,7 @@ const {title, author, book_image, description,
                 <div className={classes.card__right}>
                     <img className={classes.img}
                         src = {book_image}
-                        alt='Book Cover Image'
+                        alt='Book Cover'
                     />
                 </div>
                 

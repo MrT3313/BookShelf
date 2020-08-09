@@ -8,7 +8,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+// import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import MenuItem from '@material-ui/core/MenuItem';
@@ -40,15 +40,16 @@ const useStyles = makeStyles( theme => ({
 }))
 
 // -B- COMPONENT
-function Menu_AppBar(props) {
+function MenuAppBar(props) {
 // console.log('Menu_AppBar Props: ', props)
 // -- //
     // Styles
     const classes = useStyles();
 
     // State 
-    const [auth, setAuth] = useState(true);
-    const [menuToggle, setMenuToggle] = useState(false)
+    // const [auth, setAuth] = useState(true);
+    const [auth] = useState(true);
+    // const [menuToggle, setMenuToggle] = useState(false)
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     // Methods
@@ -129,7 +130,7 @@ export default withRouter(
         {
             a_logout
         }
-    )(Menu_AppBar)
+    )(MenuAppBar)
 )
 
 

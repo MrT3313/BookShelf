@@ -20,7 +20,7 @@ import { cyan, blueGrey } from '@material-ui/core/colors'
 import App from './App.jsx';
 
 // MIDDLEWARE
-const middlewares = [];
+// const middlewares = [];
 
 
 // STORE ENHANCERS

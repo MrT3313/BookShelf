@@ -1,5 +1,5 @@
 // IMPORTS
-import React, { useState, useEffect } from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 
 // LOADER
@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // -2- Components
 
 // COMPONENTS
-import Menu_AppBar from '../components/appBar/AppBar.js'
+import MenuAppBar from '../components/appBar/AppBar.js'
 import ListSelector from '../components/homepage/explore_NYT_booksAPI/ListSelector.js'
 import VertTabPannel from '../components/homepage/explore_NYT_booksAPI/VertTabPannel.js'
 
@@ -63,13 +63,13 @@ const {
         a_getLoggedBooks(userID)
         a_getReviews(userID)
         a_getRanks(userID)
-    }, [])
+    }, [ token, a_getBooks, a_getLoggedBooks, a_getReviews, a_getRanks ])
 
     // Return
     if (props.current_listData.length === 0) {
         return (
             <>
-                <Menu_AppBar />
+                <MenuAppBar />
                 <ListSelector />
                 <div className={classes.loader}>
                     <Loader type='Puff' color='#00BCD4'/>
@@ -79,7 +79,7 @@ const {
     } else {
         return (
             <>
-                <Menu_AppBar />
+                <MenuAppBar />
                 <ListSelector />
                 <VertTabPannel />
             </>

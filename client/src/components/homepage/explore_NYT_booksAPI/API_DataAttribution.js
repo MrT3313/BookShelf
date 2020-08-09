@@ -7,7 +7,7 @@ import NYT_credit from '../../../assets/NYT_dataAttribution.png'
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
 
-function API_dataAttribution() {
+function APIdataAttribution() {
     // Return
     return (
         <img 
@@ -18,4 +18,4 @@ function API_dataAttribution() {
 }
 
 // Export
-export default API_dataAttribution
+export default APIdataAttribution

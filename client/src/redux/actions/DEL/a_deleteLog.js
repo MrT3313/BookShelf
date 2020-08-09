@@ -39,7 +39,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 // console.log(deleteResults.data)
                 // console.log(userID)
                 // -- //
-                    const userResults = deleteResults.data.filter(item => item.userID == userID)
+                    const userResults = deleteResults.data.filter(item => item.userID === userID)
                     // console.log(userResults)
 
                     dispatch({

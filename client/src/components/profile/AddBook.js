@@ -93,7 +93,7 @@ const {
     DB_books,                           // connect => all books in redux store
     token,                              // connect => token on redux store
 
-    a_addBook, 
+    // a_addBook, 
     a_logCompletedBook,       // Action Creators
     a_addAndLogBook,
 } = props
@@ -111,7 +111,7 @@ const {
     // - 1 - // Set Unique Titles
     useEffect(() => { setTitles( DB_books.map(item => item.title) ) }, [DB_books])
     // - 2 - // Set Log Type
-    useEffect(() => { setLogType(titles.includes(title) ? 'onlyLog' : 'addAndLog') }, [title])
+    useEffect(() => { setLogType(titles.includes(title) ? 'onlyLog' : 'addAndLog') }, [setLogType, titles, title])
 
     // Methods
     const logBook = () => {

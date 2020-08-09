@@ -30,7 +30,7 @@ const { a_getBookLists } = props
       await a_getBookLists()
     }
     get_lists()
-  }, [props])
+  }, [props, a_getBookLists])
 
   // Return
   return ( 
