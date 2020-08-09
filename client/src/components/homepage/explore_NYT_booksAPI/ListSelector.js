@@ -84,7 +84,7 @@ const { a_getSpecificList } = props
         <div className={classes.listSelection__root}>
             <FormControl className={classes.listSelection__FormControl}>
                 <InputLabel shrink id="demo-simple-select-placeholder-label-label">
-                    Active NYT Bestseller List
+                    Active List
                 </InputLabel>
                 <Select
                     value={listName}
