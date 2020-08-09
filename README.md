@@ -49,11 +49,12 @@
 ## Versions -- Latest: 1.6.2
 <details open>
 <summary>1.6.2 -- Homepage NYT Books API Explorer Update</summary>
-    - Mobile Styling
-    - Switched from Material-UI Vertical Tabs to Material-UI Horizontal Tabs
+
+- Mobile Styling  
+- Switched from Material-UI Vertical Tabs to Material-UI Horizontal Tabs  
 
 Screenshot:   
-<img src="client/src/assets/readMeImgs/1.6.1_Profile__noRank__noReview.png" width='600'>   
+<img src="client/src/assets/readMeImgs/1.6.2_Homepage_MobileStyling.png" width='200'>   
 </details>
 
 <details>
