@@ -46,7 +46,16 @@
 | favicon       | Author: Good Ware        | [LINK](https://www.flaticon.com/authors/good-ware)                  |
 | Books API     | Title: NYT Books API     | [LINK](https://developer.nytimes.com/docs/books-product/1/overview) |
 
-## Versions -- Latest: 1.6.2
+## Versions -- Latest: 1.6.3
+<details open>
+<summary>1.6.3 -- Profile Log Explorer Update</summary>
+
+- Mobile Styling  
+
+Screenshot:   
+<img src="client/src/assets/readMeImgs/1.6.3_Profile_MobileStyling.png" width='200'>   
+</details>
+
 <details open>
 <summary>1.6.2 -- Homepage NYT Books API Explorer Update</summary>
 
@@ -61,7 +70,7 @@ Screenshot:
 <summary>1.6.1 -- Individual Log Exploration & Log Interactions Update</summary>
 
 1. Updates to accessing data from redux store and app data flow
-2. <UserLogTable /> now holds the ability to add a log while individual table rows hode the ability to toggle editing an individual log or delete the individual log (delete cascades to Reviews & Ranks tables)
+2. <UserLogTable /> now holds the ability to add a log while individual table rows hold the ability to toggle editing an individual log or delete the individual log (delete cascades to Reviews & Ranks tables)
 3. <ExploreSelectedLogID /> rebuilt subComponents to match new dataflow after <UserLogTable /> built. Individual subcomponents can (based on the state of the current selected log) either add a Rank or add a Review to a log
 
 Screenshot:   
