@@ -30,67 +30,86 @@ const useStyles = makeStyles(theme => ({
     default__root: {
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: theme.palette.secondary.main,
 
-        padding: '10px',
+        width: '100%',
     }, 
     default__rootContent: {
         display: 'flex', 
+        flexDirection: 'column',
         alignItems: 'center', 
+        justifyContent: 'center',
+        
         height: '100%', 
+        width: '100%',
+        justifyContent: 'center',
+
         borderRadius: '5px', 
         backgroundColor: '#FFFFFF',
         padding: '10px',
     }, 
-    // -- //
+    // No Selection
+    noSelection__root: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        minWidth: '50%',
+
+        backgroundColor: theme.palette.secondary.main,
+        padding: '10px',
+    }, 
+    // Selected Log
     ExploreSelectedLogID__root: {
         display: 'flex',
         flexDirection: 'column',
 
-        width: '50%',
+        minWidth: '50%',
+
+        backgroundColor: theme.palette.secondary.main,
         padding: '10px',
     },
-    heading: {
+    logContent__heading: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
 
+        width: '100%',
         margin: '10px 0 10px 0',
 
-        '& .title': {
+        '& .headingTitle': {
             fontSize: '25px',
             fontWeight: 'bold',
         },
-        '& .author': {
+        '& .headingAuthor': {
             fontSize: '20px',
         },
     },
-    content: {
+    logContent: {
         display: 'flex',
         justifyContent: 'space-around',
+
+        width: '100%',
     },
-    content__review: {
+    logContent__review: {
         display: 'flex',
         flexDirection: 'column',
-        width: '70%',
+        width: '75%',
     },
-    content__rank: {
+    logContent__rank: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        width: '30%',
+        width: '25%',
     }
 }))
 
 
 // -B- COMPONENT
 function ExploreSelectedLogID(props) {
-// console.log('ExploreSelectedLogID PROPS: ', props)
 const {
-    selected_logID,                                             // Passed Props
-    a_getSelectedLog, a_addReview, a_addRank,                   // Action Creator
-    selectedLogData,                                            // Redux
+    selected_logID,                          
+    a_getSelectedLog, a_addReview, a_addRank,
+    selectedLogData,                         
 } = props
 // -- //
     // Styles
@@ -114,14 +133,11 @@ const {
     }
 
     const logReview = async (review) => {
-        // console.log('LOG THIS REVIEW')
-
         // Prep Object
         const prepObj = {
             logID: selectedLogData.logID,
             review: review,
         }
-        // console.log(prepObj)
 
         // Call Action Creator
         await a_addReview(prepObj)
@@ -150,77 +166,83 @@ const {
     // Return
     if (selected_logID === false) {
         return (
-            <Paper className={classes.default__root}>
-                <div className={classes.default__rootContent}>Select a Previous Log or Add a New Log</div>
-            </Paper>
+            <div className={classes.default__root}>
+                <Paper className={classes.noSelection__root}>
+                    <div className={classes.default__rootContent}>Select a Previous Log or Add a New Log</div>
+                </Paper>
+            </div>
         )
     } else {
         return (
-            <Paper className={classes.ExploreSelectedLogID__root}>
-                <div className={classes.heading}>
-                    <div className="title">
-                        {selectedLogData.title}
-                    </div>
-                    <div className="author">
-                        By: {selectedLogData.author}
-                    </div>
-                </div>
-                {!addType &&
-                    <div className={classes.content}>
-                        <div className={classes.content__review}>
-                            <div style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
-                                <div style={{marginRight: '5px'}}>
-                                    MY REVIEW
-                                </div>
+            <div className={classes.default__root}>
+                <Paper className={classes.ExploreSelectedLogID__root}>
+                    <div className={classes.default__rootContent}>
+                        <div className={classes.logContent__heading}>
+                            <div className="headingTitle">
+                                {selectedLogData.title}
                             </div>
-                            <div style={{display: 'flex', justifyContent: 'flex-start'}}>
-                                {!selectedLogData.review &&
-                                    <AddBoxIcon 
-                                        style={{marginLeft: '25px'}} 
-                                        onClick={add}
-                                        id="addReview"
-                                    />
-                                }
-                                {selectedLogData.review &&
-                                    selectedLogData.review
-                                }
+                            <div className="headingAuthor">
+                                By: {selectedLogData.author}
                             </div>
                         </div>
-                        <div className={classes.content__rank}>
-                            <div style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
-                                <div style={{marginRight: '5px'}}>
-                                    MY RANK
+                        {!addType &&
+                            <div className={classes.logContent}>
+                                <div className={classes.logContent__review}>
+                                    <div style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
+                                        <div style={{marginRight: '5px'}}>
+                                            MY REVIEW
+                                        </div>
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'flex-start'}}>
+                                        {!selectedLogData.review &&
+                                            <AddBoxIcon 
+                                                style={{marginLeft: '25px'}} 
+                                                onClick={add}
+                                                id="addReview"
+                                            />
+                                        }
+                                        {selectedLogData.review &&
+                                            selectedLogData.review
+                                        }
+                                    </div>
+                                </div>
+                                <div className={classes.logContent__rank}>
+                                    <div style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
+                                        <div style={{marginRight: '5px'}}>
+                                            MY RANK
+                                        </div>
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                                        {!selectedLogData.rank &&
+                                            <AddBoxIcon 
+                                                onClick={add}
+                                                id="addRank"
+                                            />
+                                        }
+                                        {selectedLogData.rank &&
+                                            selectedLogData.rank
+                                        }
+                                    </div>
                                 </div>
                             </div>
-                            <div style={{display: 'flex', justifyContent: 'center'}}>
-                                {!selectedLogData.rank &&
-                                    <AddBoxIcon 
-                                        onClick={add}
-                                        id="addRank"
-                                    />
-                                }
-                                {selectedLogData.rank &&
-                                    selectedLogData.rank
-                                }
-                            </div>
-                        </div>
+                        }
+                        {addType === 'addReview' &&
+                            <AddReview 
+                                logReview={logReview}
+                                setAddtype={setAddtype} 
+                                selectedData={selectedLogData}
+                            />
+                        }
+                        {addType === 'addRank' &&
+                            <AddRank 
+                                logRank={logRank}
+                                setAddtype={setAddtype} 
+                                selectedData={selectedLogData}
+                            />
+                        }
                     </div>
-                }
-                {addType === 'addReview' &&
-                    <AddReview 
-                        logReview={logReview}
-                        setAddtype={setAddtype} 
-                        selectedData={selectedLogData}
-                    />
-                }
-                {addType === 'addRank' &&
-                    <AddRank 
-                        logRank={logRank}
-                        setAddtype={setAddtype} 
-                        selectedData={selectedLogData}
-                    />
-                }
-            </Paper>
+                </Paper>
+            </div>
         )
     }
 }

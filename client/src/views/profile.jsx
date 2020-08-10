@@ -28,11 +28,10 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: 'center',
         width: '100%',
-
     },
     logExplorer: {
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         padding: '20px',
     }
 }))
