@@ -37,6 +37,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     minWidth: '50%',
     height: '100%',
+
+    marginBottom: '20px',
   },
   paper: {
     width: '100%',

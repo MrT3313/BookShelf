@@ -1,7 +1,8 @@
 *, *::before, *::after {box-sizing: inherit; }
 
 body {
-	font-size: 62.5%;
+    font-size: 62.5%;
+    min-width: 500px;
 }
 html {
     box-sizing: border-box;

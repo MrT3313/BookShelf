@@ -31,20 +31,10 @@ const useStyles = makeStyles(theme => ({
     },
     logExplorer: {
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         padding: '20px',
-
-        '@media(max-width: 750px)': {
-            flexDirection: 'column',
-            alignItems: 'center',
-        }
+        flexWrap: 'wrap',
     },
-    // '@media(minWidth: 750px)': {
-    //     logExplorer: {
-    //         flexDirection: 'column',
-    //         alignItems: 'center',
-    //     }
-    // }
 }))
 
 // -B- COMPONENT
