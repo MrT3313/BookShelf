@@ -43,7 +43,6 @@ const useStyles = makeStyles(theme => ({
         
         height: '100%', 
         width: '100%',
-        justifyContent: 'center',
 
         borderRadius: '5px', 
         backgroundColor: '#FFFFFF',
