@@ -71,11 +71,7 @@ const useStyles = makeStyles({
     },
     img: {
         maxHeight: '200px',
-        // maxHeight: '40%',
-
         maxWidth: '130px',
-        // maxWidth: '40%',
-
         height: 'auto',
 
         marginTop: '10px',

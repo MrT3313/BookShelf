@@ -28,13 +28,13 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: 'center',
         width: '100%',
-
     },
     logExplorer: {
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         padding: '20px',
-    }
+        flexWrap: 'wrap',
+    },
 }))
 
 // -B- COMPONENT
