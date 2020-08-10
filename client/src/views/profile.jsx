@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import UpdateStepper from '../components/profile/updateStepper/UpdateStepper.js'
 
 // COMPONENTS
-import Menu_AppBar from '../components/appBar/AppBar.js'
+import MenuAppBar from '../components/appBar/AppBar.js'
 import UserLogTable from '../components/profile/userLogsTable/UserLogTable.js'
 import ExploreSelectedLogID from '../components/profile/exploreSelectedLogID.js'
 import AddBook from '../components/profile/AddBook'
@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        width: '100%',
 
     },
     logExplorer: {
@@ -54,14 +55,14 @@ const {
         if (selected_logID) {
             a_getSelectedLog(selected_logID)
         }
-    }, [selected_logID])
+    }, [selected_logID, a_getSelectedLog])
 
     // Methods
 
     // Return
     return (
         <div className={classes.profile__root}>
-            <Menu_AppBar />
+            <MenuAppBar />
             {addType === 'addBook' &&
                 <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
                     <AddBook 

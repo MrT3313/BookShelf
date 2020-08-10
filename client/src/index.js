@@ -20,7 +20,7 @@ import { cyan, blueGrey } from '@material-ui/core/colors'
 import App from './App.jsx';
 
 // MIDDLEWARE
-const middlewares = [];
+// const middlewares = [];
 
 
 // STORE ENHANCERS
@@ -55,16 +55,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
                     color: '#01BCD4',  // Hack to use Cyan...
                 }
             },
-            MuiSelect: {
-                // root: {
-                //     color: 'white',
-                // }
-            }
-            // MuiSelect: {
-            //     root: {
-            //         color: 'white '
-            //     }
-            // }
         }
     })
     // console.log(theme)

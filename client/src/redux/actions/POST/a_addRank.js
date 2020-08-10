@@ -41,7 +41,7 @@ import { LIVE_BE_base_URL } from '../../../utils'
                 .then(results => {
                 // console.log(results)
                 // -- //
-                    const userResults = results.data.filter(item => item.userID == selectedLogData.userID)
+                    const userResults = results.data.filter(item => item.userID === selectedLogData.userID)
                     // console.log(userResults)
                     
                     dispatch({

@@ -83,7 +83,7 @@ function UpdatedStepper(props) {
           // console.log('EXPLORE SELECTED LOG_ID')
           a_getSelectedLog(selected_logID)
       }
-    }, [selected_logID])
+    }, [a_getSelectedLog, selected_logID])
 
     // Methods
     const update = async () => {

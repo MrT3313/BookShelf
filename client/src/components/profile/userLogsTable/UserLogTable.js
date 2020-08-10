@@ -1,5 +1,5 @@
 // IMPORTS
-import React, {useEffect} from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 
 // MATERIAL UI
@@ -18,7 +18,7 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 // COMPONENTS
 import EnhancedTableHead from './TableHead.js'
-import { EnhancedTableToolbar } from './TableToolBar.js'
+// import { EnhancedTableToolbar } from './TableToolBar.js'
 
 // ACTION CREATOR
 import { a_deleteLog } from '../../../redux/actions/DEL/a_deleteLog.js'
@@ -77,7 +77,7 @@ const {
   token,
   a_deleteLog,                    // Action Creator
   a_getReviews,                         // After ^^
-  a_getLoggedBooks,                     // After ^^
+  // a_getLoggedBooks,                     // After ^^
   a_getRanks,                           // After ^^
 } = props
 // console.log('userLogs',userLogs)
@@ -88,7 +88,8 @@ const {
   // State
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('rank');
-    const [selected, setSelected] = React.useState([]);
+    // const [selected, setSelected] = React.useState([]);
+    const [selected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const months = {
@@ -239,7 +240,7 @@ const {
       setPage(0);
     };
 
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    // const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   // ---- PAGE / ROWS ---- //
   // ---- PAGE / ROWS ---- //
 

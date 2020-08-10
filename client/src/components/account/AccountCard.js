@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 
 // MATERIAL UI
 // -1- Components
-import { Card } from '@material-ui/core';
+// import { Card } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
-import EditIcon from '@material-ui/icons/Edit';
+// import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+// import EditIcon from '@material-ui/icons/Edit';
 import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 import List from '@material-ui/core/List';
@@ -25,8 +25,8 @@ import { a_updateUser } from '../../redux/actions/auth/a_updateUser.js'
 
 // UTILS
 import decode from '../../utils/decode_JWT.js'
-import { LOCAL_BE_base_URL } from '../../utils'
-import { LIVE_BE_base_URL } from '../../utils'
+// import { LOCAL_BE_base_URL } from '../../utils'
+// import { LIVE_BE_base_URL } from '../../utils'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -95,7 +95,7 @@ const {
         let decoded = decode(token)
         setPrivileges(decoded.privileges)
         setID(decoded.user_ID)
-    })
+    }, [token, setPrivileges, setID])
 
     // Methods
     const saveEdits = () => {

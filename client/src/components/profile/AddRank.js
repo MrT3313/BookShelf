@@ -1,5 +1,5 @@
 // IMPORTS 
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { connect } from 'react-redux';
 
 // MATERIAL UI
@@ -10,17 +10,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
 
 // -2- Styles
 import { makeStyles } from '@material-ui/core/styles';
-
-// ACTION CREATORS
-
-
-// FUNCTIONS
-import decode from '../../utils/decode_JWT.js'
 
 // === === === === === === === === === === === === //
 // === === === === === === === === === === === === //
@@ -92,10 +85,10 @@ const {
 
     logRank,
 
-    DB_books,
-    token,
+    // DB_books,
+    // token,
 
-    a_addReview     // Action Creator
+    // a_addReview     // Action Creator
 } = props
 // -- //
     // Styles

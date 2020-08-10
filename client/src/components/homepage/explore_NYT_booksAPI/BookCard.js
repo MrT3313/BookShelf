@@ -1,5 +1,5 @@
 // IMPORTS
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 // MATERIAL UI
@@ -19,7 +19,18 @@ import { makeStyles } from '@material-ui/core/styles'
 // __MAIN__
 // -A- STYLES
 const useStyles = makeStyles({
-    card: {
+    // MOBILE
+    MobileBookCard: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    mobileTop: {
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    // DESKTOP
+    DesktopBookCard: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -37,14 +48,23 @@ const useStyles = makeStyles({
         flexDirection: 'column',
     },
     author: {
+        display: 'flex',
+        justifyContent: 'center',
+        textAlign: 'center',
         fontFamily: "'Special Elite', cursive",
         fontSize: 20,
     },
     title: {
+        display: 'flex',
+        justifyContent: 'center',
+        textAlign: 'center',
         fontFamily: "'Baloo', cursive",
         fontSize: 30,
     },
     description: {
+        display: 'flex',
+        justifyContent: 'center',
+        textAlign: 'center',
         fontFamily: "'Special Elite', cursive",
         fontSize: 18,
         marginTop: 5,
@@ -67,16 +87,51 @@ const useStyles = makeStyles({
 // -B- COMPONENT
 function BookCard(props) {
 // console.log('BookCard PROPS: ', props)
-const {title, author, book_image, description,
-    // rank,
+const {
+    title, author, book_image, description,
 } = props.bookInfo
 // -- // 
     // Styles
     const classes = useStyles()
 
+    // State
+    const [width, setWidth] = useState(window.innerWidth)
+
+    // UseEffect
+    useEffect(() => {
+        window.addEventListener("resize", () => setWidth(window.innerWidth));
+    }, []);
+
     // Return
-    return(
-            <Card className={classes.card}>
+    if (width < 450) {
+        return (
+            <Card className={classes.MobileBookCard}>
+                <div className={classes.mobileTop}>
+                    <div>
+                        <div className={classes.title}>
+                            Title: {title}
+                        </div>
+                        <div className={classes.author}>
+                            Author: {author}
+                        </div>
+                    </div>
+                </div>
+                <div className={classes.mobileCover}>
+                    <img className={classes.img}
+                        src = {book_image}
+                        alt='Book Cover'
+                    />
+                </div>
+                <div className={classes.mobileBottom}>
+                    <div className={classes.description}>
+                        {description}
+                    </div>
+                </div>
+            </Card>
+        )
+    } else {
+        return(
+            <Card className={classes.DesktopBookCard}>
                 <div className={classes.card__left}>
                     <div>
                         <div className={classes.title}>
@@ -96,12 +151,12 @@ const {title, author, book_image, description,
                 <div className={classes.card__right}>
                     <img className={classes.img}
                         src = {book_image}
-                        alt='Book Cover Image'
+                        alt='Book Cover'
                     />
                 </div>
-                
             </Card>
-    )
+        )
+    }
 }
 
 // MAP STATE TO PROPS

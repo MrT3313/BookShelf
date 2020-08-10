@@ -13,7 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 
 // COMPONENTS
-import API_dataAttribution from './API_DataAttribution.js'
+import APIdataAttribution from './API_DataAttribution.js'
 
 // ACTION CREATORS
 import {a_getSpecificList} from '../../../redux/actions/GET/a_getSpecificList.js'
@@ -77,14 +77,14 @@ const { a_getSpecificList } = props
             }
             fetchData()
     // eslint-disable-next-line no-use-before-define
-    },[listName]) 
+    },[a_getSpecificList, listName]) 
 
     // Return
     return (
         <div className={classes.listSelection__root}>
             <FormControl className={classes.listSelection__FormControl}>
                 <InputLabel shrink id="demo-simple-select-placeholder-label-label">
-                    Active NYT Bestseller List
+                    Active List
                 </InputLabel>
                 <Select
                     value={listName}
@@ -101,7 +101,7 @@ const { a_getSpecificList } = props
                 </Select>
             </FormControl>
 
-            <API_dataAttribution />
+            <APIdataAttribution />
         </div>
     )
 }
