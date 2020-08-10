@@ -31,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     backgroundColor: theme.palette.secondary.main,
     '& .MuiTab-root': {
-        minWidth: '10px',
+        minWidth: '0px',
+        width: '100px',
         color: theme.palette.primary.main,
     },
   },
