@@ -31,7 +31,12 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'center',
 
-        width: '100%',
+        flexGrow: 1,
+
+        '@media(max-width: 750px)': {
+            marginTop: '20px',
+            minHeight: '100px',
+        }
     }, 
     default__rootContent: {
         display: 'flex', 

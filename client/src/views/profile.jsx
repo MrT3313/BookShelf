@@ -33,7 +33,18 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-between',
         padding: '20px',
-    }
+
+        '@media(max-width: 750px)': {
+            flexDirection: 'column',
+            alignItems: 'center',
+        }
+    },
+    // '@media(minWidth: 750px)': {
+    //     logExplorer: {
+    //         flexDirection: 'column',
+    //         alignItems: 'center',
+    //     }
+    // }
 }))
 
 // -B- COMPONENT
