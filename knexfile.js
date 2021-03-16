@@ -27,13 +27,13 @@ module.exports = {
         },
         seeds: {
             directory: "./backend/data/seeds"
-          }
+        }
     }, 
 
     production: {
         // TODO: Switch to use SQL in PRODUCTION
         client: 'pg',
-        connection: process.env.DATABASE_URL,
+        connection: `${process.env.DATABASE_URL}?ssl=true`,
         migrations: {
             directory: './backend/data/migrations',
             tableName: "knex_migrations"
